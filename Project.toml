@@ -3,6 +3,18 @@ uuid = "be359dbc-e715-4152-92a8-ea345ee2ca4a"
 authors = ["B. Hamilton"]
 version = "1.0.0-DEV"
 
+[deps]
+BLUEs = "b3a7f272-e305-45d1-bcf3-14d22bb67726"
+DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
+DimensionalData = "0703355e-b756-11e9-17c0-8b28908087d0"
+DrWatson = "634d3b9d-ee7a-5ddf-bec9-22491ea816e1"
+Interpolations = "a98d9a8b-a2ab-59e6-89dd-64a1c18fca59"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
+Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
+
 [compat]
 julia = "1.10"
 

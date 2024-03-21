@@ -1,0 +1,10 @@
+#=
+for geoChronR output files
+- interpolate to given resolution
+
+=#
+using DrWatson
+@quickactivate "OPTinv.jl"
+
+readdir(datadir())
+files = datadir()
