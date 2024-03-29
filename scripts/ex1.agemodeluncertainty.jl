@@ -14,22 +14,22 @@ import OPTinv.yr, OPTinv.permil
 age_file = datadir("MC26A.U.p.ae.csv")
 d18O_file = datadir("MC26A.U.p.d18O.csv")
 
-#if matrix = false (default), it will bundle up all these steps and spit out the de
-a, d = readbaconfile(age_file, d18O_file, matrix = true) 
+#each individual step to process a sed. core record and Bacon age model 
+a, d = readbaconfile(age_file, d18O_file) 
 T, int = interpolatebacon(a, d, 5yr);
 μ, T = meanbacon(int, T, a)
 println("Time to compute full covariance matrix for MC26A, 5yr res.") 
 @time Cnn = covariancebacon(int, T,μ, a, :MC26A)
 e = formatbacon(μ, T, Cnn, :MC26A)
 
-#alternatively, just don't set matrix and it will skip to last step
+#alternatively, format bacon can budle these all up 
 println("Time to do all steps for MC26A, 10yr res.") 
-@time de = readbaconfile(age_file, d18O_file, core = :MC26A, res = 10yr)
+@time de = formatbacon(age_file, d18O_file, :MC26A; res = 10yr)
 
 #read multiple files
 age_files = datadir.(["MC26A.U.p.ae.csv", "MC9A.C.w.ae.csv"])
 d18O_files = datadir.(["MC26A.U.p.d18O.csv", "MC9A.C.w.d18O.csv"])
 cores = [:MC26A, :MC9A]
 println("Time to do all steps for MC26A and MC9A, 10yr res.") 
-@time e = readbaconfile(age_files, d18O_files, cores, res = 10yr) 
+@time e = formatbacon(age_files, d18O_files, cores, res = 10yr) 
 
