@@ -9,8 +9,8 @@ end
 
 filepath = joinpath("../data/M", filename)
 res = 1
-if !isfile(filepath)
 
+if !isfile(filepath)
     using JLD2 
     include("../src/OPTinv_alt_env.jl")
     surfaceboxes = [[[300, 320], [50,70]], [[320, 340], [50, 70]], [[340, 360],  [50, 70]], [[300, 360], [70, 90]], [[300,360], [30, 50]]]
@@ -56,9 +56,15 @@ res = newres
 files = readdir(datadir())
 ae_files = [f for f in files if occursin("ae", f)]
 d18O_files = [f for f in files if occursin("d18O", f)]
-cores = Tuple([Symbol(split(f, ".")[1]) for f in ae_files])
+listed_cores = Tuple([Symbol(split(f, ".")[1]) for f in ae_files])
+#how to reorder directory files
+sort_indices = [findall(x->x== c, cores)[1] for c in listed_cores] 
+subset_cores = Symbol.("MC" .* string.([26, 25, 20, 19, 10 , 9, 13, 14]) .* "A")
 
-@time e = formatbacon(datadir.(ae_files), datadir.(d18O_files), [c for c in cores], res = res)
+subset = [c ∈ subset_cores for c in cores]
+@time e = formatbacon(datadir.(ae_files)[sort_indices][subset], datadir.(d18O_files)[sort_indices][subset], [c for c in subset_cores], res = res)
+cores = subset_cores
+
 #add in measurement uncertainty 
 e = fillcovariance!(e, [DiagRule((0.07permil)^2, (:, :))], dims(e.y))
 
@@ -90,11 +96,13 @@ patches = NamedTuple{(:East,)}([bc])
 M = transientM(corelocs, patches)
 =#
 
-σθ = 11K /2 * 2
-σδ = 0.8permil / 1 * 2 #std of global surface d18O in WOCE
-f = σθ^2/ (20K/permil)
+σθ = 11K /2 
+σδ = 0.8permil / 1 #std of global surface d18O in WOCE 
+f = σθ^2/ (10K/permil) 
 T = [t for t in e.y.dims[1]]
-Tᵤ = T[1] - maximum(τ):res:T[end]
+#Tᵤ = T[1] - maximum(τ):res:T[end]
+Tᵤ = 1000yr:res:T[end]
+
 u₀ = firstguess(Tᵤ,[m for m in modes], σθ, σδ, f)
 
 #y is a DimArray(T x C)
@@ -102,19 +110,18 @@ coeffs = NamedTuple{(:θ, :δ)}([-0.27permil/K, 1])
 
 #for every time, compute
 sv = (:θ, :δ)
-predict(u) = DimArray(cat([+([+([vec(u[At(t-τi), :, At(s)]' * coeffs[s] * ℳ[At(τi), :, :]) for τi in τ]...) for s in sv]...) for t in T]..., dims = 2)', (Ti(T), Cores([c for c in cores])))
+predict(u) = DimArray(cat([+([+([vec(u[At(t-τi), :, At(s)]' * coeffs[s] * ℳ[At(τi), :, At(cores)]) for τi in τ[t .- τ .> minimum(Tᵤ)]]...) for s in sv]...) for t in T]..., dims = 2)', (Ti(T), Cores([c for c in cores])))
 
 utest = firstguess(Tᵤ, [m for m in modes], σθ, σδ,f, fill_val = [1K, 1permil])
-predict(utest.y)
-
+@time predict(utest.y)
+figure(); plot(ustrip.(predict(utest.y)[:, At(:MC10A)])[:])
 predict(u₀.y)
 println("Impulse Response") 
-@time E = impulseresponse(predict, u₀.y)
+#@time E = impulseresponse(predict, u₀.y) #328 seconds 
 
 @time yde, ỹde, u₀de, ũ = solvesystem(e, u₀, E, predict);
 
 predict(ũ.x)
-
 fig = figure(figsize = (8, 8))
 for (i, core) in enumerate(cores) 
     subplot(4,3, i)
@@ -124,7 +131,7 @@ for (i, core) in enumerate(cores)
     title(core)
 end
 tight_layout()
-
+ 
 figure(figsize = (8,4))
 for (i, m) in enumerate(modes)
     for (j, s) in enumerate([:θ, :δ])
@@ -141,10 +148,15 @@ scatter(vec(ũ.x[:, :, At(:θ)]), vec(ũ.x[:, :, At(:δ)]), capsize = 5)
 lls = linearleastsquares(ustrip.(value.(vec(ũ.x[:, :, At(:δ)]))), ustrip.(value.(vec(ũ.x[:, :, At(:θ)]))))
 println("slope [K/permil] = " * string( lls[1]))
 
-figure()
+figure(figsize = (10,3)) 
 for (i, m) in enumerate(modes)
     subplot(1,5,i)
     for (j, c) in enumerate(cores)
-        plot(vec(ℳ[:, At(m), At(c)]), label = c)
+        plot(ustrip.(τ), vec(ℳ[:, At(m), At(c)]), label = c)
+        title(m)
     end
 end
+tight_layout()
+
+
+
