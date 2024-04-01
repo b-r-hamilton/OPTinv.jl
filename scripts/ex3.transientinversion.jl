@@ -116,8 +116,17 @@ utest = firstguess(Tᵤ, [m for m in modes], σθ, σδ,f, fill_val = [1K, 1perm
 @time predict(utest.y)
 figure(); plot(ustrip.(predict(utest.y)[:, At(:MC10A)])[:])
 predict(u₀.y)
-println("Impulse Response") 
-#@time E = impulseresponse(predict, u₀.y) #328 seconds 
+println("Impulse Response")
+filename = split(filename, ".")[1] .* "_E.jld2"
+filepath = joinpath("../data/M", filename) 
+if !isfile(filepath) 
+    @time E = impulseresponse(predict, u₀.y) #328 seconds
+    jldsave(filepath; E) 
+else
+    jld = jldopen(filepath)
+    E = jld["E"]
+    close(jld) 
+end 
 
 @time yde, ỹde, u₀de, ũ = solvesystem(e, u₀, E, predict);
 
