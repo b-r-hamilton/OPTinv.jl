@@ -44,65 +44,36 @@ cores = keys(corelocs)
 τ = τ * yr
 res = unique(diff(τ))[1]
 ℳ = formattransientM(M, τ, [m for m in modes], [c for c in cores])
-newres = 10yr
-sum_ind = [a*yr:1yr:a*yr+newres-1yr for a in 1:ustrip(newres):length(τ)-ustrip(newres)+1]
-subℳ = cat([sum(ℳ[Ti = At(ind)], dims = Ti) for ind in sum_ind]..., dims = Ti)
-arr = cat(Array(reshape(ℳ[At(0yr), :, :], (1, size(ℳ)[2:3]...))), Array(subℳ), dims = 1)
-newτ = 0yr:newres:1000yr
-ℳnew = DimArray(arr, (Ti(newτ), Modes([m for m in modes]), Cores([c for c in cores])))
-ℳ = ℳnew
-τ = newτ
-res = newres
+
+#M has 1 yr resolution, but we're gonna subsample this
+#has to be subsampled by summing
+res = 10yr 
+ℳ, τ = subsampletransientM(ℳ, res)[1]
+
+#read in data at this resolution 
 files = readdir(datadir())
 ae_files = [f for f in files if occursin("ae", f)]
 d18O_files = [f for f in files if occursin("d18O", f)]
 listed_cores = Tuple([Symbol(split(f, ".")[1]) for f in ae_files])
-#how to reorder directory files
-sort_indices = [findall(x->x== c, cores)[1] for c in listed_cores] 
+#re-order directory cores so they line up with Cores dim 
+sort_indices = [findall(x->x== c, cores)[1] for c in listed_cores]
+#subset to the cores that show consistency 
 subset_cores = Symbol.("MC" .* string.([26, 25, 20, 19, 10 , 9, 13, 14]) .* "A")
-
 subset = [c ∈ subset_cores for c in cores]
+
+#now feed in those files and get e matrix 
 @time e = formatbacon(datadir.(ae_files)[sort_indices][subset], datadir.(d18O_files)[sort_indices][subset], [c for c in subset_cores], res = res)
 cores = subset_cores
 
 #add in measurement uncertainty 
 e = fillcovariance!(e, [DiagRule((0.07permil)^2, (:, :))], dims(e.y))
 
-#generate steady-state M
-
-#=
-using TMI
-TMIversion = "modern_180x90x33_GH11_GH12"
-A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
-patches = NamedTuple{keys(patches)}([surfacepatch(patches[k]..., γ) for k in keys(patches)])
-patches[:East].wet == γ.wet[:, :, 1]
-γ.axes
-lonlat = (311.0, 61.0)
-lonlatindices = (findall(x->x == lonlat[1], γ.lon)[1], findall(x->x == lonlat[2], γ.lat)[1])
-
-tracer = convert(Matrix{Float64}, copy(γ.wet[:, :, 1]))
-λ = 5
-for i in 1:length(γ.lon)
-    for j in 1:length(γ.lat)
-        if tracer[i, j] != 0.0 && (i, j) != lonlatindices
-            r = sqrt((i - lonlatindices[1])^2 + (j - lonlatindices[2])^2)
-            tracer[i, j] = 1-exp(-λ/r)
-        end
-        
-    end
-end
-bc = BoundaryCondition(tracer, γ.axes[1:2], 0.0, 3, 1, γ.wet[:, :, 1], :name, "longname", "units as string")
-patches = NamedTuple{(:East,)}([bc])
-M = transientM(corelocs, patches)
-=#
-
-σθ = 11K /2 
-σδ = 0.8permil / 1 #std of global surface d18O in WOCE 
+# make Cuu matrix 
+σθ = 11K / 2 
+σδ = 0.8permil / 1  #std of global surface d18O in WOCE 
 f = σθ^2/ (10K/permil) 
 T = [t for t in e.y.dims[1]]
-#Tᵤ = T[1] - maximum(τ):res:T[end]
-Tᵤ = 1000yr:res:T[end]
-
+Tᵤ = 1000yr:res:T[end] #arbitrary cut off for Tᵤ, otherwise impulseresponse is very costly
 u₀ = firstguess(Tᵤ,[m for m in modes], σθ, σδ, f)
 
 #y is a DimArray(T x C)
@@ -112,10 +83,6 @@ coeffs = NamedTuple{(:θ, :δ)}([-0.27permil/K, 1])
 sv = (:θ, :δ)
 predict(u) = DimArray(cat([+([+([vec(u[At(t-τi), :, At(s)]' * coeffs[s] * ℳ[At(τi), :, At(cores)]) for τi in τ[t .- τ .> minimum(Tᵤ)]]...) for s in sv]...) for t in T]..., dims = 2)', (Ti(T), Cores([c for c in cores])))
 
-utest = firstguess(Tᵤ, [m for m in modes], σθ, σδ,f, fill_val = [1K, 1permil])
-@time predict(utest.y)
-figure(); plot(ustrip.(predict(utest.y)[:, At(:MC10A)])[:])
-predict(u₀.y)
 println("Impulse Response")
 filename = split(filename, ".")[1] .* "_E.jld2"
 filepath = joinpath("../data/M", filename) 
@@ -123,6 +90,7 @@ if !isfile(filepath)
     @time E = impulseresponse(predict, u₀.y) #328 seconds
     jldsave(filepath; E) 
 else
+    println("Loading in pre-saved file") 
     jld = jldopen(filepath)
     E = jld["E"]
     close(jld) 
@@ -130,7 +98,6 @@ end
 
 @time yde, ỹde, u₀de, ũ = solvesystem(e, u₀, E, predict);
 
-predict(ũ.x)
 fig = figure(figsize = (8, 8))
 for (i, core) in enumerate(cores) 
     subplot(4,3, i)
@@ -152,10 +119,14 @@ for (i, m) in enumerate(modes)
 end
 tight_layout()
 
-figure()
+figure(figsize = (10, 5))
+subplot(1,2,1) 
 scatter(vec(ũ.x[:, :, At(:θ)]), vec(ũ.x[:, :, At(:δ)]), capsize = 5)
+subplot(1,2,2)
+halfway = convert(Int64, length(ũ.v)/2)
+scatter(ustrip.(vec(ũ.v)[begin:halfway]), ustrip.(vec(ũ.v)[halfway+1:end]))
 lls = linearleastsquares(ustrip.(value.(vec(ũ.x[:, :, At(:δ)]))), ustrip.(value.(vec(ũ.x[:, :, At(:θ)]))))
-println("slope [K/permil] = " * string( lls[1]))
+println("slope [K/permil] = " * string(lls[1]))
 
 figure(figsize = (10,3)) 
 for (i, m) in enumerate(modes)

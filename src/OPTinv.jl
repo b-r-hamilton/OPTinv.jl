@@ -10,7 +10,7 @@ import Measurements.measurement, Measurements.value, Measurements.uncertainty
 export readbaconfile, interpolatebacon, meanbacon, covariancebacon,
     formatbacon, covariancedims, steadystateM, firstguess,
     fillcovariance, fillcovariance!, linearleastsquares,
-    solvesystem, core_locations, formattransientM
+    solvesystem, core_locations, formattransientM, subsampletransientM
 
 yr = u"yr"
 permil = Unitful.FixedUnits(u"permille")
@@ -495,6 +495,20 @@ end
 function  formattransientM(arr::Array, τ, modes, cores)
     ℳ = DimArray(arr, (Ti(τ), Modes(modes), Cores(cores)))
     return ℳ
+end
+
+function subsampletransientM(ℳ::DimArray, newres::Quantity)
+    dims = ℳ.dims
+    τ = [t for t in dims[1]]
+    sum_ind = [a:1yr:a+newres-1yr for a in 1yr:newres:length(τ)yr-newres+1yr]
+    subℳ = cat([sum(ℳ[Ti = At(ind)], dims = Ti) for ind in sum_ind]..., dims = Ti)
+
+    #unfortunately its really hard to make 
+    Mbegin = Array(reshape(ℳ[At(0yr), :, :], (1, size(ℳ)[2:3]...)))
+    arr = cat(Mbegin, Array(subℳ), dims = 1)
+    newτ = 0yr:newres:1000yr
+    ℳnew = DimArray(arr, (Ti(newτ), Modes([m for m in dims[2]]), Cores([c for c in dims[3]])))
+    return ℳnew, newτ
 end
 
 
