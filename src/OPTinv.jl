@@ -2,7 +2,7 @@ module OPTinv
 
 using DrWatson, Unitful, Revise, Statistics, BLUEs, LinearAlgebra,
     SparseArrays, TMI, Interpolations, UnitfulLinearAlgebra, Measurements,
-    PyPlot, CSV, DataFrames, TMItransient
+    PyPlot, CSV, DataFrames#, TMItransient
 import Interpolations.deduplicate_knots! as deduplicate! 
 import Interpolations.LinearInterpolation as LI
 import DelimitedFiles.readdlm
@@ -10,7 +10,8 @@ import Measurements.measurement, Measurements.value, Measurements.uncertainty
 export readbaconfile, interpolatebacon, meanbacon, covariancebacon,
     formatbacon, covariancedims, steadystateM, firstguess,
     fillcovariance, fillcovariance!, linearleastsquares,
-    solvesystem, core_locations, formattransientM, subsampletransientM
+    solvesystem, core_locations, formattransientM, subsampletransientM, reshape,
+    fancyscatter
 
 yr = u"yr"
 permil = Unitful.FixedUnits(u"permille")
@@ -24,7 +25,7 @@ using DimensionalData: @dim, YDim, XDim, TimeDim, ZDim
 @dim StateVar "state variable"
 
 export yr, permil, K,
-    Ti, Cores, Modes,
+    Ti, Cores, Modes, StateVar,
     DiagRule, OffDiagRule
 
 include(srcdir("UnitfulPlots.jl"))
@@ -439,14 +440,27 @@ function steadystateM(locs::NamedTuple, patches::NamedTuple; TMIversion = "moder
     return DimArray(hcat(obs...)', (Modes(modes), Cores(cores)))
 end
 
-function firstguess(T, modes, σθ, σδ, f; fill_val = [0K, 0permil])
+"""
+function firstguess(T, modes, σθ, σδ, c; fill_val = [0K, 0permil])
+
+    compute u₀ and Cᵤᵤ
+    The off-diagonals of Cᵤᵤ will be populated by either
+    σθ^2/c or σδ^2c
+    If c < σθ/σδ, then the off-diagonals must be populated by σδ^2c
+    Otherwise, populated by σθ^2/c
+"""
+function firstguess(T, modes, σθ, σδ, ρ; fill_val = [0K, 0permil])
     z = zeros(length(T), length(modes))
     dims = (Ti(T), Modes(modes), StateVar([:θ, :δ]))
     da = DimArray(cat(z * K .+ fill_val[1], z * permil .+ fill_val[2], dims = 3), dims)
     units = unit.(vec(da))
     diagrules = [DiagRule(σθ^2, (:, :, At(:θ))), DiagRule(σδ^2, (:, :, At(:δ)))]
-    rules = vcat(diagrules, OffDiagRule(f, (:, :, At(:θ)), (:, :, At(:δ))))
+    cov = ρ*σθ*σδ
+    @show cov
+    @show c = ρ*σθ/σδ
+    rules = vcat(diagrules, OffDiagRule(cov, (:, :, At(:θ)), (:, :, At(:δ))))
     Cuu = fillcovariance(vec(units), rules, dims)
+    @show isposdef(Cuu.mat)
 
     return Est(da, Cuu) 
 end
@@ -482,16 +496,6 @@ function linearleastsquares(x,y)
     return lls
 end
 
-function core_locations()
-    
-    locations_file = "../data/EN539_locations.csv"
-    cores_df = CSV.read(locations_file,DataFrame)
-    locs = [(cores_df.Lon[i], cores_df.Lat[i], cores_df.Depth[i]) for i in 1:length(cores_df.Core)]
-    cores = replace.(cores_df.Core, "EN539-"=>"")
-    return NamedTuple{Tuple(Symbol.(cores))}(locs)
-    
-end
-
 function  formattransientM(arr::Array, τ, modes, cores)
     ℳ = DimArray(arr, (Ti(τ), Modes(modes), Cores(cores)))
     return ℳ
@@ -511,6 +515,15 @@ function subsampletransientM(ℳ::DimArray, newres::Quantity)
     return ℳnew, newτ
 end
 
+
+function core_locations()
+    locations_file = "../data/EN539_locations.csv"
+    cores_df = CSV.read(locations_file,DataFrame)
+    locs = [(cores_df.Lon[i], cores_df.Lat[i], cores_df.Depth[i]) for i in 1:length(cores_df.Core)]
+    cores = replace.(cores_df.Core, "EN539-"=>"")
+    return NamedTuple{Tuple(Symbol.(cores))}(locs)
+    
+end
 
 
 end
