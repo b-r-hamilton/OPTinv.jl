@@ -7,6 +7,7 @@ import Interpolations.deduplicate_knots! as deduplicate!
 import Interpolations.LinearInterpolation as LI
 import DelimitedFiles.readdlm
 import Measurements.measurement, Measurements.value, Measurements.uncertainty
+
 export readbaconfile, interpolatebacon, meanbacon, covariancebacon,
     formatbacon, covariancedims, steadystateM, firstguess,
     fillcovariance, fillcovariance!, linearleastsquares,
@@ -504,13 +505,13 @@ end
 function subsampletransientM(ℳ::DimArray, newres::Quantity)
     dims = ℳ.dims
     τ = [t for t in dims[1]]
-    sum_ind = [a:1yr:a+newres-1yr for a in 1yr:newres:length(τ)yr-newres+1yr]
+    sum_ind = [a:1yr:a+newres-1yr for a in 1yr:newres:length(τ)yr-newres]
     subℳ = cat([sum(ℳ[Ti = At(ind)], dims = Ti) for ind in sum_ind]..., dims = Ti)
 
     #unfortunately its really hard to make 
     Mbegin = Array(reshape(ℳ[At(0yr), :, :], (1, size(ℳ)[2:3]...)))
     arr = cat(Mbegin, Array(subℳ), dims = 1)
-    newτ = 0yr:newres:1000yr
+    newτ = 0yr:newres:(size(arr)[1]-1)*newres
     ℳnew = DimArray(arr, (Ti(newτ), Modes([m for m in dims[2]]), Cores([c for c in dims[3]])))
     return ℳnew, newτ
 end
@@ -524,6 +525,9 @@ function core_locations()
     return NamedTuple{Tuple(Symbol.(cores))}(locs)
     
 end
+
+
+
 
 
 end

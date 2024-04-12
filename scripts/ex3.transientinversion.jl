@@ -2,7 +2,7 @@
 import Pkg
 Pkg.activate("../")
 
-using OPTinv, Unitful, DimensionalData, BLUEs, Statistics, UnitfulLinearAlgebra, LinearAlgebra, PyPlot, Revise, DrWatson, PyCall, JLD2
+using OPTinv, Unitful, DimensionalData, BLUEs, Statistics, UnitfulLinearAlgebra, LinearAlgebra, PyPlot, Revise, DrWatson, PyCall, JLD2, TMI
 import Measurements.value as value
 using DimensionalData: @dim
 @dim Gridcells "Grid cells"
@@ -11,13 +11,22 @@ cm = pyimport("cmocean.cm")
 cfeature = pyimport("cartopy.feature")
 cu = pyimport("cartopy.util")
 
-filename = "arr.jld2"
+function reshape(v::Vector{T}, γ) where T
+    #template = zeros(size.(γ.axes)[1][1], size.(γ.axes)[2][1])
+    template = Array{T}(undef, size.(γ.axes)[1][1], size.(γ.axes)[2][1])
+    template .= NaN
+    template[γ.wet[:, :, 1]] .= v
+    return template
+end
+
+filename = "svd.jld2"
 directory = "../data/M"
 filepath = joinpath("../data/M", filename)
 
 jld = jldopen(filepath)
-M = jld["arr"]
-τ = jld["τ"]
+M = jld["arr"][begin:end-1, :, :]
+τ = jld["τ"][begin:end-1]
+mat = jld["modes"]
 modes = 1:11
 cores = keys(core_locations())
 close(jld)
@@ -127,11 +136,6 @@ for (i, m) in enumerate(modes)
     end
 end
 tight_layout()
-
-Pkg.activate(".")
-include("../src/OPTinv_alt_env.jl")
-mat = generatemodes(core_locations())
-Pkg.activate("../")
 
 TMIversion = "modern_180x90x33_GH11_GH12"
 A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
