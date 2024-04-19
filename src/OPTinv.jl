@@ -2,7 +2,7 @@ module OPTinv
 
 using DrWatson, Unitful, Revise, Statistics, BLUEs, LinearAlgebra,
     SparseArrays, TMI, Interpolations, UnitfulLinearAlgebra, Measurements,
-    PyPlot, CSV, DataFrames#, TMItransient
+    PyPlot, CSV, DataFrames, JLD2
 import Interpolations.deduplicate_knots! as deduplicate! 
 import Interpolations.LinearInterpolation as LI
 import DelimitedFiles.readdlm
@@ -11,13 +11,14 @@ import Measurements.measurement, Measurements.value, Measurements.uncertainty
 export readbaconfile, interpolatebacon, meanbacon, covariancebacon,
     formatbacon, covariancedims, steadystateM, firstguess,
     fillcovariance, fillcovariance!, linearleastsquares,
-    solvesystem, core_locations, formattransientM, subsampletransientM, reshape,
-    fancyscatter
+    solvesystem, core_locations, formattransientM, subsampletransientM,
+    γreshape
+
+export loadM, loadcores, loadE, ptobserve, fancytext, boxmean, reconstructsurface
 
 yr = u"yr"
 permil = Unitful.FixedUnits(u"permille")
 K = u"K"
-
 using DimensionalData
 using DimensionalData: @dim, YDim, XDim, TimeDim, ZDim
 
@@ -477,6 +478,16 @@ function solvesystem(e::Est, u₀::Est, E::UnitfulMatrix, predict::Function)
     Cññ = E * ũ.C * E'
     yde = DimEstimate(yvals, parent(e.Cnn.mat) .* permil ^2 , e.y.dims)
     ỹde = DimEstimate(E*ũ.v, parent(Cññ) .* permil^2, e.y.dims)
+
+    
+    println("Cost fncts") 
+    @show cost(ũ, up)
+    @show datacost(ũ, up)
+    @show controlcost(ũ, up)
+    @show BLUEs.rmserror(ũ, up)
+    @show BLUEs.rmscontrol(ũ, up, :θ)
+    @show BLUEs.rmscontrol(ũ, up, :δ)
+
     return yde, ỹde, u₀de, ũ
 end
 
@@ -527,7 +538,179 @@ function core_locations()
 end
 
 
+function γreshape(v::Vector{T}, γ) where T
+    template = Array{T}(undef, size.(γ.axes)[1][1], size.(γ.axes)[2][1])
+    template .= NaN
+    template[γ.wet[:, :, 1]] .= v
+    return template
+end
 
+function loadM(filename::String, core_list::Vector{Symbol};  res = 10yr) 
+    filepath = joinpath("../data/M", filename)
+
+    #load in variables from ex3.svdmodes.jl 
+    jld = jldopen(filepath)
+    M = jld["arr"][begin:end-1, :, :]
+    τ = jld["τ"][begin:end-1]yr
+    spatialmodes = jld["modes"]
+    modes = 1:size(M)[2]
+    cores = keys(core_locations())
+    close(jld)
+
+    #format into DimArray 
+    ℳ = formattransientM(M, τ, [m for m in modes], [c for c in cores])
+
+    
+    #normalize modes and ℳ so that the surface mode sums to 1
+    
+    norm = sum(spatialmodes, dims = 2)
+    [spatialmodes[i, :] ./= norm[i] for i in 1:11]
+    [ℳ[:, At(i), :] ./= norm[i] for i in 1:11]
+
+    
+    #M has 1 yr resolution
+    ℳ, τ = subsampletransientM(ℳ, res)
+    return ℳ[:, :, At(core_list)], spatialmodes
+    #return ℳ, spatialmodes
+end
+
+function loadcores(core_list::Vector{Symbol}, res = 10yr)
+    files = readdir(datadir())
+    ae_files = [f for f in files if occursin("ae", f)]
+    d18O_files = [f for f in files if occursin("d18O", f)]
+    directory_cores = Tuple([Symbol(split(f, ".")[1]) for f in ae_files])
+    #re-order directory cores so they line up with core_list
+    sort_indices = [findall(x->x== c, core_list)[1] for c in directory_cores]
+    display(sort_indices)
+    @time e = formatbacon(datadir.(ae_files)[sort_indices], datadir.(d18O_files)[sort_indices], core_list, res = res)
+    #add in measurement uncertainty 
+    e = fillcovariance!(e, [DiagRule((0.07permil)^2, (:, :))], dims(e.y))
+    return e 
+end
+
+function loadE(filename::String, ℳ::DimArray, Tᵤ, T, u₀::Est,
+               core_list::Vector{Symbol}, yax::Vector{Tuple})
+    sv = (:θ, :δ)
+    coeffs = NamedTuple{sv}([-0.27permil/K, 1])
+    τ = [t for t in ℳ.dims[1]] 
+    #this is the same as BLUEs.convolve, I just did it explicitly here 
+    predict(u) = DimArray(cat([+([+([vec(u[At(t-τi), :, At(s)]' * coeffs[s] * ℳ[At(τi), :, :]) for τi in τ[t .- τ .> minimum(Tᵤ)]]...) for s in sv]...) for t in T]..., dims = 2)', (Ti(T), Cores(core_list)))
+
+    filename = split(filename, ".")[1] .* "_E.jld2"
+    filepath = joinpath("../data/M", filename) 
+    if !isfile(filepath)
+        println("Computing E, may take a while depending on res./time period") 
+        @time E = impulseresponse(predict, u₀.y) #328 seconds
+        jldsave(filepath; E)
+    else
+    
+        println("Loading in pre-saved file") 
+        jld = jldopen(filepath)
+        E = jld["E"]
+        close(jld)
+    end
+    return E,predict
+    #following subsetting doesn't work but might be moot because we need to calc. over a new time period anyways... 
+    #=
+    allcores = Symbol.("MC".* string.([28, 26, 25, 22, 21, 20, 19, 10, 9, 13, 14]) .* "A")
+    Erange = vec(covariancedims((Ti(T), Cores(allcores))))
+    Eindexingbycore = [tup[2] for tup in Erange]
+    indices = [x∈core_list for x in Eindexingbycore]
+    #return UnitfulMatrix(parent(E[indices, :]), unitrange(E)[indices], unitdomain(E)), predict
+    =#
+                 
+end
+
+function ptobserve(pt::Tuple, γ, spatialmodes::Matrix, ũ)
+    surface = convert.(Int64, zeros(180,90))
+    surface[γ.wet[:, :, 1]] .= 1:11113
+
+    γind = [findmin(abs.(γl .- p))[2] for (γl, p) in zip([γ.lon, γ.lat], pt)]
+    surfind = surface[γind...]#ind in 1:11113
+    #Spatial Mode mags. assoc. with this pt 
+    sm_pt = DimArray(spatialmodes[:, surfind], (ũ.dims[2])) 
+
+    #we need to construct a matrix O that can multiply ũ
+    #to generate an obs. ts at a pt
+    #get covariance dims associated with this matrix (Tᵤ x Sv) 
+    x = vec(covariancedims((ũ.dims[1], ũ.dims[3])))
+    y = vec(covariancedims(ũ.dims))
+    O = zeros(length(x), length(y))
+    
+    #now, at the correct indices (T = T, Sv = Sv), put the mode value 
+    for (i, xi) in enumerate(x)
+        for (j, yj) in enumerate(y)
+            if xi[1] == yj[1] 
+                if xi[2] == yj[3]
+                    O[i,j] = sm_pt[yj[2]]
+                end
+            end
+        end
+    end
+
+    #compute Oũ (Estimate), then make a DimEstimate 
+    Oũ = UnitfulMatrix(O, vcat(fill(K, 99), fill(permil, 99)), unitrange(ũ.v)) * ũ
+    return DimEstimate(Oũ.v, Oũ.C, (ũ.dims[1], ũ.dims[3]))
+end
+
+function boxmean(θvals, δvals, γ, latsouth, latnorth, lonwest, loneast)
+    latnorth = findall(x->x == latnorth, γ.lat)[1]
+    latsouth = findall(x->x == latsouth, γ.lat)[1]
+    lonwest = findall(x->x == lonwest, γ.lon)[1]
+    loneast = findall(x->x == loneast, γ.lon)[1]
+    θμbox = Vector{Any}(undef, length(θvals))
+    δμbox = Vector{Any}(undef, length(θvals))
+    surfmap = convert(Matrix{Int64}, copy(γ.wet[:, :, 1]))
+    surfmap[findall(x->x == 1, surfmap)] .= 1:11113
+    box = Vector{Int64}
+    if lonwest > loneast 
+        west = vec(surfmap[lonwest:end, latsouth:latnorth])
+        east = vec(surfmap[begin:loneast, latsouth:latnorth])
+        box = vcat(west, east)
+        println("concatenating") 
+    else
+        box = vec(surfmap[lonwest:loneast, latsouth:latnorth])
+    end
+    
+    box = box[box .!= 0]
+    for i in 1:length(θvals)
+        θμbox[i] = mean([θvals[i][b] for b in box])
+        δμbox[i] = mean(δvals[i][b] for b in box)
+    end
+    return θμbox, δμbox 
+end
+
+#calculates full covariance matrix spatially, very expensive 
+#=
+function reconstructsurface(spatialmodes, ũ)
+    
+    θ = Vector{Estimate}(undef, length(ũ.dims[1]))
+    δ = Vector{Estimate}(undef, length(ũ.dims[1]))
+    covdims = vec(covariancedims(ũ.dims))
+    convertθ = UnitfulMatrix(Matrix{Float32}(undef, 11113, length(covdims)), fill(K, 11113), unit.(vec(ũ.x)));
+    convertδ = UnitfulMatrix(Matrix{Float32}(undef, 11113, length(covdims)), fill(permil, 11113), unit.(vec(ũ.x)));
+    for (i, t) in enumerate(ũ.dims[1])
+        @show t 
+        indθ = findall(x->x[1] == t && x[3] == :θ, covdims)
+        indδ = findall(x->x[1] == t && x[3] == :δ, covdims)
+        println("found indices") 
+        [convertθ[:, i] = spatialmodes[covdims[i][2], :] for i in indθ]
+        [convertδ[:, i] = spatialmodes[covdims[i][2], :] for i in indδ]
+        println("filled mat") 
+        θ[i] = convertθ * ũ
+        println("first conversion")
+        δ[i] = convertδ * ũ
+    end
+    return θ, δ
+end
+
+=#
+
+function reconstructsurface(spatialmodes, ũ)
+    θvals = [spatialmodes' * vec(ũ.x[At(t), :, At(:θ)]) for t in ũ.dims[1]]
+    δvals = [spatialmodes' * vec(ũ.x[At(t), :, At(:δ)]) for t in ũ.dims[1]]
+    return θvals, δvals
+end
 
 
 end

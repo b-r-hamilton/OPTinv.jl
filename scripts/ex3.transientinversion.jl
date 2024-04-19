@@ -2,120 +2,75 @@
 import Pkg
 Pkg.activate("../")
 
-using OPTinv, Unitful, DimensionalData, BLUEs, Statistics, UnitfulLinearAlgebra, LinearAlgebra, PyPlot, Revise, DrWatson, PyCall, JLD2, TMI
+using OPTinv, Unitful, DimensionalData, BLUEs, Statistics, UnitfulLinearAlgebra, LinearAlgebra, PyPlot, Revise, DrWatson, PyCall, TMI, CSV, DataFrames, JLD2
 import Measurements.value as value
-using DimensionalData: @dim
-@dim Gridcells "Grid cells"
+import OPTinv.Est
+
+
 ccrs = pyimport("cartopy.crs")
 cm = pyimport("cmocean.cm")
 cfeature = pyimport("cartopy.feature")
 cu = pyimport("cartopy.util")
 
-function reshape(v::Vector{T}, γ) where T
-    #template = zeros(size.(γ.axes)[1][1], size.(γ.axes)[2][1])
-    template = Array{T}(undef, size.(γ.axes)[1][1], size.(γ.axes)[2][1])
-    template .= NaN
-    template[γ.wet[:, :, 1]] .= v
-    return template
-end
-
+#which cores do you want? 
+core_list = Symbol.("MC".* string.([28, 26, 25, 22, 21, 20, 19, 10, 9,13, 14]) .* "A")
+#load in ℳ and surface spatial modes 
+filename = "nmf.jld2"
+ℳnmf, spatialmodesnmf = loadM(filename, core_list)
 filename = "svd.jld2"
-directory = "../data/M"
-filepath = joinpath("../data/M", filename)
+ℳsvd, spatialmodessvd = loadM(filename, core_list)
 
-jld = jldopen(filepath)
-M = jld["arr"][begin:end-1, :, :]
-τ = jld["τ"][begin:end-1]
-mat = jld["modes"]
-modes = 1:11
-cores = keys(core_locations())
-close(jld)
-
-τ = τ * yr
-res = unique(diff(τ))[1]
-ℳ = formattransientM(M, τ, [m for m in modes], [c for c in cores])
-
-#M has 1 yr resolution, but we're gonna subsample this
-#has to be subsampled by summing
-res = 10yr 
-ℳ, τ = subsampletransientM(ℳ, res)
-
-#read in data at this resolution 
-files = readdir(datadir())
-ae_files = [f for f in files if occursin("ae", f)]
-d18O_files = [f for f in files if occursin("d18O", f)]
-listed_cores = Tuple([Symbol(split(f, ".")[1]) for f in ae_files])
-#re-order directory cores so they line up with Cores dim 
-sort_indices = [findall(x->x== c, cores)[1] for c in listed_cores]
-#=
-#subset to the cores that show consistency 
-subset_cores = Symbol.("MC" .* string.([26, 25, 20, 19, 10 , 9, 13, 14]) .* "A")
-subset_cores = Symbol.("MC" .* string.([28, 10, 14]) .* "A")
-subset = [c ∈ subset_cores for c in cores]
-
-#now feed in those files and get e matrix 
-@time e = formatbacon(datadir.(ae_files)[sort_indices][subset], datadir.(d18O_files)[sort_indices][subset], [c for c in subset_cores], res = res)
-cores = subset_cores
-=#
-@time e = formatbacon(datadir.(ae_files)[sort_indices], datadir.(d18O_files)[sort_indices], [c for c in cores], res = res)
-#add in measurement uncertainty 
-e = fillcovariance!(e, [DiagRule((0.07permil)^2, (:, :))], dims(e.y))
+y = loadcores(core_list)
 
 # make Cuu matrix
 #11K, 0.8permil are global surface std in WOCE 
-σθ = 11K /2 
-σδ = 1.1permil /2     #std of global surface d18O in WOCE
+σθ = 11K * 2  #* 2.5
+σδ = 1.1permil * 2 #* 2.5     #std of global surface d18O in WOCE
 ρ = 0.99
-T = [t for t in e.y.dims[1]]
+T = Array(y.y.dims[1])
+res = unique(diff(T))[1]
 Tᵤ = 1000yr:res:T[end] #arbitrary cut off for Tᵤ, otherwise impulseresponse is very costly
-u₀ = firstguess(Tᵤ,[m for m in modes], σθ, σδ, ρ)
 
-#y is a DimArray(T x C)
-coeffs = NamedTuple{(:θ, :δ)}([-0.27permil/K, 1])
+u₀svd = firstguess(Tᵤ, Array(ℳsvd.dims[2]), σθ, σδ, ρ)
+u₀nmf = firstguess(Tᵤ, Array(ℳsvd.dims[2]), σθ*20, σδ*20, ρ)
+Esvd, predictsvd = loadE("svd.jld2", ℳsvd, Tᵤ, T, u₀svd, core_list, y.Cnn.ax)
+Enmf, predictnmf = loadE("nmf.jld2", ℳnmf, Tᵤ, T, u₀nmf, core_list, y.Cnn.ax) 
+@time yde, ỹdesvd, u₀de, ũsvd = solvesystem(y, u₀svd, Esvd, predictsvd);
+@time _, ỹdenmf, _, ũnmf = solvesystem(y, u₀nmf, Enmf, predictnmf);
 
-#for every time, compute
-sv = (:θ, :δ)
-#might need At(cores) for subsetting ℳ
-predict(u) = DimArray(cat([+([+([vec(u[At(t-τi), :, At(s)]' * coeffs[s] * ℳ[At(τi), :, :]) for τi in τ[t .- τ .> minimum(Tᵤ)]]...) for s in sv]...) for t in T]..., dims = 2)', (Ti(T), Cores([c for c in cores])))
-vec(predict(u₀.y))
-vec(e.y)
-
- println("Impulse Response")
-filename = split(filename, ".")[1] .* "_E.jld2"
-filepath = joinpath("../data/M", filename) 
-if !isfile(filepath) 
-    @time E = impulseresponse(predict, u₀.y) #328 seconds
-    jldsave(filepath; E) 
-else
-    println("Loading in pre-saved file") 
-    jld = jldopen(filepath)
-    E = jld["E"]
-    close(jld) 
-end 
-
-@time yde, ỹde, u₀de, ũ = solvesystem(e, u₀, E, predict);
 
 fig = figure(figsize = (8, 8))
-for (i, core) in enumerate(cores) 
+for (i, core) in enumerate(y.y.dims[2]) 
     subplot(4,3, i)
     plot(yde.x[:, At(core)], label = "y", color = "black")
-    plot(ỹde.x[:, At(core)], label = "ỹ", color = "red")
+    plot(ỹdesvd.x[:, At(core)], label = "ỹ, SVD", color = "red")
+    plot(ỹdenmf.x[:, At(core)], label = "ỹ, NMF", color = "blue")
     ylim(-0.25, 0.25)
     title(core)
 end
 tight_layout()
- 
-figure(figsize = (16,4))
-for (i, m) in enumerate(modes)
+
+figure(figsize = (8, 8))
+for (i, m) in enumerate(ℳsvd.dims[2])
     for (j, s) in enumerate([:θ, :δ])
-        subplot(2, length(modes), (j - 1) * length(modes) + i)
-        title(string(m) * " " * string(s)) 
-        plot(u₀de.x[:, At(m), At(s)], label = "u₀", color = "gray")
-        plot(ũ.x[:, At(m), At(s)], label = "ũ", color = "red")    
+        subplot(2,2,(j-1)*2 + 1)
+        if i == 1 
+            title("SVD: " * string(s))
+        end
+        plot(value.(ũsvd.x[:, At(m), At(s)]), label = string(m))
+        legend(loc = "center left")
+        subplot(2,2,(j-1)*2 + 2)
+        if i == 1 
+            title("NMF: " * string(s))
+        end        
+        plot(value.(ũnmf.x[:, At(m), At(s)]), label = string(m))
+        legend(loc = "center left")
     end
 end
 tight_layout()
 
+#plot just showing correlation between T and δ
+#=
 figure(figsize = (20, 5))
 subplot(1,2,1) 
 scatter(vec(ũ.x[:, :, At(:θ)]), vec(ũ.x[:, :, At(:δ)]), capsize = 5)
@@ -126,114 +81,137 @@ ylabel("Variations in Temperature [K]")
 xlabel("Variations in d18O [‰]") 
 lls = linearleastsquares(ustrip.(value.(vec(ũ.x[:, :, At(:δ)]))), ustrip.(value.(vec(ũ.x[:, :, At(:θ)]))))
 println("slope [K/permil] = " * string(lls[1]))
+=#
 
-figure(figsize = (8,8)) 
-for (i, m) in enumerate(modes)
+#plot showing ℳ
+#=
+figure(figsize = (15,8)) 
+for (i, m) in enumerate(ℳ.dims[2])
     subplot(3,4,i)
-    for (j, c) in enumerate(cores)
-        plot(ustrip.(τ), vec(ℳ[:, At(m), At(c)]), label = c)
+    for (j, c) in enumerate(y.y.dims[2])
+        plot(ℳ[:, At(m), At(c)], label = c)
+        xlim([0,200])
         title(m)
     end
 end
 tight_layout()
+=#
 
 TMIversion = "modern_180x90x33_GH11_GH12"
 A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
+@time θsvd, δsvd = reconstructsurface(spatialmodessvd, ũsvd)
+@time θnmf, δnmf = reconstructsurface(spatialmodesnmf, ũnmf)
 
-mat' * vec(ũ.x[At(1600.0yr), :, At(:θ)])
+#=
+#this is reconstructing one time step, takes about 8 seconds, which is very costly for 90 timesteps 
+t = 1600.0yr
+cd = vec(covariancedims(ũ.dims))
+ind = findall(x->x == 1, [x[1] == t && x[3] == :θ for x in cd])
+@time sm_big = UnitfulMatrix(Matrix{Float32}(undef, 11113, length(cd)), fill(K, 11113), unit.(vec(ũ.x)));
+[sm_big[:, i] = spatialmodes[cd[i][2], :] for i in ind]
+@time e = sm_big * ũ
 
-θvals = [mat' * vec(ũ.x[At(t), :, At(:θ)]) for t in Tᵤ]
-δvals = [mat' * vec(ũ.x[At(t), :, At(:δ)]) for t in Tᵤ]
-#θ = cat([reshape(mat' * vec(ũ.x[At(t), :, At(:θ)]), γ) for t in Tᵤ]..., dims = 3)
-#δ = cat([reshape(mat' * vec(ũ.x[At(t), :, At(:δ)]), γ) for t in Tᵤ]..., dims = 3)
 
-θmean, θmin, θmax = [[f(θvals[t]) for t in 1:length(Tᵤ)] for f in [mean, minimum, maximum]]
-δmean, δmin, δmax  = [[f(δvals[t]) for t in 1:length(Tᵤ)] for f in [mean, minimum, maximum]]
+#take a spatial average 
+multme = zeros(1, 11113)
+multme[1:100] .= 1/100
+UnitfulMatrix(multme) * e 
+
+#what if we reconstruct one gridcell and preserve the time covariance?
+#this is where the defined data convariance is, so may make more sense
+
+#ULTIMATELY: this is faster but has higer uncertainties for equivalent values 
+spatialindex = 1 #which gridcell
+multme = zeros(99, 2178)
+#multvec = [spatialmodes[i[2], spatialindex] for i in cd]
+for (i, t) in enumerate(ũ.dims[1]) #iterate through 99 time indices 
+    for (j, c) in enumerate(cd) #iterate through 2178 ũ indices 
+        if c[1] == t 
+            multme[i, j] = spatialmodes[c[2], spatialindex]
+        end 
+    end
+end
+@time test2 = UnitfulMatrix(multme, fill(K, 99), unit.(vec(ũ.x))) * ũ
+e.x[1]
+test2.x[findall(x->x == 1600.0yr, Array(ũ.dims[1]))[1]]
+=#
+
+#=
+θμbox, δμbox = boxmean(θ, δ, γ, 49, 89, 309, 21)
+
+θmean, θmin, θmax = [[f(θ[t]) for t in 1:length(Tᵤ)] for f in [mean, minimum, maximum]]
+δmean, δmin, δmax  = [[f(δ[t]) for t in 1:length(Tᵤ)] for f in [mean, minimum, maximum]]
 
 figure()
 subplot(2,1,1)
-#fill_between(ustrip.(Tᵤ), y1 = θmean .- θstd, y2 = θmean .+ θstd, color = "blue", alpha = 0.5)
-plot(DimArray(θmean, Ti(Tᵤ)), color = "blue")
+plot(DimArray(value.(θmean), Ti(Tᵤ)), color = "blue", label = "global")
+plot(DimArray(value.(θμbox), Ti(Tᵤ)), color = "red", label = "50°W-20°E, 50°N-90°N")
+legend()
 ylabel("T [K]")
 xlim([1400, 2000])
 subplot(2,1,2)
-plot(DimArray(δmean, Ti(Tᵤ)), color = "blue")
+plot(DimArray(value.(δmean), Ti(Tᵤ)), color = "blue", label = "global")
+plot(DimArray(value.(δμbox), Ti(Tᵤ)), color = "red", label = "50°W-20°E, 50°N-90°N")
 ylabel("δ¹⁸O [‰]")
 xlabel("Time [years CE]")
 xlim([1400, 2000])
+=#
 
-lev = 5
 res = 5
+#plot 50 year means starting at 1500 
 inds =  51:res:length(Tᵤ)-res
-levels = [-0.6:0.1:0.6, -0.06:0.01:0.06] 
-for (var, lev) in zip([θvals, δvals], levels) 
+levels = [-0.6:0.1:0.6, -0.6:0.1:0.6]
+#stopped plotting delta
+for (var, lev) in zip([θsvd, θnmf], levels) 
     figure(figsize = (10, 8))
     anom = [v .- var[end] for v in var] 
     for (ii, i) in enumerate(inds)
         ax = subplot(3,3,ii, projection = ccrs.PlateCarree())
         title(string(convert(Int64, ustrip(Tᵤ[i]))) * "-" *string(convert(Int64, ustrip(Tᵤ[i + res]))))
-        #ax.coastlines()
         ax.add_feature(cfeature.NaturalEarthFeature("physical", "land", "110m", edgecolor="k", facecolor="gray"))
         ax.set_extent([-80, 30, 0, 90])
-        plotmevals = mean(hcat(anom[i:i+res]...), dims = 2)[:,1] #vector
-        plotme = reshape(ustrip.(value.(plotmevals)), γ)'
-        display(plotme)
-        #plotme, lon = cu.add_cyclic_point(plotme, coord = ustrip.(γ.lon))
-        lon = γ.lon
-        cf = contourf(lon, γ.lat, plotme, cmap = cm.balance, levels = lev)#, vmin = -vm, vmax = vm, levels = lev)
-        c = contour(lon, γ.lat, plotme, colors = "black", levels = lev)#, vmin = -vm, vmax = vm, levels = lev )
+        #this is kind of a slow reshape but c'est la vie 
+        plotme = γreshape(ustrip.(value.(sum(anom[i:i+res] ./ res))), γ)'
+        #add a cyclic point 
+        plotme, lon = cu.add_cyclic_point(plotme, coord = ustrip.(γ.lon))
+        cf = contourf(lon, γ.lat, plotme, cmap = cm.balance, levels = lev)
+        c = contour(lon, γ.lat, plotme, colors = "black", levels = lev)
         ax.clabel(c) 
-        if i == inds[end]
-            #colorbar(cf)
-        end
     end
     tight_layout()
 end
 
-
-surface = convert.(Int64, zeros(180,90))
-surface[γ.wet[:, :, 1]] .= 1:11113
-
-lab_pt = [360-51, 57]
-lab_spot = [findall(x->x == lab_pt[1],γ.lon)[1],findall(x->x==lab_pt[2],γ.lat)[1]]
-ind = surface[lab_spot[1], lab_spot[2]]
-mapda = DimArray(mat[:, ind], (Modes(1:11)))
-
-
-
-stmp = DimArray(zeros(99, 2), (Ti(Tᵤ), StateVar([:θ, :δ])))
-x = vec(covariancedims(stmp.dims))
-y = vec(covariancedims(ũ.x.dims))
-tmat = zeros(length(stmp), length(ũ.x))
-for (i, xi) in enumerate(x)
-    for (j, yj) in enumerate(y)
-        if xi[1] == yj[1]
-            if xi[2] == yj[3]
-                tmat[i,j] = mapda[yj[2]]
-            end
-        end
-    end
-end
-
-obs = UnitfulMatrix(tmat, vcat(fill(K, 99), fill(permil, 99)), unitrange(ũ.v)) * ũ
-obsde = DimEstimate(obs.v, obs.C, (Ti(Tᵤ), StateVar([:θ, :δ])))
+lab_pt = (360-51, 57)
+Oũsvd = ptobserve(lab_pt, γ, spatialmodessvd, ũsvd) 
+Oũnmf = ptobserve(lab_pt, γ, spatialmodesnmf, ũnmf)
 
 df = CSV.read(datadir("TLS1998Fig7Digitized.csv"), DataFrame)
-figure(figsize = (9,4))
-subplot(1,2,1) 
+figure(figsize = (16,4))
+subplot(1,3,1) 
 scatter(df[!, "Salinity"], df[!, "Temperature"], c = df[!, "Year"], cmap = "viridis")
 [text(x,y,s) for (x,y,s) in zip(df[!, "Salinity"], df[!, "Temperature"], string.(df[!, "Year"])), vmin = 20, vmax = 95]
 plot(df[!, "Salinity"], df[!, "Temperature"], color = "gray") 
 xlabel("Salinity")
 ylabel("Temperature") 
-title("Digitized TLS1998 Figure 7") 
-subplot(1,2,2)
-Stimeseries = vec(obsde.x[DimensionalData.Between(1920yr, 1980yr), At(:δ)]) ./ 0.5255
-θtimeseries = vec(obsde.x[DimensionalData.Between(1920yr, 1980yr), At(:θ)])
-θtimeseries =[θvals[i][ind] for i in 93:length(θvals)]
-#s = scatter(Stimeseries, θtimeseries)
-scatter(value.(ustrip.(Stimeseries)), value.(ustrip.(θtimeseries)), c = ustrip.(collect(Tᵤ[93:end])), cmap = "viridis", vmin = 1920, vmax = 1980)
+title("Digitized TLS1998 Figure 7")
+
+subplot(1,3,2)
+Stimeseries = vec(Oũsvd.x[DimensionalData.Between(1920yr, 1980yr), At(:δ)]) ./ 0.5255
+θtimeseries = vec(Oũsvd.x[DimensionalData.Between(1920yr, 1980yr), At(:θ)])
+
+scatter(value.(Stimeseries), value.(θtimeseries), c = ustrip.(collect(Tᵤ[93:end])), cmap = "viridis", vmin = 1920, vmax = 1995)
 [text(x, y, s) for (x,y,s) in zip(ustrip.(value.(Stimeseries)), ustrip.(value.(θtimeseries)), string.(convert.(Int64, ustrip.(Tᵤ[93:end]))))]
 xlabel("Salinity anomaly from 1980 [g/kg]")
 ylabel("θ anomaly from 1980 [K]")
-title("T, inferred S from 51°W, 57°N")
+title("SVD: T, inferred S from 51°W, 57°N")
+
+
+subplot(1,3,3)
+Stimeseries = vec(Oũnmf.x[DimensionalData.Between(1920yr, 1980yr), At(:δ)]) ./ 0.5255
+θtimeseries = vec(Oũnmf.x[DimensionalData.Between(1920yr, 1980yr), At(:θ)])
+
+scatter(value.(Stimeseries), value.(θtimeseries), c = ustrip.(collect(Tᵤ[93:end])), cmap = "viridis", vmin = 1920, vmax = 1995)
+[text(x, y, s) for (x,y,s) in zip(ustrip.(value.(Stimeseries)), ustrip.(value.(θtimeseries)), string.(convert.(Int64, ustrip.(Tᵤ[93:end]))))]
+xlabel("Salinity anomaly from 1980 [g/kg]")
+ylabel("θ anomaly from 1980 [K]")
+title("NMF: T, inferred S from 51°W, 57°N")

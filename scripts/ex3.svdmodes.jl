@@ -1,3 +1,8 @@
+#=
+Needs to use special environment because ODE needs to be pinned at 6.33.3
+which conflicts with some packages I use in the OPTinv.jl environment,
+such as DimensionalData 
+=#
 import Pkg; Pkg.activate(".")
 include("../src/OPTinv_alt_env.jl") 
 

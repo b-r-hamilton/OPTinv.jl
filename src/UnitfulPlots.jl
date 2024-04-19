@@ -7,7 +7,10 @@ function plot(y::DimArray; kwargs...)
     xunit = unit(first(first(dims(y))))
     yunit = unit(first(y))
     y = ustrip.(value.(vec(y)))
-    f = fill_between(x = x, y1 = y .- unc, y2 = y .+ unc, alpha = 0.5; kwargs...)
+    if sum(unc) != 0 
+        f = fill_between(x = x, y1 = y .- unc, y2 = y .+ unc, alpha = 0.5; kwargs...)
+    end
+    
     plot(x, y; kwargs...)
     xlabel(string(xunit))
     ylabel(string(yunit))
@@ -39,7 +42,8 @@ function scatter(x::Array{Quantity{Measurement{T}, D1, A1}}, y::Array{Quantity{M
     ylabel(string(yunit))
 end
 
-function scatter(x::Vector{Quantity{T}}, y::Vector{Quantity{T}}; kwargs...) where T <: AbstractFloat
+function scatter(x::Vector{Quantity{T, D1, A1}}, y::Vector{Quantity{T, D2, A2}}; kwargs...) where {T <: AbstractFloat, D1, A1, D2, A2}
+    println("hi!")
     xunit = unit(first(x))
     yunit = unit(first(y))
     x = value.(ustrip.(x))
