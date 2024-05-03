@@ -2,19 +2,21 @@ module OPTinv
 
 using DrWatson, Unitful, Revise, Statistics, BLUEs, LinearAlgebra,
     SparseArrays, TMI, Interpolations, UnitfulLinearAlgebra, Measurements,
-    PyPlot, CSV, DataFrames, JLD2
+    PyPlot, CSV, DataFrames, JLD2, NCDatasets, NaNMath, XLSX, Downloads
 import Interpolations.deduplicate_knots! as deduplicate! 
 import Interpolations.LinearInterpolation as LI
 import DelimitedFiles.readdlm
 import Measurements.measurement, Measurements.value, Measurements.uncertainty
 
-export readbaconfile, interpolatebacon, meanbacon, covariancebacon,
+export readbacon, interpolatebacon, meanbacon, covariancebacon,
     formatbacon, covariancedims, steadystateM, firstguess,
     fillcovariance, fillcovariance!, linearleastsquares,
     solvesystem, core_locations, formattransientM, subsampletransientM,
     γreshape
 
 export loadM, loadcores, loadE, ptobserve, fancytext, boxmean, reconstructsurface
+
+export loadLMR, loadOcean2k, loadThornalley
 
 yr = u"yr"
 permil = Unitful.FixedUnits(u"permille")
@@ -29,6 +31,7 @@ using DimensionalData: @dim, YDim, XDim, TimeDim, ZDim
 export yr, permil, K,
     Ti, Cores, Modes, StateVar,
     DiagRule, OffDiagRule
+
 
 include(srcdir("UnitfulPlots.jl"))
 
@@ -143,30 +146,38 @@ function formatbacon(age_file::Vector{String}, d18O_file::Vector{String},
         a, d = readbacon(af, df)
         T, int = interpolatebacon(a, d, res)
         μ, T = meanbacon(int, T, a)
-        return μ, T, int, a
+        return means(μ, T, int, a)
     end
 
     #compute all outputs 
-    output = [mean_shortcut(f...) for f in zip(age_file, d18O_file)]
+    ml = NamedTuple{Tuple(cores)}([mean_shortcut(f...) for f in zip(age_file, d18O_file)])
     #find common time axis
-    T = intersect([o[2] for o in output]...)
+    T = intersect([m.T for m in ml]...)
     #target output dimensions
     dims = (Ti(T), Cores(cores))
     #trim all means to common time axis 
-    mus = [mu[findall(x->x∈T, Ts_)] for (mu, Ts_) in output]
+    mus = NamedTuple{Tuple(cores)}([ml[c].μ[findall(x->x∈T, ml[c].T)] for c in cores])
     #compute all Cnns over common time axis, keep as list 
-    Cnn_vector = [covariancebacon(output[i][3], T, output[i][1], output[i][4], cores[i]) for i in 1:length(cores)]
-
+    Cnn_vector = [covariancebacon(ml[c].int, T, mus[c], ml[c].ages, c) for c in cores]
+    Cnns = NamedTuple{Tuple(cores)}(Cnn_vector) 
     #make data into dimarry
-    data = DimArray(hcat(mus...), dims)
+    data = DimArray(hcat([mus[c] for c in cores]...), dims)
     #generate CovMat.ax vector 
     cdims = covariancedims(dims)
     #safely combine Cnns according to generated CovMat.ax vector 
-    Cnn = combine(Cnn_vector, vec(cdims))
+    Cnn = combine(Cnns, vec(cdims))
     #return Est object 
     return Est(data, Cnn) 
     
 end
+
+struct means
+    μ
+    T
+    int
+    ages
+end
+
 
 """
 function combine(Cnn_vector::Vector{CovMat}, target_dims::Vector{Tuple})
@@ -177,14 +188,14 @@ combine a list of CovMats according to some specified axis
     - `Cnn_vector`: vector of CovMats
     - `target_dims`: target CovMat.ax
 """
-function combine(Cnn_vector::Vector{CovMat}, target_dims::Vector{Tuple})
+function combine(Cnns::NamedTuple, target_dims::Vector{Tuple})
     N = length(target_dims)
-    units = repeat([u for u in unitrange(Cnn_vector[1].mat)], length(Cnn_vector))
+    units = repeat(Array(unitrange(Cnns[1].mat)), length(Cnns))
     #this potentially could be faster by using blockdiag and sparse
     #however, this is pretty flexible to non blockdiagonal covariance matrices
     mat = zeros(N, N)
     helper_da = DimArray(1:N, X(target_dims))
-    for Cnn in Cnn_vector
+    for Cnn in Cnns
         ind = helper_da[At(Cnn.ax)]
         mat[ind, ind] .= parent(Cnn.mat)
     end
@@ -255,7 +266,7 @@ function meanbacon(d::Vector, T, ages::Matrix)
     μ = fill(NaN * permil, length(T))
     for (i, t) in enumerate(T)
         vals = [d[j](t) for j in 1:numr if ages[end, j] < t < ages[begin, j]]
-        if length(vals) > 10 
+        if length(vals) > 100
             μ[i] = mean(vals)
         end
     end
@@ -282,12 +293,12 @@ compute the covariance matrix according to interpolation objects and common time
 """
 function covariancebacon(d, T, μ, ages, c)
     Cnn = fill(NaN * permil^2, length(T), length(T))
-    for (μ1, (i, t1)) in zip(μ, enumerate(T)) 
+    for (μ1, (i, t1)) in zip(μ, enumerate(T))
         Cnn[i, i:end] .= [covary(d, ages, t1, t2, μ1, μ2) for (μ2, t2) in zip(μ[i:end], T[i:end])]
     end
     axis = [(t,c) for t in T]
     units = sqrt.(unit.(diag(Cnn)))
-    return CovMat(axis, UnitfulMatrix(Symmetric(ustrip.(Cnn)), units, units .^ -1))
+    return CovMat(axis, UnitfulMatrix(Matrix(Symmetric(ustrip.(Cnn))), units, units .^ -1))
 end
 
 """
@@ -351,7 +362,8 @@ function safesetindex!(mat::UnitfulMatrix, val::Quantity, i::Int, j::Int)
     if targetunit == unit.(val)
         setindex!(mat, ustrip.(val), i, j) 
     else
-        error("units do not match")
+        
+        error("unit = " * string(unit(val)) * ", should be " * string(targetunit))
     end
 end
 
@@ -386,7 +398,7 @@ make an Est object, assumes you already computed mean and Cnn
     - `T`: time
     - `Cnn`: CovMat
 """
-function formatbacon(μ::Vector{Quantity}, T, Cnn::CovMat, c::Vector{Symbol})
+function formatbacon(μ::Vector, T, Cnn::CovMat, c::Symbol)
     if length(size(μ)) !== 2
         μ = reshape(μ, (length(μ), 1))
     end
@@ -394,7 +406,7 @@ function formatbacon(μ::Vector{Quantity}, T, Cnn::CovMat, c::Vector{Symbol})
         c = [c]
     end
     
-    da = DimArray(μ, (Ti(T), Cores(c)))
+    da = DimArray(μ, (Ti(T), Cores(vec(c))))
     return Est(da, Cnn) 
 end
 
@@ -451,15 +463,13 @@ function firstguess(T, modes, σθ, σδ, c; fill_val = [0K, 0permil])
     If c < σθ/σδ, then the off-diagonals must be populated by σδ^2c
     Otherwise, populated by σθ^2/c
 """
-function firstguess(T, modes, σθ, σδ, ρ; fill_val = [0K, 0permil])
+function firstguess(T, modes, σθ::Quantity, σδ::Quantity, ρ; fill_val = [0K, 0permil])
     z = zeros(length(T), length(modes))
     dims = (Ti(T), Modes(modes), StateVar([:θ, :δ]))
     da = DimArray(cat(z * K .+ fill_val[1], z * permil .+ fill_val[2], dims = 3), dims)
     units = unit.(vec(da))
     diagrules = [DiagRule(σθ^2, (:, :, At(:θ))), DiagRule(σδ^2, (:, :, At(:δ)))]
     cov = ρ*σθ*σδ
-    @show cov
-    @show c = ρ*σθ/σδ
     rules = vcat(diagrules, OffDiagRule(cov, (:, :, At(:θ)), (:, :, At(:δ))))
     Cuu = fillcovariance(vec(units), rules, dims)
     @show isposdef(Cuu.mat)
@@ -467,8 +477,27 @@ function firstguess(T, modes, σθ, σδ, ρ; fill_val = [0K, 0permil])
     return Est(da, Cuu) 
 end
 
+function firstguess(T, modes, σθ::Vector, σδ::Vector, ρ; fill_val = [0K, 0permil]) 
+    z = zeros(length(T), length(modes))
+    dims = (Ti(T), modes, StateVar([:θ, :δ]))
+    da = DimArray(cat(z * K .+ fill_val[1], z * permil .+ fill_val[2], dims = 3), dims)
+    units = unit.(vec(da))
+    N = length(modes)
+    diagrules = vcat([DiagRule(σθ[i]^2, (:, At(i), At(:θ))) for i in modes], [DiagRule(σδ[i]^2, (:, At(i), At(:δ))) for i in modes])
+
+    offdiagrules = [OffDiagRule(ρ*σθ[i]*σδ[i], (:, At(i), At(:θ)), (:, At(i), At(:δ))) for i in modes]
+    Cuu = fillcovariance(vec(units), vcat(diagrules, offdiagrules), dims)
+    @show isposdef(Cuu.mat) 
+    return Est(da, Cuu) 
+end
+
 function solvesystem(e::Est, u₀::Est, E::UnitfulMatrix, predict::Function)
-    yanom = e.y .- mean(e.y, dims = Ti)
+    if e.y.dims[1][begin] < u₀.y.dims[1][begin]
+        error("Tᵤ must precede T")
+    end
+    
+    yanom = e.y .- mean(e.y[DimensionalData.Between(1850.0yr, 1980.0yr), :], dims = Ti)
+    #yanom = e.y .- mean(e.y, dims = Ti)
     yvals = vec(yanom)
     y = UnitfulMatrix(ustrip(yvals)[:], unit.(yvals))
     up = UnderdeterminedProblem(y, E, e.Cnn.mat, u₀.Cnn.mat, u₀.y)
@@ -562,7 +591,6 @@ function loadM(filename::String, core_list::Vector{Symbol};  res = 10yr)
 
     
     #normalize modes and ℳ so that the surface mode sums to 1
-    
     norm = sum(spatialmodes, dims = 2)
     [spatialmodes[i, :] ./= norm[i] for i in 1:11]
     [ℳ[:, At(i), :] ./= norm[i] for i in 1:11]
@@ -579,27 +607,42 @@ function loadcores(core_list::Vector{Symbol}, res = 10yr)
     ae_files = [f for f in files if occursin("ae", f)]
     d18O_files = [f for f in files if occursin("d18O", f)]
     directory_cores = Tuple([Symbol(split(f, ".")[1]) for f in ae_files])
+
     #re-order directory cores so they line up with core_list
-    sort_indices = [findall(x->x== c, core_list)[1] for c in directory_cores]
-    display(sort_indices)
+    #@show sort_indices = [findall(x->x== c, core_list)[1] for c in directory_cores if c in core_list]
+    sort_indices = []
+    for c in core_list
+        ind = findall(x->x == c, directory_cores)
+        if ! isempty(ind) 
+            push!(sort_indices, (ind[1]))
+        end
+    end
+    @show ae_files[sort_indices]
+    @show d18O_files[sort_indices]
+    @show core_list
     @time e = formatbacon(datadir.(ae_files)[sort_indices], datadir.(d18O_files)[sort_indices], core_list, res = res)
     #add in measurement uncertainty 
     e = fillcovariance!(e, [DiagRule((0.07permil)^2, (:, :))], dims(e.y))
+    @show isposdef(e.Cnn.mat)
     return e 
 end
 
-function loadE(filename::String, ℳ::DimArray, Tᵤ, T, u₀::Est,
+function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget, u₀::Est,
                core_list::Vector{Symbol}, yax::Vector{Tuple})
     sv = (:θ, :δ)
     coeffs = NamedTuple{sv}([-0.27permil/K, 1])
-    τ = [t for t in ℳ.dims[1]] 
+    τ = [t for t in ℳ.dims[1]]
+
+    #T = collect(0yr:10yr:2020yr)
+    #Tᵤ = -500yr:10yr:2020yr
+    
     #this is the same as BLUEs.convolve, I just did it explicitly here 
     predict(u) = DimArray(cat([+([+([vec(u[At(t-τi), :, At(s)]' * coeffs[s] * ℳ[At(τi), :, :]) for τi in τ[t .- τ .> minimum(Tᵤ)]]...) for s in sv]...) for t in T]..., dims = 2)', (Ti(T), Cores(core_list)))
 
     filename = split(filename, ".")[1] .* "_E.jld2"
     filepath = joinpath("../data/M", filename) 
     if !isfile(filepath)
-        println("Computing E, may take a while depending on res./time period") 
+        println("Computing E, will take a little while!") 
         @time E = impulseresponse(predict, u₀.y) #328 seconds
         jldsave(filepath; E)
     else
@@ -609,16 +652,66 @@ function loadE(filename::String, ℳ::DimArray, Tᵤ, T, u₀::Est,
         E = jld["E"]
         close(jld)
     end
-    return E,predict
+    
+    return E, predict
     #following subsetting doesn't work but might be moot because we need to calc. over a new time period anyways... 
+
     #=
     allcores = Symbol.("MC".* string.([28, 26, 25, 22, 21, 20, 19, 10, 9, 13, 14]) .* "A")
+    
     Erange = vec(covariancedims((Ti(T), Cores(allcores))))
-    Eindexingbycore = [tup[2] for tup in Erange]
-    indices = [x∈core_list for x in Eindexingbycore]
-    #return UnitfulMatrix(parent(E[indices, :]), unitrange(E)[indices], unitdomain(E)), predict
-    =#
-                 
+    Edomain = u₀.Cnn.ax 
+    xindices = [x[1] ∈ Ttarget && x[2]∈core_list for x in Erange]
+    yindices = [y[1] ∈ Tᵤtarget for y in Edomain] 
+    return UnitfulMatrix(parent(E[indices, :]), unitrange(E)[xindices], unitdomain(E)[yindices]), predict
+   =# 
+end
+
+#alternative version, dont provide firstguess
+#will calculate over longer time period 
+function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget,
+               σθ::Vector, σδ::Vector, ρ,
+               core_list::Vector{Symbol}, yax::Vector{Tuple})
+    sv = (:θ, :δ)
+    coeffs = NamedTuple{sv}([-0.27permil/K, 1])
+    τ = [t for t in ℳ.dims[1]]
+
+    #maximum time period we're interested in for this problem 
+    T = collect(0yr:10yr:2020yr)
+    Tᵤ = -500yr:10yr:2020yr
+    u₀ = firstguess(Tᵤ, ℳ.dims[2][:], σθ, σδ, ρ) 
+    
+    #this is the same as BLUEs.convolve, I just did it explicitly here 
+    predict(u) = DimArray(cat([+([+([vec(u[At(t-τi), :, At(s)]' * coeffs[s] * ℳ[At(τi), :, :]) for τi in τ[t .- τ .> minimum(Tᵤ)]]...) for s in sv]...) for t in T]..., dims = 2)', (Ti(T), Cores(core_list)))
+
+    filename = split(filename, ".")[1] .* "_E.jld2"
+    filepath = joinpath("../data/M", filename) 
+    if !isfile(filepath)
+        println("Computing E, will take a little while!") 
+        @time E = impulseresponse(predict, u₀.y) #328 seconds
+        jldsave(filepath; E)
+    else
+    
+        println("Loading in pre-saved file") 
+        jld = jldopen(filepath)
+        E = jld["E"]
+        close(jld)
+    end
+    
+ 
+    #following subsetting doesn't work but might be moot because we need to calc. over a new time period anyways... 
+    allcores = Symbol.("MC".* string.([28, 26, 25, 22, 21, 20, 19, 10, 9, 13, 14]) .* "A")
+    Erange = vec(covariancedims((Ti(T), Cores(allcores))))
+    modes = ℳ.dims[2]
+    Edomain = vec(covariancedims((Ti(Tᵤ), Modes(1:11), StateVar([s for s in sv]))))
+    xindices = [x[1] ∈ Ttarget && x[2]∈core_list for x in Erange]
+    
+    yindices = [y[1] ∈ Tᵤtarget && y[2] ∈ modes for y in Edomain]
+    @show length(yindices)
+    #for some reason if I subset the range, the type gets screwed up and it won't add to Cnn...
+    predict_subset(u) = DimArray(cat([+([+([vec(u[At(t-τi), :, At(s)]' * coeffs[s] * ℳ[At(τi), :, :]) for τi in τ[t .- τ .> minimum(Tᵤtarget)]]...) for s in sv]...) for t in Ttarget]..., dims = 2)', (Ti(Ttarget), Cores(core_list)))
+    return UnitfulMatrix(parent(E[xindices, yindices]), fill(permil, sum(xindices)), unitdomain(E)[yindices]), predict_subset
+ 
 end
 
 function ptobserve(pt::Tuple, γ, spatialmodes::Matrix, ũ)
@@ -648,36 +741,32 @@ function ptobserve(pt::Tuple, γ, spatialmodes::Matrix, ũ)
         end
     end
 
-    #compute Oũ (Estimate), then make a DimEstimate 
-    Oũ = UnitfulMatrix(O, vcat(fill(K, 99), fill(permil, 99)), unitrange(ũ.v)) * ũ
+    #compute Oũ (Estimate), then make a DimEstimate
+    Tl = length(ũ.dims[1])
+    Oũ = UnitfulMatrix(O, vcat(fill(K, Tl), fill(permil, Tl)), unitrange(ũ.v)) * ũ
     return DimEstimate(Oũ.v, Oũ.C, (ũ.dims[1], ũ.dims[3]))
 end
 
-function boxmean(θvals, δvals, γ, latsouth, latnorth, lonwest, loneast)
-    latnorth = findall(x->x == latnorth, γ.lat)[1]
-    latsouth = findall(x->x == latsouth, γ.lat)[1]
-    lonwest = findall(x->x == lonwest, γ.lon)[1]
-    loneast = findall(x->x == loneast, γ.lon)[1]
-    θμbox = Vector{Any}(undef, length(θvals))
-    δμbox = Vector{Any}(undef, length(θvals))
-    surfmap = convert(Matrix{Int64}, copy(γ.wet[:, :, 1]))
-    surfmap[findall(x->x == 1, surfmap)] .= 1:11113
+#assumes fld is (lon x lat x time) 
+function boxmean(fld, lat, lon, latsouth, latnorth, lonwest, loneast)
+    latnorth = findall(x->x == latnorth, lat)[1]
+    latsouth = findall(x->x == latsouth, lat)[1]
+    lonwest = findall(x->x == lonwest, lon)[1]
+    loneast = findall(x->x == loneast, lon)[1]
+    fldμbox = Vector{Any}(undef, size(fld)[3])
     box = Vector{Int64}
     if lonwest > loneast 
-        west = vec(surfmap[lonwest:end, latsouth:latnorth])
-        east = vec(surfmap[begin:loneast, latsouth:latnorth])
-        box = vcat(west, east)
+        west = fld[lonwest:end, latsouth:latnorth, :]
+        east = fld[begin:loneast, latsouth:latnorth, :]
+        box = cat(west, east, dims = 1)
         println("concatenating") 
     else
-        box = vec(surfmap[lonwest:loneast, latsouth:latnorth])
+        box = fld[lonwest:loneast, latsouth:latnorth]
     end
     
-    box = box[box .!= 0]
-    for i in 1:length(θvals)
-        θμbox[i] = mean([θvals[i][b] for b in box])
-        δμbox[i] = mean(δvals[i][b] for b in box)
-    end
-    return θμbox, δμbox 
+    [fldμbox[i] = NaNMath.mean(box[:, :, i]) for i in 1:size(fld)[3]]
+
+    return fldμbox
 end
 
 #calculates full covariance matrix spatially, very expensive 
@@ -711,6 +800,59 @@ function reconstructsurface(spatialmodes, ũ)
     δvals = [spatialmodes' * vec(ũ.x[At(t), :, At(:δ)]) for t in ũ.dims[1]]
     return θvals, δvals
 end
+
+function loadLMR()
+    nc = NCDataset(datadir("sst_MCruns_ensemble_mean_LMRv2.0.nc"))
+    sst = mean(nc["sst"][:, :, :, :], dims = 3)[:, :, 1, :]
+    time = nc["time"][:]
+    lon = nc["lon"][:]
+    lat = nc["lat"][:]
+    sst[ismissing.(sst)] .= NaN
+    sst = convert(Array{Float32}, sst)
+    sst .-= mean(sst[:, :, 1981], dims = 3)
+    return sst, time, lon, lat
+end
+
+function loadOcean2k()
+    #https://www.ncei.noaa.gov/pub/data/paleo/pages2k/Ocean2kLR2015sst.csv
+    xl = XLSX.readxlsx(datadir("Ocean2kLR2015sst.xlsx"))
+    sheetnames = XLSX.sheetnames(xl) 
+    locsheet = xl[sheetnames[1]]
+    names = locsheet["A4:A60"]
+    lats = locsheet["B4:B60"]
+    lons = locsheet["C4:C60"]
+    depths = locsheet["D4:D60"]
+    data = xl[sheetnames[4]]["A1:DJ566"]
+    return DataFrame(hcat(names, lats, lons, depths), ["name", "lat", "lon", "depth"]), DataFrame(data[2:end, :], data[1, :])
+end
+
+function loadThornalley()
+    url = "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-018-0007-4/MediaObjects/41586_2018_7_MOESM2_ESM.xlsx"
+        # make directory if it doesn't exist
+    !isdir(datadir()) && mkpath(datadir())
+
+    filename = datadir("41586_2018_7_MOESM2_ESM.xlsx")
+
+    # if file hasn't been downloaded already, then download already
+    !isfile(filename) && Downloads.download(url,filename)
+
+    # get the sheet names
+    xf = XLSX.readxlsx(filename)
+    sheetname = XLSX.sheetnames(xf)[end]
+    xf1 = xf[sheetname * "!C3:E95"]
+    xf1[typeof.(xf1) .!= Float64] .= NaN
+    xf1 = convert(Matrix{Float64}, xf1) 
+    df1 = DataFrame(xf1, ["age [CE]", "mean SS (mm)", "smooth"])
+
+    xf2 = xf[sheetname * "!I3:K71"]
+    xf2[typeof.(xf2) .!= Float64] .= NaN
+    xf2 = convert(Matrix{Float64}, xf2) 
+    df2 = DataFrame(xf2, ["age [CE]", "mean SS (mm)", "smooth"])
+
+    names = ["KNR-178-56JPC", "KNR-178-48JPC"] 
+    return Dict(zip(names, [df1,df2])) 
+end
+
 
 
 end

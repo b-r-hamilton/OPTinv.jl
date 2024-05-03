@@ -15,7 +15,6 @@ arr = transientM(corelocs, modes, τ)
 
 jldsave(joinpath("../data/M/svd.jld2"); arr, τ, modes) #TIME x MODES x CORES
 
-
 figure()
 for i in 1:11
     subplot(3,4,i)

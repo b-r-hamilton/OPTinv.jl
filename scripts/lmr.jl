@@ -1,7 +1,7 @@
 
 import Pkg
 Pkg.activate("../")
-using NCDatasets, PyPlot, DrWatson, Statistics, PyCall, DateFormats, RollingFunctions, Dates 
+using NCDatasets, PyPlot, DrWatson, Statistics, PyCall, DateFormats, RollingFunctions, Dates, OPTinv
 ccrs = pyimport("cartopy.crs")
 cm = pyimport("cmocean.cm")
 cfeature = pyimport("cartopy.feature")
@@ -9,14 +9,7 @@ cu = pyimport("cartopy.util")
 close("all")
 
 #https://www.ncei.noaa.gov/pub/data/paleo/reconstructions/tardif2019lmr/v2_0/sst_MCruns_ensemble_mean_LMRv2.0.nc
-nc = NCDataset(datadir("sst_MCruns_ensemble_mean_LMRv2.0.nc"))
-sst = mean(nc["sst"][:, :, :, :], dims = 3)[:, :, 1, :]
-time = nc["time"][:]
-lon = nc["lon"][:]
-lat = nc["lat"][:]
-sst[ismissing.(sst)] .= NaN
-sst = convert(Array{Float32}, sst)
-sst .-= mean(sst[:, :, 1901:2001], dims = 3)
+sst, time, lon, lat = loadLMR()
 
 years = 1500:50:1900
 figure(figsize = (10, 8))
@@ -37,17 +30,7 @@ tight_layout()
 savefig(plotsdir("lmrmaps.png"))
 μ = [mean(sst[:, :, i][(!).(isnan.(sst[:, :, i]))]) for i in 1:length(time)]
 
-
-latsouth = findall(x->x == 50, lat)[1]
-lonwest = findall(x->x == 360-50, lon)[1]
-loneast = findall(x->x == 20, lon)[1]
-μbox = Vector{Float32}(undef, length(time))
-for (i, t) in enumerate(time)
-    west = sst[lonwest:end, latsouth:end, i]
-    east = sst[begin:loneast, latsouth:end, i]
-    box = vcat(west, east) 
-    μbox[i] = mean(box[(!).(isnan.(box))])
-end
+μbox = boxmean(sst, lat, lon, 50, 90, 360-50, 20) 
 
 
 #https://www.wdc-climate.de/ui/q?hierarchy_steps_ss=ModE-RA_s14203-18501&entry_type_s=Dataset
@@ -56,7 +39,7 @@ nc = NCDataset(datadir("ModE-RA_ensmean_temp2_anom_wrt_1901-2000_1421-2008_mon.n
 temp = nc["temp2"][:, :, :]
 time = nc["time"][:]
 ind1980 = findall(x->Dates.DateTime(1980,1,1) < x < Dates.DateTime(1981,1,1), time)
-#temp .-= mean(temp[:, :, ind1980], dims =3)
+temp .-= mean(temp[:, :, ind1980], dims =3)
 lon = nc["longitude"][:]
 lat = nc["latitude"][:]
 

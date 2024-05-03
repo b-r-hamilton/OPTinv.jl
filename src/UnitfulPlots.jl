@@ -43,7 +43,6 @@ function scatter(x::Array{Quantity{Measurement{T}, D1, A1}}, y::Array{Quantity{M
 end
 
 function scatter(x::Vector{Quantity{T, D1, A1}}, y::Vector{Quantity{T, D2, A2}}; kwargs...) where {T <: AbstractFloat, D1, A1, D2, A2}
-    println("hi!")
     xunit = unit(first(x))
     yunit = unit(first(y))
     x = value.(ustrip.(x))
