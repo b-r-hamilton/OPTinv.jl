@@ -1,0 +1,2387 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.14)  11 JUN 2024 12:21
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**Hamilton2024.tex
+(./Hamilton2024.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-01-21>
+(/home/brynn/.config/texmf/tex/latex/AGU2019/agujournal2019.cls
+Document Class: agujournal2019 01/14/2019
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen138
+\Gin@req@width=\dimen139
+)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 227.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1352.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1356.
+Package xcolor Info: Model `RGB' extended on input line 1368.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1370.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1372.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1373.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1374.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+\linenopenalty=\count185
+\output=\toks17
+\linenoprevgraf=\count186
+\linenumbersep=\dimen140
+\linenumberwidth=\dimen141
+\c@linenumber=\count187
+\c@pagewiselinenumber=\count188
+\c@LN@truepage=\count189
+\c@internallinenumber=\count190
+\c@internallinenumbers=\count191
+\quotelinenumbersep=\dimen142
+\bframerule=\dimen143
+\bframesep=\dimen144
+\bframebox=\box50
+LaTeX Info: Redefining \\ on input line 3056.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
+Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/ragged2e/ragged2e.sty
+Package: ragged2e 2021/12/15 v3.1 ragged2e Package
+\CenteringLeftskip=\skip47
+\RaggedLeftLeftskip=\skip48
+\RaggedRightLeftskip=\skip49
+\CenteringRightskip=\skip50
+\RaggedLeftRightskip=\skip51
+\RaggedRightRightskip=\skip52
+\CenteringParfillskip=\skip53
+\RaggedLeftParfillskip=\skip54
+\RaggedRightParfillskip=\skip55
+\JustifyingParfillskip=\skip56
+\CenteringParindent=\skip57
+\RaggedLeftParindent=\skip58
+\RaggedRightParindent=\skip59
+\JustifyingParindent=\skip60
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/rotating.sty
+Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2020/11/24 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@r@tfl@t=\count192
+\rotFPtop=\skip61
+\rotFPbot=\skip62
+\rot@float@box=\box51
+\rot@mess@toks=\toks18
+)
+\draftskip=\count193
+\c@section=\count194
+\c@subsection=\count195
+\c@subsubsection=\count196
+\c@paragraph=\count197
+\c@subparagraph=\count198
+\c@figure=\count199
+\c@table=\count266
+\abovecaptionskip=\skip63
+\belowcaptionskip=\skip64
+\c@appendnum=\count267
+\bibindent=\dimen145
+
+(/usr/share/texlive/texmf-dist/tex/latex/apacite/apacite.sty
+Package: apacite 2013/07/21 v6.03 APA citation
+\c@BibCnt=\count268
+\bibleftmargin=\skip65
+\bibindent=\skip66
+\bibparsep=\skip67
+\bibitemsep=\skip68
+\biblabelsep=\skip69
+))
+(/home/brynn/.config/texmf/tex/latex/AGU2019/trackchanges.sty
+Package: trackchanges 2009/04/22 v0.7.0 TrackChanges file 
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count269
+\calc@Bcount=\count270
+\calc@Adimen=\dimen146
+\calc@Bdimen=\dimen147
+\calc@Askip=\skip70
+\calc@Bskip=\skip71
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count271
+\calc@Cskip=\skip72
+)
+(/home/brynn/.config/texmf/tex/latex/tellus/tellus2/soul.sty
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks19
+\SOUL@lasttoken=\toks20
+\SOUL@cmds=\toks21
+\SOUL@buffer=\toks22
+\SOUL@token=\toks23
+\SOUL@spaceskip=\skip73
+\SOUL@ttwidth=\dimen148
+\SOUL@uldp=\dimen149
+\SOUL@ulht=\dimen150
+)
+(/home/brynn/.config/texmf/tex/morefloats.sty
+Package: morefloats 2015/07/22 v1.0h Raise limit of unprocessed floats (HMM)
+
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+))
+Package morefloats Info: Maximum number of possible floats asked for: 36
+(morefloats)             (i.e. 18 more floats).
+(morefloats)             LaTeX might run out of memory before this
+(morefloats)             (in which case it will notify you).
+)
+\c@userid=\count272
+\c@changenumber=\count273
+\c@storefootnote=\count274
+\c@numeditors=\count275
+\c@maxeditors=\count276
+)
+(/usr/share/texlive/texmf-dist/tex/latex/wasysym/wasysym.sty
+Package: wasysym 2020/01/19 v2.4 Wasy-2 symbol support package
+\symwasy=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
+(Font)                  U/wasy/m/n --> U/wasy/b/n on input line 93.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count277
+\l__pdf_internal_box=\box52
+)
+(./Hamilton2024.aux)
+\openout1 = `Hamilton2024.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count278
+\scratchdimen=\dimen151
+\scratchbox=\box53
+\nofMPsegments=\count279
+\nofMParguments=\count280
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count281
+\MPscratchDim=\dimen152
+\MPnumerator=\count282
+\makeMPintoPDFobject=\count283
+\everyMPtoPDFconversion=\toks25
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+\c@maskedRefs=\count284
+
+(/usr/share/texlive/texmf-dist/tex/latex/apacite/english.apc
+File: english.apc 2013/07/21 v6.03 apacite language file
+LaTeX Info: Redefining \BPBI on input line 129.
+LaTeX Info: Redefining \BHBI on input line 130.
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 109.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 109.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 109.
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 10
+9.
+
+(/usr/share/texlive/texmf-dist/tex/latex/wasysym/uwasy.fd
+File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 140.
+
+Overfull \hbox (2.04341pt too wide) in paragraph at lines 141--142
+[]\OT1/cmr/m/n/10 We present an in-ver-sion method that in-cor-po-rates age mod
+el un-cer-tainty to in- 
+ []
+
+
+Overfull \hbox (0.57114pt too wide) in paragraph at lines 141--142
+\OT1/cmr/m/n/10 fer far-field prop-er-ties from ben-thic sed-i-ment core record
+s (137/140 char-ac-ters)  
+ []
+
+
+Overfull \hbox (22.98782pt too wide) in paragraph at lines 142--143
+[]\OT1/cmr/m/n/10 The re-con-structed North At-lantic Lit-tle Ice Age is char-a
+c-ter-ized by a 0.11-1.2K/kyr 
+ []
+
+
+Overfull \hbox (1.23782pt too wide) in paragraph at lines 143--144
+[]\OT1/cmr/m/n/10 A long-term cool-ing in the Nordic Seas is re-con-structed, a
+nd is found to be ap- 
+ []
+
+
+Overfull \hbox (16.26572pt too wide) in paragraph at lines 143--144
+\OT1/cmr/m/n/10 prox-i-mately two times greater than that of the sub-po-lar gyr
+e (138/140 char-ac-ters)  
+ []
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (7.6268pt too wide) in paragraph at lines 167--173
+\OT1/cmr/m/n/10 Paleoceanographic re-con-struc-tions of the past 2,000 years in
+-di-cate a large-scale cool-ing 
+ []
+
+
+Overfull \hbox (6.93246pt too wide) in paragraph at lines 167--173
+\OT1/cmr/m/n/10 in the lat-ter half of the last mil-len-nium, but sig-nif-i-can
+t con-flict on mag-ni-tude and tim- 
+ []
+
+
+Overfull \hbox (15.3768pt too wide) in paragraph at lines 167--173
+\OT1/cmr/m/n/10 ing ex-ist. This con-flict is par-tially due to the in-fer-ence
+ of sur-face con-di-tions from sparse, 
+ []
+
+
+Overfull \hbox (5.37672pt too wide) in paragraph at lines 167--173
+\OT1/cmr/m/n/10 noisy, near-surface ma-rine prox-ies that can ex-hibit sea-sona
+l bi-ases. Here, we de-velop a 
+ []
+
+
+Overfull \hbox (11.34906pt too wide) in paragraph at lines 167--173
+\OT1/cmr/m/n/10 novel method-ol-ogy for in-fer-ring far-field changes from ben-
+thic sed-i-ment core records via 
+ []
+
+
+Overfull \hbox (18.37677pt too wide) in paragraph at lines 167--173
+\OT1/cmr/m/n/10 an ocean cir-cu-la-tion model. Ben-thic sed-i-ment core records
+ are not sub-ject to high-energy 
+ []
+
+
+Overfull \hbox (23.26569pt too wide) in paragraph at lines 167--173
+\OT1/cmr/m/n/10 near-surface vari-abil-ity or sea-sonal bi-ases and record much
+ more sta-ble sig-nals than equiv- 
+ []
+
+
+Overfull \hbox (17.2567pt too wide) in paragraph at lines 167--173
+\OT1/cmr/m/n/10 a-lent plank-tonic records. We present a pos-si-ble sur-face te
+m-per-a-ture and $\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$ his- 
+ []
+
+
+Overfull \hbox (1.33867pt too wide) in paragraph at lines 167--173
+\OT1/cmr/m/n/10 tory that fits a dataset of 11 high-resolution ben-thic $\OML/c
+mm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$ records. The es-ti-mate 
+ []
+
+
+Overfull \hbox (2.76556pt too wide) in paragraph at lines 167--173
+\OT1/cmr/m/n/10 pre-sented here is within er-ror of in-stru-men-tal records, an
+d is char-ac-ter-ized by a Lit-tle 
+ []
+
+
+Overfull \hbox (3.82124pt too wide) in paragraph at lines 167--173
+\OT1/cmr/m/n/10 Ice Age sea sur-face tem-per-a-ture cool-ing of 0.67 $\OMS/cmsy
+/m/n/10 ^^F$ \OT1/cmr/m/n/10 0.56 K/kyr, which is sim-i-lar to, but 
+ []
+
+
+Overfull \hbox (8.32133pt too wide) in paragraph at lines 167--173
+\OT1/cmr/m/n/10 at the high end, of pre-vi-ous in-de-pen-dent es-ti-mates ob-ta
+ined from Com-mon Era ma-rine 
+ []
+
+
+Overfull \hbox (17.0712pt too wide) in paragraph at lines 167--173
+\OT1/cmr/m/n/10 sur-face records. Our re-con-struc-tion is char-ac-ter-ized by 
+a larger mag-ni-tude millenial-scale 
+ []
+
+
+Overfull \hbox (12.82133pt too wide) in paragraph at lines 167--173
+\OT1/cmr/m/n/10 cool-ing in the Nordic Seas (0.9 $\OMS/cmsy/m/n/10 ^^F$ \OT1/cm
+r/m/n/10 2.7 K) than in the sub-po-lar gyre (0.5 $\OMS/cmsy/m/n/10 ^^F$ \OT1/cm
+r/m/n/10 2.2K), in-dica- 
+ []
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <10.5> not available
+(Font)              size <10.95> substituted on input line 176.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <10.5> not available
+(Font)              size <10.95> substituted on input line 176.
+
+
+Overfull \hbox (11.04338pt too wide) in paragraph at lines 177--180
+[]\OT1/cmr/m/n/10 Enter your Plain Lan-guage Sum-mary here or delete this sec-t
+ion. Here are in-struc- 
+ []
+
+
+Overfull \hbox (130.79395pt too wide) in paragraph at lines 177--180
+\OT1/cmr/m/n/10 tions on writ-ing a Plain Lan-guage Sum-mary: https://www.agu.o
+rg/Share-and-Advocate/Share/Community/Plain- 
+ []
+
+
+Overfull \hbox (10.68228pt too wide) in paragraph at lines 190--191
+[]\OT1/cmr/m/n/10 The past 2,000 years, re-ferred to as the Com-mon Era (CE), i
+s a crit-i-cal pe-riod for 
+ []
+
+
+Overfull \hbox (5.7935pt too wide) in paragraph at lines 190--191
+\OT1/cmr/m/n/10 un-der-stand-ing the re-sponse of the Earth's cli-mate to per-t
+ur-ba-tions on long timescales. 
+ []
+
+
+Overfull \hbox (15.09901pt too wide) in paragraph at lines 190--191
+\OT1/cmr/m/n/10 Cli-matic per-tur-ba-tions dur-ing the CE in-clude de-creas-ing
+ so-lar ir-ra-di-ance due to the pre- 
+ []
+
+
+Overfull \hbox (10.48792pt too wide) in paragraph at lines 190--191
+\OT1/cmr/m/n/10 ces-sion of the equinoxes and strato-spheric sul-fate in-jec-ti
+on from vol-canic erup-tions. Pa- 
+ []
+
+
+Overfull \hbox (16.09903pt too wide) in paragraph at lines 190--191
+\OT1/cmr/m/n/10 le-o-cli-matic and pa-le-o-ceano-graphic re-con-struc-tions of 
+the CE in-di-cate that large-scale cli- 
+ []
+
+
+Overfull \hbox (26.57129pt too wide) in paragraph at lines 190--191
+\OT1/cmr/m/n/10 mate de-vi-a-tions were com-pa-ra-bly small when com-pared to c
+hanges that oc-curred on longer 
+ []
+
+
+Overfull \hbox (5.1823pt too wide) in paragraph at lines 190--191
+\OT1/cmr/m/n/10 timescales, such as the deglacia-tion. How-ever, no-table regio
+nal- to global-scale cli-mate 
+ []
+
+
+Overfull \hbox (0.32112pt too wide) in paragraph at lines 190--191
+\OT1/cmr/m/n/10 events have been iden-ti-fied in var-i-ous proxy records. These
+ in-clude the Lit-tle Ice Age 
+ []
+
+
+Overfull \hbox (6.21016pt too wide) in paragraph at lines 190--191
+\OT1/cmr/m/n/10 (LIA), a pe-riod of anoma-lously cool tem-per-a-tures rel-a-tiv
+e to the CE mean, or the Me- 
+ []
+
+
+Overfull \hbox (17.07138pt too wide) in paragraph at lines 190--191
+\OT1/cmr/m/n/10 dieval Warm Pe-riod (MWP), a pe-riod of anoma-lously warm tem-p
+er-a-tures that may have 
+ []
+
+
+Overfull \hbox (2.01564pt too wide) in paragraph at lines 190--191
+\OT1/cmr/m/n/10 pre-ceded the LIA. Un-der-stand-ing the spa-tiotem-po-ral ex-te
+nt of these cli-mate events is 
+ []
+
+
+Overfull \hbox (0.12677pt too wide) in paragraph at lines 190--191
+\OT1/cmr/m/n/10 a crit-i-cal step in con-strain-ing the re-sponse of the cli-ma
+te sys-tem to var-i-ous per-tur-ba- 
+ []
+
+
+Overfull \hbox (12.18227pt too wide) in paragraph at lines 192--193
+[]\OT1/cmr/m/n/10 Reconstructions of sea sur-face tem-per-a-ture (SST) have in-
+di-cated a global de-crease 
+ []
+
+
+Overfull \hbox (28.90468pt too wide) in paragraph at lines 192--193
+\OT1/cmr/m/n/10 from 1-1800 CE, which has been at-tributed to a ther-mo-dy-nami
+c re-sponse to high-frequency 
+ []
+
+
+Overfull \hbox (8.61292pt too wide) in paragraph at lines 192--193
+\OT1/cmr/m/n/10 vol-can-ism []McGregor et al.[], 2015). Other oceanic or at-mo-
+spheric feed-back mech-a-nisms 
+ []
+
+
+Overfull \hbox (23.5712pt too wide) in paragraph at lines 192--193
+\OT1/cmr/m/n/10 that may have re-in-forced cool-ing have been sug-gested, such 
+as an in-crease of Arc-tic Ocean 
+ []
+
+
+Overfull \hbox (32.2935pt too wide) in paragraph at lines 192--193
+\OT1/cmr/m/n/10 sea-ice as a di-rect re-sponse to decadally-paced vol-canic eru
+p-tions be-gin-ning in 1257-1258CE, 
+ []
+
+
+Overfull \hbox (12.37682pt too wide) in paragraph at lines 192--193
+\OT1/cmr/m/n/10 which ul-ti-mately leads to a fresh-en-ing of the sub-po-lar No
+rth At-lantic that weak-ens con- 
+ []
+
+
+Overfull \hbox (7.54344pt too wide) in paragraph at lines 192--193
+\OT1/cmr/m/n/10 vec-tion []Zhong et al.[], 2010; Miller et al.[], 2012; Lehner 
+et al.[], 2013; Schleuss-ner & Feul- 
+ []
+
+
+Overfull \hbox (3.15453pt too wide) in paragraph at lines 192--193
+\OT1/cmr/m/n/10 ner, 2013). Weak-ened con-vec-tion has been as-so-ci-ated with 
+a slow-down of the At-lantic 
+ []
+
+
+Overfull \hbox (18.23804pt too wide) in paragraph at lines 192--193
+\OT1/cmr/m/n/10 Merid-ional Over-turn-ing Cir-cu-la-tion (AMOC), al-though some
+ mod-elling stud-ies have sug- 
+ []
+
+
+Overfull \hbox (4.73792pt too wide) in paragraph at lines 192--193
+\OT1/cmr/m/n/10 gested that an AMOC slow-down is not nec-es-sary to ex-plain th
+e full mag-ni-tude of LIA 
+ []
+
+
+Overfull \hbox (11.62683pt too wide) in paragraph at lines 192--193
+\OT1/cmr/m/n/10 cool-ing []Moreno-Chamarro et al.[], 2016). Other sug-gested re
+-in-force-ment mech-a-nisms in- 
+ []
+
+
+Overfull \hbox (18.93233pt too wide) in paragraph at lines 192--193
+\OT1/cmr/m/n/10 clude large-scale shifts in the North At-lantic Os-cil-la-tion 
+(NAO) as part of a feed-back sys- 
+ []
+
+
+Overfull \hbox (4.18237pt too wide) in paragraph at lines 192--193
+\OT1/cmr/m/n/10 tem re-lated to a weak-ened At-lantic Merid-ional Over-turn-ing
+ Cir-cu-la-tion (AMOC) dur- 
+ []
+
+
+Overfull \hbox (5.15457pt too wide) in paragraph at lines 192--193
+\OT1/cmr/m/n/10 ing the LIA []Trouet et al.[], 2009), al-though the ro-bust-nes
+s of NAO re-con-struc-tions has 
+ []
+
+
+Overfull \hbox (6.62672pt too wide) in paragraph at lines 196--198
+[]\OT1/cmr/m/n/10 Paleoclimate proxy records and re-con-struc-tions have been u
+sed to in-ves-ti-gate the 
+ []
+
+
+Overfull \hbox (3.09903pt too wide) in paragraph at lines 196--198
+\OT1/cmr/m/n/10 va-lid-ity of many of these ideas. How-ever, sig-nif-i-cant con
+-fu-sion still ex-ists on over-turn- 
+ []
+
+
+Overfull \hbox (8.01567pt too wide) in paragraph at lines 196--198
+\OT1/cmr/m/n/10 ing re-con-struc-tions over the CE. No-tably, through the us-ag
+e of sortable silt records, no 
+ []
+
+
+Overfull \hbox (4.01555pt too wide) in paragraph at lines 196--198
+\OT1/cmr/m/n/10 sig-nif-i-cant centennial-scale changes prior to 1800 have been
+ de-tected in the deep west- 
+ []
+
+
+Overfull \hbox (13.4324pt too wide) in paragraph at lines 196--198
+\OT1/cmr/m/n/10 ern bound-ary cur-rents as-so-ci-ated with the Labrador Sea []T
+hornalley et al.[], 2018) or the 
+ []
+
+
+Overfull \hbox (0.59908pt too wide) in paragraph at lines 196--198
+\OT1/cmr/m/n/10 Nordic Seas []Moffa-Sanchez et al.[], 2015), both of which are 
+im-por-tant com-po-nents of 
+ []
+
+
+Overfull \hbox (2.43233pt too wide) in paragraph at lines 196--198
+\OT1/cmr/m/n/10 the lower limb of the AMOC. These find-ings op-pose that of []L
+und et al.[] (2006), where 
+ []
+
+
+Overfull \hbox (8.40463pt too wide) in paragraph at lines 196--198
+\OT1/cmr/m/n/10 geostrophic re-con-struc-tions of the Florida Cur-rent in-di-ca
+ted weak-en-ing from 1200-1850 
+ []
+
+
+Overfull \hbox (12.65457pt too wide) in paragraph at lines 196--198
+\OT1/cmr/m/n/10 CE, sug-gest-ing a slow-down of the north-ward trans-port of tr
+op-i-cal wa-ters in the AMOC. 
+ []
+
+
+Overfull \hbox (20.71005pt too wide) in paragraph at lines 196--198
+\OT1/cmr/m/n/10 In the more re-cent past, ev-i-dence for an AMOC slow-down over
+ the 20th cen-tury has been 
+ []
+
+
+Overfull \hbox (42.7102pt too wide) in paragraph at lines 196--198
+\OT1/cmr/m/n/10 found in Labrador Sea sortable silt records []Thornalley et al.
+[], 2018), as well as SST-fingerprint 
+ []
+
+
+Overfull \hbox (10.59903pt too wide) in paragraph at lines 196--198
+\OT1/cmr/m/n/10 AMOC re-con-struc-tions []Rahmstorf et al.[], 2015). How-ever, 
+syn-chronous LIA and in-dus- 
+ []
+
+
+Overfull \hbox (9.84914pt too wide) in paragraph at lines 196--198
+\OT1/cmr/m/n/10 trial changes in ben-thic and plank-tonic oxy-gen iso-tope reco
+rds from $\OMS/cmsy/m/n/10 ^^X$\OT1/cmr/m/n/10 1300m-2200m in- 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2]
+Overfull \hbox (8.48784pt too wide) in paragraph at lines 199--200
+[]\OT1/cmr/m/n/10 The mech-a-nism out-lined by []Zhong et al.[] (2010) of a sea
+-ice ex-pan-sion in the Arc- 
+ []
+
+
+Overfull \hbox (0.71008pt too wide) in paragraph at lines 199--200
+\OT1/cmr/m/n/10 tic has been sup-ported by a $\OMS/cmsy/m/n/10 ^^X$\OT1/cmr/m/n
+/10 1400 CE shift to-wards Arctic-origin ice-rafted de-bris in 
+ []
+
+
+Overfull \hbox (12.4463pt too wide) in paragraph at lines 199--200
+\OT1/cmr/m/n/10 the Labrador Sea []Alonso-Garcia et al.[], 2017). Sig-nif-i-can
+t LIA changes in sub-po-lar gyre 
+ []
+
+
+Overfull \hbox (3.099pt too wide) in paragraph at lines 199--200
+\OT1/cmr/m/n/10 prop-er-ties have been doc-u-mented, al-though the pre-cise tim
+-ing is un-clear. Desta-bi-liza- 
+ []
+
+
+Overfull \hbox (22.43233pt too wide) in paragraph at lines 199--200
+\OT1/cmr/m/n/10 tion of the sub-po-lar gyre has been sug-gested to oc-cur $\OMS
+/cmsy/m/n/10 ^^X$\OT1/cmr/m/n/10 1250 CE by deep-sea coral records 
+ []
+
+
+Overfull \hbox (17.32127pt too wide) in paragraph at lines 199--200
+[]\OT1/cmr/m/n/10 Copard et al.[], 2012) and be-tween 1330-1380 by bi-valve re-
+silience records []Arellano-Nava 
+ []
+
+
+Overfull \hbox (12.90462pt too wide) in paragraph at lines 199--200
+\OT1/cmr/m/n/10 et al.[], 2022). A 1400-1450CE LIA weak-en-ing of the sub-po-la
+r gyre has also been in-ferred 
+ []
+
+
+Overfull \hbox (4.76582pt too wide) in paragraph at lines 199--200
+\OT1/cmr/m/n/10 from plank-tonic foraminiferal oxy-gen iso-tope re-con-struc-ti
+ons []Moffa-S^^Sanchez, Born, et 
+ []
+
+
+Overfull \hbox (17.59914pt too wide) in paragraph at lines 199--200
+\OT1/cmr/m/n/10 al.[], 2014; Moffa-Sanchez & Hall, 2017). How-ever, foraminifer
+al fau-nal as-sem-blages, abun- 
+ []
+
+
+Overfull \hbox (15.48793pt too wide) in paragraph at lines 199--200
+\OT1/cmr/m/n/10 dances, and iso-topic trends from the Reyk-janes Ridge in-di-ca
+te largely con-stant Holocene 
+ []
+
+
+Overfull \hbox (3.04353pt too wide) in paragraph at lines 199--200
+\OT1/cmr/m/n/10 con-di-tions, with a large-scale shift in sub-po-lar gyre con-d
+i-tions be-gin-ning in the 1750s, 
+ []
+
+
+Overfull \hbox (15.2101pt too wide) in paragraph at lines 203--209
+[]\OT1/cmr/m/n/10 Overall, stud-ies do not show sup-port for large-scale over-t
+urn-ing changes dur-ing the 
+ []
+
+
+Overfull \hbox (3.09895pt too wide) in paragraph at lines 203--209
+\OT1/cmr/m/n/10 LIA. How-ever, there is more con-sis-tent sup-port for changes 
+in sub-po-lar gyre strength, 
+ []
+
+
+Overfull \hbox (7.26584pt too wide) in paragraph at lines 203--209
+\OT1/cmr/m/n/10 al-though the ex-act tim-ing and mag-ni-tude is un-clear. One o
+f the pri-mary lim-i-ta-tions of 
+ []
+
+
+Overfull \hbox (27.29358pt too wide) in paragraph at lines 203--209
+\OT1/cmr/m/n/10 our un-der-stand-ing of LIA dy-nam-ics comes from the point-wis
+e na-ture of pa-le-o-ceano-graphic 
+ []
+
+
+Overfull \hbox (12.599pt too wide) in paragraph at lines 203--209
+\OT1/cmr/m/n/10 proxy records. In-fer-ring be-hav-ior of a large-scale oceano-g
+raphic fea-ture such as the sub- 
+ []
+
+
+Overfull \hbox (15.0991pt too wide) in paragraph at lines 203--209
+\OT1/cmr/m/n/10 po-lar gyre typ-i-cally re-quires spa-tially dense and high tem
+-po-ral res-o-lu-tion mea-sure-ments, 
+ []
+
+
+Overfull \hbox (3.98788pt too wide) in paragraph at lines 203--209
+\OT1/cmr/m/n/10 which can be dif-fi-cult to at-tain for paleo-timescales. Al-th
+ough there have been sev-eral 
+ []
+
+
+Overfull \hbox (18.46011pt too wide) in paragraph at lines 203--209
+\OT1/cmr/m/n/10 dif-fer-ent re-con-struc-tions of large-scale sur-face tem-per-
+a-ture vari-abil-ity over the CE []Esper 
+ []
+
+
+Overfull \hbox (12.15457pt too wide) in paragraph at lines 203--209
+\OT1/cmr/m/n/10 et al.[], 2024), there have been very few purely ma-rine proxy-
+based re-con-struc-tions of the 
+ []
+
+
+Overfull \hbox (13.32127pt too wide) in paragraph at lines 203--209
+\OT1/cmr/m/n/10 CE. Early SST re-con-struc-tions such as that of []Cunningham e
+t al.[] (2013) use composite- 
+ []
+
+
+Overfull \hbox (4.51582pt too wide) in paragraph at lines 203--209
+\OT1/cmr/m/n/10 based meth-ods that rely upon modern-day cli-ma-tolo-gies that 
+may not be in-dica-tive of 
+ []
+
+
+Overfull \hbox (0.93237pt too wide) in paragraph at lines 203--209
+\OT1/cmr/m/n/10 CE dy-nam-ics. The Last Mil-le-nium Re-anal-y-sis []Hakim et al
+.[], 2016) re-con-structs SST, 
+ []
+
+
+Overfull \hbox (19.0157pt too wide) in paragraph at lines 203--209
+\OT1/cmr/m/n/10 but ex-hibits much less cool-ing than purely marine-based re-co
+n-struc-tions such as Ocean2k 
+ []
+
+
+Overfull \hbox (25.91841pt too wide) in paragraph at lines 203--209
+[]\OT1/cmr/m/n/10 McGregor et al.[], 2015) (see Fig-ure 7[]). These re-con-stru
+c-tions all rely upon sur-face records, 
+ []
+
+
+Overfull \hbox (21.849pt too wide) in paragraph at lines 203--209
+\OT1/cmr/m/n/10 which ex-pe-ri-ence a high de-gree of noise and sea-sonal ef-fe
+cts. When try-ing to ex-tract long- 
+ []
+
+
+Overfull \hbox (10.82121pt too wide) in paragraph at lines 203--209
+\OT1/cmr/m/n/10 term cli-mate sig-nals, ben-thic records may be a bet-ter op-ti
+on, as they are not sub-ject to 
+ []
+
+
+Overfull \hbox (19.8908pt too wide) in paragraph at lines 203--209
+\OT1/cmr/m/n/10 high-frequency sur-face vari-abil-ity. Given that North At-lant
+ic ocean dy-nam-ics are thought 
+ []
+
+
+Overfull \hbox (16.0991pt too wide) in paragraph at lines 203--209
+\OT1/cmr/m/n/10 to be a pri-mary com-po-nent of pos-i-tive feed-back mech-a-nis
+ms re-in-forc-ing the LIA, ob-tain- 
+ []
+
+
+Overfull \hbox (11.21008pt too wide) in paragraph at lines 210--211
+[]\OT1/cmr/m/n/10 In this pa-per, we de-velop an in-verse ap-proach to in-fer-r
+ing far-field prop-er-ties from 
+ []
+
+
+Overfull \hbox (5.87695pt too wide) in paragraph at lines 210--211
+\OT1/cmr/m/n/10 pa-le-o-ceano-graphic proxy data through the us-age of a data-i
+nformed cir-cu-la-tion model. 
+ []
+
+
+Overfull \hbox (3.46011pt too wide) in paragraph at lines 210--211
+\OT1/cmr/m/n/10 Here, we ap-ply a modern-day cir-cu-la-tion model un-der the as
+-sump-tion that there were 
+ []
+
+
+Overfull \hbox (33.73782pt too wide) in paragraph at lines 210--211
+\OT1/cmr/m/n/10 no large-scale cir-cu-la-tion changes over the CE. Al-though th
+ere is no clear an-swer on whether 
+ []
+
+
+Overfull \hbox (10.1544pt too wide) in paragraph at lines 210--211
+\OT1/cmr/m/n/10 or not there were large-scale cir-cu-la-tion changes over the C
+E, test-ing whether or not si- 
+ []
+
+
+Overfull \hbox (4.7934pt too wide) in paragraph at lines 210--211
+\OT1/cmr/m/n/10 mul-ta-ne-ous sed-i-ment core records can be well-fit un-der th
+e as-sump-tion of steady-state 
+ []
+
+
+Overfull \hbox (1.48785pt too wide) in paragraph at lines 210--211
+\OT1/cmr/m/n/10 modern-day cir-cu-la-tion has been pre-vi-ously used as a test 
+for the ne-ces-sity of cir-cu-la- 
+ []
+
+
+Overfull \hbox (6.7656pt too wide) in paragraph at lines 212--213
+[]\OT1/cmr/m/n/10 The cir-cu-la-tion model used here is a tran-sient in-ver-sio
+n of modern-day tracer ob- 
+ []
+
+
+Overfull \hbox (7.02959pt too wide) in paragraph at lines 212--213
+\OT1/cmr/m/n/10 ser-va-tions []Gebbie & Huy-bers, 2012) pre-vi-ously used to co
+n-strain CE deep Pa-cific and 
+ []
+
+
+Overfull \hbox (9.08519pt too wide) in paragraph at lines 212--213
+\OT1/cmr/m/n/10 At-lantic cool-ing []Gebbie & Huy-bers, 2019). This prior ap-pl
+i-ca-tion es-ti-mated a tem-per- 
+ []
+
+
+Overfull \hbox (9.0713pt too wide) in paragraph at lines 212--213
+\OT1/cmr/m/n/10 a-ture his-tory that could ex-plain the ob-served warm-ing from
+ the 1870s HMS Chal-lenger 
+ []
+
+
+Overfull \hbox (13.98795pt too wide) in paragraph at lines 212--213
+\OT1/cmr/m/n/10 ex-pe-di-tion to mod-ern hy-drog-ra-phy. It has also been used 
+to ex-plain the lag be-tween At- 
+ []
+
+
+Overfull \hbox (14.6858pt too wide) in paragraph at lines 212--213
+\OT1/cmr/m/n/10 lantic and Pa-cific warm-ing in deglacial $\OML/cmm/m/it/10 ^^N
+[]\OT1/cmr/m/n/10 O$ records []Gebbie, 2012). Here, we ap-ply this 
+ []
+
+
+Overfull \hbox (22.47748pt too wide) in paragraph at lines 212--213
+\OT1/cmr/m/n/10 model to CE ben-thic sed-i-ment core $\OML/cmm/m/it/10 ^^N[]\OT
+1/cmr/m/n/10 O$ records for the first time, and de-velop a method- 
+ []
+
+
+Overfull \hbox (0.62685pt too wide) in paragraph at lines 212--213
+\OT1/cmr/m/n/10 ol-ogy to max-i-mize the spa-tial field re-con-structed while m
+in-i-miz-ing prop-a-gated un-cer- 
+ []
+
+
+Overfull \hbox (6.54337pt too wide) in paragraph at lines 212--213
+\OT1/cmr/m/n/10 tain-ties. This is ac-com-plished by de-com-pos-ing sur-face so
+urce wa-ter maps for each core 
+ []
+
+
+Overfull \hbox (8.2658pt too wide) in paragraph at lines 212--213
+\OT1/cmr/m/n/10 site into or-thog-o-nal spa-tial modes, and solv-ing for the mo
+de mag-ni-tude of sur-face tem- 
+ []
+
+
+Overfull \hbox (17.32977pt too wide) in paragraph at lines 212--213
+\OT1/cmr/m/n/10 per-a-ture and $\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$ thro
+ugh time that best ex-plains the ben-thic $\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/1
+0 O[]$ records. 
+ []
+
+
+Overfull \hbox (12.3123pt too wide) in paragraph at lines 212--213
+\OT1/cmr/m/n/10 We sep-a-rate the ef-fects of tem-per-a-ture and $\OML/cmm/m/it
+/10 ^^N[]\OT1/cmr/m/n/10 O[]$ by us-ing ex-per-i-men-tally de-fined 
+ []
+
+
+Overfull \hbox (11.34908pt too wide) in paragraph at lines 212--213
+\OT1/cmr/m/n/10 ra-tios []Marchitto et al.[], 2014). Our prob-lem has no in-de-
+pen-dent con-straints on tem-per- 
+ []
+
+
+Overfull \hbox (20.29842pt too wide) in paragraph at lines 212--213
+\OT1/cmr/m/n/10 a-ture and $\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$, so we e
+n-force a lin-ear re-la-tion-ship of 10$[]$C/$[]$ based upon isotope- 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3]
+Overfull \hbox (28.90463pt too wide) in paragraph at lines 214--219
+[]\OT1/cmr/m/n/10 We will first show the abil-ity of this method-ol-ogy to fit 
+a dataset of 11 high-resolution 
+ []
+
+
+Overfull \hbox (0.97755pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 ben-thic records of $\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$
+ from along the Reyk-janes Ridge in Ice-land. Suc-cess-fully 
+ []
+
+
+Overfull \hbox (9.47899pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 fit-ting this data im-plies that pos-si-ble sur-face tem-per-a-
+ture and $\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$ his-to-ries ex- 
+ []
+
+
+Overfull \hbox (12.1268pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 ist that can ex-plain the sed-i-ment core data with-out ne-ces-
+si-tat-ing changes in cir-cu-la-tion. 
+ []
+
+
+Overfull \hbox (7.34898pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 Next, we will com-pare our re-con-struc-tion to in-stru-men-tal
+ records of Labrador Sea Wa- 
+ []
+
+
+Overfull \hbox (3.93237pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 ter tem-per-a-ture and salin-ity, and demon-strate that we re-c
+on-struct sim-i-lar mag-ni-tudes 
+ []
+
+
+Overfull \hbox (6.40463pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 of tem-per-a-ture and salin-ity vari-abil-ity over the past 100
+ years. Our re-con-struc-tion can 
+ []
+
+
+Overfull \hbox (14.09901pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 also be com-pared to other pa-le-o-ceano-graphic es-ti-mates, a
+nd we show that the es-ti-mated 
+ []
+
+
+Overfull \hbox (28.11304pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 LIA North At-lantic cool-ing trend is com-pa-ra-ble to the glob
+al SST trend of 0.54-0.38$[]$C/kyr 
+ []
+
+
+Overfull \hbox (7.79352pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 iden-ti-fied in the Ocean2k dataset. Fi-nally, we will dis-cuss
+ the spa-tiotem-po-ral evo-lu-tion 
+ []
+
+
+Overfull \hbox (5.6823pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 of the LIA in the North At-lantic, and demon-strate that the LI
+A can be rep-re-sented as 
+ []
+
+
+Overfull \hbox (27.59917pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 a long-term cool-ing trend with re-gional mag-ni-tudes and tim-
+ing. In our so-lu-tion, the Nordic 
+ []
+
+
+Overfull \hbox (13.90457pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 Seas are shown to be the first re-gion to be-gin cool-ing, at $
+\OMS/cmsy/m/n/10 ^^X$\OT1/cmr/m/n/10 1200CE, fol-lowed by the sub- 
+ []
+
+
+Overfull \hbox (4.76576pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 po-lar gyre in $\OMS/cmsy/m/n/10 ^^X$\OT1/cmr/m/n/10 1400CE. Th
+e tim-ing of the sub-po-lar gyre cool-ing is sim-i-lar to other in- 
+ []
+
+
+Overfull \hbox (8.1823pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 de-pen-dent records []Moffa-S^^Sanchez, Hall, et al.[], 2014). 
+The Nordic Seas ex-pe-ri-ences the 
+ []
+
+
+Overfull \hbox (13.87683pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 largest cool-ing mag-ni-tude (0.8 $\OMS/cmsy/m/n/10 ^^F$ \OT1/c
+mr/m/n/10 2.7 K) and the sub-po-lar gyre ex-pe-ri-ences a lesser mag- 
+ []
+
+
+Overfull \hbox (0.82129pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 ni-tude cool-ing of (0.37 $\OMS/cmsy/m/n/10 ^^F$ \OT1/cmr/m/n/1
+0 2.1K). For both re-gions, the main char-ac-ter-is-tic is the long- 
+ []
+
+
+Overfull \hbox (17.73802pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 term cool-ing, but they also ex-hibit shorter-timescale an-tiph
+ased vari-abil-ity. The spa-tially 
+ []
+
+
+Overfull \hbox (21.48802pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 and tem-po-rally dis-tinct tem-per-a-ture min-ima ob-served her
+e may ex-plain the mul-ti-ple tem- 
+ []
+
+
+Overfull \hbox (22.05737pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 per-a-ture min-ima present in Green-land bore-hole tem-per-a-tu
+re re-con-struc-tions []Dahl-Jensen 
+ []
+
+
+Overfull \hbox (1.82126pt too wide) in paragraph at lines 214--219
+\OT1/cmr/m/n/10 et al.[], 1998). In ad-di-tion, pre-industrial an-tiphas-ing is
+ noted be-tween the Nordic Seas 
+ []
+
+
+Overfull \hbox (45.1268pt too wide) in paragraph at lines 222--223
+[]\OT1/cmr/m/n/10 The in-ver-sion pre-sented here is ap-plied to a set of 11 hi
+gh-resolution ben-thic foraminiferal 
+ []
+
+
+Overfull \hbox (24.72752pt too wide) in paragraph at lines 222--223
+\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$ sed-i-ment core records (Fig-ure 3[]
+) pre-vi-ously pre-sented in []Lu et al.[] (2023). These 
+ []
+
+
+Overfull \hbox (21.54346pt too wide) in paragraph at lines 222--223
+\OT1/cmr/m/n/10 records were col-lected from along the Reyk-janes Ridge south o
+f Ice-land, and form a depth 
+ []
+
+
+Overfull \hbox (7.73788pt too wide) in paragraph at lines 222--223
+\OT1/cmr/m/n/10 tran-sect from 1100-2300m. Pre-vi-ously these records were used
+ to demon-strate that the 
+ []
+
+
+Overfull \hbox (4.18233pt too wide) in paragraph at lines 222--223
+\OT1/cmr/m/n/10 deep ocean LIA tran-si-tion, as in-di-cated by the ben-thic rec
+ords, oc-curred at 1350 $\OMS/cmsy/m/n/10 ^^F$ \OT1/cmr/m/n/10 50 
+ []
+
+
+Overfull \hbox (14.40457pt too wide) in paragraph at lines 222--223
+\OT1/cmr/m/n/10 CE, while the sur-face ocean LIA tran-si-tion, as in-di-cated b
+y plank-tonic records, oc-curred 
+ []
+
+
+Overfull \hbox (31.29353pt too wide) in paragraph at lines 222--223
+\OT1/cmr/m/n/10 from 1100-1700CE. In ad-di-tion, a larger mag-ni-tude LIA was o
+b-served in the ben-thic records 
+ []
+
+
+Overfull \hbox (30.238pt too wide) in paragraph at lines 222--223
+\OT1/cmr/m/n/10 than in the plank-tonic records, in-di-cate of Arc-tic am-pli-f
+i-ca-tion of LIA tem-per-a-ture changes, 
+ []
+
+
+Overfull \hbox (6.29343pt too wide) in paragraph at lines 224--225
+[]\OT1/cmr/m/n/10 Here, we in-cor-po-rate age model un-cer-tainty into the in-v
+erse prob-lem by ap-ply-ing 
+ []
+
+
+Overfull \hbox (11.71019pt too wide) in paragraph at lines 224--225
+\OT1/cmr/m/n/10 the BACON-generated age mod-els []Blaauw & Chris-ten, 2011; McK
+ay et al.[], 2021) from 
+ []
+
+
+Overfull \hbox (1.07126pt too wide) in paragraph at lines 224--225
+[]\OT1/cmr/m/n/10 Lu et al.[] (2023). In or-der to trans-late the 1000 age mode
+l re-al-iza-tions into co-vari-ance 
+ []
+
+
+Overfull \hbox (3.42198pt too wide) in paragraph at lines 224--225
+\OT1/cmr/m/n/10 ma-tri-ces with un-cer-tainty in the $\OML/cmm/m/it/10 ^^N[]\OT
+1/cmr/m/n/10 O[]$ di-men-sion, each age model re-al-iza-tion was 
+ []
+
+
+Overfull \hbox (14.82129pt too wide) in paragraph at lines 224--225
+\OT1/cmr/m/n/10 lin-early in-ter-po-lated at a com-mon 10-year res-o-lu-tion. T
+hen, for each timestep, the mean 
+ []
+
+
+Overfull \hbox (5.53308pt too wide) in paragraph at lines 224--225
+\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$ was com-puted, for any in-ter-po-lat
+ed timestep that had more than 100 re-al- 
+ []
+
+
+Overfull \hbox (20.48787pt too wide) in paragraph at lines 224--225
+\OT1/cmr/m/n/10 iza-tions avail-able. The co-vari-ance be-tween two ar-bi-trary
+ timesteps $\OML/cmm/m/it/10 t[]; t[]$ \OT1/cmr/m/n/10 can be com-puted 
+ []
+
+
+Overfull \hbox (9.10194pt too wide) in paragraph at lines 224--225
+\OT1/cmr/m/n/10 ac-cord-ing to Equa-tion 1[], where $\OML/cmm/m/it/10 ^^N[]\OT1
+/cmr/m/n/10 O[](\OML/cmm/m/it/10 t[]\OT1/cmr/m/n/10 )$ refers to the in-ter-po-
+lated $\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O$ value at $\OML/cmm/m/it/10 t[]$
+ \OT1/cmr/m/n/10 for 
+ []
+
+
+Overfull \hbox (6.72467pt too wide) in paragraph at lines 224--225
+\OT1/cmr/m/n/10 re-al-iza-tion $\OML/cmm/m/it/10 i$ \OT1/cmr/m/n/10 and $\OML/c
+mm/m/it/10 M$ \OT1/cmr/m/n/10 is the to-tal num-ber of re-al-iza-tions with dat
+a at $\OML/cmm/m/it/10 t[]$ \OT1/cmr/m/n/10 and $\OML/cmm/m/it/10 t[]$\OT1/cmr/
+m/n/10 . Re-al-iza- 
+ []
+
+
+Overfull \hbox (2.7934pt too wide) in paragraph at lines 224--225
+\OT1/cmr/m/n/10 tions will have dif-fer-ent start and end times due to the age 
+mod-el-ing pro-cess, so there 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4]
+Overfull \hbox (8.71014pt too wide) in paragraph at lines 226--227
+[]\OT1/cmr/m/n/10 [NOTE: This may be a good spot for a sup-ple-men-tary fig-ure
+ more com-pletely ex- 
+ []
+
+
+Overfull \hbox (19.83862pt too wide) in paragraph at lines 234--235
+[][]\OT1/cmr/m/n/10 Lu et al.[] (2023) used two ben-thic species of foraminifer
+a to mea-sure $\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$. The 
+ []
+
+
+Overfull \hbox (1.94977pt too wide) in paragraph at lines 234--235
+\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$ mea-sure-ments were ob-tained from U
+vige-rina pere-g-rina (U. pere-g-rina) tests 
+ []
+
+
+Overfull \hbox (0.18233pt too wide) in paragraph at lines 234--235
+\OT1/cmr/m/n/10 for the three shal-low-est cores (MC28A, MC26A, and MC25A), and
+ from Cibi-ci-doides 
+ []
+
+
+Overfull \hbox (15.95999pt too wide) in paragraph at lines 234--235
+\OT1/cmr/m/n/10 wueller-storfi (C. wueller-storfi) tests for the other eight se
+d-i-ment cores. While C. wueller- 
+ []
+
+
+Overfull \hbox (4.12683pt too wide) in paragraph at lines 234--235
+\OT1/cmr/m/n/10 storfi cal-ci-fies at equi-lib-rium, U. pere-g-rina is iso-topi
+-cally heav-ier by 0.47$[]$ []Marchitto 
+ []
+
+
+Overfull \hbox (12.80194pt too wide) in paragraph at lines 236--237
+[]$\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$ is de-pen-dent upon cal-ci-fi-ca-
+tion tem-per-a-ture and the $\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$, which 
+
+ []
+
+
+Overfull \hbox (0.1998pt too wide) in paragraph at lines 236--237
+\OT1/cmr/m/n/10 is, in turn, con-trolled by tem-per-a-ture and salin-ity. Ul-ti
+-mately, in-creases in $\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$ 
+ []
+
+
+Overfull \hbox (10.62679pt too wide) in paragraph at lines 236--237
+\OT1/cmr/m/n/10 are caused by de-creas-ing tem-per-a-ture and/or salin-i-fi-ca-
+tion. In Equa-tion 2[], we show the 
+ []
+
+
+Overfull \hbox (19.0435pt too wide) in paragraph at lines 236--237
+\OT1/cmr/m/n/10 ex-per-i-men-tal re-la-tion-ship for C. wueller-storfi cal-cu-l
+ated by []Marchitto et al.[] (2014), where 
+ []
+
+
+Overfull \hbox (15.74641pt too wide) in paragraph at lines 236--237
+\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$ is in $[]$PDB and $\OML/cmm/m/it/10 
+^^N[]\OT1/cmr/m/n/10 O[]$ is in $[]$SMOW. This re-la-tion-ship can be ap-plied 
+
+ []
+
+
+Overfull \hbox (3.6823pt too wide) in paragraph at lines 248--249
+[]\OT1/cmr/m/n/10 In or-der to com-plete an in-ver-sion, the val-ues re-ported 
+from both C. wueller-storfi 
+ []
+
+
+Overfull \hbox (25.28316pt too wide) in paragraph at lines 248--249
+\OT1/cmr/m/n/10 and U. pere-g-rina records must be put on a com-mon scale. Ef-f
+ec-tive modern-day $\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$ 
+ []
+
+
+Overfull \hbox (4.3957pt too wide) in paragraph at lines 248--249
+\OT1/cmr/m/n/10 can be com-puted from the equi-lib-rium value of $\OML/cmm/m/it
+/10 ^^N[]\OT1/cmr/m/n/10 O[]$ and tem-per-a-ture from the 
+ []
+
+
+Overfull \hbox (17.75177pt too wide) in paragraph at lines 248--249
+\OT1/cmr/m/n/10 in-ver-sion of []Gebbie and Huy-bers (2010). These val-ues can 
+then be com-pared to the core- 
+ []
+
+
+Overfull \hbox (5.83875pt too wide) in paragraph at lines 248--249
+\OT1/cmr/m/n/10 top val-ues of $\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$. We 
+find that, af-ter ap-ply-ing the ex-per-i-men-tal off-set to the U. 
+ []
+
+
+Overfull \hbox (22.8109pt too wide) in paragraph at lines 248--249
+\OT1/cmr/m/n/10 pere-g-rina sed-i-ment cores, the mea-sured $\OML/cmm/m/it/10 ^
+^N[]\OT1/cmr/m/n/10 O[]$ val-ues are vari-ably off-set from the com- 
+ []
+
+</home/brynn/Code/OPTinv.jl/plots/offsets.png, id=31, 361.35pt x 505.89pt>
+File: /home/brynn/Code/OPTinv.jl/plots/offsets.png Graphic file (type png)
+<use /home/brynn/Code/OPTinv.jl/plots/offsets.png>
+Package pdftex.def Info: /home/brynn/Code/OPTinv.jl/plots/offsets.png  used on 
+input line 251.
+(pdftex.def)             Requested size: 298.11374pt x 417.36438pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 252.
+
+Underfull \hbox (badness 10000) in paragraph at lines 252--252
+[]\OT1/cmr/bx/n/9 Figure  1. []\OT1/cmr/m/n/9 Rain-bow dots, with size de-creas
+-ing as time in-creases, show mean $\OML/cmm/m/it/9 ^^N[]\OT1/cmr/m/n/9 O[]$ fo
+r
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 252--252
+\OT1/cmr/m/n/9 each sed-i-ment core, with 0.47$[]$ equi-li-bra-tion off-set re-
+moved from U. pere-g-rina records. Black
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 252--252
+\OT1/cmr/m/n/9 crosses show ef-fec-tive $\OML/cmm/m/it/9 ^^N[]\OT1/cmr/m/n/9 O[
+]$ com-puted from the steady-state in-ver-sion of tem-per-a-ture and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 252--252
+\OML/cmm/m/it/9 ^^N[]\OT1/cmr/m/n/9 O[]$ from []Gebbie and Huy-bers (2010) and 
+ob-served at the sed-i-ment core sites. Com-pu-ta-
+ []
+
+
+Overfull \hbox (21.28236pt too wide) in paragraph at lines 255--255
+[]\OT1/cmr/bx/n/10 Total Ma-trix In-ter-com-par-i-son (TMI), steady-state and t
+ran-sient ver- 
+ []
+
+
+Overfull \hbox (1.01553pt too wide) in paragraph at lines 256--257
+[]\OT1/cmr/m/n/10 In or-der to re-late sig-nals at the sed-i-ment core sites to
+ far-field ocean re-gions, an 
+ []
+
+
+Overfull \hbox (2.89073pt too wide) in paragraph at lines 256--257
+\OT1/cmr/m/n/10 ocean cir-cu-la-tion model must be ap-plied. In []Gebbie and Hu
+y-bers (2010), a box in-ver- 
+ []
+
+
+Overfull \hbox (9.37675pt too wide) in paragraph at lines 256--257
+\OT1/cmr/m/n/10 sion tech-nique is used to com-pute the path-ways con-nect-ing 
+in-te-rior ocean grid boxes to 
+ []
+
+
+Overfull \hbox (2.68231pt too wide) in paragraph at lines 256--257
+\OT1/cmr/m/n/10 the sur-face. The global ocean is de-com-posed into a $4[] \OMS
+/cmsy/m/n/10 ^^B \OT1/cmr/m/n/10 4[]$ grid with 33 ver-ti-cal lev-els, 
+ []
+
+
+Overfull \hbox (14.54344pt too wide) in paragraph at lines 256--257
+\OT1/cmr/m/n/10 and the path-ways that con-nect each in-te-rior grid box to the
+ sur-face are com-puted by in- 
+ []
+
+
+Overfull \hbox (3.99057pt too wide) in paragraph at lines 256--257
+\OT1/cmr/m/n/10 vert-ing six con-ser-va-tive trac-ers. This re-sults in a ma-tr
+ix, $[]$, which con-tains the con- 
+ []
+
+
+Overfull \hbox (2.48787pt too wide) in paragraph at lines 256--257
+\OT1/cmr/m/n/10 tri-bu-tion of ev-ery sur-face grid cell to ev-ery in-te-rior c
+ell, as-sum-ing that the ocean is at 
+ []
+
+
+Overfull \hbox (6.75183pt too wide) in paragraph at lines 256--257
+\OT1/cmr/m/n/10 a steady-state. In []Gebbie and Huy-bers (2012), this re-sult i
+s ex-tended by in-cor-po-rat-ing 
+ []
+
+
+Overfull \hbox (5.14058pt too wide) in paragraph at lines 256--257
+\OT1/cmr/m/n/10 ra-dio-car-bon ob-ser-va-tions in $[]$, which con-tains the rat
+e at which sur-face grid cells are 
+ []
+
+[5] [6 </home/brynn/Code/OPTinv.jl/plots/offsets.png>]
+Overfull \hbox (11.43246pt too wide) in paragraph at lines 259--260
+[]\OT1/cmr/m/n/10 SST fields from his-tor-i-cal re-al-iza-tion (1850-2015CE) `r
+11i1p1f1` of the Com-mu-nity 
+ []
+
+
+Overfull \hbox (5.57126pt too wide) in paragraph at lines 259--260
+\OT1/cmr/m/n/10 Earth Sys-tem Model, ver-sion 2 (CESM2) []Danabasoglu et al.[],
+ 2020) were used to con- 
+ []
+
+
+Overfull \hbox (11.2845pt too wide) in paragraph at lines 261--262
+[]\OT1/cmr/m/n/10 The re-la-tion-ship be-tween tem-per-a-ture and $\OML/cmm/m/i
+t/10 ^^N[]\OT1/cmr/m/n/10 O[]$ was ob-tained us-ing out-put 
+ []
+
+
+Overfull \hbox (19.48804pt too wide) in paragraph at lines 261--262
+\OT1/cmr/m/n/10 from the iCESM1.2 cou-pled cli-mate model []Brady et al.[], 201
+9). The `TEMP` and `R18O` 
+ []
+
+
+Overfull \hbox (10.599pt too wide) in paragraph at lines 261--262
+\OT1/cmr/m/n/10 vari-ables from the large en-sem-ble pre-industrial fully cou-p
+led con-trol run were ob-served 
+ []
+
+
+Overfull \hbox (6.18225pt too wide) in paragraph at lines 261--262
+\OT1/cmr/m/n/10 at the grid cell clos-est to the mean sed-i-ment core po-si-tio
+n, and the lin-ear least squares 
+ []
+
+
+Overfull \hbox (14.32118pt too wide) in paragraph at lines 265--266
+[]\OT1/cmr/m/n/10 This in-verse prob-lem is char-ac-ter-ized by in-fer-ring som
+e time-varying far-field prop- 
+ []
+
+
+Overfull \hbox (2.82794pt too wide) in paragraph at lines 265--266
+\OT1/cmr/m/n/10 er-ties $\OT1/cmr/bx/n/10 u$ \OT1/cmr/m/n/10 from data at the s
+ed-i-ment core sites $\OT1/cmr/bx/n/10 y$\OT1/cmr/m/n/10 . The con-nec-tion be-
+tween the sed-i-ment 
+ []
+
+
+Overfull \hbox (7.04346pt too wide) in paragraph at lines 265--266
+\OT1/cmr/m/n/10 core sites and any re-gion of the ocean can be com-puted by ap-
+ply-ing the tran-sient TMI 
+ []
+
+
+Overfull \hbox (5.61292pt too wide) in paragraph at lines 265--266
+\OT1/cmr/m/n/10 ma-trix $[]$. Al-though this ap-proach could be used to in-fer 
+sub-sur-face tem-per-a-ture and 
+ []
+
+
+Overfull \hbox (6.46996pt too wide) in paragraph at lines 265--266
+\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$, here we in-fer sur-face tem-per-a-t
+ure and $\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$, as it can more read-ily 
+ []
+
+
+Overfull \hbox (10.7379pt too wide) in paragraph at lines 267--268
+[]\OT1/cmr/m/n/10 We are con-cerned with solv-ing for the time-varying evo-lu-t
+ion of some col-lec-tion of 
+ []
+
+
+Overfull \hbox (10.32124pt too wide) in paragraph at lines 267--268
+\OT1/cmr/m/n/10 far-field pat-terns. These pat-terns could be oceano-graphic re
+-gions or fea-tures, and could 
+ []
+
+
+Overfull \hbox (11.4323pt too wide) in paragraph at lines 267--268
+\OT1/cmr/m/n/10 be sur-face or sub-sur-face. In or-der to re-duce the di-men-si
+on-al-ity of the prob-lem, we solve 
+ []
+
+
+Overfull \hbox (4.96024pt too wide) in paragraph at lines 267--268
+\OT1/cmr/m/n/10 for the mag-ni-tude of sur-face spa-tial modes, ob-tained from 
+a sin-gu-lar value de-com-po-si- 
+ []
+
+
+Overfull \hbox (7.46005pt too wide) in paragraph at lines 267--268
+\OT1/cmr/m/n/10 tion of source wa-ter maps. The con-tri-bu-tion of ev-ery sur-f
+ace grid cell to each sed-i-ment 
+ []
+
+
+Overfull \hbox (25.04619pt too wide) in paragraph at lines 267--268
+\OT1/cmr/m/n/10 core site can be com-puted by com-put-ing $[]$ m These pat-tern
+s can be prop-a-gated through 
+ []
+
+</home/brynn/Code/OPTinv.jl/plots/SVD_modes.png, id=45, 433.62pt x 433.62pt>
+File: /home/brynn/Code/OPTinv.jl/plots/SVD_modes.png Graphic file (type png)
+<use /home/brynn/Code/OPTinv.jl/plots/SVD_modes.png>
+Package pdftex.def Info: /home/brynn/Code/OPTinv.jl/plots/SVD_modes.png  used o
+n input line 277.
+(pdftex.def)             Requested size: 298.11374pt x 298.12625pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7]
+</home/brynn/Code/OPTinv.jl/plots/reconsolallvold.png, id=51, 578.16pt x 578.16
+pt>
+File: /home/brynn/Code/OPTinv.jl/plots/reconsolallvold.png Graphic file (type p
+ng)
+<use /home/brynn/Code/OPTinv.jl/plots/reconsolallvold.png>
+Package pdftex.def Info: /home/brynn/Code/OPTinv.jl/plots/reconsolallvold.png  
+used on input line 306.
+(pdftex.def)             Requested size: 397.48499pt x 397.48402pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 307--307
+[]\OT1/cmr/bx/n/9 Figure  3. []\OT1/cmr/m/n/9 Re-con-struc-tion at core sites f
+or all core es-ti-mate (red) and three old-est core es-ti-
+ []
+
+</home/brynn/Code/OPTinv.jl/plots/modemagsθallvold.png, id=52, 578.16pt x 578.
+16pt>
+File: /home/brynn/Code/OPTinv.jl/plots/modemagsθallvold.png Graphic file (type
+ png)
+<use /home/brynn/Code/OPTinv.jl/plots/modemagsθallvold.png>
+Package pdftex.def Info: /home/brynn/Code/OPTinv.jl/plots/modemagsθallvold.png
+  used on input line 313.
+(pdftex.def)             Requested size: 298.11374pt x 298.113pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 314--314
+[]\OT1/cmr/bx/n/9 Figure  4. []\OT1/cmr/m/n/9 Tem-per-a-ture sur-face mode mag-
+ni-tudes for first three modes, mode 1 in pur-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 314--314
+\OT1/cmr/m/n/9 ple/solid, mode 2 in green/dashed, mode 3 in or-ange/dotted for 
+\OT1/cmr/bx/n/9 (A) \OT1/cmr/m/n/9 es-ti-mate us-ing three old-est
+ []
+
+</home/brynn/Code/OPTinv.jl/plots/labcompallvold.png, id=53, 578.16pt x 578.16p
+t>
+File: /home/brynn/Code/OPTinv.jl/plots/labcompallvold.png Graphic file (type pn
+g)
+<use /home/brynn/Code/OPTinv.jl/plots/labcompallvold.png>
+Package pdftex.def Info: /home/brynn/Code/OPTinv.jl/plots/labcompallvold.png  u
+sed on input line 330.
+(pdftex.def)             Requested size: 397.48499pt x 397.48402pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 331--331
+[]\OT1/cmr/bx/n/9 Figure  5. [](A) \OT1/cmr/m/n/9 Re-con-structed Labrador Sea 
+(60$[]$W-30$[]$E, 55$[]$N-64$[]$N) tem-per-a-ture and \OT1/cmr/bx/n/9 (B)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 331--331
+\OT1/cmr/m/n/9 salin-ity (com-puted as $0\OML/cmm/m/it/9 :\OT1/cmr/m/n/9 5255 \
+OMS/cmsy/m/n/9 ^^B \OML/cmm/m/it/9 ^^N[]\OT1/cmr/m/n/9 O[]$) over the ob-ser-va
+-tional pe-riod (1850-1970) is shown
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 331--331
+\OT1/cmr/m/n/9 for ``old'' (blue) and ``all'' (red) so-lu-tions. Solid line sho
+ws dig-i-tized Labrador Sea record from
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 331--331
+\OT1/cmr/m/n/9 The Lab Sea Group, 1998 pub-li-ca-tion. Dashed line shows HadiSS
+T Labrador Sea spa-tial mean
+ []
+
+</home/brynn/Code/OPTinv.jl/plots/surfacesolallvold.png, id=54, 1084.05pt x 578
+.16pt>
+File: /home/brynn/Code/OPTinv.jl/plots/surfacesolallvold.png Graphic file (type
+ png)
+<use /home/brynn/Code/OPTinv.jl/plots/surfacesolallvold.png>
+Package pdftex.def Info: /home/brynn/Code/OPTinv.jl/plots/surfacesolallvold.png
+  used on input line 343.
+(pdftex.def)             Requested size: 397.48499pt x 211.99265pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 344--344
+[]\OT1/cmr/bx/n/9 Figure  6. []\OT1/cmr/m/n/9 Re-con-struc-tion of sur-face po-
+ten-tial tem-per-a-ture, 70-year mean, SVD ap-proach,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 344--344
+\OT1/cmr/m/n/9 anomaly from 1850-1970. Top row is for old cores, mid-dle row is
+ for all cores, third row is Last
+ []
+
+</home/brynn/Code/OPTinv.jl/plots/meantsallvold.png, id=55, 462.528pt x 346.896
+pt>
+File: /home/brynn/Code/OPTinv.jl/plots/meantsallvold.png Graphic file (type png
+)
+<use /home/brynn/Code/OPTinv.jl/plots/meantsallvold.png>
+Package pdftex.def Info: /home/brynn/Code/OPTinv.jl/plots/meantsallvold.png  us
+ed on input line 349.
+(pdftex.def)             Requested size: 298.11374pt x 223.59534pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 352--352
+[]\OT1/cmr/bx/n/9 Figure  7. []\OT1/cmr/m/n/9 Mean North At-lantic tem-per-a-tu
+re for ``all'' so-lu-tion (red) and ``old'' (blue), Last
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 352--352
+\OT1/cmr/m/n/9 Mil-le-nium Re-anal-y-sis (gray dash-dot), HadiSST (black dot-te
+d). Ocean2k trend of 0.54-0.38
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 352--352
+[]$\OT1/cmr/m/n/9 C/kyr (from Sup-ple-men-tal Fig-ure 6) is shown in shaded gra
+y re-gion. All records are shown as
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 352--352
+\OT1/cmr/m/n/9 anomaly from 1850-1970. For HadiSST and both re-con-struc-tions,
+ the mean is com-puted over the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 352--352
+[]\OT1/cmr/m/n/9 [This will go in dis-cus-sion, but for now: Es-ti-mated LIA N.
+ Atl. cool-ing is cal-cu-lated by com-put-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 352--352
+\OT1/cmr/m/n/9 ing the lin-ear least squares slope be-tween the max-ima and min
+-ima oc-cur-ring be-tween 1000CE
+ []
+
+</home/brynn/Code/OPTinv.jl/plots/EGWGallvold.png, id=56, 722.7pt x 578.16pt>
+File: /home/brynn/Code/OPTinv.jl/plots/EGWGallvold.png Graphic file (type png)
+<use /home/brynn/Code/OPTinv.jl/plots/EGWGallvold.png>
+Package pdftex.def Info: /home/brynn/Code/OPTinv.jl/plots/EGWGallvold.png  used
+ on input line 356.
+(pdftex.def)             Requested size: 397.48499pt x 317.98898pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 361--361
+[]\OT1/cmr/bx/n/9 Figure  8. []\OT1/cmr/m/n/9 Tem-per-a-ture for \OT1/cmr/bx/n/
+9 (A) \OT1/cmr/m/n/9 ``old'' and \OT1/cmr/bx/n/9 (B) \OT1/cmr/m/n/9 ``all'' so-
+lu-tions ob-served for spa-tial av-er-ages in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 361--361
+\OT1/cmr/m/n/9 Nordic Seas (pur-ple: 20$[]$W-20$[]$E, 65$[]$N-80$[]$N), the sub
+-po-lar gyre (green: 60$[]$W-0$[]$, 50$[]$N-65$[]$N),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 361--361
+\OT1/cmr/m/n/9 the west-ern sub-po-lar gyre (green, dashed: 60$[]$W-30$[]$W, 50
+$[]$N-65$[]$N), and the east-ern sub-po-lar
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 361--361
+\OT1/cmr/m/n/9 gyre (green, dot-ted: 30$[]$W-0$[]$, 50$[]$N-65$[]$N). All re-co
+n-struc-tions are shown as anomaly from 1850-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 361--361
+\OT1/cmr/m/n/9 1970CE. Blue line shows dig-i-tized GRIP bore-hole record []Dahl
+-Jensen et al.[], 1998), grey line and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 361--361
+\OT1/cmr/m/n/9 shad-ing show to-tal so-lar in-so-la-tion es-ti-mate with 1$\OML
+/cmm/m/it/9 ^^[$ \OT1/cmr/m/n/9 un-cer-tainty []Steinhilber et al.[], 2009), an
+d
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 361--361
+[]\OT1/cmr/m/n/9 This fig-ure is def-i-nitely too busy, I just thought it would
+ be in-ter-est-ing to com-pare these records
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 361--361
+[]\OT1/cmr/m/n/9 [For dis-cus-sion: ``old'' so-lu-tion re-con-structs 0.9 $\OMS
+/cmsy/m/n/9 ^^F$ \OT1/cmr/m/n/9 2.7K Nordic Sea cool-ing from 800-1860CE, and
+ []
+
+
+Overfull \hbox (9.82117pt too wide) in paragraph at lines 559--561
+[]\OT1/cmr/m/n/10 This sec-tion MUST con-tain a state-ment that de-scribes wher
+e the data sup-port-ing 
+ []
+
+
+Overfull \hbox (5.90463pt too wide) in paragraph at lines 559--561
+\OT1/cmr/m/n/10 the con-clu-sions can be ob-tained. Data can-not be listed as '
+'Avail-able from au-thors'' or 
+ []
+
+
+Overfull \hbox (4.4047pt too wide) in paragraph at lines 559--561
+\OT1/cmr/m/n/10 stored solely in sup-port-ing in-for-ma-tion. Ci-ta-tions to ar
+chived data should be in-cluded 
+ []
+
+
+Overfull \hbox (18.51564pt too wide) in paragraph at lines 559--561
+\OT1/cmr/m/n/10 in your ref-er-ence list. Wi-ley will pub-lish it as a sep-a-ra
+te sec-tion on the pa-per's page. Ex- 
+ []
+
+
+Overfull \hbox (71.11316pt too wide) in paragraph at lines 559--561
+\OT1/cmr/m/n/10 am-ples and com-plete in-for-ma-tion are here: https://www.agu.
+org/Publish with AGU/Publish/Author 
+ []
+
+
+Overfull \hbox (8.65456pt too wide) in paragraph at lines 563--565
+\OT1/cmr/m/n/10 Enter ac-knowl-edg-ments here. This sec-tion is to ac-knowl-edg
+e fund-ing, thank col-leagues, 
+ []
+
+[8 </home/brynn/Code/OPTinv.jl/plots/SVD_modes.png>] [9 </home/brynn/Code/OPTin
+v.jl/plots/reconsolallvold.png>] [10 </home/brynn/Code/OPTinv.jl/plots/modemags
+θallvold.png>] [11 </home/brynn/Code/OPTinv.jl/plots/labcompallvold.png>]
+[12 </home/brynn/Code/OPTinv.jl/plots/surfacesolallvold.png> </home/brynn/Code/
+OPTinv.jl/plots/meantsallvold.png>] [13 </home/brynn/Code/OPTinv.jl/plots/EGWGa
+llvold.png>] (./Hamilton2024.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 15--37
+[]\OT1/cmr/m/n/10 Alonso-Garcia, M., Kleiven, H. K. F., Mc-Manus, J. F., Moffa-
+Sanchez, P., Broecker, 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--37
+\OT1/cmr/m/n/10 W. S., & Flower, B. P.  (2017, Apr).  Fresh-en-ing of the labra
+dor sea as a 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--37
+\OT1/cmr/m/n/10 trig-ger for lit-tle ice age de-vel-op-ment.  \OT1/cmr/m/it/10 
+Cli-mate of the Past\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 13\OT1/cmr/m/n/10 (4), 3
+17{331. 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--37
+\OT1/cmr/m/n/10 Re-trieved from $\OT1/cmtt/m/n/10 http :// dx [] .doi [] .org /
+ 10 [] .5194 / cp [] -13 [] -317 [] -2017$   \OT1/cmr/m/n/10 doi: 
+ []
+
+
+Underfull \hbox (badness 1320) in paragraph at lines 52--69
+[]\OT1/cmr/m/n/10 Amrhein, D. E., Geb-bie, G., Mar-chal, O., & Wun-sch, C.  (20
+15).  In-fer-ring sur-face 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 52--69
+\OT1/cmr/m/n/10 wa-ter equi-lib-rium cal-cite $\OML/cmm/m/it/10 ^^N[]$\OT1/cmr/
+m/n/10 O dur-ing the last deglacial pe-riod from ben-thic 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 52--69
+\OT1/cmr/m/n/10 foraminiferal records: Im-pli-ca-tions for ocean cir-cu-la-tion
+.  \OT1/cmr/m/it/10 Pa-le-o-ceanog-ra-phy\OT1/cmr/m/n/10 , 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--104
+[]\OT1/cmr/m/n/10 Arellano-Nava, B., Hal-lo-ran, P. R., Boul-ton, C. A., Scours
+e, J., But-ler, P. G., 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--104
+\OT1/cmr/m/n/10 Reynolds, D. J., & Lenton, T. M.  (2022, Aug 25).  Desta-bil-i-
+sa-tion of the 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 147--171
+[]\OT1/cmr/m/n/10 Brady, E., Steven-son, S., Bai-ley, D., Liu, Z., Noone, D., N
+us-baumer, J., ... Zhu, 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 147--171
+\OT1/cmr/m/n/10 J.  (2019, Au-gust).  The con-nected iso-topic wa-ter cy-cle in
+ the com-mu-nity 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 147--171
+\OT1/cmr/m/n/10 earth sys-tem model ver-sion 1.  \OT1/cmr/m/it/10 Jour-nal of A
+d-vances in Mod-el-ing Earth Sys- 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 147--171
+\OT1/cmr/m/it/10 tems\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 11\OT1/cmr/m/n/10 (8), 
+2547{2566.  Re-trieved from $\OT1/cmtt/m/n/10 http :// dx [] .doi [] .org / 10 
+[] .1029 / 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 187--205
+\OT1/cmr/m/n/10 ca-tion of an in-verse method to in-ter-pret 231Pa/230Th ob-ser
+-va-tions from ma- 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--242
+[]\OT1/cmr/m/n/10 Copard, K., Colin, C., Hen-der-son, G., Scholten, J., Dou-vil
+le, E., Sicre, M.-A., & 
+ []
+
+
+Underfull \hbox (badness 1642) in paragraph at lines 217--242
+\OT1/cmr/m/it/10 ence Let-ters\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 313{314\OT1/cm
+r/m/n/10 , 34{44.  Re-trieved from $\OT1/cmtt/m/n/10 http :// dx [] .doi [] .or
+g / 10 [] .1016 / 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 254--278
+[]\OT1/cmr/m/n/10 Cunningham, L. K., Austin, W. E., Knud-sen, K. L., Eir^^S^^Pk
+sson, J., Scourse, J. D., 
+ []
+
+
+Underfull \hbox (badness 1642) in paragraph at lines 254--278
+\OT1/cmr/m/n/10 Wana-maker, A. D., ... Wil-son, R. J.  (2013, April).  Re-con-s
+truc-tions of sur- 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 254--278
+\OT1/cmr/m/n/10 face ocean con-di-tions from the north-east at-lantic and nordi
+c seas dur-ing the 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 254--278
+\OT1/cmr/m/n/10 last mil-len-nium.  \OT1/cmr/m/it/10 The Holocene\OT1/cmr/m/n/1
+0 , \OT1/cmr/m/it/10 23\OT1/cmr/m/n/10 (7), 921{935.  Re-trieved from $\OT1/cmt
+t/m/n/10 http :// 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--308
+[]\OT1/cmr/m/n/10 Dahl-Jensen, D., Mosegaard, K., Gun-de-strup, N., Clow, G. D.
+, Johnsen, S. J., 
+ []
+
+
+Underfull \hbox (badness 3758) in paragraph at lines 290--308
+\OT1/cmr/m/n/10 Hansen, A. W., & Balling, N.  (1998).  Past tem-per-a-tures di-
+rectly from the 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 320--346
+[]\OT1/cmr/m/n/10 Danabasoglu, G., Lamar-que, J.-F., Bacmeis-ter, J., Bai-ley, 
+D. A., Du-Vivier, A. K., 
+ []
+
+
+Underfull \hbox (badness 4303) in paragraph at lines 320--346
+\OT1/cmr/m/n/10 Ver-sion 2 (CESM2).  \OT1/cmr/m/it/10 Jour-nal of Ad-vances in 
+Mod-el-ing Earth Sys-tems\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 12\OT1/cmr/m/n/10 (
+2), 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 320--346
+\OT1/cmr/m/n/10 e2019MS001916.  Re-trieved from $\OT1/cmtt/m/n/10 https :// agu
+pubs [] .onlinelibrary [] .wiley [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 358--380
+[]\OT1/cmr/m/n/10 Esper, J., Smer-don, J. E., An-chukaitis, K. J., Allen, K., C
+ook, E. R., D'Arrigo, 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 358--380
+\OT1/cmr/m/n/10 R., ... B^^?untgen, U.  (2024, April).  The ipcc's re-duc-tive 
+com-mon era 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 358--380
+\OT1/cmr/m/n/10 tem-per-a-ture his-tory.  \OT1/cmr/m/it/10 Com-mu-ni-ca-tions E
+arth & En-vi-ron-ment\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 5\OT1/cmr/m/n/10 (1).  
+Re- 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 358--380
+\OT1/cmr/m/n/10 trieved from $\OT1/cmtt/m/n/10 http :// dx [] .doi [] .org / 10
+ [] .1038 / s43247 [] -024 [] -01371 [] -1$   \OT1/cmr/m/n/10 doi: 
+ []
+
+
+Underfull \hbox (badness 1502) in paragraph at lines 394--416
+[]\OT1/cmr/m/n/10 Gao, C., Robock, A., & Am-mann, C.  (2008).  Vol-canic forc-i
+ng of cli-mate over the 
+ []
+
+
+Underfull \hbox (badness 8170) in paragraph at lines 394--416
+\OT1/cmr/m/it/10 of Geo-phys-i-cal Re-search: At-mo-spheres\OT1/cmr/m/n/10 , \O
+T1/cmr/m/it/10 113\OT1/cmr/m/n/10 (D23).  Re-trieved from $\OT1/cmtt/m/n/10 htt
+ps :// 
+ []
+
+
+Underfull \hbox (badness 2460) in paragraph at lines 394--416
+\OT1/cmtt/m/n/10 agupubs [] .onlinelibrary [] .wiley [] .com / doi / abs / 10 [
+] .1029 / 2008JD010239$   \OT1/cmr/m/n/10 doi: 
+ []
+
+[14
+
+]
+Underfull \hbox (badness 1931) in paragraph at lines 457--476
+\OT1/cmr/m/it/10 ra-phy\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 40\OT1/cmr/m/n/10 (8)
+, 1710 - 1728.  Re-trieved from $\OT1/cmtt/m/n/10 https :// journals [] .ametso
+c [] .org / 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 457--476
+\OT1/cmtt/m/n/10 view / journals / phoc / 40 / 8 / 2010jpo4272 [] .1 [] .xml$  
+ \OT1/cmr/m/n/10 doi: $https :// doi [] .org / 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 490--507
+[]\OT1/cmr/m/n/10 Gebbie, G., & Huy-bers, P.  (2012).  The mean age of ocean wa
+-ters in-ferred 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 490--507
+\OT1/cmr/m/n/10 from ra-dio-car-bon ob-ser-va-tions: sen-si-tiv-ity to sur-face
+ sources and ac- 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 490--507
+\OT1/cmr/m/n/10 count-ing for mix-ing his-to-ries.  \OT1/cmr/m/it/10 J. Phys. O
+ceanogr.\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 42 (2)\OT1/cmr/m/n/10 , 291-305.  do
+i: 
+ []
+
+
+Underfull \hbox (badness 1881) in paragraph at lines 521--540
+[]\OT1/cmr/m/n/10 Gebbie, G., & Huy-bers, P.  (2019).  The Lit-tle Ice Age and 
+20th-century deep Pa- 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 552--571
+[]\OT1/cmr/m/n/10 Hakim, G. J., Emile-Geay, J., Steig, E. J., Noone, D., An-der
+-son, D. M., Tardif, R., 
+ []
+
+
+Underfull \hbox (badness 3138) in paragraph at lines 552--571
+\OT1/cmr/m/n/10 ... Perkins, W. A.  (2016).  The last mil-len-nium cli-mate re-
+anal-y-sis project: 
+ []
+
+
+Underfull \hbox (badness 6592) in paragraph at lines 552--571
+\OT1/cmr/m/n/10 Frame-work and first re-sults.  \OT1/cmr/m/it/10 Jour-nal of Ge
+o-phys-i-cal Re-search: At-mo-spheres\OT1/cmr/m/n/10 , 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 586--606
+\OT1/cmr/m/n/10 in-cep-tion of eu-ro-pean lit-tle ice age by sea ice{ocean{atmo
+sphere feed-backs. 
+ []
+
+
+Underfull \hbox (badness 1466) in paragraph at lines 586--606
+\OT1/cmr/m/it/10 Jour-nal of Cli-mate\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 26\OT1/
+cmr/m/n/10 (19), 7586{7602.  Re-trieved from $\OT1/cmtt/m/n/10 http :// dx [] .
+doi [] .org / 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 621--642
+\OT1/cmr/m/n/10 cli-mate sig-nals trans-mit-ted rapidly to deep north at-lantic
+ through-out last mil- 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 656--674
+[]\OT1/cmr/m/n/10 Lund, D. C., Lynch-Stieglitz, J., & Curry, W. B.  (2006, Nove
+m-ber).  Gulf 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 656--674
+\OT1/cmr/m/n/10 stream den-sity struc-ture and trans-port dur-ing the past mil-
+len-nium.  \OT1/cmr/m/it/10 Na- 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 656--674
+\OT1/cmr/m/it/10 ture\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 444\OT1/cmr/m/n/10 (711
+9), 601{604.  Re-trieved from $\OT1/cmtt/m/n/10 http :// dx [] .doi [] .org / 1
+0 [] .1038 / 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 686--710
+[]\OT1/cmr/m/n/10 Marchitto, T., Curry, W., Lynch-Stieglitz, J., Bryan, S., Cob
+b, K., & Lund, D. 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 686--710
+\OT1/cmr/m/n/10 (2014).  Im-proved oxy-gen iso-tope tem-per-a-ture cal-i-bra-ti
+ons for cos-mopoli-tan 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 686--710
+\OT1/cmr/m/n/10 ben-thic foraminifera.  \OT1/cmr/m/it/10 Geochim-ica et Cos-moc
+him-ica Acta\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 130\OT1/cmr/m/n/10 , 1-11.  Re- 
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 686--710
+\OT1/cmr/m/n/10 trieved from $\OT1/cmtt/m/n/10 https :// www [] .sciencedirect 
+[] .com / science / article / pii / 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 722--742
+[]\OT1/cmr/m/n/10 McGregor, H. V., Evans, M. N., Goose, H., Leduc, G., Mar-trat
+, B., Ad-di-son, J. A., 
+ []
+
+
+Underfull \hbox (badness 1112) in paragraph at lines 756--775
+\OT1/cmr/m/n/10 age to model, an-a-lyze, and vi-su-al-ize age-uncertain data.  
+\OT1/cmr/m/it/10 Geochronol-ogy\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 3\OT1/cmr/m/n
+/10 (1), 
+ []
+
+
+Underfull \hbox (badness 4467) in paragraph at lines 756--775
+\OT1/cmr/m/n/10 149{169.  Re-trieved from $\OT1/cmtt/m/n/10 http :// dx [] .doi
+ [] .org / 10 [] .5194 / gchron [] -3 [] -149 [] -2021$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 791--813
+[]\OT1/cmr/m/n/10 Miettinen, A., Di-vine, D., Ko^^Xc, N., Godtlieb-sen, F., & H
+all, I. R.  (2012, June). 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 791--813
+\OT1/cmr/m/n/10 Mul-ti-cen-ten-nial vari-abil-ity of the sea sur-face tem-per-a
+-ture gra-di-ent across the 
+ []
+
+
+Underfull \hbox (badness 4168) in paragraph at lines 791--813
+\OT1/cmr/m/n/10 sub-po-lar north at-lantic over the last 2.8 kyr*,+.  \OT1/cmr/
+m/it/10 Jour-nal of Cli-mate\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 25\OT1/cmr/m/n/1
+0 (12), 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 825--850
+[]\OT1/cmr/m/n/10 Miller, G. H., Geirs-dot-tir, A., Zhong, Y., Larsen, D. J., O
+tto-Bliesner, B. L., 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 825--850
+\OT1/cmr/m/n/10 Hol-land, M. M., ... Thor-dar-son, T.  (2012).  Abrupt on-set o
+f the Lit- 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 825--850
+\OT1/cmr/m/n/10 tle Ice Age trig-gered by vol-can-ism and sus-tained by sea-ice
+/ocean feed- 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 825--850
+\OT1/cmr/m/n/10 backs.  \OT1/cmr/m/it/10 Geo-phys-i-cal Re-search Let-ters\OT1/
+cmr/m/n/10 , \OT1/cmr/m/it/10 39\OT1/cmr/m/n/10 (2).  Re-trieved from $\OT1/cmt
+t/m/n/10 https :// 
+ []
+
+
+Underfull \hbox (badness 2460) in paragraph at lines 825--850
+\OT1/cmtt/m/n/10 agupubs [] .onlinelibrary [] .wiley [] .com / doi / abs / 10 [
+] .1029 / 2011GL050168$   \OT1/cmr/m/n/10 doi: 
+ []
+
+
+Underfull \hbox (badness 8075) in paragraph at lines 864--882
+\OT1/cmr/m/n/10 links to eu-ro-pean cli-mate over the last 3000 years.  \OT1/cm
+r/m/it/10 Na-ture Com-mu-ni-ca-tions\OT1/cmr/m/n/10 , 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 864--882
+\OT1/cmr/m/it/10 8\OT1/cmr/m/n/10 (1).  Re-trieved from $\OT1/cmtt/m/n/10 http 
+:// dx [] .doi [] .org / 10 [] .1038 / s41467 [] -017 [] -01884 [] -8$ 
+ []
+
+
+Underfull \vbox (badness 1946) has occurred while \output is active []
+
+ [15]
+Underfull \hbox (badness 6063) in paragraph at lines 898--921
+[]\OT1/cmr/m/n/10 Moffa-Sanchez, P., Hall, I. R., Thor-nal-ley, D. J., Barker, 
+S., & Stew-art, C.  (2015). 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 898--921
+\OT1/cmr/m/n/10 Changes in the strength of the nordic seas over-flows over the 
+past 3000 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 898--921
+\OT1/cmtt/m/n/10 www [] .sciencedirect [] .com / science / article / pii / S027
+7379115300172$   \OT1/cmr/m/n/10 doi: 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 938--958
+[]\OT1/cmr/m/n/10 Moffa-S^^Sanchez, P., Born, A., Hall, I. R., Thor-nal-ley, D.
+ J. R., & Barker, S.  (2014, 
+ []
+
+
+Underfull \hbox (badness 5563) in paragraph at lines 938--958
+\OT1/cmr/m/n/10 March).  So-lar forc-ing of north at-lantic sur-face tem-per-a-
+ture and salin-ity over 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 938--958
+\OT1/cmr/m/n/10 the past mil-len-nium.  \OT1/cmr/m/it/10 Na-ture Geo-science\OT
+1/cmr/m/n/10 , \OT1/cmr/m/it/10 7\OT1/cmr/m/n/10 (4), 275{278.  Re-trieved from
+ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 975--997
+[]\OT1/cmr/m/n/10 Moffa-S^^Sanchez, P., Hall, I. R., Barker, S., Thor-nal-ley, 
+D. J. R., & Yashayaev, I. 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 975--997
+\OT1/cmr/m/n/10 (2014).  Sur-face changes in the east-ern labrador sea around t
+he on-set of the 
+ []
+
+
+Underfull \hbox (badness 4792) in paragraph at lines 975--997
+\OT1/cmr/m/n/10 lit-tle ice age.  \OT1/cmr/m/it/10 Pa-le-o-ceanog-ra-phy\OT1/cm
+r/m/n/10 , \OT1/cmr/m/it/10 29\OT1/cmr/m/n/10 (3), 160-175.  Re-trieved from $\
+OT1/cmtt/m/n/10 https :// 
+ []
+
+
+Underfull \hbox (badness 2460) in paragraph at lines 975--997
+\OT1/cmtt/m/n/10 agupubs [] .onlinelibrary [] .wiley [] .com / doi / abs / 10 [
+] .1002 / 2013PA002523$   \OT1/cmr/m/n/10 doi: 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1012--1032
+[]\OT1/cmr/m/n/10 Moreno-Chamarro, E., Zanchet-tin, D., Lohmann, K., & Jung-cla
+us, J. H.  (2016, 
+ []
+
+
+Underfull \hbox (badness 6825) in paragraph at lines 1012--1032
+\OT1/cmr/m/n/10 April).  An abrupt weak-en-ing of the sub-po-lar gyre as trig-g
+er of lit-tle ice age- 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1044--1066
+[]\OT1/cmr/m/n/10 Ortega, P., Lehner, F., Swinge-douw, D., Masson-Delmotte, V.,
+ Raible, C. C., 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1078--1101
+[]\OT1/cmr/m/n/10 Rahmstorf, S., Box, J. E., Feul-ner, G., Mann, M. E., Robin-s
+on, A., Ruther-ford, 
+ []
+
+
+Underfull \hbox (badness 2401) in paragraph at lines 1078--1101
+\OT1/cmr/m/n/10 S., & Schaf-fer-nicht, E. J.  (2015, Mar).  Ex-cep-tional twent
+ieth-century slow- 
+ []
+
+
+Underfull \hbox (badness 1038) in paragraph at lines 1078--1101
+\OT1/cmr/m/n/10 down in at-lantic ocean over-turn-ing cir-cu-la-tion.  \OT1/cmr
+/m/it/10 Na-ture Cli-mate Change\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 5\OT1/cmr/m/
+n/10 (5), 
+ []
+
+
+Underfull \hbox (badness 3039) in paragraph at lines 1115--1134
+\OT1/cmr/m/n/10 sub-po-lar North At-lantic Ocean as a pos-si-ble ori-gin of the
+ Lit-tle Ice Age.  \OT1/cmr/m/it/10 Cli- 
+ []
+
+
+Underfull \hbox (badness 5217) in paragraph at lines 1115--1134
+\OT1/cmr/m/it/10 mate of the Past\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 9\OT1/cmr/m
+/n/10 (3), 1321--1330.  Re-trieved from $\OT1/cmtt/m/n/10 https :// cp [] .cope
+rnicus [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1146--1169
+[]\OT1/cmr/m/n/10 Spooner, P. T., Thor-nal-ley, D. J. R., Oppo, D. W., Fox, A. 
+D., Ra-dionovskaya, 
+ []
+
+
+Underfull \hbox (badness 4181) in paragraph at lines 1146--1169
+\OT1/cmr/m/n/10 S., Rose, N. L., ... Roberts, J. M.  (2020, May).  Ex-cep-tiona
+l 20th cen-tury 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1146--1169
+\OT1/cmr/m/n/10 ocean cir-cu-la-tion in the north-east at-lantic.  \OT1/cmr/m/i
+t/10 Geo-phys-i-cal Re-search Let-ters\OT1/cmr/m/n/10 , 
+ []
+
+
+Underfull \hbox (badness 2671) in paragraph at lines 1146--1169
+\OT1/cmr/m/it/10 47\OT1/cmr/m/n/10 (10).  Re-trieved from $\OT1/cmtt/m/n/10 htt
+p :// dx [] .doi [] .org / 10 [] .1029 / 2020gl087577$   \OT1/cmr/m/n/10 doi: 
+ []
+
+
+Underfull \hbox (badness 6944) in paragraph at lines 1183--1201
+[]\OT1/cmr/m/n/10 Steinhilber, F., Beer, J., & Fr^^?ohlich, C.  (2009, Oc-to-be
+r).  To-tal so-lar ir-ra-di-ance 
+ []
+
+
+Underfull \hbox (badness 2698) in paragraph at lines 1183--1201
+\OT1/cmr/m/n/10 dur-ing the holocene.  \OT1/cmr/m/it/10 Geo-phys-i-cal Re-searc
+h Let-ters\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 36\OT1/cmr/m/n/10 (19).  Re-trieve
+d from 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1213--1233
+[]\OT1/cmr/m/n/10 The Lab Sea Group.  (1998).  The Labrador Sea Deep Con-vec-ti
+on Ex-per-i-ment. 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1213--1233
+\OT1/cmr/m/it/10 Bul-letin of the Amer-i-can Me-te-o-ro-log-i-cal So-ci-ety\OT1
+/cmr/m/n/10 , \OT1/cmr/m/it/10 79\OT1/cmr/m/n/10 (10), 2033 - 2058.  Re- 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1213--1233
+\OT1/cmr/m/n/10 trieved from $\OT1/cmtt/m/n/10 https :// journals [] .ametsoc [
+] .org / view / journals / bams / 79 / 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1213--1233
+\OT1/cmtt/m/n/10 10 / 1520 [] -0477 [] []1998 [] []079 [] []2033 [] []tlsdce []
+ []2 [] []0 [] []co [] []2 [] .xml$   \OT1/cmr/m/n/10 doi: $https :// doi [] .o
+rg / 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1245--1268
+[]\OT1/cmr/m/n/10 Thornalley, D. J. R., Oppo, D. W., Or-tega, P., Rob-son, J. I
+., Brier-ley, C. M., Davis, 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1245--1268
+\OT1/cmr/m/n/10 tion and at-lantic over-turn-ing dur-ing the past 150 years.  \
+OT1/cmr/m/it/10 Na-ture\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 556\OT1/cmr/m/n/10 (7
+700), 
+ []
+
+
+Underfull \hbox (badness 4467) in paragraph at lines 1245--1268
+\OT1/cmr/m/n/10 227{230.  Re-trieved from $\OT1/cmtt/m/n/10 http :// dx [] .doi
+ [] .org / 10 [] .1038 / s41586 [] -018 [] -0007 [] -4$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1280--1302
+[]\OT1/cmr/m/n/10 Trouet, V., Es-per, J., Gra-ham, N. E., Baker, A., Scourse, J
+. D., & Frank, D. C. 
+ []
+
+
+Underfull \vbox (badness 2478) has occurred while \output is active []
+
+ [16]
+Underfull \hbox (badness 10000) in paragraph at lines 1314--1338
+[]\OT1/cmr/m/n/10 Zhong, Y., Miller, G. H., Otto-Bliesner, B. L., Hol-land, M. 
+M., Bai-ley, D. A., 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1314--1338
+\OT1/cmr/m/n/10 Schnei-der, D. P., & Geirs-dot-tir, A.  (2010, De-cem-ber).  Ce
+ntennial-scale 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1314--1338
+\OT1/cmr/m/n/10 cli-mate change from decadally-paced ex-plo-sive vol-can-ism: a
+ cou-pled sea 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1314--1338
+\OT1/cmr/m/n/10 ice-ocean mech-a-nism.  \OT1/cmr/m/it/10 Cli-mate Dy-nam-ics\OT
+1/cmr/m/n/10 , \OT1/cmr/m/it/10 37\OT1/cmr/m/n/10 (11{12), 2373{2387.  Re- 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1314--1338
+\OT1/cmr/m/n/10 trieved from $\OT1/cmtt/m/n/10 http :// dx [] .doi [] .org / 10
+ [] .1007 / s00382 [] -010 [] -0967 [] -z$   \OT1/cmr/m/n/10 doi: 
+ []
+
+) [17] (./Hamilton2024.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 0.45pt have occurred.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 4086 strings out of 480247
+ 65955 string characters out of 5896151
+ 377643 words of memory out of 5000000
+ 21964 multiletter control sequences out of 15000+600000
+ 477708 words of font info for 58 fonts, out of 8000000 for 9000
+ 20 hyphenation exceptions out of 8191
+ 70i,8n,76p,1460b,331s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+ti9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/wasy-type1/wasy10.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/wasy-type1/wasy9.pfb>
+Output written on Hamilton2024.pdf (17 pages, 1145790 bytes).
+PDF statistics:
+ 207 PDF objects out of 1000 (max. 8388607)
+ 118 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+

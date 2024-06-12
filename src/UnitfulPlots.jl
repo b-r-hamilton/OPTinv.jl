@@ -51,3 +51,29 @@ function scatter(x::Vector{Quantity{T, D1, A1}}, y::Vector{Quantity{T, D2, A2}};
     xlabel(string(xunit))
     ylabel(string(yunit))
 end
+
+function plot(x::Vector{Union{Missing, T1}}, y::Vector{Union{Missing, T2}}; kwargs...) where {T1, T2}
+    x[ismissing.(x)] .= NaN
+    y[ismissing.(y)] .= NaN
+    x = convert(Vector{T}, x)
+    y = convert(Vector{T}, y)
+    plot(x, y; kwargs...) 
+end
+
+function plot(x::Vector{T1}, y::Vector{Union{Missing, T2}}; kwargs...) where {T1, T2}
+    x[ismissing.(x)] .= NaN
+    y[ismissing.(y)] .= NaN
+    x = convert(Vector{T1}, x)
+    y = convert(Vector{T2}, y)
+    plot(x, y; kwargs...) 
+end
+
+function plot(x::Vector{Union{Missing, T1}}, y::Vector{T2}; kwargs...) where {T1, T2}
+    x[ismissing.(x)] .= NaN
+    y[ismissing.(y)] .= NaN
+    x = convert(Vector{T1}, x)
+    y = convert(Vector{T2}, y)
+    plot(x, y; kwargs...) 
+end
+
+

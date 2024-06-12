@@ -1,0 +1,56 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Hamilton2024.aux
+The style file: apacite.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: Hamilton2024.bib
+apacite.bst [2013/07/21 v6.03 APA bibliography style]
+You've used 39 entries,
+            6951 wiz_defined-function locations,
+            1720 strings with 25813 characters,
+and the built_in function-call counts, 96800 in all, are:
+= -- 11334
+> -- 893
+< -- 5142
++ -- 5811
+- -- 80
+* -- 6880
+:= -- 18261
+add.period$ -- 147
+call.type$ -- 39
+change.case$ -- 707
+chr.to.int$ -- 0
+cite$ -- 78
+duplicate$ -- 3090
+empty$ -- 3496
+format.name$ -- 1748
+if$ -- 17224
+int.to.chr$ -- 0
+int.to.str$ -- 117
+missing$ -- 0
+newline$ -- 1205
+num.names$ -- 312
+pop$ -- 1212
+preamble$ -- 2
+purify$ -- 200
+quote$ -- 0
+skip$ -- 5434
+stack$ -- 0
+substring$ -- 6254
+swap$ -- 1695
+text.length$ -- 123
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 3120
+warning$ -- 0
+while$ -- 618
+width$ -- 0
+write$ -- 1577

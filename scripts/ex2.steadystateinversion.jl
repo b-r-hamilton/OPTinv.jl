@@ -30,7 +30,7 @@ f = σθ^2/ (20K/permil)
 u₀ = firstguess(T,[m for m in modes], σθ, σδ, f)
 
 #use impulseresponse technique to make E matrix 
-predict(u) = u[:, :, At(:θ)] * M * 0.27permil/K + u[:, :, At(:δ)] * M
+predict(u) = u[:, :, At(:θ)] * M * (-0.224permil/K) + u[:, :, At(:δ)] * M
 E = impulseresponse(predict, u₀.y)
 
 @time yde, ỹde, u₀de, ũ = solvesystem(e, u₀, E, predict);

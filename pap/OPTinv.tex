@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{indentfirst}
+% \usepackage[letter, portrait, margin=1in]{geometry}
+\usepackage[portrait, margin = 0.5in]{geometry}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{natbib}
+\usepackage{textcomp}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{wasysym}
+\usepackage{setspace}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue,
+    pdftitle={Inverting bottom water properties for Little Ice Age surface climate evolution}
+  }
+
+\graphicspath{ {/home/brynn/Code/OPTinv.jl/plots}}
+\title{OPTinv.jl}
+\author{Brynnydd Hamilton}
+
+\begin{document}
+\tableofcontents
+\maketitle
+\section{Prior constraints}
+\cite[]{Alonso-Garcia-Kleiven-2017:Freshening}
+Our priors are formed from the SVD and non-negative matrix factorization (NMF) of the source water maps for all 11 sediment cores.
+
+Both the NMF and the SVD and normalized so that the summation of each mode is equal to 1. This was done to try to make the two techniques have similar magnitudes.
+\cite[]{schleussner2013}
+In order to understand how much uncertainty each \textit{mode} should have through time, we decompose the SST in a CESM2-historical (1850-2015) run according to the modes. The standard deviation of the timeseries of mode magnitudes in CESM2 are calculated and then used to constrain the prior.
+
+
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width = \textwidth]{SVD_modes}
+    \caption{\label{fig:svd} SVD modes}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width = \textwidth]{NMF_modes}
+    \caption{\label{fig:nmf} NMF modes}
+  \end{subfigure}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[]{/home/brynn/Code/OPTinv.jl/plots/reconsolallvold.png}}
+\caption[]{\label{fig:recon} Reconstruction at core sites for all cores (red) and three oldest core (blue) solutions}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/modemagsθallvold.png}}
+\caption[]{\label{fig:mags} Mode magnitudes for temperature}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/surfacesolallvold.png}}
+\caption[]{\label{fig:sst} Reconstruction of surface potential temperature, 70-year mean, SVD approach, anomaly from 1850-1970. Top row is for old cores, middle row is for all cores, third row is for Last Millenium Reanalysis comparison.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = 0.75\textwidth]{/home/brynn/Code/OPTinv.jl/plots/meantsallvold.png}}
+\caption[]{\label{fig:meants} Mean temperature in North Atlantic box as anomaly from 1850-1970. Solution for all (red) cores and old (blue) cores is shown, as well as Last Millenium Reanalysis(gray dash-dot), HadiSST (black dotted). Ocean2k trend of 0.54-0.38 $^{\circ}$C/kyr (from Supplemental Figure 6) is shown in shaded gray region.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/labcompallvold.png}}
+\caption[]{\label{fig:labcomp} Solution over observational period (1850-1970) is shown for old (blue) and all (red) cores. Thick dash-dot line shows digitized Labrador Sea record from The Lab Sea Group, 1998 publication. Dashed line shows EN4 average and dotted line shows HadiSST average, both between 60$^{\circ}$W and 30$^{\circ}$E and 55$^{\circ}$N and 64$^{\circ}$N. All records are shown as an anomaly from 1970.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/EGWGallvold.png}}
+\caption[]{\label{fig:EGWGSI} Temperature observed at locus of major anomalies in S. Greenland (45$^{\circ}$W, 57$^{\circ}$N), E. Greenland (14$^{\circ}$W, 75$^{\circ}$N) and S. Iceland (20$^{\circ}$W, 58$^{\circ}$N). Black line shows digitized GRIP borehole record from Dahl-Jensen 1998.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/post1900allvoldθ.png}}
+\caption[]{\label{fig:post1900} Contours: estimated MLD temperature as an anomaly from 1900-1970. Scatters: MLD temperature (estimated using Holte and Talley algorithm) from EN4 CTD profiles binned by decade, and into 10$^{\circ}$ bins, computed as anomaly from climatological mean MLD temperature in EN4 objective analysis from 1900-1970.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/post1900allvoldδ.png}}
+\caption[]{\label{fig:post1900} Contours: estimated MLD salinity (computed as $\delta^{18}\mathrm{O}$ divided by 0.5255) as an anomaly from 1900-1970. Scatters: MLD salinity (estimated using Holte and Talley algorithm) from EN4 CTD profiles binned by decade, and into 10$^{\circ}$ bins, computed as anomaly from climatological mean MLD salinity in EN4 objective analysis from 1900-1970.}
+\end{figure}
+
+
+\bibliography{OPTinv}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

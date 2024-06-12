@@ -1,0 +1,748 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% AGUJournalTemplate.tex: this template file is for articles formatted with LaTeX
+%
+% This file includes commands and instructions
+% given in the order necessary to produce a final output that will
+% satisfy AGU requirements, including customized APA reference formatting.
+%
+% You may copy this file and give it your
+% article name, and enter your text.
+%
+% guidelines and troubleshooting are here: 
+
+%% To submit your paper:
+\documentclass[draft]{agujournal2019}
+\usepackage{url} %this package should fix any errors with URLs in refs.
+\usepackage{lineno}
+\usepackage[inline]{trackchanges} %for better track changes. finalnew option will compile document with changes incorporated.
+\usepackage{wasysym}
+\usepackage{soul}
+
+\linenumbers
+%%%%%%%
+% As of 2018 we recommend use of the TrackChanges package to mark revisions.
+% The trackchanges package adds five new LaTeX commands:
+%
+%  \note[editor]{The note}
+%  \annote[editor]{Text to annotate}{The note}
+%  \add[editor]{Text to add}
+%  \remove[editor]{Text to remove}
+%  \change[editor]{Text to remove}{Text to add}
+%
+% complete documentation is here: http://trackchanges.sourceforge.net/
+%%%%%%%
+
+\draftfalse
+
+%% Enter journal name below.
+%% Choose from this list of Journals:
+%
+% JGR: Atmospheres
+% JGR: Biogeosciences
+% JGR: Earth Surface
+% JGR: Oceans
+% JGR: Planets
+% JGR: Solid Earth
+% JGR: Space Physics
+% Global Biogeochemical Cycles
+% Geophysical Research Letters
+% Paleoceanography and Paleoclimatology
+% Radio Science
+% Reviews of Geophysics
+% Tectonics
+% Space Weather
+% Water Resources Research
+% Geochemistry, Geophysics, Geosystems
+% Journal of Advances in Modeling Earth Systems (JAMES)
+% Earth's Future
+% Earth and Space Science
+% Geohealth
+%
+% ie, \journalname{Water Resources Research}
+
+\journalname{Paleoceanography and Paleoclimatology}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  TITLE
+%
+% (A title should be specific, informative, and brief. Use
+% abbreviations only if they are defined in the abstract. Titles that
+% start with general keywords then specific terms are optimized in
+% searches)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Example: \title{This is a test title}
+
+\title{Interpreting benthic Common Era foraminiferal records under the assumption of modern-day circulation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  AUTHORS AND AFFILIATIONS
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Authors are individuals who have significantly contributed to the
+% research and preparation of the article. Group authors are allowed, if
+% each author in the group is separately identified in an appendix.)
+
+% List authors by first name or initial followed by last name and
+% separated by commas. Use \affil{} to number affiliations, and
+% \thanks{} for author notes.
+% Additional author notes should be indicated with \thanks{} (for
+% example, for current addresses).
+
+% Example: \authors{A. B. Author\affil{1}\thanks{Current address, Antartica}, B. C. Author\affil{2,3}, and D. E.
+% Author\affil{3,4}\thanks{Also funded by Monsanto.}}
+
+\authors{=list all authors here=}
+
+
+% \affiliation{1}{First Affiliation}
+% \affiliation{2}{Second Affiliation}
+% \affiliation{3}{Third Affiliation}
+% \affiliation{4}{Fourth Affiliation}
+
+\affiliation{=number=}{=Affiliation Address=}
+%(repeat as many times as is necessary)
+
+
+% Corresponding author mailing address and e-mail address:
+
+% (include name and email addresses of the corresponding author.  More
+% than one corresponding author is allowed in this LaTeX file and for
+% publication; but only one corresponding author is allowed in our
+% editorial system.)
+
+% Example: \correspondingauthor{First and Last Name}{email@address.edu}
+
+\correspondingauthor{=name=}{=email address=}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% KEY POINTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  List up to three key points (at least one is required)
+%  Key Points summarize the main points and conclusions of the article
+%  Each must be 140 characters or fewer with no special characters or punctuation and must be complete sentences
+
+% Example:
+% \begin{keypoints}
+% \item	List up to three key points (at least one is required)
+% \item	Key Points summarize the main points and conclusions of the article
+% \item	Each must be 140 characters or fewer with no special characters or punctuation and must be complete sentences
+% \end{keypoints}
+
+\begin{keypoints}
+\item We present an inversion method that incorporates age model uncertainty to infer far-field properties from benthic sediment core records (137/140 characters)
+ \item The reconstructed North Atlantic Little Ice Age is characterized by a 0.11-1.2K/kyr cooling (1$\sigma$ confidence interval) from 1200-1900CE (140/140 characters) 
+\item A long-term cooling in the Nordic Seas is reconstructed, and is found to be approximately two times greater than that of the subpolar gyre (138/140 characters)
+\end{keypoints}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  ABSTRACT and PLAIN LANGUAGE SUMMARY
+%
+% A good Abstract will begin with a short description of the problem
+% being addressed, briefly describe the new data or analyses, then
+% briefly states the main conclusion(s) and how they are supported and
+% uncertainties.
+
+% The Plain Language Summary should be written for a broad audience,
+% including journalists and the science-interested public, that will not have 
+% a background in your field.
+%
+% A Plain Language Summary is required in GRL, JGR: Planets, JGR: Biogeosciences,
+% JGR: Oceans, G-Cubed, Reviews of Geophysics, and JAMES.
+% see http://sharingscience.agu.org/creating-plain-language-summary/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% \begin{abstract} starts the second page
+
+\begin{abstract}
+  Paleoceanographic reconstructions of the past 2,000 years indicate a large-scale cooling in the latter half of the last millennium, but significant conflict on magnitude and timing exist. This conflict is partially due to the inference of surface conditions from sparse, noisy, near-surface marine proxies that can exhibit seasonal biases.
+Here, we develop a novel methodology for inferring far-field changes from benthic sediment core records via an ocean circulation model. Benthic sediment core records are not subject to high-energy near-surface variability or seasonal biases and record much more stable signals than equivalent planktonic records. 
+We present a possible surface temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ history that fits a dataset of 11 high-resolution benthic $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ records.
+The estimate presented here is within error of instrumental records, and is characterized by a Little Ice Age sea surface temperature cooling of 0.67 $\pm$ 0.56 K/kyr, which is similar to, but at the high end, of previous independent estimates obtained from Common Era marine surface records.
+Our reconstruction is characterized by a larger magnitude millenial-scale cooling in the Nordic Seas (0.9 $\pm$ 2.7 K) than in the subpolar gyre (0.5 $\pm$ 2.2K), indicative of an Arctic amplification of LIA cooling. 
+
+\end{abstract}
+
+\section*{Plain Language Summary}
+Enter your Plain Language Summary here or delete this section.
+Here are instructions on writing a Plain Language Summary: 
+https://www.agu.org/Share-and-Advocate/Share/Community/Plain-language-summary
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  BODY TEXT
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Suggested section heads:
+\section{Introduction}
+The past 2,000 years, referred to as the Common Era (CE), is a critical period for understanding the response of the Earth's climate to perturbations on long timescales. Climatic perturbations during the CE include decreasing solar irradiance due to the precession of the equinoxes and stratospheric sulfate injection from volcanic eruptions. Paleoclimatic and paleoceanographic reconstructions of the CE indicate that large-scale climate deviations were comparably small when compared to changes that occurred on longer timescales, such as the deglaciation. However, notable regional- to global-scale climate events have been identified in various proxy records. These include the Little Ice Age (LIA), a period of anomalously cool temperatures relative to the CE mean, or the Medieval Warm Period (MWP), a period of anomalously warm temperatures that may have preceded the LIA. Understanding the spatiotemporal extent of these climate events is a critical step in constraining the response of the climate system to various perturbations on timescales longer than that of the instrumental record.
+
+Reconstructions of sea surface temperature (SST) have indicated a global decrease from 1-1800 CE, which has been attributed to a thermodynamic response to high-frequency volcanism \cite{ocean2k}. Other oceanic or atmospheric feedback mechanisms that may have reinforced cooling have been suggested, such as an increase of Arctic Ocean sea-ice as a direct response to decadally-paced volcanic eruptions beginning in 1257-1258CE, which ultimately leads to a freshening of the subpolar North Atlantic that weakens convection \cite{Zhong-Miller-2010:Centennial, miller12, Lehner2013, schleussner2013}. Weakened convection has been associated with a slowdown of the Atlantic Meridional Overturning Circulation (AMOC), although some modelling studies have suggested that an AMOC slowdown is not necessary to explain the full magnitude of LIA cooling \cite[]{Moreno-Chamarro-Zanchettin-2016:Little}. Other suggested reinforcement mechanisms include large-scale shifts in the North Atlantic Oscillation (NAO) as part of a feedback system related to a weakened Atlantic Meridional Overturning Circulation (AMOC) during the LIA \cite[]{Trouet-Esper-2009:Persistent}, although the robustness of NAO reconstructions has been questioned \cite[]{Ortega-Lehner-2015:North}.
+
+%maybe talk about the Levermann + Born, Born + Stocker spg. bistability and theories about a shift to a weak circulation state here 
+
+Paleoclimate proxy records and reconstructions have been used to investigate the validity of many of these ideas. However, significant confusion still exists on overturning reconstructions over the CE. Notably, through the usage of sortable silt records, no significant centennial-scale changes prior to 1800 have been detected in the deep western boundary currents associated with the Labrador Sea \cite[]{Thornalley-Oppo-2018:Anomalously} or the Nordic Seas \cite[]{moffasanchez2015}, both of which are important components of the lower limb of the AMOC. These findings oppose that of \citeA[]{Lund2006}, where geostrophic reconstructions of the Florida Current indicated weakening from 1200-1850 CE, suggesting a slowdown of the northward transport of tropical waters in the AMOC. 
+In the more recent past, evidence for an AMOC slowdown over the 20th century has been found in Labrador Sea sortable silt records \cite[]{Thornalley-Oppo-2018:Anomalously}, as well as SST-fingerprint AMOC reconstructions \cite[]{Rahmstorf-Box-2015:Exceptional}. However, synchronous LIA and industrial changes in benthic and planktonic oxygen isotope records from $\sim$1300m-2200m indicate the presence of a largely unchanging AMOC over the CE \cite[]{Lu-Oppo-2023:Surface}.
+
+The mechanism outlined by \citeA[]{Zhong-Miller-2010:Centennial} of a sea-ice expansion in the Arctic has been supported by a $\sim$1400 CE shift towards Arctic-origin ice-rafted debris in the Labrador Sea \cite[]{Alonso-Garcia-Kleiven-2017:Freshening}. Significant LIA changes in subpolar gyre properties have been documented, although the precise timing is unclear. Destabilization of the subpolar gyre has been suggested to occur $\sim$1250 CE by deep-sea coral records \cite[]{Copard-Colin-2012:Late} and between 1330-1380 by bivalve resilience records \cite[]{Arellano-Nava2022}. A 1400-1450CE LIA weakening of the subpolar gyre has also been inferred from planktonic foraminiferal oxygen isotope reconstructions \cite[]{Moffa-Sanchez-Born-2014:Solar, moffasanchez2017}. However, foraminiferal faunal assemblages, abundances, and isotopic trends from the Reykjanes Ridge indicate largely constant Holocene conditions, with a large-scale shift in subpolar gyre conditions beginning in the 1750s, but with peak changes occurring in the 20th century \cite[]{Spooner-Thornalley-2020:Exceptional}. 
+
+%Peak North Atlantic cooling is identified in the 1800s \cite[]{gebbie19}. 
+
+Overall, studies do not show support for large-scale overturning changes during the LIA. However, there is more consistent support for changes in subpolar gyre strength, although the exact timing and magnitude is unclear.
+% Studies are inconclusive on the timing of the LIA, with start date estimates ranging from 1250-1380. Few constraints on the magnitude of the cooling of the LIA exist, with published estimates of 0.54-0.37$^{\circ}$C/kyr \cite{ocean2k}. Warming from the 1870s to 2000s has been estimated to be 0.59 $\pm$ 0.12 $^{\circ}$C \cite[]{Roemmich-John-2012:Challenger}.
+%Cunningham: 0.02$^{\circ}$C/century 
+One of the primary limitations of our understanding of LIA dynamics comes from the point-wise nature of paleoceanographic proxy records. Inferring behavior of a large-scale oceanographic feature such as the subpolar gyre typically requires spatially dense and high temporal resolution measurements, which can be difficult to attain for paleo-timescales. 
+Although there have been several different reconstructions of large-scale surface temperature variability over the CE \cite[]{Esper-Smerdon-2024:IPCC}, there have been very few purely marine proxy-based reconstructions of the CE. Early SST reconstructions such as that of \citeA[]{Cunningham-Austin-2013:Reconstruction} use composite-based methods that rely upon modern-day climatologies that may not be indicative of CE dynamics. 
+The Last Millenium Reanalysis \cite[]{Hakim-Emile-Geay-2016:last} reconstructs SST, but exhibits much less cooling than purely marine-based reconstructions such as Ocean2k \cite{ocean2k} (see Figure \ref{fig:meants}). These reconstructions all rely upon surface records, which experience a high degree of noise and seasonal effects. When trying to extract long-term climate signals, benthic records may be a better option, as they are not subject to high-frequency surface variability. Given that North Atlantic ocean dynamics are thought to be a primary component of positive feedback mechanisms reinforcing the LIA, obtaining a more spatially-complete estimate of near-surface variability is critical.
+
+In this paper, we develop an inverse approach to inferring far-field properties from paleoceanographic proxy data through the usage of a data-informed circulation model. Here, we apply a modern-day circulation model under the assumption that there were no large-scale circulation changes over the CE. Although there is no clear answer on whether or not there were large-scale circulation changes over the CE, testing whether or not simultaneous sediment core records can be well-fit under the assumption of steady-state modern-day circulation has been previously used as a test for the necessity of circulation change \cite[]{Burke-Marchal-2011:Application, Gebbie2012a, Amrhein-Gebbie-2015:Inferring}. 
+
+The circulation model used here is a transient inversion of modern-day tracer observations \cite[]{Gebbie-Huybers-2012:mean} previously used to constrain CE deep Pacific and Atlantic cooling \cite[]{gebbie19}. This prior application estimated a temperature history that could explain the observed warming from the 1870s HMS Challenger expedition to modern hydrography. It has also been used to explain the lag between Atlantic and Pacific warming in deglacial $\delta^{18}\mathrm{O}$ records \cite[]{Gebbie2012a}. Here, we apply this model to CE benthic sediment core $\delta^{18}\mathrm{O}$ records for the first time, and develop a methodology to maximize the spatial field reconstructed while minimizing propagated uncertainties. This is accomplished by decomposing surface source water maps for each core site into orthogonal spatial modes, and solving for the mode magnitude of surface temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ through time that best explains the benthic $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ records. We separate the effects of temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ by using experimentally defined ratios \cite[]{marchitto}. Our problem has no independent constraints on temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$, so we enforce a linear relationship of 10$^{\circ}$C/$\permil$ based upon isotope-enabled climate model output.
+
+We will first show the ability of this methodology to fit a dataset of 11 high-resolution benthic records of $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ from along the Reykjanes Ridge in Iceland. Successfully fitting this data implies that possible surface temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ histories exist that can explain the sediment core data without necessitating changes in circulation.
+Next, we will compare our reconstruction to instrumental records of Labrador Sea Water temperature and salinity, and demonstrate that we reconstruct similar magnitudes of temperature and salinity variability over the past 100 years.
+Our reconstruction can also be compared to other paleoceanographic estimates, and we show that the estimated LIA North Atlantic cooling trend is comparable to the global SST trend of 0.54-0.38$^{\circ}$C/kyr identified in the Ocean2k dataset.
+Finally, we will discuss the spatiotemporal evolution of the LIA in the North Atlantic, and demonstrate that the LIA can be represented as a long-term cooling trend with regional magnitudes and timing. 
+In our solution, the Nordic Seas are shown to be the first region to begin cooling, at $\sim$1200CE, followed by the subpolar gyre in $\sim$1400CE. The timing of the subpolar gyre cooling is similar to other independent records \cite[]{https://doi.org/10.1002/2013PA002523}. The Nordic Seas experiences the largest cooling magnitude (0.8 $\pm$ 2.7 K) and the subpolar gyre experiences a lesser magnitude cooling of (0.37 $\pm$ 2.1K). For both regions, the main characteristic is the long-term cooling, but they also exhibit shorter-timescale antiphased variability. The spatially and temporally distinct temperature minima observed here may explain the multiple temperature minima present in Greenland borehole temperature reconstructions \cite[]{Dahl-Jensen-1998:Past}. In addition, pre-industrial antiphasing is noted between the Nordic Seas and subpolar North Atlantic, similarly to that identified in \cite[]{Miettinen-Divine-2012:Multicentenn}. 
+
+\section{Data}
+\subsection{Sediment Core Records from Lu et al. (2023)}
+The inversion presented here is applied to a set of 11 high-resolution benthic foraminiferal $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ sediment core records (Figure \ref{fig:recon}) previously presented in \citeA[]{Lu-Oppo-2023:Surface}. These records were collected from along the Reykjanes Ridge south of Iceland, and form a depth transect from 1100-2300m. Previously these records were used to demonstrate that the deep ocean LIA transition, as indicated by the benthic records, occurred at 1350 $\pm$ 50 CE, while the surface ocean LIA transition, as indicated by planktonic records, occurred from 1100-1700CE. In addition, a larger magnitude LIA was observed in the benthic records than in the planktonic records, indicate of Arctic amplification of LIA temperature changes, transferred to the sediment core sites by an active AMOC \cite[]{Lu-Oppo-2023:Surface}.
+
+Here, we incorporate age model uncertainty into the inverse problem by applying the BACON-generated age models \cite[]{Bacon, McKay-Emile-Geay-2021:R} from \citeA{Lu-Oppo-2023:Surface}. In order to translate the 1000 age model realizations into covariance matrices with uncertainty in the $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ dimension, each age model realization was linearly interpolated at a common 10-year resolution. Then, for each timestep, the mean $\delta^{18}\mathrm{O}_{\textrm{calcite}}$ was computed, for any interpolated timestep that had more than 100 realizations available. The covariance between two arbitrary timesteps $t_{1}, t_{2}$ can be computed according to Equation \ref{eq:covariance}, where $\delta^{18}\mathrm{O}_{i}(t_1)$ refers to the interpolated $\delta^{18}\mathrm{O}$ value at $t_{1}$ for realization $i$ and $M$ is the total number of realizations with data at $t_{1}$ and $t_{2}$. Realizations will have different start and end times due to the age modeling process, so there are not necessarily 1000 realizations at every timestep.
+
+[NOTE: This may be a good spot for a supplementary figure more completely explaining this process.]
+
+\begin{equation}
+\label{eq:covariance}
+  cov(t_1, t_2) = \frac{\sum_i^M \left(\delta^{18}\textrm{O}_i(t_1) - <\delta^{18}\textrm{O}(t_1)>
+    \right) \left( \delta^{18}\textrm{O}_i(t_2) - <\delta^{18}\textrm{O}(t_2)> \right) }{M} 
+\end{equation}
+
+\citeA{Lu-Oppo-2023:Surface} used two benthic species of foraminifera to measure $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$. The $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ measurements were obtained from Uvigerina peregrina (U. peregrina) tests for the three shallowest cores (MC28A, MC26A, and MC25A), and from Cibicidoides wuellerstorfi (C. wuellerstorfi) tests for the other eight sediment cores. While C. wuellerstorfi calcifies at equilibrium, U. peregrina is isotopically heavier by 0.47$\permil$ \cite[]{marchitto}.
+
+$\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ is dependent upon calcification temperature and the $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$, which is, in turn, controlled by temperature and salinity. Ultimately, increases in $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ are caused by decreasing temperature and/or salinification. In Equation \ref{eq:cibs}, we show the experimental relationship for C. wuellerstorfi calculated by \citeA[]{marchitto}, where $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ is in $\permil$PDB and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ is in $\permil$SMOW. This relationship can be applied to U. peregrina, as long as the 0.47$\permil$ offset is removed. 
+
+\begin{equation}
+\label{eq:cibs}
+\delta^{18}\mathrm{O}_{\mathrm{calcite}} = (-0.224 \pm 0.002)\frac{\permil}{K} T + (3.53 \pm 0.02)\permil + (\delta^{18}\mathrm{O}_{\mathrm{seawater}} - 0.27\permil)
+\end{equation}
+
+% \begin{equation}
+%   \delta^{18}\mathrm{O}_{\mathrm{calcite}} = (-0.231 \pm 0.004)\frac{\permil}{K} T + (4.03 \pm 0.03)\permil + \delta^{18}\mathrm{O}_{\mathrm{seawater}} 
+% \label{eq:uvi}
+% \end{equation}
+
+In order to complete an inversion, the values reported from both C. wuellerstorfi and U. peregrina records must be put on a common scale. Effective modern-day $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ can be computed from the equilibrium value of $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ and temperature from the inversion of \citeA[]{gebbie2010}. These values can then be compared to the coretop values of $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$. We find that, after applying the experimental offset to the U. peregrina sediment cores, the measured $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ values are variably offset from the computed effective $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$. This variable offset,
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = 0.75\textwidth]{/home/brynn/Code/OPTinv.jl/plots/offsets}}
+\caption[]{\label{fig:offset} Rainbow dots, with size decreasing as time increases, show mean $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ for each sediment core, with 0.47$\permil$ equilibration offset removed from U. peregrina records. Black crosses show effective $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ computed from the steady-state inversion of temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ from \citeA{gebbie2010} and observed at the sediment core sites. Computation of effective $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ is according to Equation \ref{eq:cibs}.}
+\end{figure}
+  
+\subsection{Total Matrix Intercomparison (TMI), steady-state and transient versions}
+In order to relate signals at the sediment core sites to far-field ocean regions, an ocean circulation model must be applied. In \citeA{gebbie2010}, a box inversion technique is used to compute the pathways connecting interior ocean grid boxes to the surface. The global ocean is decomposed into a $4^{\circ} \times 4^{\circ}$ grid with 33 vertical levels, and the pathways that connect each interior grid box to the surface are computed by inverting six conservative tracers. This results in a matrix, $\mathbf{A_{\mathrm{ss}}}$, which contains the contribution of every surface grid cell to every interior cell, assuming that the ocean is at a steady-state. In \citeA{Gebbie-Huybers-2012:mean}, this result is extended by incorporating radiocarbon observations in $\mathbf{A_{\mathrm{t}}}$, which contains the rate at which surface grid cells are transmitting water to each interior cell.
+
+\subsection{Coupled Climate Model Output}
+SST fields from historical realization (1850-2015CE) `r11i1p1f1` of the Community Earth System Model, version 2 (CESM2) \cite[]{cesm2} were used to constrain the relative variance of surface spatial modes. 
+
+The relationship between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ was obtained using output from the iCESM1.2 coupled climate model \cite[]{Brady-Stevenson-2019:Connected}. The `TEMP` and `R18O` variables from the large ensemble pre-industrial fully coupled control run were observed at the grid cell closest to the mean sediment core position, and the linear least squares relationship of the two timeseries was found to be 10$^{\circ}$C/$\permil$. 
+
+\section{Methods}
+\subsection{Overview}
+This inverse problem is characterized by inferring some time-varying far-field properties $\mathbf{u}$ from data at the sediment core sites $\mathbf{y}$. The connection between the sediment core sites and any region of the ocean can be computed by applying the transient TMI matrix $\mathbf{A_{\mathrm{t}}}$. Although this approach could be used to infer subsurface temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$, here we infer surface temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$, as it can more readily be compared to other records.
+
+We are concerned with solving for the time-varying evolution of some collection of far-field patterns. These patterns could be oceanographic regions or features, and could be surface or subsurface. In order to reduce the dimensionality of the problem, we solve for the magnitude of surface spatial modes, obtained from a singular value decomposition of source water maps. The contribution of every surface grid cell to each sediment core site can be computed by computing $\mathbf{A^{T}}$ m  These patterns can be propagated through the transient TMI matrix $\mathbf{A_{t}}$ and observed at the sediment core sites. 
+
+\ref{eq:inverse}. 
+\begin{equation}
+\label{eq:inverse}
+\mathbf{y} = \mathbf{Eu}
+\end{equation}
+
+\subsection{Spatial Modes and Expected Variance}
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = 0.75\textwidth]{/home/brynn/Code/OPTinv.jl/plots/SVD_modes.png}}
+\caption[]{\label{fig:svdmodes} Surface spatial modes}
+\end{figure}
+\begin{itemize}
+\item How are spatial modes calculated?
+\item Expected variance of spatial modes in CESM
+\item Relationship between temperature and $\delta^{18}\mathrm{O}$ at core sites in iCESM 
+\end{itemize}
+\subsection{Computing Model Matrix}
+\begin{itemize}
+\item Propagating modes through matrix
+\item Impulse response technique 
+\end{itemize}
+\subsection{Solving}
+\begin{itemize}
+\item TWLS
+\end{itemize}
+\subsection{Analysis techniques}
+\begin{itemize}
+\item Surface reconstruction
+\item Reconstruction at core sites
+\item Cost functions 
+\end{itemize}
+\section{Results}
+
+
+\subsection{Data Fit}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/reconsolallvold.png}}
+\caption[]{\label{fig:recon} Reconstruction at core sites for all core estimate (red) and three oldest core estimate (blue). Black line shows sediment core record. }
+\end{figure}
+Statistics about how well the data is fit
+
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = 0.75\textwidth]{/home/brynn/Code/OPTinv.jl/plots/modemagsθallvold.png}}
+\caption[]{\label{fig:mags} Temperature surface mode magnitudes for first three modes, mode 1 in purple/solid, mode 2 in green/dashed, mode 3 in orange/dotted for \textbf{(A)} estimate using three oldest cores and \textbf{(B)} estimate using all cores.}
+\end{figure}
+
+\subsection{Solution Comparison to Instrumental Record}
+
+% \begin{figure}[htbp]
+% \centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/post1900allvoldδ.png}}
+% \caption[]{\label{fig:post1900S} Contours: estimated MLD salinity (computed as $\delta^{18}\mathrm{O}$ divided by 0.5255) as an anomaly from 1900-1970. Scatters: MLD salinity (estimated using Holte and Talley algorithm) from EN4 CTD profiles binned by decade, and into 10$^{\circ}$ bins, computed as anomaly from climatological mean MLD salinity in EN4 objective analysis from 1900-1970.}
+% \end{figure}
+
+% \begin{figure}[htbp]
+% \centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/post1900allvoldθ.png}}
+% \caption[]{\label{fig:post1900T} Contours: estimated MLD temperature as an anomaly from 1900-1970. Scatters: MLD temperature (estimated using Holte and Talley algorithm) from EN4 CTD profiles binned by decade, and into 10$^{\circ}$ bins, computed as anomaly from climatological mean MLD temperature in EN4 objective analysis from 1900-1970.}
+% \end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/labcompallvold.png}}
+\caption[]{\label{fig:labcomp} \textbf{(A)} Reconstructed Labrador Sea (60$^{\circ}$W-30$^{\circ}$E, 55$^{\circ}$N-64$^{\circ}$N) temperature and \textbf{(B)} salinity (computed as $0.5255 \times \delta^{18}\mathrm{O}_{\mathrm{seawater}}$) over the observational period (1850-1970) is shown for ``old'' (blue) and ``all'' (red) solutions. Solid line shows digitized Labrador Sea record from The Lab Sea Group, 1998 publication. Dashed line shows HadiSST Labrador Sea spatial mean (60$^{\circ}$W-30$^{\circ}$E, 55$^{\circ}$N-64$^{\circ}$N). All records are shown as an anomaly from 1970.}
+
+\end{figure}
+
+% \begin{figure}[htbp]
+% \centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/labcomp_tands_allvold.png}}
+% \caption[]{\label{fig:tands} Temperature and salinity diagram for the old cores solution (left, blue) and all cores solution (right, red), averaged over 60$^{\circ}$W and 30$^{\circ}$E and 55$^{\circ}$N and 64$^{\circ}$N for 1920-1970, as an anomaly from 1970. Also shown is a decadally-averaged LSW record \cite[]{lsdce}.}
+% \end{figure}
+
+\subsection{Common Era Solution}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/surfacesolallvold.png}}
+\caption[]{\label{fig:sst} Reconstruction of surface potential temperature, 70-year mean, SVD approach, anomaly from 1850-1970. Top row is for old cores, middle row is for all cores, third row is Last Millenium Reanalysis SSTs \cite[]{Hakim-Emile-Geay-2016:last}.}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = 0.75\textwidth]{/home/brynn/Code/OPTinv.jl/plots/meantsallvold.png}}
+\caption[]{\label{fig:meants} Mean North Atlantic temperature for ``all'' solution (red) and ``old'' (blue), Last Millenium Reanalysis (gray dash-dot), HadiSST (black dotted). Ocean2k trend of 0.54-0.38 $^{\circ}$C/kyr (from Supplemental Figure 6) is shown in shaded gray region. All records are shown as anomaly from 1850-1970. For HadiSST and both reconstructions, the mean is computed over the region (50$^{\circ}$W-20$^{\circ}$E, 50$^{\circ}$N-90$^{\circ}N$)
+
+[This will go in discussion, but for now: Estimated LIA N. Atl. cooling is calculated by computing the linear least squares slope between the maxima and minima occurring between 1000CE and 1900CE. Old: 0.67 $\pm$ 0.56 K/kyr, All: 0.77 $\pm$ 1.8 K/kyr] } 
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/EGWGallvold.png}}
+\caption[]{\label{fig:EGWGSI} Temperature for \textbf{(A)} ``old'' and \textbf{(B)} ``all'' solutions observed for spatial averages in Nordic Seas (purple: 20$^{\circ}$W-20$^{\circ}$E, 65$^{\circ}$N-80$^{\circ}$N), the subpolar gyre (green: 60$^{\circ}$W-0$^{\circ}$, 50$^{\circ}$N-65$^{\circ}$N), the western subpolar gyre (green, dashed: 60$^{\circ}$W-30$^{\circ}$W, 50$^{\circ}$N-65$^{\circ}$N), and the eastern subpolar gyre (green, dotted: 30$^{\circ}$W-0$^{\circ}$, 50$^{\circ}$N-65$^{\circ}$N). All reconstructions are shown as anomaly from 1850-1970CE. Blue line shows digitized GRIP borehole record \cite[]{Dahl-Jensen-1998:Past}, grey line and shading show total solar insolation estimate with 1$\sigma$ uncertainty \cite[]{Steinhilber-Beer-2009:Total}, and red lines show global stratospheric sulfate aerosol injection \cite[]{gao2008}.
+
+This figure is definitely too busy, I just thought it would be interesting to compare these records to some common forcing plot and see if anything pops out. 
+
+[For discussion: ``old'' solution reconstructs 0.9 $\pm$ 2.7K Nordic Sea cooling from 800-1860CE, and 0.5 $\pm$ 2.2K subpolar gyre cooling from 1230-1900CE. ]}
+\end{figure}
+
+
+
+
+\section{Conclusion}
+
+%
+% The main text should start with an introduction. Except for short
+% manuscripts (such as comments and replies), the text should be divided
+% into sections, each with its own heading.
+
+% Headings should be sentence fragments and do not begin with a
+% lowercase letter or number. Examples of good headings are:
+
+% \section{Materials and Methods}
+% Here is text on Materials and Methods.
+%
+% \subsection{A descriptive heading about methods}
+% More about Methods.
+%
+% \section{Data} (Or section title might be a descriptive heading about data)
+%
+% \section{Results} (Or section title might be a descriptive heading about the
+% results)
+%
+% \section{Conclusions}
+
+
+
+%Text here ===>>>
+
+
+%%
+
+%  Numbered lines in equations:
+%  To add line numbers to lines in equations,
+%  \begin{linenomath*}
+%  \begin{equation}
+%  \end{equation}
+%  \end{linenomath*}
+
+
+
+%% Enter Figures and Tables near as possible to where they are first mentioned:
+%
+% DO NOT USE \psfrag or \subfigure commands.
+%
+% Figure captions go below the figure.
+% Acronyms used in figure captions will be spelled out in the final, published version.
+
+% Table titles go above tables;  other caption information
+%  should be placed in last line of the table, using
+% \multicolumn2l{$^a$ This is a table note.}
+% NOTE that there is no difference between table caption and table heading in the final, published version
+%
+%----------------
+% EXAMPLE FIGURES
+%
+% \begin{figure}
+% \includegraphics{example.png}
+% \caption{caption}
+% \end{figure}
+%
+% Giving latex a width will help it to scale the figure properly. A simple trick is to use \textwidth. Try this if large figures run off the side of the page.
+% \begin{figure}
+% \noindent\includegraphics[width=\textwidth]{anothersample.png}
+%\caption{caption}
+%\label{pngfiguresample}
+%\end{figure}
+%
+%
+% If you get an error about an unknown bounding box, try specifying the width and height of the figure with the natwidth and natheight options. This is common when trying to add a PDF figure without pdflatex.
+% \begin{figure}
+% \noindent\includegraphics[natwidth=800px,natheight=600px]{samplefigure.pdf}
+%\caption{caption}
+%\label{pdffiguresample}
+%\end{figure}
+%
+%
+% PDFLatex does not seem to be able to process EPS figures. You may want to try the epstopdf package.
+%
+
+%
+% ---------------
+% EXAMPLE TABLE
+%
+% \begin{table}
+% \caption{Time of the Transition Between Phase 1 and Phase 2$^{a}$}
+% \centering
+% \begin{tabular}{l c}
+% \hline
+%  Run  & Time (min)  \\
+% \hline
+%   $l1$  & 260   \\
+%   $l2$  & 300   \\
+%   $l3$  & 340   \\
+%   $h1$  & 270   \\
+%   $h2$  & 250   \\
+%   $h3$  & 380   \\
+%   $r1$  & 370   \\
+%   $r2$  & 390   \\
+% \hline
+% \multicolumn{2}{l}{$^{a}$Footnote text here.}
+% \end{tabular}
+% \end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SIDEWAYS FIGURES and TABLES
+% AGU prefers the use of {sidewaystable} over {landscapetable} as it causes fewer problems.
+%
+% \begin{sidewaysfigure}
+% \includegraphics[width=20pc]{figsamp}
+% \caption{caption here}
+% \label{newfig}
+% \end{sidewaysfigure}
+%
+%  \begin{sidewaystable}
+%  \caption{Caption here}
+% \label{tab:signif_gap_clos}
+%  \begin{tabular}{ccc}
+% one&two&three\\
+% four&five&six
+%  \end{tabular}
+%  \end{sidewaystable}
+
+%% If using numbered lines, please surround equations with \begin{linenomath*}...\end{linenomath*}
+%\begin{linenomath*}
+%\begin{equation}
+%y|{f} \sim g(m, \sigma),
+%\end{equation}
+%\end{linenomath*}
+
+%%% End of body of article
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Optional Appendices go here
+%
+% The \appendix command resets counters and redefines section heads
+%
+% After typing \appendix
+%
+%\section{Here Is Appendix Title}
+% will show
+% A: Here Is Appendix Title
+%
+%\appendix
+%\section{Here is a sample appendix}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Optional Glossary, Notation or Acronym section goes here:
+%
+% Glossary is only allowed in Reviews of Geophysics
+%  \begin{glossary}
+%  \term{Term}
+%   Term Definition here
+%  \term{Term}
+%   Term Definition here
+%  \term{Term}
+%   Term Definition here
+%  \end{glossary}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Acronyms
+%% NOTE that acronyms in the final published version will be spelled out when used in figure captions.
+%   \begin{acronyms}
+%   \acro{Acronym}
+%   Definition here
+%   \acro{EMOS}
+%   Ensemble model output statistics
+%   \acro{ECMWF}
+%   Centre for Medium-Range Weather Forecasts
+%   \end{acronyms}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Notation
+%   \begin{notation}
+%   \notation{$a+b$} Notation Definition here
+%   \notation{$e=mc^2$}
+%   Equation in German-born physicist Albert Einstein's theory of special
+%  relativity that showed that the increased relativistic mass ($m$) of a
+%  body comes from the energy of motion of the body—that is, its kinetic
+%  energy ($E$)—divided by the speed of light squared ($c^2$).
+%   \end{notation}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% DATA SECTION and ACKNOWLEDGMENTS
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Open Research Section}
+This section MUST contain a statement that describes where the data supporting the conclusions can be obtained. Data cannot be listed as ''Available from authors'' or stored solely in supporting information. Citations to archived data should be included in your reference list. Wiley will publish it as a separate section on the paper’s page. Examples and complete information are here:
+https://www.agu.org/Publish with AGU/Publish/Author Resources/Data for Authors
+
+
+\acknowledgments
+Enter acknowledgments here. This section is to acknowledge funding, thank colleagues, enter any secondary affiliations, and so on.
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% REFERENCES and BIBLIOGRAPHY
+%
+\bibliography{Hamilton2024} 
+% don't specify bibliographystyle
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%Reference citation instructions and examples:
+%
+% Please use ONLY \cite and \citeA for reference citations.
+% \cite for parenthetical references
+% ...as shown in recent studies (Simpson et al., 2019)
+% \citeA for in-text citations
+% ...Simpson et al. (2019) have shown...
+%
+%
+%...as shown by \citeA{jskilby}.
+%...as shown by \citeA{lewin76}, \citeA{carson86}, \citeA{bartoldy02}, and \citeA{rinaldi03}.
+%...has been shown \cite{jskilbye}.
+%...has been shown \cite{lewin76,carson86,bartoldy02,rinaldi03}.
+%... \cite <i.e.>[]{lewin76,carson86,bartoldy02,rinaldi03}.
+%...has been shown by \cite <e.g.,>[and others]{lewin76}.
+%
+% apacite uses < > for prenotes and [ ] for postnotes
+% DO NOT use other cite commands (e.g., \citet, \citep, \citeyear, \nocite, \citealp, etc.).
+%
+
+
+\clearpage
+\end{document}
+
+
+
+More Information and Advice:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  SECTION HEADS
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Capitalize the first letter of each word (except for
+% prepositions, conjunctions, and articles that are
+% three or fewer letters).
+
+% AGU follows standard outline style; therefore, there cannot be a section 1 without
+% a section 2, or a section 2.3.1 without a section 2.3.2.
+% Please make sure your section numbers are balanced.
+% ---------------
+% Level 1 head
+%
+% Use the \section{} command to identify level 1 heads;
+% type the appropriate head wording between the curly
+% brackets, as shown below.
+%
+%An example:
+%\section{Level 1 Head: Introduction}
+%
+% ---------------
+% Level 2 head
+%
+% Use the \subsection{} command to identify level 2 heads.
+%An example:
+%\subsection{Level 2 Head}
+%
+% ---------------
+% Level 3 head
+%
+% Use the \subsubsection{} command to identify level 3 heads
+%An example:
+%\subsubsection{Level 3 Head}
+%
+%---------------
+% Level 4 head
+%
+% Use the \subsubsubsection{} command to identify level 3 heads
+% An example:
+%\subsubsubsection{Level 4 Head} An example.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  IN-TEXT LISTS
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Do not use bulleted lists; enumerated lists are okay.
+% \begin{enumerate}
+% \item
+% \item
+% \item
+% \end{enumerate}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  EQUATIONS
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Single-line equations are centered.
+% Equation arrays will appear left-aligned.
+
+Math coded inside display math mode \[ ...\]
+ will not be numbered, e.g.,:
+ \[ x^2=y^2 + z^2\]
+
+ Math coded inside \begin{equation} and \end{equation} will
+ be automatically numbered, e.g.,:
+ \begin{equation}
+ x^2=y^2 + z^2
+ \end{equation}
+
+
+% To create multiline equations, use the
+% \begin{eqnarray} and \end{eqnarray} environment
+% as demonstrated below.
+\begin{eqnarray}
+  x_{1} & = & (x - x_{0}) \cos \Theta \nonumber \\
+        && + (y - y_{0}) \sin \Theta  \nonumber \\
+  y_{1} & = & -(x - x_{0}) \sin \Theta \nonumber \\
+        && + (y - y_{0}) \cos \Theta.
+\end{eqnarray}
+
+%If you don't want an equation number, use the star form:
+%\begin{eqnarray*}...\end{eqnarray*}
+
+% Break each line at a sign of operation
+% (+, -, etc.) if possible, with the sign of operation
+% on the new line.
+
+% Indent second and subsequent lines to align with
+% the first character following the equal sign on the
+% first line.
+
+% Use an \hspace{} command to insert horizontal space
+% into your equation if necessary. Place an appropriate
+% unit of measure between the curly braces, e.g.
+% \hspace{1in}; you may have to experiment to achieve
+% the correct amount of space.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  EQUATION NUMBERING: COUNTER
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% You may change equation numbering by resetting
+% the equation counter or by explicitly numbering
+% an equation.
+
+% To explicitly number an equation, type \eqnum{}
+% (with the desired number between the brackets)
+% after the \begin{equation} or \begin{eqnarray}
+% command.  The \eqnum{} command will affect only
+% the equation it appears with; LaTeX will number
+% any equations appearing later in the manuscript
+% according to the equation counter.
+%
+
+% If you have a multiline equation that needs only
+% one equation number, use a \nonumber command in
+% front of the double backslashes (\\) as shown in
+% the multiline equation above.
+
+% If you are using line numbers, remember to surround
+% equations with \begin{linenomath*}...\end{linenomath*}
+
+%  To add line numbers to lines in equations:
+%  \begin{linenomath*}
+%  \begin{equation}
+%  \end{equation}
+%  \end{linenomath*}
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

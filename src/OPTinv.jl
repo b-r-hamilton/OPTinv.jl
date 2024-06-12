@@ -2,7 +2,8 @@ module OPTinv
 
 using DrWatson, Unitful, Revise, Statistics, BLUEs, LinearAlgebra,
     SparseArrays, TMI, Interpolations, UnitfulLinearAlgebra, Measurements,
-    PyPlot, CSV, DataFrames, JLD2, NCDatasets, NaNMath, XLSX, Downloads
+    PyPlot, CSV, DataFrames, JLD2, NCDatasets, NaNMath, XLSX, Downloads,
+    Dates
 import Interpolations.deduplicate_knots! as deduplicate! 
 import Interpolations.LinearInterpolation as LI
 import DelimitedFiles.readdlm
@@ -12,11 +13,16 @@ export readbacon, interpolatebacon, meanbacon, covariancebacon,
     formatbacon, covariancedims, steadystateM, firstguess,
     fillcovariance, fillcovariance!, linearleastsquares,
     solvesystem, core_locations, formattransientM, subsampletransientM,
-    γreshape
+    γreshape, invert, inversion, solution
 
-export loadM, loadcores, loadE, ptobserve, fancytext, boxmean, reconstructsurface
+export loadM, loadcores, loadE, ptobserve, fancytext, boxmean, reconstructsurface,
+    monthlyannual, γbox, geospatialsubset
 
-export loadLMR, loadOcean2k, loadThornalley
+export loadLMR, loadOcean2k, loadThornalley, loadEN4, loadCESMLME
+
+export record, loadEN4MLD 
+
+export orthographic_axes
 
 yr = u"yr"
 permil = Unitful.FixedUnits(u"permille")
@@ -65,7 +71,6 @@ struct Est
     Cnn::CovMat
 end
 
-
 """
 struct DiagRule
 
@@ -107,6 +112,63 @@ struct OffDiagRule
     rule1::Tuple
     rule2::Tuple
 end
+
+struct inversion
+    cores::Vector{Symbol}
+    modetype::String
+    name::String
+    color::String
+end
+
+struct solution
+    y::DimEstimate
+    ỹ::DimEstimate
+    u₀::DimEstimate
+    ũ::DimEstimate
+    θ::Vector
+    δ::Vector
+    γ::TMI.Grid
+    spatialmodes::Matrix
+    name::String
+    color::String
+end
+
+
+function invert(x::inversion)
+    corenums_full = Symbol.("MC" .* string.([28, 26, 25, 22, 21, 20, 19, 10, 9,13,14]) .* "A")
+    corenums_sorted = [i for i in corenums_full if i in x.cores]
+    filename = x.modetype * ".jld2"
+    ℳ, spatialmodes = loadM(filename, corenums_sorted)
+    y = loadcores(corenums_sorted)
+    ρ = 0.99
+    T = Array(y.y.dims[1])
+    res = unique(diff(T))[1]
+    Tᵤ = 500.0yr:res:T[end]
+    jld = jldopen(datadir("modemags.jld2"))
+    mags = jld[x.modetype * "mags"]
+    
+    σθ = vec(std(mags, dims = 1)) * K
+
+    if x.modetype == "svd"    
+        σθ *= 5
+    else
+        σθ *= 0.1
+    end
+    
+    σδ = σθ ./ 10 .* permil/K
+
+    u₀ = firstguess(Tᵤ, ℳ.dims[2][:], σθ, σδ, ρ)
+    E, predict = loadE(filename, ℳ, Tᵤ, T, σθ, σδ, ρ, corenums_sorted, y.Cnn.ax)
+    yde, ỹde, u₀de, ũ = solvesystem(y, u₀, E, predict)
+    θ, δ = reconstructsurface(spatialmodes, ũ)
+    
+    TMIversion = "modern_180x90x33_GH11_GH12"
+    γ = Grid(download_ncfile(TMIversion))
+
+    return solution(yde, ỹde, u₀de, ũ, θ, δ, γ,spatialmodes, x.name, x.color) 
+end
+
+
 
 """
 function readbacon(age_file::String, d18O_file::String)
@@ -470,7 +532,8 @@ function firstguess(T, modes, σθ::Quantity, σδ::Quantity, ρ; fill_val = [0K
     units = unit.(vec(da))
     diagrules = [DiagRule(σθ^2, (:, :, At(:θ))), DiagRule(σδ^2, (:, :, At(:δ)))]
     cov = ρ*σθ*σδ
-    rules = vcat(diagrules, OffDiagRule(cov, (:, :, At(:θ)), (:, :, At(:δ))))
+    rules = vcat(diagrules,
+                 OffDiagRule(cov, (:, :, At(:θ)), (:, :, At(:δ))))
     Cuu = fillcovariance(vec(units), rules, dims)
     @show isposdef(Cuu.mat)
 
@@ -529,13 +592,31 @@ function linearleastsquares(x,y)
 
     returns lls: vector where a = lls[1], b = lls[2]
 """
-function linearleastsquares(x,y)
+function linearleastsquares(x,y;C=nothing)
     E = ones(length(x), 2)
     E[:, 1] .= x
     F = (E'*E)\I*E'
     lls = F*y
+    if !isnothing(C)
+        Cnew = F*C*F'
+        return lls, Cnew
+    else
+        return lls
+    end
+end
+
+"""
+doesnt work rn 
+"""
+function linearleastsquares(x::UnitfulMatrix, y::UnitfulMatrix)
+    E = ones(length(x), 2)
+    E[:, 1] .= parent(x)
+    E = UnitfulMatrix(E, unitrange(x), [unit(y[1])/unit(x[1]), unit(y[1])])
+    F = (E'*E)\UnitfulMatrix(I)*E'
+    lls = F*y
     return lls
 end
+
 
 function  formattransientM(arr::Array, τ, modes, cores)
     ℳ = DimArray(arr, (Ti(τ), Modes(modes), Cores(cores)))
@@ -617,9 +698,12 @@ function loadcores(core_list::Vector{Symbol}, res = 10yr)
             push!(sort_indices, (ind[1]))
         end
     end
+    #=
     @show ae_files[sort_indices]
     @show d18O_files[sort_indices]
     @show core_list
+    =#
+    println("Pulling in core data, calculating covariance matrices") 
     @time e = formatbacon(datadir.(ae_files)[sort_indices], datadir.(d18O_files)[sort_indices], core_list, res = res)
     #add in measurement uncertainty 
     e = fillcovariance!(e, [DiagRule((0.07permil)^2, (:, :))], dims(e.y))
@@ -630,7 +714,7 @@ end
 function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget, u₀::Est,
                core_list::Vector{Symbol}, yax::Vector{Tuple})
     sv = (:θ, :δ)
-    coeffs = NamedTuple{sv}([-0.27permil/K, 1])
+    coeffs = NamedTuple{sv}([-0.224permil/K, 1])
     τ = [t for t in ℳ.dims[1]]
 
     #T = collect(0yr:10yr:2020yr)
@@ -673,7 +757,7 @@ function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget,
                σθ::Vector, σδ::Vector, ρ,
                core_list::Vector{Symbol}, yax::Vector{Tuple})
     sv = (:θ, :δ)
-    coeffs = NamedTuple{sv}([-0.27permil/K, 1])
+    coeffs = NamedTuple{sv}([-0.224permil/K, 1])
     τ = [t for t in ℳ.dims[1]]
 
     #maximum time period we're interested in for this problem 
@@ -688,7 +772,7 @@ function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget,
     filepath = joinpath("../data/M", filename) 
     if !isfile(filepath)
         println("Computing E, will take a little while!") 
-        @time E = impulseresponse(predict, u₀.y) #328 seconds
+        @time E = impulseresponse(predict, u₀.y) 
         jldsave(filepath; E)
     else
     
@@ -698,8 +782,6 @@ function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget,
         close(jld)
     end
     
- 
-    #following subsetting doesn't work but might be moot because we need to calc. over a new time period anyways... 
     allcores = Symbol.("MC".* string.([28, 26, 25, 22, 21, 20, 19, 10, 9, 13, 14]) .* "A")
     Erange = vec(covariancedims((Ti(T), Cores(allcores))))
     modes = ℳ.dims[2]
@@ -707,8 +789,7 @@ function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget,
     xindices = [x[1] ∈ Ttarget && x[2]∈core_list for x in Erange]
     
     yindices = [y[1] ∈ Tᵤtarget && y[2] ∈ modes for y in Edomain]
-    @show length(yindices)
-    #for some reason if I subset the range, the type gets screwed up and it won't add to Cnn...
+    
     predict_subset(u) = DimArray(cat([+([+([vec(u[At(t-τi), :, At(s)]' * coeffs[s] * ℳ[At(τi), :, :]) for τi in τ[t .- τ .> minimum(Tᵤtarget)]]...) for s in sv]...) for t in Ttarget]..., dims = 2)', (Ti(Ttarget), Cores(core_list)))
     return UnitfulMatrix(parent(E[xindices, yindices]), fill(permil, sum(xindices)), unitdomain(E)[yindices]), predict_subset
  
@@ -748,25 +829,52 @@ function ptobserve(pt::Tuple, γ, spatialmodes::Matrix, ũ)
 end
 
 #assumes fld is (lon x lat x time) 
-function boxmean(fld, lat, lon, latsouth, latnorth, lonwest, loneast)
-    latnorth = findall(x->x == latnorth, lat)[1]
-    latsouth = findall(x->x == latsouth, lat)[1]
-    lonwest = findall(x->x == lonwest, lon)[1]
-    loneast = findall(x->x == loneast, lon)[1]
-    fldμbox = Vector{Any}(undef, size(fld)[3])
+function boxmean(fld::Array{T, N}, lat, lon, latsouth, latnorth, lonwest, loneast) where {T, N}
+    latnorth = findmin(abs.(latnorth .- lat))[2]
+    latsouth = findmin(abs.(latsouth .- lat))[2]
+    lonwest = findmin(abs.(lonwest .- lon))[2]
+    loneast = findmin(abs.(loneast .- lon))[2]
+    fldμbox = Vector{T}(undef, size(fld)[end])
     box = Vector{Int64}
     if lonwest > loneast 
         west = fld[lonwest:end, latsouth:latnorth, :]
         east = fld[begin:loneast, latsouth:latnorth, :]
         box = cat(west, east, dims = 1)
-        println("concatenating") 
+        #println("concatenating") 
     else
-        box = fld[lonwest:loneast, latsouth:latnorth]
+        box = fld[lonwest:loneast, latsouth:latnorth, :]
     end
-    
-    [fldμbox[i] = NaNMath.mean(box[:, :, i]) for i in 1:size(fld)[3]]
+    if length(size(fld)) > 2 
+        [fldμbox[i] = mean(box[:, :, i][(!).(isnan.(box[:, :, i]))]) for i in 1:size(fld)[3]]
+        return fldμbox
+    else
+        return NaNMath.mean(convert(Vector{Float64}, box[(!).(ismissing.(box))]))
+    end
+end
 
-    return fldμbox
+"""
+function γbox(γ::TMI.Grid, latsouth, latnorth, lonwest, loneast)
+
+    find indices of surfacevector corresponding to a box 
+"""
+function γbox(γ::TMI.Grid, latsouth, latnorth, lonwest, loneast)
+    surfind = findall(x->x == 1, γ.wet[:, :, 1])
+    lon_index = [i[1] for i in surfind]
+    lat_index = [i[2] for i in surfind]
+    lat = γ.lat
+    lon = γ.lon 
+    latnorth = findmin(abs.(latnorth .- lat))[2]
+    latsouth = findmin(abs.(latsouth .- lat))[2]
+    lonwest = findmin(abs.(lonwest .- lon))[2]
+    loneast = findmin(abs.(loneast .- lon))[2]
+
+    if loneast > lonwest
+        return intersect(findall(x->lonwest<x<loneast, lon_index), findall(x->latsouth<x<latnorth, lat_index))
+    elseif lonwest > loneast #this means that we wrap around the centerline
+        return intersect(vcat(findall(x->lonwest<x, lon_index),
+                         findall(x->x<loneast, lon_index)),
+                         findall(x->latsouth<x<latnorth, lat_index))
+    end
 end
 
 #calculates full covariance matrix spatially, very expensive 
@@ -801,58 +909,147 @@ function reconstructsurface(spatialmodes, ũ)
     return θvals, δvals
 end
 
-function loadLMR()
-    nc = NCDataset(datadir("sst_MCruns_ensemble_mean_LMRv2.0.nc"))
-    sst = mean(nc["sst"][:, :, :, :], dims = 3)[:, :, 1, :]
-    time = nc["time"][:]
+"""
+function load_EN4(analysis_path, pt)
+
+    assumes you have downloaded all EN4 analyses locally
+    this is a bit of a pain, used a wget script
+    https://www.metoffice.gov.uk/hadobs/en4/download-en4-2-2.html
+
+    # Arguments
+    - analysis_path: where the objective analyses are located
+    - lon: approximate lon pt to observe
+    - lat
+"""
+function loadEN4(analysis_path, lonpt, latpt)
+    files = readdir(analysis_path)
+    nc = NCDataset(joinpath(analysis_path,files[1]))
     lon = nc["lon"][:]
     lat = nc["lat"][:]
-    sst[ismissing.(sst)] .= NaN
-    sst = convert(Array{Float32}, sst)
-    sst .-= mean(sst[:, :, 1981], dims = 3)
-    return sst, time, lon, lat
-end
-
-function loadOcean2k()
-    #https://www.ncei.noaa.gov/pub/data/paleo/pages2k/Ocean2kLR2015sst.csv
-    xl = XLSX.readxlsx(datadir("Ocean2kLR2015sst.xlsx"))
-    sheetnames = XLSX.sheetnames(xl) 
-    locsheet = xl[sheetnames[1]]
-    names = locsheet["A4:A60"]
-    lats = locsheet["B4:B60"]
-    lons = locsheet["C4:C60"]
-    depths = locsheet["D4:D60"]
-    data = xl[sheetnames[4]]["A1:DJ566"]
-    return DataFrame(hcat(names, lats, lons, depths), ["name", "lat", "lon", "depth"]), DataFrame(data[2:end, :], data[1, :])
-end
-
-function loadThornalley()
-    url = "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-018-0007-4/MediaObjects/41586_2018_7_MOESM2_ESM.xlsx"
-        # make directory if it doesn't exist
-    !isdir(datadir()) && mkpath(datadir())
-
-    filename = datadir("41586_2018_7_MOESM2_ESM.xlsx")
-
-    # if file hasn't been downloaded already, then download already
-    !isfile(filename) && Downloads.download(url,filename)
-
-    # get the sheet names
-    xf = XLSX.readxlsx(filename)
-    sheetname = XLSX.sheetnames(xf)[end]
-    xf1 = xf[sheetname * "!C3:E95"]
-    xf1[typeof.(xf1) .!= Float64] .= NaN
-    xf1 = convert(Matrix{Float64}, xf1) 
-    df1 = DataFrame(xf1, ["age [CE]", "mean SS (mm)", "smooth"])
-
-    xf2 = xf[sheetname * "!I3:K71"]
-    xf2[typeof.(xf2) .!= Float64] .= NaN
-    xf2 = convert(Matrix{Float64}, xf2) 
-    df2 = DataFrame(xf2, ["age [CE]", "mean SS (mm)", "smooth"])
-
-    names = ["KNR-178-56JPC", "KNR-178-48JPC"] 
-    return Dict(zip(names, [df1,df2])) 
+    
+    @show lonindex = [findmin(abs.(lon .- lp))[2] for lp in lonpt] 
+    @show latindex = [findmin(abs.(lat .- lp))[2] for lp in latpt] 
+    close(nc)
+    time = Vector{DateTime}(undef, length(files))
+    temp = Vector{Float64}(undef, length(files)); salinity = copy(temp)
+    for (i,f) in enumerate(files)
+        nc = NCDataset(joinpath(analysis_path, files[i]))
+        time[i] = nc["time"][1]
+        if length(lonindex) == 1 
+            temp[i] =  nc["temperature"][lonindex[1], latindex[1], 1, 1]
+            salinity[i] = nc["salinity"][lonindex[1], latindex[1], 1, 1]
+        elseif length(lonindex) == 2 
+            temp[i] = boxmean(nc["temperature"][:, :, 1, 1], lat, lon, minimum(latindex), maximum(latindex), lonpt[1], lonpt[2])
+            salinity[i] = boxmean(nc["salinity"][:, :, 1, 1], lat, lon, minimum(latindex), maximum(latindex), lonpt[1], lonpt[2])
+        end
+        close(nc)
+    end
+    return time, temp, salinity 
 end
 
 
+"""
+    function winterannual(x::Vector{T}, time::Vector{DateTime})
+
+"""
+function monthlyannual(x::Vector{T}, time::Vector{DateTime}, months = 1:12) where T
+    months = collect(1:12)
+    data = Vector{T}(undef, length(unique(year.(time))))
+    for (i, y) in enumerate(unique(year.(time)))
+        ind = intersect(findall(x->x == y, year.(time)), findall(x->x ∈ months, month.(time)))
+        data[i] = NaNMath.mean(x[ind]) 
+    end
+    return data 
+end
+
+function orthographic_axes(latsouth,latnorth, lonwest, loneast, inc)
+    southx = lonwest:inc:loneast-inc
+    southy = latsouth * ones(length(southx))
+    easty = latsouth:inc:latnorth-inc
+    eastx = loneast * ones(length(easty))
+    northx = loneast:-inc:lonwest+inc
+    northy = latnorth * ones(length(northx))
+    westy = latnorth:-inc:latsouth
+    westx = lonwest * ones(length(westy))
+    return vcat(southx, eastx, northx, westx), vcat(southy, easty, northy, westy)
+end
+
+function geospatialsubset(mat, lat, lon, lat_target, lon_target)
+    lat_ind = [findmin(abs.(lat .- lt))[2] for lt in lat_target]
+    lon_ind = [findmin(abs.(lon .- lt))[2] for lt in lon_target]
+    if lon_ind[1] < lon_ind[2]
+        mat[begin:lon_ind[1], :] .= 0
+        mat[lon_ind[1]:lon_ind[2], begin:lat_ind[1]] .= 0
+        mat[lon_ind[1]:lon_ind[2], lat_ind[2]:end] .= 0 
+        mat[lon_ind[2]:end, :] .= 0
+        return mat 
+    else
+        mat[lon_ind[1]:end, begin:lat_ind[1]] .= 0
+        mat[lon_ind[1]:end, lat_ind[2]:end] .= 0
+        mat[begin:lon_ind[2],  begin:lat_ind[1]] .= 0
+        mat[begin:lon_ind[2],  lat_ind[2]:end] .= 0
+        mat[lon_ind[2]:lon_ind[1], :] .= 0
+        return mat 
+        
+    end
+end
+
+function loadCESMLME(d, start, stop)
+    f = readdir(d)
+    startyear = [parse(Int64, f_[end-15:end-12]) for f_ in f]
+    endyear = [parse(Int64, f_[end-8:end-5]) for f_ in f]
+    #find first file that the start is greater than the start index 
+    ind = findall(x->x>start, startyear)[1]-1
+
+    nc = NCDataset(joinpath(d, f[ind]))
+    time = year.(nc["time"][:])
+    tind = findall(x->start < x < stop, time)
+    
+    sst = mean(nc["SST"][:, :, 1, tind], dims = 3)[:, :, 1]
+
+    lon = nc["TLONG"][:, :]
+    lat = nc["TLAT"][:, :]
+    return sst, lon, lat 
+    
+end
+
+"""
+struct record
+
+    structure for dealing with EN4 CTD profiles 
+"""
+struct record
+    lat::Number
+    lon::Number
+    depth::Vector
+    t::DateTime
+    T::Vector
+    S::Vector
+    p::Vector 
+    CT::Vector
+    SA::Vector
+    ρ::Vector
+    MLDT::Number #temperature value at MLD-temperature 
+    MLDS::Number #salinity value at MLD-salinity
+end
+
+function loadEN4MLD()
+    jld = jldopen(datadir("EN4_march_mld.jld2"))
+    mldtemp = jld["mldtemp"]
+    mldsalinity = jld["mldsalinity"]
+    mlddepthtemp = jld["mlddepthtemp"]
+    mlddepthsalinity = jld["mlddepthsalinity"]
+    lon_rs = jld["lon_rs"]
+    lat_rs = jld["lat_rs"]
+    z = jld["z"]
+    close(jld)
+    jld = jldopen(datadir("en4_recs.jld2")); recs = jld["recs"]; recstime = jld["recstime"];close(jld)
+    return mldtemp, mldsalinity, lon_rs, lat_rs, recs, recstime
+end
+
+
+
+
 
 end
+
