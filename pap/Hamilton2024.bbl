@@ -2,40 +2,6 @@
 \begin{thebibliography}{}
 
 \bibitem [\protect \citeauthoryear {%
-Alonso-Garcia%
-\ \protect \BOthers {.}}{%
-Alonso-Garcia%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2017}}%
-}]{%
-Alonso-Garcia-Kleiven-2017:Freshening}
-\APACinsertmetastar {%
-Alonso-Garcia-Kleiven-2017:Freshening}%
-\begin{APACrefauthors}%
-Alonso-Garcia, M.%
-, Kleiven, H\BPBI K\BPBI F.%
-, McManus, J\BPBI F.%
-, Moffa-Sanchez, P.%
-, Broecker, W\BPBI S.%
-\BCBL {}\ \BBA {} Flower, B\BPBI P.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2017}{Apr}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Freshening of the Labrador Sea as a trigger for Little
-  Ice Age development} {Freshening of the labrador sea as a trigger for little
-  ice age development}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Climate of the Past}{13}{4}{317–331}.
-\newblock
-\begin{APACrefURL} \url{http://dx.doi.org/10.5194/cp-13-317-2017}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.5194/cp-13-317-2017} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Amrhein%
 , Gebbie%
 , Marchal%
@@ -345,40 +311,6 @@ Danabasoglu, G.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Esper%
-\ \protect \BOthers {.}}{%
-Esper%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2024}}%
-}]{%
-Esper-Smerdon-2024:IPCC}
-\APACinsertmetastar {%
-Esper-Smerdon-2024:IPCC}%
-\begin{APACrefauthors}%
-Esper, J.%
-, Smerdon, J\BPBI E.%
-, Anchukaitis, K\BPBI J.%
-, Allen, K.%
-, Cook, E\BPBI R.%
-, D’Arrigo, R.%
-\BDBL {}Büntgen, U.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2024}{{\APACmonth{04}}}{}.
-\newblock
-{\BBOQ}\APACrefatitle {The IPCC’s reductive Common Era temperature history}
-  {The ipcc’s reductive common era temperature history}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Communications Earth \& Environment}{5}{1}{}.
-\newblock
-\begin{APACrefURL} \url{http://dx.doi.org/10.1038/s43247-024-01371-1}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.1038/s43247-024-01371-1} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Gao%
 , Robock%
 \BCBL {}\ \BBA {} Ammann%
@@ -641,38 +573,6 @@ Lu, W.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Lund%
-, Lynch-Stieglitz%
-\BCBL {}\ \BBA {} Curry%
-}{%
-Lund%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2006}}%
-}]{%
-Lund2006}
-\APACinsertmetastar {%
-Lund2006}%
-\begin{APACrefauthors}%
-Lund, D\BPBI C.%
-, Lynch-Stieglitz, J.%
-\BCBL {}\ \BBA {} Curry, W\BPBI B.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2006}{{\APACmonth{11}}}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Gulf Stream density structure and transport during the
-  past millennium} {Gulf stream density structure and transport during the past
-  millennium}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Nature}{444}{7119}{601–604}.
-\newblock
-\begin{APACrefURL} \url{http://dx.doi.org/10.1038/nature05277} \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.1038/nature05277} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Marchitto%
 \ \protect \BOthers {.}}{%
 Marchitto%
@@ -771,44 +671,6 @@ McKay, N\BPBI P.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.5194/gchron-3-149-2021} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Miettinen%
-, Divine%
-, Koç%
-, Godtliebsen%
-\BCBL {}\ \BBA {} Hall%
-}{%
-Miettinen%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2012}}%
-}]{%
-Miettinen-Divine-2012:Multicentenn}
-\APACinsertmetastar {%
-Miettinen-Divine-2012:Multicentenn}%
-\begin{APACrefauthors}%
-Miettinen, A.%
-, Divine, D.%
-, Koç, N.%
-, Godtliebsen, F.%
-\BCBL {}\ \BBA {} Hall, I\BPBI R.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2012}{{\APACmonth{06}}}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Multicentennial Variability of the Sea Surface
-  Temperature Gradient across the Subpolar North Atlantic over the Last 2.8
-  kyr*,+} {Multicentennial variability of the sea surface temperature gradient
-  across the subpolar north atlantic over the last 2.8 kyr*,+}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Journal of Climate}{25}{12}{4205–4219}.
-\newblock
-\begin{APACrefURL} \url{http://dx.doi.org/10.1175/jcli-d-11-00581.1}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.1175/jcli-d-11-00581.1} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -1031,37 +893,71 @@ Moreno-Chamarro, E.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Ortega%
+Otto-Bliesner%
 \ \protect \BOthers {.}}{%
-Ortega%
+Otto-Bliesner%
 \ \protect \BOthers {.}}{%
-{\protect \APACyear {2015}}%
+{\protect \APACyear {2016}}%
 }]{%
-Ortega-Lehner-2015:North}
+ottobliesner16}
 \APACinsertmetastar {%
-Ortega-Lehner-2015:North}%
+ottobliesner16}%
 \begin{APACrefauthors}%
-Ortega, P.%
-, Lehner, F.%
-, Swingedouw, D.%
-, Masson-Delmotte, V.%
-, Raible, C\BPBI C.%
-, Casado, M.%
-\BCBL {}\ \BBA {} Yiou, P.%
+Otto-Bliesner, B\BPBI L.%
+, Brady, E\BPBI C.%
+, Fasullo, J.%
+, Jahn, A.%
+, Landrum, L.%
+, Stevenson, S.%
+\BDBL {}Strand, G.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2015}{{\APACmonth{07}}}{}.
+\APACrefYearMonthDay{2016}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {A model-tested North Atlantic Oscillation reconstruction
-  for the past millennium} {A model-tested north atlantic oscillation
-  reconstruction for the past millennium}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Climate Variability and Change since 850 {CE}: An
+  Ensemble Approach with the {Community Earth System Model}} {Climate
+  variability and change since 850 {CE}: An ensemble approach with the
+  {Community Earth System Model}}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{Nature}{523}{7558}{71–74}.
+\APACjournalVolNumPages{Bulletin of the American Meteorological
+  Society}{97}{5}{735 - 754}.
 \newblock
-\begin{APACrefURL} \url{http://dx.doi.org/10.1038/nature14518} \end{APACrefURL}
+\begin{APACrefURL}
+  \url{https://journals.ametsoc.org/view/journals/bams/97/5/bams-d-14-00233.1.xml}
+  \end{APACrefURL}
 \newblock
-\begin{APACrefDOI} \doi{10.1038/nature14518} \end{APACrefDOI}
+\begin{APACrefDOI} \doi{https://doi.org/10.1175/BAMS-D-14-00233.1}
+  \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{PAGES 2k Consortium}%
+}{%
+{PAGES 2k Consortium}%
+}{%
+{\protect \APACyear {2013}}%
+}]{%
+Consortium--2013:Continental}
+\APACinsertmetastar {%
+Consortium--2013:Continental}%
+\begin{APACrefauthors}%
+{PAGES 2k Consortium}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Continental-scale temperature variability during the
+  past two millennia} {Continental-scale temperature variability during the
+  past two millennia}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Nature Geoscience}{6}{5}{339--346}.
+\newblock
+\APACrefnote{Ahmed, Moinuddin and Anchukaitis, Kevin J and Asrat, Asfawossen
+  and Borgaonkar, Hemant P and Braida, Martina and Buckley, Brendan M and
+  B{\"u}ntgen, Ulf and Chase, Brian M and Christie, Duncan A and Cook, Edward R
+  and others}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -1200,38 +1096,6 @@ Steinhilber, F.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-{The Lab Sea Group}%
-}{%
-{The Lab Sea Group}%
-}{%
-{\protect \APACyear {1998}}%
-}]{%
-lsdce}
-\APACinsertmetastar {%
-lsdce}%
-\begin{APACrefauthors}%
-{The Lab Sea Group}.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{1998}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {{The Labrador Sea Deep Convection Experiment}} {{The
-  Labrador Sea Deep Convection Experiment}}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Bulletin of the American Meteorological
-  Society}{79}{10}{2033 - 2058}.
-\newblock
-\begin{APACrefURL}
-  \url{https://journals.ametsoc.org/view/journals/bams/79/10/1520-0477_1998_079_2033_tlsdce_2_0_co_2.xml}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI}
-  \doi{https://doi.org/10.1175/1520-0477(1998)079<2033:TLSDCE>2.0.CO;2}
-  \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Thornalley%
 \ \protect \BOthers {.}}{%
 Thornalley%
@@ -1264,40 +1128,6 @@ Thornalley, D\BPBI J\BPBI R.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1038/s41586-018-0007-4} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Trouet%
-\ \protect \BOthers {.}}{%
-Trouet%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2009}}%
-}]{%
-Trouet-Esper-2009:Persistent}
-\APACinsertmetastar {%
-Trouet-Esper-2009:Persistent}%
-\begin{APACrefauthors}%
-Trouet, V.%
-, Esper, J.%
-, Graham, N\BPBI E.%
-, Baker, A.%
-, Scourse, J\BPBI D.%
-\BCBL {}\ \BBA {} Frank, D\BPBI C.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2009}{{\APACmonth{04}}}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Persistent Positive North Atlantic Oscillation Mode
-  Dominated the Medieval Climate Anomaly} {Persistent positive north atlantic
-  oscillation mode dominated the medieval climate anomaly}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Science}{324}{5923}{78–80}.
-\newblock
-\begin{APACrefURL} \url{http://dx.doi.org/10.1126/science.1166349}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.1126/science.1166349} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

@@ -53,6 +53,7 @@ for (i, core) in enumerate(allcores)
     for (j, s) in enumerate(solutions)
         if j == plotfrom
             plot(s.y.x[:, At(core)], label = "y", color = "black", zorder = j)
+            plot(s.ỹ₀[:, At(core)], label = "ỹ₀", color = "green", zorder = 0)
         end
         if core in s.y.dims[2]
             plot(s.ỹ.x[:, At(core)], label = "ỹ: " * s.name, color = s.color, zorder = j)

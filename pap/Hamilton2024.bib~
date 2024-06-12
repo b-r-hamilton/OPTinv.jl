@@ -121,6 +121,40 @@ and Lenton, Timothy M.},
 	url = {https://doi.org/10.1038/s41467-022-32653-x}
 }
 
+@article{Bacon,
+	author = {Maarten Blaauw and J. Andr{\'e}s Christen},
+	title = {{Flexible paleoclimate age-depth models using an autoregressive gamma process}},
+	volume = {6},
+	journal = {Bayesian Analysis},
+	number = {3},
+	publisher = {International Society for Bayesian Analysis},
+	pages = {457 -- 474},
+	keywords = {Age-Depth models, AR Gamma process, Paleoecology, Radiocarbon},
+	year = {2011},
+	doi = {10.1214/11-BA618},
+	URL = {https://doi.org/10.1214/11-BA618}
+}
+
+@Article{Brady-Stevenson-2019:Connected,
+	timestamp = {2024-06-06 12:14:07 (EDT)},
+	author = {Brady, E. and Stevenson, S. and Bailey, D. and Liu,
+                  Z. and Noone, D. and Nusbaumer, J. and
+                  Otto‐Bliesner, B. L. and Tabor, C. and Tomas, R. and
+                  Wong, T. and Zhang, J. and Zhu, J.},
+	title = {The Connected Isotopic Water Cycle in the Community
+                  Earth System Model Version 1},
+	journal = {Journal of Advances in Modeling Earth Systems},
+	year = 2019,
+	volume = 11,
+	number = 8,
+	month = aug,
+	pages = {2547–2566},
+	issn = {1942-2466},
+	doi = {10.1029/2019ms001663},
+	url = {http://dx.doi.org/10.1029/2019ms001663},
+	publisher = {American Geophysical Union (AGU)}
+}
+
 @ARTICLE{Burke-Marchal-2011:Application,
 	author = {Burke, A. and Marchal, O. and Bradtmiller, L.I. and McManus, J.F.
 	and Fran{\c{c}}ois, R.},
@@ -333,6 +367,24 @@ and Lenton, Timothy M.},
 	publisher = {Springer Science and Business Media LLC}
 }
 
+@Article{McKay-Emile-Geay-2021:R,
+	timestamp = {2024-06-06 10:57:02 (EDT)},
+	author = {McKay, Nicholas P. and Emile-Geay, Julien and
+                  Khider, Deborah},
+	title = {geoChronR – an R package to model, analyze, and
+                  visualize age-uncertain data},
+	journal = {Geochronology},
+	year = 2021,
+	volume = 3,
+	number = 1,
+	month = mar,
+	pages = {149–169},
+	issn = {2628-3719},
+	doi = {10.5194/gchron-3-149-2021},
+	url = {http://dx.doi.org/10.5194/gchron-3-149-2021},
+	publisher = {Copernicus GmbH}
+}
+
 @Article{Miettinen-Divine-2012:Multicentenn,
 	timestamp = {2024-05-28 14:54:02 (EDT)},
 	author = {Miettinen, Arto and Divine, Dmitry and Koç, Nalan
@@ -462,6 +514,21 @@ and Lenton, Timothy M.},
 	publisher = {American Geophysical Union (AGU)}
 }
 
+@Article{Steinhilber-Beer-2009:Total,
+	timestamp = {2024-05-30 16:29:02 (EDT)},
+	author = {Steinhilber, F. and Beer, J. and Fröhlich, C.},
+	title = {Total solar irradiance during the Holocene},
+	journal = {Geophysical Research Letters},
+	year = 2009,
+	volume = 36,
+	number = 19,
+	month = oct,
+	issn = {1944-8007},
+	doi = {10.1029/2009gl040142},
+	url = {http://dx.doi.org/10.1029/2009gl040142},
+	publisher = {American Geophysical Union (AGU)}
+}
+
 @Article{Thornalley-Oppo-2018:Anomalously,
 	timestamp = {2024-05-16 16:00:22 (EDT)},
 	author = {Thornalley, David J. R. and Oppo, Delia W. and
@@ -562,6 +629,37 @@ and Lenton, Timothy M.},
 	publisher = {Springer Science and Business Media LLC}
 }
 
+@article{cesm2,
+	author = {Danabasoglu, G. and Lamarque, J.-F. and Bacmeister, J. and Bailey, D. A. and DuVivier, A. K.  and Edwards, J. and Emmons, L. K. and Fasullo, J. and Garcia, R. and Gettelman, A. and Hannay, C. and Holland, M. M. and Large, W. G. and Lauritzen, P. H. and Lawrence, D. M. and Lenaerts, J. T. M. and Lindsay, K. and Lipscomb, W. H. and Mills, M. J. and Neale, R. and Oleson, K. W. and Otto-Bliesner, B. and Phillips, A. S. and Sacks, W. and Tilmes, S. and van Kampenhout, L. and Vertenstein, M. and Bertini, A. and Dennis, J. and Deser, C. and Fischer, C. and Fox-Kemper, B. and Kay, J. E. and Kinnison, D. and Kushner, P. J. and Larson, V. E. and Long, M. C. and Mickelson, S. and Moore, J. K. and Nienhouse, E. and Polvani, L. and Rasch, P. J. and Strand, W. G.},
+	title = {The {Community Earth System Model Version 2 (CESM2)}},
+	journal = {Journal of Advances in Modeling Earth Systems},
+	volume = 12,
+	number = 2,
+	pages = {e2019MS001916},
+	keywords = {Community Earth System Model (CESM), global coupled Earth system modeling, preindustrial and historical simulations, coupled model development and evaluation},
+	doi = {https://doi.org/10.1029/2019MS001916},
+	url = {https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2019MS001916},
+	eprint = {https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2019MS001916},
+	note = {e2019MS001916 2019MS001916},
+	abstract = {Abstract An overview of the Community Earth System Model Version 2 (CESM2) is provided, including a discussion of the challenges encountered during its development and how they were addressed. In addition, an evaluation of a pair of CESM2 long preindustrial control and historical ensemble simulations is presented. These simulations were performed using the nominal 1° horizontal resolution configuration of the coupled model with both the “low-top” (40 km, with limited chemistry) and “high-top” (130 km, with comprehensive chemistry) versions of the atmospheric component. CESM2 contains many substantial science and infrastructure improvements and new capabilities since its previous major release, CESM1, resulting in improved historical simulations in comparison to CESM1 and available observations. These include major reductions in low-latitude precipitation and shortwave cloud forcing biases; better representation of the Madden-Julian Oscillation; better El Niño-Southern Oscillation-related teleconnections; and a global land carbon accumulation trend that agrees well with observationally based estimates. Most tropospheric and surface features of the low- and high-top simulations are very similar to each other, so these improvements are present in both configurations. CESM2 has an equilibrium climate sensitivity of 5.1–5.3 °C, larger than in CESM1, primarily due to a combination of relatively small changes to cloud microphysics and boundary layer parameters. In contrast, CESM2's transient climate response of 1.9–2.0 °C is comparable to that of CESM1. The model outputs from these and many other simulations are available to the research community, and they represent CESM2's contributions to the Coupled Model Intercomparison Project Phase 6.},
+	year = 2020
+}
+
+@article{gao2008,
+	author = {Gao, Chaochao and Robock, Alan and Ammann, Caspar},
+	title = {Volcanic forcing of climate over the past 1500 years: An improved ice core-based index for climate models},
+	journal = {Journal of Geophysical Research: Atmospheres},
+	volume = {113},
+	number = {D23},
+	pages = {},
+	keywords = {volcanoes, ice cores, climate change},
+	doi = {https://doi.org/10.1029/2008JD010239},
+	url = {https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2008JD010239},
+	eprint = {https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2008JD010239},
+	abstract = {Understanding natural causes of climate change is vital to evaluate the relative impacts of human pollution and land surface modification on climate. We have investigated one of the most important natural causes of climate change, volcanic eruptions, by using 54 ice core records from both the Arctic and Antarctica. Our recently collected suite of ice core data, more than double the number of cores ever used before, reduces errors inherent in reconstructions based on a single or small number of cores, which enables us to obtain much higher accuracy in both detection of events and quantification of the radiative effects. We extracted volcanic deposition signals from each ice core record by applying a high-pass loess filter to the time series and examining peaks that exceed twice the 31-year running median absolute deviation. We then studied the spatial pattern of volcanic sulfate deposition on Greenland and Antarctica and combined this knowledge with a new understanding of stratospheric transport of volcanic aerosols to produce a forcing data set as a function of month, latitude, and altitude for the past 1500 years. We estimated the uncertainties associated with the choice of volcanic signal extraction criteria, ice core sulfate deposition to stratospheric loading calibration factor, and the season for the eruptions without a recorded month. We forced an energy balance climate model with this new volcanic forcing data set, together with solar and anthropogenic forcing, to simulate the large-scale temperature response. The results agree well with instrumental observations for the past 150 years and with proxy records for the entire period. Through better characterization of the natural causes of climate change, this new data set will lead to improved prediction of anthropogenic impacts on climate. The new data set of stratospheric sulfate injections from volcanic eruptions for the past 1500 years, as a function of latitude, altitude, and month, is available for download in a format suitable for forcing general circulation models of the climate system.},
+	year = {2008}
+}
+
 @article{gebbie19,
 	author = {G. Gebbie  and P. Huybers },
 	title = {{The Little Ice Age and 20th-century deep Pacific cooling}},
@@ -574,6 +672,20 @@ and Lenton, Timothy M.},
 	URL = {https://www.science.org/doi/abs/10.1126/science.aar8413},
 	eprint = {https://www.science.org/doi/pdf/10.1126/science.aar8413},
 	abstract = {Earth's climate cooled considerably across the transition from the Medieval Warm Period to the Little Ice Age about 700 years ago. Theoretically, owing to how the ocean circulates, this cooling should be recorded in Pacific deep-ocean temperatures, where water that was on the surface then is found today. Gebbie and Huybers used an ocean circulation model and observations from both the end of the 19th century and the end of the 20th century to detect and quantify this trend. The ongoing deep Pacific is cooling, which revises Earth's overall heat budget since 1750 downward by 35\%. Science, this issue p. 70 Global cooling that happened 500 to 1000 years ago can be seen now in deep Pacific temperatures. Proxy records show that before the onset of modern anthropogenic warming, globally coherent cooling occurred from the Medieval Warm Period to the Little Ice Age. The long memory of the ocean suggests that these historical surface anomalies are associated with ongoing deep-ocean temperature adjustments. Combining an ocean model with modern and paleoceanographic data leads to a prediction that the deep Pacific is still adjusting to the cooling going into the Little Ice Age, whereas temperature trends in the surface ocean and deep Atlantic reflect modern warming. This prediction is corroborated by temperature changes identified between the HMS Challenger expedition of the 1870s and modern hydrography. The implied heat loss in the deep ocean since 1750 CE offsets one-fourth of the global heat gain in the upper ocean.}
+}
+
+@article{gebbie2010,
+	author = "Geoffrey Gebbie and Peter Huybers",
+	title = "{Total Matrix Intercomparison}: A Method for Determining the Geometry of Water-Mass Pathways",
+	journal = "Journal of Physical Oceanography",
+	year = "2010",
+	publisher = "American Meteorological Society",
+	address = "Boston MA, USA",
+	volume = "40",
+	number = "8",
+	doi = "https://doi.org/10.1175/2010JPO4272.1",
+	pages = "1710 - 1728",
+	url = "https://journals.ametsoc.org/view/journals/phoc/40/8/2010jpo4272.1.xml"
 }
 
 @article{https://doi.org/10.1002/2013PA002523,
@@ -604,6 +716,12 @@ and Lenton, Timothy M.},
 	doi = "https://doi.org/10.1175/1520-0477(1998)079<2033:TLSDCE>2.0.CO;2",
 	pages = "2033 - 2058",
 	url = "https://journals.ametsoc.org/view/journals/bams/79/10/1520-0477_1998_079_2033_tlsdce_2_0_co_2.xml"
+}
+
+@unpublished{lu,
+	author = {Lu, W. and Oppo, D. W. and Gebbie, G. and Thornalley, D. J. R},
+	title = {Surface climate signals transmitted rapidly to deep {North Atlantic} throughout last millenium},
+	year = {2023}
 }
 
 @article{marchitto,

@@ -123,6 +123,7 @@ end
 struct solution
     y::DimEstimate
     ỹ::DimEstimate
+    ỹ₀::DimArray #!!!!! this sucks 
     u₀::DimEstimate
     ũ::DimEstimate
     θ::Vector
@@ -164,8 +165,9 @@ function invert(x::inversion)
     
     TMIversion = "modern_180x90x33_GH11_GH12"
     γ = Grid(download_ncfile(TMIversion))
+    ỹ₀ = predict(u₀de.x) 
 
-    return solution(yde, ỹde, u₀de, ũ, θ, δ, γ,spatialmodes, x.name, x.color) 
+    return solution(yde, ỹde, ỹ₀, u₀de, ũ, θ, δ, γ,spatialmodes, x.name, x.color) 
 end
 
 
@@ -695,9 +697,10 @@ function loadcores(core_list::Vector{Symbol}, res = 10yr)
     for c in core_list
         ind = findall(x->x == c, directory_cores)
         if ! isempty(ind) 
-            push!(sort_indices, (ind[1]))
+            push!(sort_indices, ind[1])
         end
     end
+    
     #=
     @show ae_files[sort_indices]
     @show d18O_files[sort_indices]

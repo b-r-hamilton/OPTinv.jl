@@ -23,6 +23,7 @@
     "eq:cibs"
     "fig:offset"
     "eq:inverse"
+    "sec:spatmode"
     "fig:svdmodes"
     "fig:recon"
     "fig:mags"
