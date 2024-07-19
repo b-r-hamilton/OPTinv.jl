@@ -12,47 +12,51 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: Hamilton2024.bib
-Warning--I didn't find a database entry for "morenochamarro2017"
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
-You've used 34 entries,
+Warning--No journal in England-Eisenman-2021:Arctic
+ptr=1, stack=
+
+---the literal stack isn't empty for entry England-Eisenman-2021:Arctic
+while executing---line 5079 of file apacite.bst
+You've used 41 entries,
             6951 wiz_defined-function locations,
-            1676 strings with 24233 characters,
-and the built_in function-call counts, 84292 in all, are:
-= -- 9889
-> -- 766
-< -- 4505
-+ -- 5078
-- -- 70
-* -- 5995
-:= -- 15994
-add.period$ -- 127
-call.type$ -- 34
-change.case$ -- 610
+            1732 strings with 26400 characters,
+and the built_in function-call counts, 101551 in all, are:
+= -- 11937
+> -- 930
+< -- 5331
++ -- 6116
+- -- 86
+* -- 7156
+:= -- 19043
+add.period$ -- 151
+call.type$ -- 41
+change.case$ -- 743
 chr.to.int$ -- 0
-cite$ -- 68
-duplicate$ -- 2656
-empty$ -- 3021
-format.name$ -- 1500
-if$ -- 14975
+cite$ -- 83
+duplicate$ -- 3296
+empty$ -- 3676
+format.name$ -- 1838
+if$ -- 18098
 int.to.chr$ -- 0
-int.to.str$ -- 102
+int.to.str$ -- 123
 missing$ -- 0
-newline$ -- 1045
-num.names$ -- 272
-pop$ -- 1049
+newline$ -- 1252
+num.names$ -- 328
+pop$ -- 1284
 preamble$ -- 2
-purify$ -- 168
+purify$ -- 210
 quote$ -- 0
-skip$ -- 4730
+skip$ -- 5742
 stack$ -- 0
-substring$ -- 5462
-swap$ -- 1463
-text.length$ -- 101
+substring$ -- 6616
+swap$ -- 1779
+text.length$ -- 130
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 2720
-warning$ -- 0
-while$ -- 525
+type$ -- 3280
+warning$ -- 1
+while$ -- 650
 width$ -- 0
-write$ -- 1364
-(There was 1 warning)
+write$ -- 1628
+(There was 1 error message)

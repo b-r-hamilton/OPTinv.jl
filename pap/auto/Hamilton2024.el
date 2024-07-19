@@ -19,18 +19,35 @@
     "wasysym"
     "soul")
    (LaTeX-add-labels
+    "sec:ludata"
+    "sec:overview"
+    "eq:inverse"
+    "eq:costfunc"
+    "eq:twls"
+    "eq:twlsCuu"
+    "sec:agemodel"
     "eq:covariance"
+    "sec:tanddelta"
     "eq:cibs"
     "fig:offset"
-    "eq:inverse"
     "sec:spatmode"
+    "eq:swinv"
     "fig:svdmodes"
-    "fig:recon"
+    "sec:Cuu"
+    "eq:Cuustats"
+    "eq:offdiags"
+    "sec:E"
+    "eq:diffeq"
+    "eq:impresp"
+    "eq:solcov"
+    "eq:surfrecon"
     "fig:mags"
+    "fig:recon"
     "fig:labcomp"
     "fig:sst"
     "fig:meants"
-    "fig:EGWGSI")
+    "fig:EGWGSI"
+    "sec:oc2k")
    (LaTeX-add-bibliographies))
  :latex)
 

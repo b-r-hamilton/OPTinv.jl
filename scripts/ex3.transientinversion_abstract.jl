@@ -2,7 +2,7 @@
 import Pkg
 Pkg.activate("../")
 
-using OPTinv, Unitful, DimensionalData, BLUEs, Statistics, UnitfulLinearAlgebra, LinearAlgebra, PyPlot, Revise, DrWatson, PyCall, TMI, CSV, DataFrames, JLD2, NaNMath, Dates, RollingFunctions, PaleoData, DateFormats, Measurements
+using OPTinv, Unitful, DimensionalData, BLUEs, Statistics, UnitfulLinearAlgebra, LinearAlgebra, PyPlot, Revise, DrWatson, PyCall, TMI, CSV, DataFrames, JLD2, NaNMath, Dates, RollingFunctions, PaleoData, DateFormats, Measurements, GH19
 import Measurements.value as value
 import OPTinv.Est
 
@@ -53,7 +53,7 @@ for (i, core) in enumerate(allcores)
     for (j, s) in enumerate(solutions)
         if j == plotfrom
             plot(s.y.x[:, At(core)], label = "y", color = "black", zorder = j)
-            plot(s.ỹ₀[:, At(core)], label = "ỹ₀", color = "green", zorder = 0)
+            #plot(s.ỹ₀[:, At(core)], label = "ỹ₀", color = "green", zorder = 0)
         end
         if core in s.y.dims[2]
             plot(s.ỹ.x[:, At(core)], label = "ỹ: " * s.name, color = s.color, zorder = j)
@@ -119,11 +119,20 @@ figure(figsize = (8,8))
         
         xlim(475, 2000)
         ylim(-4, 6)
-    
+
+        ax = gca()
+        twin2 = ax.twinx()
+        twin2.spines.right.set_position(("axes", 1.15))
+        steinhilber = loadSteinhilber2009()
+        st_time = 1950 .- steinhilber[!, "YearBP"]
+        st = Measurements.measurement.(steinhilber[!, "dTSI"], steinhilber[!, "dTSI_sigma"])
+        twin2.plot(st_time, steinhilber[!, "dTSI"], color = "grey")
+        twin2.fill_between(x = st_time, y1 = steinhilber[!, "dTSI"] .-  steinhilber[!, "dTSI_sigma"], y2 = steinhilber[!, "dTSI"] .+  steinhilber[!, "dTSI_sigma"], color = "grey", alpha = 0.2)
+        twin2.set_ylabel("Total Solar Insolation [Wm⁻²]", fontsize = 15, color = "grey")
+        twin2.set_yticks(labels = -1.5:0.5:1.5, ticks = -1.5:0.5:1.5, fontsize = 12, color = "grey")
     end
     tight_layout()
     savefig(plotsdir("modemags"*string(s)* suffix* ".png"))
-
 end
 
 # ================= FIGURE 3: REGION MEAN ====================== #
@@ -141,24 +150,61 @@ for sol in solutions
     pre1900inds = intersect(inds, findall(x->1000yr<x<1900yr, Array(sol.ũ.dims[1])))
     @show max = findmax(θbox[pre1900inds])
     @show sol.ũ.dims[1][pre1900inds][max[2]]
+    println("magnitude of industrial warming") 
+    @show θbox[end-1] - min[1]
 
     
     @show (max[1] - min[1]) / (sol.ũ.dims[1][min[2]] - sol.ũ.dims[1][pre1900inds][max[2]]) *1000
 
-    println("LLS")
+    println("LLS, LIA cooling")
     maxind = findall(x->x == sol.ũ.dims[1][pre1900inds][max[2]], Array(sol.ũ.dims[1]))[1]
     x = ustrip.(sol.ũ.dims[1][maxind:min[2]])
-    
     C = Diagonal(Measurements.uncertainty.(θbox[maxind:min[2]]).^2)
     y = ustrip.(value.(θbox[maxind:min[2]]))
     lls, C = linearleastsquares(x, y; C)
     @show lls[1] * 1000 
     @show sqrt.(diag(C))[1] .* 1000
+
+    
+    println("LLS, industrial warming")
+    #maxind = findall(x->x == sol.ũ.dims[1][pre1900inds][max[2]], Array(sol.ũ.dims[1]))[1]
+    x = ustrip.(sol.ũ.dims[1][min[2]:end-1])
+    C = Diagonal(Measurements.uncertainty.(θbox[min[2]:end-1]).^2)
+    y = ustrip.(value.(θbox[min[2]:end-1]))
+    lls, C = linearleastsquares(x, y; C)
+    @show lls[1] * 1000 
+    @show sqrt.(diag(C))[1] .* 1000
+
     plot(DimArray(value.(θbox[inds]), sol.ũ.dims[1][inds]), color = sol.color, label = sol.name, linewidth = 3, zorder = 10000)
     println()
 end
 
+#GH19
+exp = explist()[end]
+filename = download_exp(exp, true)
+using NCDatasets
+tmi = NCDataset(TMI.download_ncfile(TMIversion()))
+lat = tmi["lat"][:]
+lon = tmi["lon"][:]
+natl = tmi["d_NATL"][:, :]
+natl[natl .== 0] .= NaN
+ant =  tmi["d_ANT"][:, :]
+ant[ant .== 0] .= NaN
+gin = tmi["d_GIN"][:,:]
+gin[gin .== 0] .= NaN               
+nc = NCDataset(filename)
+θGH19 = nc["theta"][:, 1, :, :]
+tGH19 = nc["year"][:]
+θGH19NATL = [NaNMath.mean(θGH19[i,:, :] .* natl') for i in 1:size(θGH19)[1]]
+θGH19ANT = [NaNMath.mean(θGH19[i,:, :] .* ant') for i in 1:size(θGH19)[1]]
+θGH19GIN = [NaNMath.mean(θGH19[i,:, :] .* gin') for i in 1:size(θGH19)[1]]
+ind1970 = findall(x->x==1970, tGH19)[1]
+ind1880 = findall(x->x==1880, tGH19)[1]
+ind1780 = findall(x->x==1780, tGH19)[1]    
+θGH19NATL[ind1970]-θGH19NATL[ind1780]
+θGH19NATL[ind1970]-θGH19NATL[ind1780]
 
+#figure();plot(tGH19, θGH19NATL, color = "pink", label = "NATL");plot(tGH19, θGH19ANT, color = "aqua", label = "ANT");plot(tGH19, θGH19GIN, color = "green", label = "GIN");legend()
 #title("Mean Temperature Anomaly from 1850-1970yr: 50°W-20°E, 50°N-90°N") 
 lmrdataset = loadLMR("sst")
 lmrtime = lmrdataset["time"][:]; lmrlon = lmrdataset["lon"][:]; lmrlat = lmrdataset["lat"][:]
@@ -185,7 +231,7 @@ plot(DimArray(hadisst_bm .- mean(hadisst_bm), Ti(hadtimeroll)), color = "black",
 
 ylabel("Temperature Anomaly [K]", fontsize = 15)
 xlabel("Time [yr CE]", fontsize = 15)
-
+#=
 oc2k_binned, oc2k_binnedv, oc2k_ages = loadOcean2kBinned()
 oc2k, oc2kdata = loadOcean2k()
 
@@ -195,40 +241,60 @@ inregion = findall(x->x>50, oc2k[!, "lat"])
 rel_records = intersect(vcat(atl_indices, arc_indices), inregion)
 
 oc2kglobal = [NaNMath.mean(oc2k_binned[i, :]) for i in 1:size(oc2k_binned)[1]]
+oc2kglobalstd = [NaNMath.std(oc2k_binned[i, :]) for i in 1:size(oc2k_binned)[1]]
 oc2kregion = [NaNMath.mean(oc2k_binned[i, rel_records]) for i in 1:size(oc2k_binned)[1]]
+
+
+
+
+figure();scatter(reverse(collect(bincenter)), Measurements.measurement.(oc2kglobal, oc2kglobalstd));ylim(-3,3)
+
+oc2kglobal
+lls, Cnew = linearleastsquares(reverse(collect(bincenter)), oc2kglobal, C = Diagonal(oc2kglobalstd)) #nice!
+@show Measurements.measurement(lls[2],sqrt(Cnew[2,2]))
+
 
 
 binleft = 0:200:2000
 bincenter = 100:200:2000
 binright = 200:200:2000
 size(oc2k)
-oc2kanom = Matrix{Float64}(undef, size(oc2k)[1], length(bincenter))
+oc2kanom = Matrix{Any}(undef, size(oc2k)[1], length(bincenter))
 oc2kanom .= NaN
-for i in 1:57
-    sstname = names(oc2kdata)[i*2-1]
-    if occursin("Atlantic", sstname) 
-        meta_index = findall(x->occursin(sstname[begin:begin+11], x), oc2k.name)[1]
-        lat = oc2k[meta_index, "lat"]
-            t = oc2kdata[!, sstname]
-            t[t .== "NaN"] .= NaN
-            y = oc2kdata[!, names(oc2kdata)[i*2]]
-            y[y .== "NaN"] .= NaN
-            for (j, (bl, br)) in enumerate(zip(binleft, binright))
-                ind = findall(x->bl<x<br, t)
-                if length(ind) > 0
-                    oc2kanom[i, j] = mean(y[ind])
-                else
-                    oc2kanom[i, j] = NaN
-                end
-            end
-    end
-    
-end
+#oc2kanomstd = copy(oc2kanom)
 
-oc2kanom .-= oc2kanom[:, end]
+for i in atl_indices
+    sstname = names(oc2kdata)[i]
+    meta_index = findall(x->occursin(sstname[begin:begin+11], x), oc2k.name)[1]
+     
+    t = oc2kdata[!, sstname]
+    t[t .== "NaN"] .= NaN
+    y = oc2kdata[!, names(oc2kdata)[i*2]]
+    y[y .== "NaN"] .= NaN
+    for (j, (bl, br)) in enumerate(zip(binleft, binright))
+        ind = findall(x->bl<x<br, t)
+        if length(ind) > 0
+            oc2kanom[i, j] = Measurements.measurement(mean(y[ind]), std(y[ind]))
+            
+        else
+            oc2kanom[i, j] = NaN
+        end
+    end
+end
+oc2kanom[(!).(isnan.(oc2kanom[:, 1]))]
+[NaNMath.mean(oc2kanom[:, i]) for i in 1:10]
+
+#oc2kanom .-= oc2kanom[:, end]
+
+#figure()
+
 #[plot(bincenter, oc2kanom[i, :], color = "gray") for i in 1:57]
 #plot(bincenter, [NaNMath.mean(oc2kanom[:, i]) for i in 1:10], color = "black", label = "Ocean2k: Atlantic Mean", ".-")
-slope_est = (0.38, 0.54)
+
+=#
+
+
+slope_est = (0.47, 0.36)
 t = Array(ustrip.(oldc.ũ.dims[1]))
 sol_anom_ind = findall(x->1850<x<1970, t)
 t_oc2k = 1500yr:1yr:1700yr
@@ -236,9 +302,9 @@ y1 = [(1970 - t_) * slope_est[1] * 0.001 for t_ in ustrip.(t_oc2k)]
 y2 = [(1970 - t_) * slope_est[2] * 0.001 for t_ in ustrip.(t_oc2k)]
 #fill_between(x = t, y1 = y1 .- mean(y1[sol_anom_ind]), y2 = y2 .- mean(y2[sol_anom_ind]), color = "black", alpha = 0.5, label = "Global Ocean2k SST Trend")
 plot(ustrip.(t_oc2k), y1 .+ 0.05, color = "black", label = "Global Oc2k SST Trend")
-text(x = 1709, y = 0.135, s = "0.38K/kyr")
+text(x = 1709, y = 0.135, s = "0.47K/kyr:global")
 plot(ustrip.(t_oc2k), y2 .+ 0.05, color = "black")
-text(x = 1709, y = 0.18, s = "0.54K/kyr")
+text(x = 1709, y = 0.18, s = "0.36K/kyr:N.Atl.")
 legend()
 
 Tm1 = ustrip.(minimum([sol.y.dims[1][1] for sol in solutions]))
@@ -258,7 +324,7 @@ lev = -1.5:0.2:1.5
 proj = ccrs.Orthographic(central_longitude=-80+55,central_latitude = 35)
 noproj = ccrs.PlateCarree(central_longitude = 0)
 fig, axs = subplots(nrows = length(solutions) + 1, ncols = length(inds),
-                    subplot_kw = Dict("projection"=>proj), figsize = (15, 8))
+                    subplot_kw = Dict("projection"=>proj), figsize = (15, 10))
 #(80,35,-80,30,5)
 lon_box = [-80, 30]
 lat_box = [35, 80]
@@ -297,8 +363,11 @@ for (i, sol) in enumerate([solutions..., lmrsst])
             polygon1s = mpath.Path(path_in_data_coords.vertices)
             ax.set_boundary(polygon1s)
             ax.add_feature(cfeature.NaturalEarthFeature("physical", "land", "110m", edgecolor="k", facecolor="gray"))
+
+            if i == 1
+                ax.set_title(string(convert(Int64, ustrip(Tu[start_index]))) * "-" *string(convert(Int64, ustrip(Tu[stop_index]))))
+            end
             
-            ax.set_title(string(convert(Int64, ustrip(Tu[start_index]))) * "-" *string(convert(Int64, ustrip(Tu[stop_index]))))
             
             #add a cyclic point
             lon = sol isa solution ? ustrip.(sol.γ.lon) : lmrlon 
@@ -320,6 +389,102 @@ for (i, sol) in enumerate([solutions..., lmrsst])
     tight_layout()
     savefig(plotsdir("surfacesol" * suffix * ".png"))
 end
+# ==================== Figure 4alt: MAP of MCA-LIA  ==================== #
+lev = -1.5:0.2:1.5
+
+proj = ccrs.Orthographic(central_longitude=-80+55,central_latitude = 35)
+noproj = ccrs.PlateCarree(central_longitude = 0)
+fig, axs = subplots(nrows = 1, ncols = 1,
+                    subplot_kw = Dict("projection"=>proj), figsize = (15, 8))
+#(80,35,-80,30,5)
+lon_box = [-80, 30]
+lat_box = [35, 80]
+
+θ_ = [ustrip.(value.(x)) for x in oldc.θ]
+mcaind = findall(x->950yr < x < 1250yr, Array(oldc.ũ.dims[1]))
+liaind = findall(x->1450yr < x < 1850yr, Array(oldc.ũ.dims[1]))
+
+plotme = γreshape(mean(θ_[mcaind]) - mean(θ_[liaind]), oldc.γ)' #100yr at 10yr res
+
+ax =  axs
+ax_hdl = ax.plot(orthographic_axes(lat_box..., lon_box..., 5)...,
+                 color="black", linewidth=0.5,
+                 transform=noproj)
+tx_path = ax_hdl[1]._get_transformed_path()
+path_in_data_coords, _ = tx_path.get_transformed_path_and_affine()
+polygon1s = mpath.Path(path_in_data_coords.vertices)
+ax.set_boundary(polygon1s)
+ax.add_feature(cfeature.NaturalEarthFeature("physical", "land", "110m", edgecolor="k", facecolor="gray"))
+            
+#ax.set_title(string(convert(Int64, ustrip(Tu[start_index]))) * "-" *string(convert(Int64, ustrip(Tu[stop_index]))))
+            
+#add a cyclic point
+lat_box_= [lat_box[1] - 20, lat_box[2] + 20]
+lon_box_ = [360-80 - 20, 30 + 20]
+
+plotme = geospatialsubset(plotme', oldc.γ.lat, oldc.γ.lon, lat_box_, lon_box_)
+plotme = plotme'
+cf = ax.contourf(oldc.γ.lon, oldc.γ.lat, plotme, cmap = cm.balance, levels = lev, transform = noproj)
+c = ax.contour(oldc.γ.lon, oldc.γ.lat, plotme, colors = "black", levels = lev, transform = noproj)
+ax.clabel(c)
+gl = ax.gridlines(draw_labels = true)
+gl.top_labels = false
+gl.right_labels = false
+gl.bottom_labels = false
+
+
+tight_layout()
+savefig(plotsdir("mcalia.png"))
+
+# ==================== Figure 4alt2: MAP of PD-LIA  ==================== #
+lev = -1.5:0.2:1.5
+
+proj = ccrs.Orthographic(central_longitude=-80+55,central_latitude = 35)
+noproj = ccrs.PlateCarree(central_longitude = 0)
+fig, axs = subplots(nrows = 1, ncols = 2,
+                    subplot_kw = Dict("projection"=>proj), figsize = (15, 8))
+#(80,35,-80,30,5)
+lon_box = [-80, 30]
+lat_box = [35, 80]
+for (i, sol) in enumerate([oldc, allc])
+    θ_ = [ustrip.(value.(x)) for x in sol.θ]
+    mcaind = findall(x->1900yr < x < 1950yr, Array(sol.ũ.dims[1]))
+    liaind = findall(x->1500yr < x < 1850yr, Array(sol.ũ.dims[1]))
+
+    plotme = γreshape(mean(θ_[mcaind]) - mean(θ_[liaind]), sol.γ)' #100yr at 10yr res
+
+    ax =  axs[i]
+    ax_hdl = ax.plot(orthographic_axes(lat_box..., lon_box..., 5)...,
+                     color="black", linewidth=0.5,
+                     transform=noproj)
+    tx_path = ax_hdl[1]._get_transformed_path()
+    path_in_data_coords, _ = tx_path.get_transformed_path_and_affine()
+    polygon1s = mpath.Path(path_in_data_coords.vertices)
+    ax.set_boundary(polygon1s)
+    ax.add_feature(cfeature.NaturalEarthFeature("physical", "land", "110m", edgecolor="k", facecolor="gray"))
+    
+    #ax.set_title(string(convert(Int64, ustrip(Tu[start_index]))) * "-" *string(convert(Int64, ustrip(Tu[stop_index]))))
+    
+    #add a cyclic point
+    lat_box_= [lat_box[1] - 20, lat_box[2] + 20]
+    lon_box_ = [360-80 - 20, 30 + 20]
+
+plotme = geospatialsubset(plotme', sol.γ.lat, sol.γ.lon, lat_box_, lon_box_)
+plotme = plotme'
+cf = ax.contourf(sol.γ.lon, sol.γ.lat, plotme, cmap = cm.balance, levels = lev, transform = noproj)
+c = ax.contour(sol.γ.lon, sol.γ.lat, plotme, colors = "black", levels = lev, transform = noproj)
+ax.clabel(c)
+gl = ax.gridlines(draw_labels = true)
+gl.top_labels = false
+gl.right_labels = false
+gl.bottom_labels = false
+
+
+    tight_layout()
+end
+
+savefig(plotsdir("pdlia.png"))
+
 # ===================== FIGURE 5alt: Labrador T and S  ================ #
 
 df = CSV.read(datadir("TLS1998Fig7Digitized.csv"), DataFrame)
@@ -503,18 +668,21 @@ for (i, sol) in enumerate(solutions)
     for (k, ls, lw, col) in zip(keys(inds), ["solid", "solid", "dotted", "dashed"], [4,4,3,3], ["purple", "darkgreen", "darkgreen", "darkgreen"])
         Tu = sol.ũ.dims[1]
         temp = DimArray([mean(sol.θ[i][inds[k]]) for i in 1:length(sol.θ)], Ti(Array(Tu)))
-        anom = mean(ustrip.(value.(temp[DimensionalData.Between(1850yr, 1970yr)])))
-        y1 = ustrip.(value.(temp[DimensionalData.Between(T[1], T[end])])) .- anom 
-        plot(ustrip.(T), y1, color = col, label = k, linestyle = ls, linewidth = lw)
+        anom = mean(ustrip.(temp[DimensionalData.Between(1850yr, 1970yr)]))
+        y1 = ustrip.(temp[DimensionalData.Between(T[1], T[end])]) .- anom 
+        plot(ustrip.(T), value.(y1), color = col, label = k, linestyle = ls, linewidth = lw)
+        
         @show col
-        @show min = findmin(temp[DimensionalData.Between(T[1], T[end])])
-        @show y1.dims[1][min[2]]
-        @show max = findmax(temp[DimensionalData.Between(T[1], T[end])])
-        @show y1.dims[1][max[2]]
+        @show min = findmin(y1)
+        @show T[min[2]]
+        @show max = findmax(y1)
+        @show T[max[2]]
         @show max[1] - min[1] 
-        @show (max[1] - min[1]) / (y1.dims[1][min[2]] - y1.dims[1][max[2]]) * 1000
+        @show (max[1] - min[1]) / (T[min[2]] - T[max[2]]) * 1000
         println()
     end
+    plot(tGH19, θGH19NATL, color = "pink")
+plot(tGH19, θGH19ANT, color = "aqua")
     #title(sol.name)
     xlim(Tm1, Tm2)
     legend(loc = "upper right")
@@ -555,7 +723,18 @@ for (i, sol) in enumerate(solutions)
 end
 tight_layout()
 
+
+
 savefig(plotsdir("EGWG" * suffix *".png"))
+## ============ X : EFFECTIVE δ¹⁸Oc ============= ##
+figure()
+for (tit, sol) in zip(["old", "all"], solutions)
+    effd18oc = sol.θ .* -0.224permil/K .+ sol.δ
+    effd18ocmean = [mean(effd18oc[i][regionmeanindices]) for i in 1:length(effd18oc)]
+    plot(DimArray(effd18ocmean, Ti(Array(sol.ũ.dims[1]))), label = tit)
+    legend()
+end
+title("Effective Mean Surface δ¹⁸O_calcite")
 
 #=
 ## ============ FIGURE 7: COMPARISON WITH EN4 MLD T and S ==== #

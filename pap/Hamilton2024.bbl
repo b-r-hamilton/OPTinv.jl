@@ -2,35 +2,38 @@
 \begin{thebibliography}{}
 
 \bibitem [\protect \citeauthoryear {%
-Amrhein%
-, Gebbie%
-, Marchal%
-\BCBL {}\ \BBA {} Wunsch%
-}{%
-Amrhein%
+Anchukaitis%
 \ \protect \BOthers {.}}{%
-{\protect \APACyear {2015}}%
+Anchukaitis%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
 }]{%
-Amrhein-Gebbie-2015:Inferring}
+Anchukaitis-Cook-2019:Coupled}
 \APACinsertmetastar {%
-Amrhein-Gebbie-2015:Inferring}%
+Anchukaitis-Cook-2019:Coupled}%
 \begin{APACrefauthors}%
-Amrhein, D\BPBI E.%
-, Gebbie, G.%
-, Marchal, O.%
-\BCBL {}\ \BBA {} Wunsch, C.%
+Anchukaitis, K\BPBI J.%
+, Cook, E\BPBI R.%
+, Cook, B\BPBI I.%
+, Pearl, J.%
+, D’Arrigo, R.%
+\BCBL {}\ \BBA {} Wilson, R.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2015}{}{}.
+\APACrefYearMonthDay{2019}{{\APACmonth{11}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Inferring surface water equilibrium calcite
-  $\delta^{18}${O} during the last deglacial period from benthic foraminiferal
-  records: Implications for ocean circulation} {Inferring surface water
-  equilibrium calcite $\delta^{18}${O} during the last deglacial period from
-  benthic foraminiferal records: Implications for ocean circulation}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Coupled Modes of North Atlantic Ocean‐Atmosphere
+  Variability and the Onset of the Little Ice Age} {Coupled modes of north
+  atlantic ocean‐atmosphere variability and the onset of the little ice
+  age}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{Paleoceanography}{30}{11}{1470--1489}.
+\APACjournalVolNumPages{Geophysical Research Letters}{46}{21}{12417–12426}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1029/2019gl084350}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1029/2019gl084350} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -133,40 +136,6 @@ Brady, E.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1029/2019ms001663} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Burke%
-, Marchal%
-, Bradtmiller%
-, McManus%
-\BCBL {}\ \BBA {} Fran{\c{c}}ois%
-}{%
-Burke%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2011}}%
-}]{%
-Burke-Marchal-2011:Application}
-\APACinsertmetastar {%
-Burke-Marchal-2011:Application}%
-\begin{APACrefauthors}%
-Burke, A.%
-, Marchal, O.%
-, Bradtmiller, L.%
-, McManus, J.%
-\BCBL {}\ \BBA {} Fran{\c{c}}ois, R.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2011}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Application of an inverse method to interpret
-  {231Pa/230Th} observations from marine sediments} {Application of an inverse
-  method to interpret {231Pa/230Th} observations from marine sediments}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Paleoceanography}{26}{PA1212}{}.
-\newblock
-\begin{APACrefDOI} \doi{10.1029/2010PA002022} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -311,6 +280,38 @@ Danabasoglu, G.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+England%
+, Eisenman%
+, Lutsko%
+\BCBL {}\ \BBA {} Wagner%
+}{%
+England%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2021}}%
+}]{%
+England-Eisenman-2021:Arctic}
+\APACinsertmetastar {%
+England-Eisenman-2021:Arctic}%
+\begin{APACrefauthors}%
+England, M.%
+, Eisenman, I.%
+, Lutsko, N.%
+\BCBL {}\ \BBA {} Wagner, T\BPBI J\BPBI W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2021}{{\APACmonth{05}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The recent emergence of Arctic Amplification} {The
+  recent emergence of arctic amplification}.{\BBCQ}
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1002/essoar.10507036.1}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1002/essoar.10507036.1} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Gao%
 , Robock%
 \BCBL {}\ \BBA {} Ammann%
@@ -353,9 +354,9 @@ Gebbie%
 }{%
 {\protect \APACyear {2012}}%
 }]{%
-Gebbie2012a}
+Gebbie-2012:Tracer}
 \APACinsertmetastar {%
-Gebbie2012a}%
+Gebbie-2012:Tracer}%
 \begin{APACrefauthors}%
 Gebbie, G.%
 \end{APACrefauthors}%
@@ -363,14 +364,13 @@ Gebbie, G.%
 \newblock
 \APACrefYearMonthDay{2012}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {{Tracer transport timescales and the observed
-  Atlantic-Pacific lag in the timing of the Last Termination}} {{Tracer
-  transport timescales and the observed Atlantic-Pacific lag in the timing of
-  the Last Termination}}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Tracer transport timescales and the observed
+  {A}tlantic-{P}acific lag in the timing of the last {T}ermination} {Tracer
+  transport timescales and the observed {A}tlantic-{P}acific lag in the timing
+  of the last {T}ermination}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{Paleoceanography}{27}{3}{1--14}.
-\newblock
-\begin{APACrefDOI} \doi{10.1029/2011PA002273} \end{APACrefDOI}
+\APACjournalVolNumPages{Paleoceanography}{27}{}{PA3225,
+  doi:10.1029/2011PA002273}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -502,6 +502,65 @@ Hakim, G\BPBI J.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+{Lab Sea Group}%
+}{%
+{Lab Sea Group}%
+}{%
+{\protect \APACyear {1998}}%
+}]{%
+LSG--1998:Labrador}
+\APACinsertmetastar {%
+LSG--1998:Labrador}%
+\begin{APACrefauthors}%
+{Lab Sea Group}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1998}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The {L}abrador {S}ea {D}eep {C}onvection {E}xperiment}
+  {The {L}abrador {S}ea {D}eep {C}onvection {E}xperiment}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Bull. of the Amer. Met. Soc.}{79}{}{2033-2058}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Lapointe%
+\ \protect \BOthers {.}}{%
+Lapointe%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2020}}%
+}]{%
+doi:10.1073/pnas.2014166117}
+\APACinsertmetastar {%
+doi:10.1073/pnas.2014166117}%
+\begin{APACrefauthors}%
+Lapointe, F.%
+, Bradley, R\BPBI S.%
+, Francus, P.%
+, Balascio, N\BPBI L.%
+, Abbott, M\BPBI B.%
+, Stoner, J\BPBI S.%
+\BDBL {}Labarre, T.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Annually resolved Atlantic sea surface temperature
+  variability over the past 2,900 y} {Annually resolved atlantic sea surface
+  temperature variability over the past 2,900 y}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Proceedings of the National Academy of
+  Sciences}{117}{44}{27171-27178}.
+\newblock
+\begin{APACrefURL} \url{https://www.pnas.org/doi/abs/10.1073/pnas.2014166117}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1073/pnas.2014166117} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Lehner%
 , Born%
 , Raible%
@@ -570,6 +629,38 @@ Lu, W.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1126/science.adf1646} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Mann%
+\ \protect \BOthers {.}}{%
+Mann%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2009}}%
+}]{%
+mann09}
+\APACinsertmetastar {%
+mann09}%
+\begin{APACrefauthors}%
+Mann, M\BPBI E.%
+, Zhang, Z.%
+, Rutherford, S.%
+, Bradley, R.%
+, Hughes, M\BPBI K.%
+, Shindell, D.%
+\BDBL {}Ni, F.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Global signatures and dynamical origins of the {Little
+  Ice Age and Medieval Climate Anomaly}} {Global signatures and dynamical
+  origins of the {Little Ice Age and Medieval Climate Anomaly}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Science}{326}{}{1256--1260}.
+\newblock
+\begin{APACrefDOI} \doi{10.1126/science.1177303} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -671,6 +762,40 @@ McKay, N\BPBI P.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.5194/gchron-3-149-2021} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Miller%
+\ \protect \BOthers {.}}{%
+Miller%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2010}}%
+}]{%
+Miller-Alley-2010:Arctic}
+\APACinsertmetastar {%
+Miller-Alley-2010:Arctic}%
+\begin{APACrefauthors}%
+Miller, G\BPBI H.%
+, Alley, R\BPBI B.%
+, Brigham-Grette, J.%
+, Fitzpatrick, J\BPBI J.%
+, Polyak, L.%
+, Serreze, M\BPBI C.%
+\BCBL {}\ \BBA {} White, J\BPBI W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2010}{{\APACmonth{07}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Arctic amplification: can the past constrain the
+  future?} {Arctic amplification: can the past constrain the future?}{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Quaternary Science Reviews}{29}{15–16}{1779–1790}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1016/j.quascirev.2010.02.008}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.quascirev.2010.02.008} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -789,8 +914,7 @@ Moffa-Sánchez%
 \BCBL {}\ \BBA {} Barker%
 }{%
 Moffa-Sánchez%
-, Born%
-\BCBL {}\ \protect \BOthers {.}}{%
+\ \protect \BOthers {.}}{%
 {\protect \APACyear {2014}}%
 }]{%
 Moffa-Sanchez-Born-2014:Solar}
@@ -816,45 +940,6 @@ Moffa-Sánchez, P.%
 \begin{APACrefURL} \url{http://dx.doi.org/10.1038/ngeo2094} \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1038/ngeo2094} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Moffa-Sánchez%
-, Hall%
-, Barker%
-, Thornalley%
-\BCBL {}\ \BBA {} Yashayaev%
-}{%
-Moffa-Sánchez%
-, Hall%
-\BCBL {}\ \protect \BOthers {.}}{%
-{\protect \APACyear {2014}}%
-}]{%
-https://doi.org/10.1002/2013PA002523}
-\APACinsertmetastar {%
-https://doi.org/10.1002/2013PA002523}%
-\begin{APACrefauthors}%
-Moffa-Sánchez, P.%
-, Hall, I\BPBI R.%
-, Barker, S.%
-, Thornalley, D\BPBI J\BPBI R.%
-\BCBL {}\ \BBA {} Yashayaev, I.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2014}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Surface changes in the eastern Labrador Sea around the
-  onset of the Little Ice Age} {Surface changes in the eastern labrador sea
-  around the onset of the little ice age}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Paleoceanography}{29}{3}{160-175}.
-\newblock
-\begin{APACrefURL}
-  \url{https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1002/2013PA002523}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{https://doi.org/10.1002/2013PA002523} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -961,6 +1046,43 @@ Consortium--2013:Continental}%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Park%
+, Kim%
+, Stewart%
+, Son%
+\BCBL {}\ \BBA {} Seo%
+}{%
+Park%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+Park-Kim-2019:Mid}
+\APACinsertmetastar {%
+Park-Kim-2019:Mid}%
+\begin{APACrefauthors}%
+Park, H\BHBI S.%
+, Kim, S\BHBI J.%
+, Stewart, A\BPBI L.%
+, Son, S\BHBI W.%
+\BCBL {}\ \BBA {} Seo, K\BHBI H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{{\APACmonth{12}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Mid-Holocene Northern Hemisphere warming driven by
+  Arctic amplification} {Mid-holocene northern hemisphere warming driven by
+  arctic amplification}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Science Advances}{5}{12}{}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1126/sciadv.aax8203}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1126/sciadv.aax8203} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Rahmstorf%
 \ \protect \BOthers {.}}{%
 Rahmstorf%
@@ -993,6 +1115,76 @@ Rahmstorf, S.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1038/nclimate2554} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Rayner%
+\ \protect \BOthers {.}}{%
+Rayner%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2003}}%
+}]{%
+Rayner-Parker-2003:Global}
+\APACinsertmetastar {%
+Rayner-Parker-2003:Global}%
+\begin{APACrefauthors}%
+Rayner, N\BPBI A.%
+, Parker, D\BPBI E.%
+, Horton, E\BPBI B.%
+, Folland, C\BPBI K.%
+, Alexander, L\BPBI V.%
+, Rowell, D\BPBI P.%
+\BDBL {}Kaplan, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2003}{{\APACmonth{07}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Global analyses of sea surface temperature, sea ice, and
+  night marine air temperature since the late nineteenth century} {Global
+  analyses of sea surface temperature, sea ice, and night marine air
+  temperature since the late nineteenth century}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Geophysical Research:
+  Atmospheres}{108}{D14}{}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1029/2002jd002670}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1029/2002jd002670} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Roemmich%
+, John~Gould%
+\BCBL {}\ \BBA {} Gilson%
+}{%
+Roemmich%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2012}}%
+}]{%
+Roemmich-John-2012:Challenger}
+\APACinsertmetastar {%
+Roemmich-John-2012:Challenger}%
+\begin{APACrefauthors}%
+Roemmich, D.%
+, John~Gould, W.%
+\BCBL {}\ \BBA {} Gilson, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2012}{{\APACmonth{04}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {135 years of global ocean warming between the Challenger
+  expedition and the Argo Programme} {135 years of global ocean warming between
+  the challenger expedition and the argo programme}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Nature Climate Change}{2}{6}{425–428}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1038/nclimate1461}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1038/nclimate1461} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -1093,6 +1285,41 @@ Steinhilber, F.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1029/2009gl040142} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Tardif%
+\ \protect \BOthers {.}}{%
+Tardif%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+Tardif2019}
+\APACinsertmetastar {%
+Tardif2019}%
+\begin{APACrefauthors}%
+Tardif, R.%
+, Hakim, G\BPBI J.%
+, Perkins, W\BPBI A.%
+, Horlick, K\BPBI A.%
+, Erb, M\BPBI P.%
+, Emile-Geay, J.%
+\BDBL {}Noone, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{{\APACmonth{07}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Last Millennium Reanalysis with an expanded proxy
+  database and seasonal proxy modeling} {Last millennium reanalysis with an
+  expanded proxy database and seasonal proxy modeling}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Climate of the Past}{15}{4}{1251–1273}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.5194/cp-15-1251-2019}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.5194/cp-15-1251-2019} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

@@ -29,6 +29,18 @@ function scatter(x::Vector{Quantity{Measurement{T}}}, y::Vector{Quantity{Measure
     ylabel(string(yunit))
 end
 
+function scatter(x::Vector, y::Vector{Measurement{T}}; kwargs...) where T <: AbstractFloat
+    #xerr = uncertainty.(ustrip.(x))
+    yerr = uncertainty.(ustrip.(y))
+    #xunit = unit(first(x))
+    yunit = unit(first(y))
+    #x = value.(ustrip.(x))
+    y = value.(ustrip.(y))
+    errorbar(x, y, yerr = yerr; kwargs...)
+    #xlabel(string(xunit))
+    #ylabel(string(yunit))
+end
+
 #this one def. works 
 function scatter(x::Array{Quantity{Measurement{T}, D1, A1}}, y::Array{Quantity{Measurement{T}, D2, A2}}; kwargs...) where {T <: AbstractFloat, D1, A1, D2, A2}
     xerr = uncertainty.(ustrip.(x))
