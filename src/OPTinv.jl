@@ -3,7 +3,8 @@ module OPTinv
 using DrWatson, Unitful, Revise, Statistics, BLUEs, LinearAlgebra,
     SparseArrays, TMI, Interpolations, UnitfulLinearAlgebra, Measurements,
     PyPlot, CSV, DataFrames, JLD2, NCDatasets, NaNMath, XLSX, Downloads,
-    Dates
+    Dates, DimensionalData, TMItransient, NMF
+
 import Interpolations.deduplicate_knots! as deduplicate! 
 import Interpolations.LinearInterpolation as LI
 import DelimitedFiles.readdlm
@@ -18,6 +19,8 @@ export readbacon, interpolatebacon, meanbacon, covariancebacon,
 export loadM, loadcores, loadE, ptobserve, fancytext, boxmean, reconstructsurface,
     monthlyannual, γbox, geospatialsubset
 
+export estimate
+
 export loadLMR, loadOcean2k, loadThornalley, loadEN4, loadCESMLME
 
 export record, loadEN4MLD 
@@ -25,9 +28,9 @@ export record, loadEN4MLD
 export orthographic_axes
 
 yr = u"yr"
+kyr = u"kyr"
 permil = Unitful.FixedUnits(u"permille")
 K = u"K"
-using DimensionalData
 using DimensionalData: @dim, YDim, XDim, TimeDim, ZDim
 
 @dim Cores "Cores" #can't use "Core" because that's the import for base Julia
@@ -123,7 +126,7 @@ end
 struct solution
     y::DimEstimate
     ỹ::DimEstimate
-    ỹ₀::DimArray #!!!!! this sucks 
+    ỹ₀::DimEstimate
     u₀::DimEstimate
     ũ::DimEstimate
     θ::Vector
@@ -132,6 +135,8 @@ struct solution
     spatialmodes::Matrix
     name::String
     color::String
+    E::UnitfulMatrix
+    predict::Function
 end
 
 
@@ -145,29 +150,39 @@ function invert(x::inversion)
     T = Array(y.y.dims[1])
     res = unique(diff(T))[1]
     Tᵤ = 500.0yr:res:T[end]
+
     jld = jldopen(datadir("modemags.jld2"))
     mags = jld[x.modetype * "mags"]
     
     σθ = vec(std(mags, dims = 1)) * K
-
+    println("dividing σθ by 5") 
+    σθ ./= 5
+    #=
     if x.modetype == "svd"    
         σθ *= 5
     else
         σθ *= 0.1
     end
+    =#
+
+    
+    #σθ = vec(2K ./ jldopen(datadir("M/" * x.modetype * ".jld2"))["absmax"])
+    
     
     σδ = σθ ./ 10 .* permil/K
-
-    u₀ = firstguess(Tᵤ, ℳ.dims[2][:], σθ, σδ, ρ)
+    u₀ = firstguess(Tᵤ, ℳ.dims[2][:], σθ, σδ, ρ) #u₀ with correct T_u
     E, predict = loadE(filename, ℳ, Tᵤ, T, σθ, σδ, ρ, corenums_sorted, y.Cnn.ax)
+    
     yde, ỹde, u₀de, ũ = solvesystem(y, u₀, E, predict)
     θ, δ = reconstructsurface(spatialmodes, ũ)
     
     TMIversion = "modern_180x90x33_GH11_GH12"
     γ = Grid(download_ncfile(TMIversion))
-    ỹ₀ = predict(u₀de.x) 
 
-    return solution(yde, ỹde, ỹ₀, u₀de, ũ, θ, δ, γ,spatialmodes, x.name, x.color) 
+    #yes this is bad to force the permil, but I'll come back to it...
+    ỹ₀ = DimEstimate(E*u₀de.v, parent(E*u₀de.C*E')*permil^2, y.y.dims)#predict(u₀de.x) 
+
+    return solution(yde, ỹde, ỹ₀, u₀de, ũ, θ, δ, γ,spatialmodes, x.name, x.color, E, predict) 
 end
 
 
@@ -556,6 +571,34 @@ function firstguess(T, modes, σθ::Vector, σδ::Vector, ρ; fill_val = [0K, 0p
     return Est(da, Cuu) 
 end
 
+"""
+function firstguess(T, modes, σθ::DimArray, σδ::Vector, ρ; fill_val = [0K, 0permil])
+
+version where σθ is a DimArray to allow for Ocean2k constraint 
+"""
+function firstguess(T, modes, σθ::DimArray, σδ::Vector, ρ; fill_val = [0K, 0permil])
+    z = zeros(length(T), length(modes))
+    dims = (Ti(T), modes, StateVar([:θ, :δ]))
+    da = DimArray(cat(z * K .+ fill_val[1], z * permil .+ fill_val[2], dims = 3), dims)
+    units = unit.(vec(da))
+
+    δdiagrules = [DiagRule(σδ[i]^2, (:, At(i), At(:δ))) for i in modes]
+    θdiagrules = Vector{DiagRule}(undef, length(modes) * length(T))
+    offdiagrules = Vector{OffDiagRule}(undef, length(modes) * length(T))
+    for (i, t) in enumerate(T)
+        da[At(t), :, At(:θ)] .= value.(vec(σθ[At(t), :]))
+        inds = (i-1)*11+1:i*11
+        σθ_ = vec(Measurements.uncertainty.(σθ[At(t), :, At(:θ)]))
+        θdiagrules[inds] = [DiagRule(σθ_[j]^2, (At(t), At(j), At(:θ))) for j in modes]
+        offdiagrules[inds] = [OffDiagRule(ρ*σθ_[j]*σδ[j], (At(t), At(j), At(:θ)), (At(t), At(j), At(:δ))) for j in modes]       
+    end
+    
+    Cuu = fillcovariance(vec(units), vcat(θdiagrules, δdiagrules, offdiagrules), dims)
+    @show isposdef(Cuu.mat) 
+    return Est(da, Cuu) 
+end
+
+
 function solvesystem(e::Est, u₀::Est, E::UnitfulMatrix, predict::Function)
     if e.y.dims[1][begin] < u₀.y.dims[1][begin]
         error("Tᵤ must precede T")
@@ -594,10 +637,11 @@ function linearleastsquares(x,y)
 
     returns lls: vector where a = lls[1], b = lls[2]
 """
-function linearleastsquares(x,y;C=nothing)
-    E = ones(length(x), 2)
-    E[:, 1] .= x
-    F = (E'*E)\I*E'
+function linearleastsquares(x::UnitfulMatrix,y::UnitfulMatrix;C=nothing)
+    urange = unitdomain(inv(C))
+    udomain = [unitrange(y)[1]/unitrange(x)[1], unitrange(y)[1]]    
+    E = UnitfulMatrix(hcat(parent(x), ones(length(x))), urange, udomain)
+    F = inv(transpose(E)*inv(C)*E)*transpose(E)*inv(C)
     lls = F*y
     if !isnothing(C)
         Cnew = F*C*F'
@@ -607,17 +651,19 @@ function linearleastsquares(x,y;C=nothing)
     end
 end
 
-"""
-doesnt work rn 
-"""
-function linearleastsquares(x::UnitfulMatrix, y::UnitfulMatrix)
-    E = ones(length(x), 2)
-    E[:, 1] .= parent(x)
-    E = UnitfulMatrix(E, unitrange(x), [unit(y[1])/unit(x[1]), unit(y[1])])
-    F = (E'*E)\UnitfulMatrix(I)*E'
+function linearleastsquares(x::Vector{T},y::Vector{T};C=nothing) where T
+    E = hcat(parent(x), ones(length(x)))
+    C = isnothing(C) ? I(length(x)) : C 
+    F = inv(transpose(E)*inv(C)*E)*transpose(E)*inv(C)
     lls = F*y
-    return lls
+    if !isnothing(C)
+        Cnew = F*C*F'
+        return lls, Cnew
+    else
+        return lls
+    end
 end
+
 
 
 function  formattransientM(arr::Array, τ, modes, cores)
@@ -657,27 +703,30 @@ function γreshape(v::Vector{T}, γ) where T
     return template
 end
 
-function loadM(filename::String, core_list::Vector{Symbol};  res = 10yr) 
+function loadM(filename::String, core_list::Vector{Symbol}; res = 10yr) 
     filepath = joinpath("../data/M", filename)
-
-    #load in variables from ex3.svdmodes.jl 
-    jld = jldopen(filepath)
-    M = jld["arr"][begin:end-1, :, :]
-    τ = jld["τ"][begin:end-1]yr
-    spatialmodes = jld["modes"]
-    modes = 1:size(M)[2]
-    cores = keys(core_locations())
-    close(jld)
-
+    corelocs = core_locations()
+    #load in variables from ex3.svdmodes.jl
+    if isfile(filepath)
+        println("opening pre-computed Vt and ℳ file") 
+        jld = jldopen(filepath)
+        ℳ_ = jld["ℳ"][begin:end-1, :, :]
+        τ = jld["τ"][begin:end-1]yr
+        spatialmodes = jld["SVD"].Vt
+        close(jld)
+    else
+        surforigin, SVD = generatemodes(corelocs)
+        res = 1
+        τ = 0:res:1000
+        println("computing ℳ, will take a while!") 
+        ℳ_ = transientM(corelocs, SVD.Vt, τ)
+        jldsave(filepath; ℳ, τ, res, surforigin, SVD)
+        spatialmodes = SVD.Vt 
+    end
+    cores = keys(core_locations())    
+    modes = 1:size(spatialmodes)[1]
     #format into DimArray 
-    ℳ = formattransientM(M, τ, [m for m in modes], [c for c in cores])
-
-    
-    #normalize modes and ℳ so that the surface mode sums to 1
-    norm = sum(spatialmodes, dims = 2)
-    [spatialmodes[i, :] ./= norm[i] for i in 1:11]
-    [ℳ[:, At(i), :] ./= norm[i] for i in 1:11]
-
+    ℳ = formattransientM(ℳ_, τ, [m for m in modes], [c for c in cores])
     
     #M has 1 yr resolution
     ℳ, τ = subsampletransientM(ℳ, res)
@@ -685,10 +734,17 @@ function loadM(filename::String, core_list::Vector{Symbol};  res = 10yr)
     #return ℳ, spatialmodes
 end
 
-function loadcores(core_list::Vector{Symbol}, res = 10yr)
-    files = readdir(datadir())
+function loadcores(core_list::Vector{Symbol}, res = 10yr; dir = nothing, rules = nothing)
+    dir = isnothing(dir) ? datadir() : dir 
+    files = readdir(dir)
     ae_files = [f for f in files if occursin("ae", f)]
     d18O_files = [f for f in files if occursin("d18O", f)]
+    if !isnothing(rules)
+        rule_files = union([[f for f in files if occursin(r, f)] for r in rules]...)
+        ae_files = intersect(ae_files, rule_files)
+        d18O_files = intersect(d18O_files, rule_files)
+    end
+    
     directory_cores = Tuple([Symbol(split(f, ".")[1]) for f in ae_files])
 
     #re-order directory cores so they line up with core_list
@@ -707,13 +763,14 @@ function loadcores(core_list::Vector{Symbol}, res = 10yr)
     @show core_list
     =#
     println("Pulling in core data, calculating covariance matrices") 
-    @time e = formatbacon(datadir.(ae_files)[sort_indices], datadir.(d18O_files)[sort_indices], core_list, res = res)
+    @time e = formatbacon(joinpath.(dir, ae_files)[sort_indices], joinpath.(dir, d18O_files)[sort_indices], core_list, res = res)
     #add in measurement uncertainty 
     e = fillcovariance!(e, [DiagRule((0.07permil)^2, (:, :))], dims(e.y))
     @show isposdef(e.Cnn.mat)
     return e 
 end
 
+#=
 function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget, u₀::Est,
                core_list::Vector{Symbol}, yax::Vector{Tuple})
     sv = (:θ, :δ)
@@ -753,11 +810,34 @@ function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget, u₀::Est,
     return UnitfulMatrix(parent(E[indices, :]), unitrange(E)[xindices], unitdomain(E)[yindices]), predict
    =# 
 end
+=#
 
-#alternative version, dont provide firstguess
-#will calculate over longer time period 
+"""
 function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget,
-               σθ::Vector, σδ::Vector, ρ,
+               σθ, σδ::Vector, ρ,
+               core_list::Vector{Symbol}, yax::Vector{Tuple})
+
+    Calculates E matrix from ℳ array using an impulse response technique
+    E is computed over an excessive time period (-500:2020) and then saved
+    Each time we load in E, we will subset it to an appropriate time period 
+
+# Arguments
+    - `filename`
+    - `ℳ`
+    - `Tᵤtarget`
+    - `Ttarget`
+    - `σθ` : DimArray (changes over time) or vector (constant for each mode) 
+    - `σδ` : vector (right now it can't change throughout time)
+    - `ρ`: correlation coefficient
+    - `core_list`: vector of core names as symbols
+    - `yax`: Vector{Tuple}: covariance dims of Cnn 
+
+# Output
+    - `E`: UnitfulMatrix that maps vec(y) = E vec(x)
+    - `predict`: functional form of `E` 
+"""
+function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget,
+               σθ, σδ::Vector, ρ,
                core_list::Vector{Symbol}, yax::Vector{Tuple})
     sv = (:θ, :δ)
     coeffs = NamedTuple{sv}([-0.224permil/K, 1])
@@ -766,7 +846,7 @@ function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget,
     #maximum time period we're interested in for this problem 
     T = collect(0yr:10yr:2020yr)
     Tᵤ = -500yr:10yr:2020yr
-    u₀ = firstguess(Tᵤ, ℳ.dims[2][:], σθ, σδ, ρ) 
+    u₀ = firstguess(Tᵤ, ℳ.dims[2][:], σθ, σδ, ρ)  #just for computing here 
     
     #this is the same as BLUEs.convolve, I just did it explicitly here 
     predict(u) = DimArray(cat([+([+([vec(u[At(t-τi), :, At(s)]' * coeffs[s] * ℳ[At(τi), :, :]) for τi in τ[t .- τ .> minimum(Tᵤ)]]...) for s in sv]...) for t in T]..., dims = 2)', (Ti(T), Cores(core_list)))
@@ -775,29 +855,39 @@ function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget,
     filepath = joinpath("../data/M", filename) 
     if !isfile(filepath)
         println("Computing E, will take a little while!") 
-        @time E = impulseresponse(predict, u₀.y) 
+        @time E = impulseresponse(predict, u₀.y) #2 hrs
         jldsave(filepath; E)
     else
-    
         println("Loading in pre-saved file") 
         jld = jldopen(filepath)
         E = jld["E"]
         close(jld)
     end
     
+    #this E matrix will only work for old cores 
     allcores = Symbol.("MC".* string.([28, 26, 25, 22, 21, 20, 19, 10, 9, 13, 14]) .* "A")
     Erange = vec(covariancedims((Ti(T), Cores(allcores))))
     modes = ℳ.dims[2]
     Edomain = vec(covariancedims((Ti(Tᵤ), Modes(1:11), StateVar([s for s in sv]))))
-    xindices = [x[1] ∈ Ttarget && x[2]∈core_list for x in Erange]
-    
+    xindices = [x[1] ∈ Ttarget && x[2]∈ core_list for x in Erange]
     yindices = [y[1] ∈ Tᵤtarget && y[2] ∈ modes for y in Edomain]
-    
     predict_subset(u) = DimArray(cat([+([+([vec(u[At(t-τi), :, At(s)]' * coeffs[s] * ℳ[At(τi), :, :]) for τi in τ[t .- τ .> minimum(Tᵤtarget)]]...) for s in sv]...) for t in Ttarget]..., dims = 2)', (Ti(Ttarget), Cores(core_list)))
     return UnitfulMatrix(parent(E[xindices, yindices]), fill(permil, sum(xindices)), unitdomain(E)[yindices]), predict_subset
- 
 end
 
+"""
+function ptobserve(pt::Tuple, γ, spatialmodes::Matrix, ũ)
+
+    For a solution ũ, compute the value of surface variables at some location
+
+# Arguments
+    - `pt`: (lon, lat)
+    - `γ`: associated TMI Grid
+    - `spatialmodes`: Matrix
+    - `ũ`: DimEstimate
+# Output 
+    - `de`: DimEstimate with dimensions (Time × Sv) 
+"""
 function ptobserve(pt::Tuple, γ, spatialmodes::Matrix, ũ)
     surface = convert.(Int64, zeros(180,90))
     surface[γ.wet[:, :, 1]] .= 1:11113
@@ -831,8 +921,22 @@ function ptobserve(pt::Tuple, γ, spatialmodes::Matrix, ũ)
     return DimEstimate(Oũ.v, Oũ.C, (ũ.dims[1], ũ.dims[3]))
 end
 
-#assumes fld is (lon x lat x time) 
+"""
 function boxmean(fld::Array{T, N}, lat, lon, latsouth, latnorth, lonwest, loneast) where {T, N}
+
+    Computes a spatial mean for a 3D array fld
+
+# Arguments
+    - `fld`: 3D Array, must be (lon x lat x time)
+    - `lat`: vector of latitude values
+    - `lon`: vector of longitude values
+    - `latsouth`: southern most latitude value for chosen bb
+    - `latnorth`: ^
+    - `lonwest`: ^
+    - `loneast`: ^
+"""
+function boxmean(fld::Array{T, N}, lat, lon, latsouth, latnorth, lonwest, loneast) where {T, N}
+    #println("Using boxmean, but this should be replaced by `estimate`") 
     latnorth = findmin(abs.(latnorth .- lat))[2]
     latsouth = findmin(abs.(latsouth .- lat))[2]
     lonwest = findmin(abs.(lonwest .- lon))[2]
@@ -858,7 +962,14 @@ end
 """
 function γbox(γ::TMI.Grid, latsouth, latnorth, lonwest, loneast)
 
-    find indices of surfacevector corresponding to a box 
+    find indices of surfacevector corresponding to a box
+
+    # Arguments
+    - `γ`
+    - `latsouth`: southern most latitude value for chosen bb
+    - `latnorth`: ^
+    - `lonwest`: ^
+    - `loneast`: ^
 """
 function γbox(γ::TMI.Grid, latsouth, latnorth, lonwest, loneast)
     surfind = findall(x->x == 1, γ.wet[:, :, 1])
@@ -965,6 +1076,19 @@ function monthlyannual(x::Vector{T}, time::Vector{DateTime}, months = 1:12) wher
     return data 
 end
 
+"""
+function orthographic_axes(latsouth,latnorth, lonwest, loneast, inc)
+
+    Helper function for creating orthographic N. Atl. plots
+
+    # Arguments
+    - `latsouth`: southern most latitude value for chosen bb
+    - `latnorth`: ^
+    - `lonwest`: ^
+    - `loneast`: ^
+
+    # Output 
+"""
 function orthographic_axes(latsouth,latnorth, lonwest, loneast, inc)
     southx = lonwest:inc:loneast-inc
     southy = latsouth * ones(length(southx))
@@ -977,6 +1101,11 @@ function orthographic_axes(latsouth,latnorth, lonwest, loneast, inc)
     return vcat(southx, eastx, northx, westx), vcat(southy, easty, northy, westy)
 end
 
+"""
+function geospatialsubset(mat, lat, lon, lat_target, lon_target)
+
+    Subset a 3D matrix, accounts for roll-around 
+"""
 function geospatialsubset(mat, lat, lon, lat_target, lon_target)
     lat_ind = [findmin(abs.(lat .- lt))[2] for lt in lat_target]
     lon_ind = [findmin(abs.(lon .- lt))[2] for lt in lon_target]
@@ -1050,9 +1179,155 @@ function loadEN4MLD()
     return mldtemp, mldsalinity, lon_rs, lat_rs, recs, recstime
 end
 
+"""
+function estimate(ũ::DimEstimate, spatialmodes::Matrix, variable::Symbol; spatialinds = :)
+
+    Generate a mean surface estimate within some region
+    Accounts for full covariance matrix
+
+    # Arguments
+    - `ũ`
+    - `spatialmodes`
+    - `variable`: Symbol
+    - `spatialinds`: Vector of chosen indices within spatialmodes spatial indexing
+
+    # Output
+    - `da`: DimArray of estimated quantity 
+    
+"""
+function estimate(ũ::DimEstimate, spatialmodes::Matrix, variable::Symbol; spatialinds = :, rolling = nothing)    
+    cdims = vec(covariancedims(ũ.dims))
+    Tᵤ = Array(ũ.dims[1])
+    Edag = spatialmodes[:, spatialinds] * fill(1/length(spatialinds), length(spatialinds))
+    mat = fill(0.0, length(Tᵤ), length(cdims))
+    for (i, t) in enumerate(Tᵤ)
+        xinds = findall(x->x[1] == t && x[3] == variable, cdims)
+        if !isnothing(rolling)
+            tinds = i-rolling:1:i+rolling
+            tinds = tinds[0 .< tinds .<= length(Tᵤ)]
+            [mat[it, xinds] .= Edag ./ length(tinds) for it in tinds]
+        else
+            
+            mat[i, xinds] = Edag
+        end
+        
+    end
+    un = variable == :θ ? K : permil
+    
+    mat = UnitfulMatrix(mat, fill(un, length(Tᵤ)), unitrange(ũ.v))
+    y = vec(mat * ũ.v)
+    C = mat * ũ.C * mat'
+    #unit_unc = sqrt.(unitrange(C) ./ unitdomain(C))
+    #unc = sqrt.(diag(parent(C)))
+    return DimEstimate(y, C, (Ti(Tᵤ),))
+end
+
+"""
+function estimate(ũ::DimEstimate, spatialmodes::Matrix, variable::Symbol, t1::Quantity, t2::Quantity; spatialinds = :)    
+
+    Estimate the difference between a spatially-averaged quantity at 2 timesteps
+
+    # Arguments
+    - `ũ`
+    - `spatialmodes`
+    - `variable`: Symbol
+    - `t1`: timestep 1
+    - `t2`: timestep 2 
+    - `spatialinds`: Vector of chosen indices within spatialmodes spatial indexing
+
+    # Output
+    - `da`: DimArray of estimated quantity 
+    
+"""
+function estimate(ũ::DimEstimate, spatialmodes::Matrix, variable::Symbol, t1::Quantity, t2::Quantity, Tm1::Number, Tm2::Number; spatialinds = :)
+    
+    #helper 
+    function convert_timestep(t)
+        t = t == Tm1*yr ? t + 20yr : t
+        t = t == Tm1*yr+10yr ? t + 10yr : t
+        t = t == Tm2*yr ? t - 20yr : t
+        t = t == Tm2*yr-10yr ? t - 10yr : t
+        return t
+    end
+    t1 = convert_timestep(t1)
+    t2 = convert_timestep(t2)
+
+    cdims = vec(covariancedims(ũ.dims))
+    Tᵤ = Array(ũ.dims[1])
+    mat = fill(0.0, (1,length(cdims)))
+    L = length(spatialinds)
+    offsets = collect(-20yr:10yr:20yr)
+    Edag = spatialmodes[:, spatialinds]*fill(1/L, L) ./ length(offsets)
+
+    for offset in offsets
+        mat[findall(x->x[1] == t1+offset && x[3] == variable, cdims)] .= -Edag
+        mat[findall(x->x[1] == t2+offset && x[3] == variable, cdims)] .= Edag
+    end
+    
+    un = variable == :θ ? K : permil
+    mat = UnitfulMatrix(mat,fill(un, size(mat)[1]), unitrange(ũ.v))
+    y = mat * ũ.v
+    Css = mat * ũ.C * transpose(mat)
+    return getindexqty(y,1) ± sqrt(getindexqty(Css,1,1))
+end
 
 
+function transientM(corelocs, patches::NamedTuple, τ; TMIversion = "modern_180x90x33_GH11_GH12")
+    A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
+    patches = NamedTuple{keys(patches)}([surfacepatch(patches[k]..., γ) for k in keys(patches)])
+    N = length(corelocs)
+    wis= Vector{Tuple{Interpolations.WeightedAdjIndex{2, Float64}, Interpolations.WeightedAdjIndex{2, Float64}, Interpolations.WeightedAdjIndex{2, Float64}}}(undef,N)
+    [wis[i] = interpindex(corelocs[i],γ) for i in 1:N]
+    modes = [k for k in keys(patches)]
+    cores = [c for c in keys(corelocs)]
+    arr = Array{Float64}(undef, length(τ), length(modes), length(cores)) # dimensions = Ti x cores x modes
+    for (i, key) in enumerate(keys(patches))
+        bc = patches[key]
+        @time D̄ = stepresponse(TMIversion, bc, γ, L, B, τ, eval_func = observe, args = (wis, γ))
+        Ḡ, _ = globalmean_impulseresponse(D̄, τ)
+        Ḡ = hcat(Ḡ...)'    
+        arr[begin:size(Ḡ)[1], i, :] = Ḡ
+    end
+    #ℳ = DimArray(arr, (Ti(τ * yr), Modes(modes), Cores(cores)))
+    #return ℳ
+    return arr 
+end
 
+function generatemodes(corelocs; TMIversion = "modern_180x90x33_GH11_GH12", func = svd)
+    A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
+    tracers = hcat([surfaceorigin(corelocs[c], Alu, γ).tracer[γ.wet[:, :, 1]] for c in keys(corelocs)]...)
+    tracers = 10 .^ tracers
+    𝒩 = gaussiandistancematrix(γ, 1, 1000.0)
+    mat = tracers' * 𝒩
+    if func == nnmf 
+        return mat, nnmf(mat, length(corelocs)).H
+    elseif func == svd
+        return mat,svd(mat)
+    else
+        return mat,func(mat)
+    end    
+end
+
+
+function transientM(corelocs, mat::Matrix, τ; TMIversion = "modern_180x90x33_GH11_GH12")
+    A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
+    
+    bcs = [BoundaryCondition(γreshape(mat[i, :],γ), γ.axes[1:2], 0.0, 3, 1, γ.wet[:, :, 1], :i, string(i), string(i)) for i in 1:size(mat)[1]] 
+    N = length(corelocs)
+    wis= Vector{Tuple{Interpolations.WeightedAdjIndex{2, Float64}, Interpolations.WeightedAdjIndex{2, Float64}, Interpolations.WeightedAdjIndex{2, Float64}}}(undef,N)
+    [wis[i] = interpindex(corelocs[i],γ) for i in 1:N]
+    #modes = [k for k in keys(patches)]
+    #cores = [c for c in keys(corelocs)]
+    arr = Array{Float64}(undef, length(τ), length(bcs), length(corelocs)) # dimensions = Ti x cores x modes
+    for (i, bc) in enumerate(bcs)
+        #bc = patches[key]
+        @time D̄ = stepresponse(TMIversion, bc, γ, L, B, τ, eval_func = observe, args = (wis, γ))
+        Ḡ, _ = globalmean_impulseresponse(D̄, τ)
+        Ḡ = hcat(Ḡ...)'    
+        arr[begin:size(Ḡ)[1], i, :] = Ḡ
+    end
+    return arr 
+end
 
 end
 

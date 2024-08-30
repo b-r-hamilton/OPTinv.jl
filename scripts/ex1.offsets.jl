@@ -2,56 +2,92 @@
 using Pkg
 Pkg.activate("../")
 using OPTinv, Unitful, DimensionalData, DrWatson, LinearAlgebra, PyPlot, TMI,
-    XLSX, DataFrames
+    XLSX, DataFrames, GibbsSeaWater, Measurements, UnitfulLinearAlgebra
+
 import OPTinv.yr, OPTinv.permil
 
 corenums_full = [28, 26, 25, 22, 21, 20, 19,10, 9,13,14]
 core_list_full = Symbol.("MC".* string.(corenums_full) .* "A")
 
 y = loadcores(core_list_full)
+
+ycm = y.Cnn.ax
+yuncd = Dict()
+for c in core_list_full
+    Cnnind = findall(x->x[1] == 1980yr && x[2] == c, ycm)[1]
+    yuncd[c] = sqrt(getindexqty(y.Cnn.mat, Cnnind, Cnnind))
+end
+
 locs = core_locations()
+depths = [locs[c][3] for c in keys(locs)]
+lats = [locs[c][2] for c in keys(locs)]
+lons = [locs[c][1] for c in keys(locs)]
 
 TMIversion = "modern_180x90x33_GH11_GH12"
 A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
-θ = readfield(TMIfile, "θ", γ) #potential temp
-d18O = readfield(TMIfile, "δ¹⁸Ow", γ) #.- 0.27
+θ = readfield(TMIfile, "θ", γ) #potential temp, degC
+σθ = readfield(TMIfile, "σθ", γ)
+d18O = readfield(TMIfile, "δ¹⁸Ow", γ) #permil VSMOW
+σd18O = readfield(TMIfile, "σδ¹⁸Ow", γ) #permil VSMOW
+Sp = readfield(TMIfile, "Sp", γ)
 
 loctuple = [convert(Tuple{Float64, Float64, Float64}, locs[c]) for c in keys(locs)]
 θobs = observe(θ, loctuple, γ)
-d18Oobs = observe(d18O, loctuple, γ) .- 0.27
-
+σθobs = observe(σθ, loctuple, γ) 
+d18Oobs = observe(d18O, loctuple, γ) #.- 0.27
+σd18Oobs = observe(σd18O, loctuple, γ)
 =#
-effd18Oc_cibs = @. -0.224 * θobs + 3.53 + d18Oobs - 0.27
-#effd18Oc_uvi =  @. -0.231 * θobs + 4.03 + d18Oobs - 0.27
-fig = figure(figsize = (5,7))
+#=
+Spobs = observe(Sp, loctuple, γ)
+pobs = gsw_p_from_z.(-1 .* depths, lats)
+SAobs = gsw_sa_from_sp.(Spobs, pobs, lons, lats)
+CTobs = gsw_ct_from_pt.(SAobs, θobs)
+T = gsw_t_from_ct.(SAobs, CTobs,pobs)  
+
+effd18Oc_cibs = @. -0.224 * T + 3.53 + d18Oobs - 0.27
+effd18Oc_uvi = @. -0.231 * T + 4.03 + d18Oobs - 0.27 - 0.47
+effd18Oc_cibs_fs = @. -0.225 * T + 3.50 + d18Oobs - 0.27
+effd18Oc_uvi_fs = @. -0.207 * T + 3.75 + d18Oobs - 0.27 - 0.47
+=#
+
+effd18Oc_cibs = (-0.224 ± 0.002) * (θobs .± σθobs) .+ (3.53 ± 0.02) .+ (d18Oobs .± σd18Oobs) .- 0.27
+effd18Oc_uvi = (-0.231 ± 0.004) * (θobs .± σθobs) .+ (4.03 ± 0.03) .+ (d18Oobs .± σd18Oobs) .- 0.27 .- (0.47 ± 0.04)
+
+effd18Oc_cibs_fs =  (-0.225 ±0.006) * (θobs .± σθobs) .+ (3.50 ± 0.07) .+ (d18Oobs .± σd18Oobs) .- 0.27
+effd18Oc_uvi_fs = (-0.207 ± 0.007) * (θobs .± σθobs) .+ (3.75 ± 0.08) .+ (d18Oobs .± σd18Oobs) .- 0.27 .- (0.47 ± 0.04)
+
+fig = figure(figsize = (5,7)) 
 ax = gca()
 T = ustrip.(Array(dims(y.y)[1]))
 for c in keys(locs)
-    ytmp = ustrip.(vec(y.y[:, At(c)])) 
+    ytmp = ustrip(y.y[:, At(c)])
     ytmp = c ∈ [:MC28A, :MC26A, :MC25A] ? ytmp .- 0.47 : ytmp
     d = fill(locs[c][3], length(ytmp)) 
-    s = scatter(ytmp, d, c = T, cmap = "rainbow", s = (2100 .- T) ./ 10)
+    s = scatter(ytmp, d, c = T, cmap = "rainbow", s = (2050 .- T) ./ 5, zorder = 10)
+    #s = scatter([ytmp], [d], c = "red", s = 50)
     if c == keys(locs)[end]
         cb = colorbar(s, location = "top")
         cb.set_label("Time [years CE]", fontsize = 12)
         
     end
-    
 end
-
-depths = [locs[c][3] for c in keys(locs)]
-scatter(effd18Oc_cibs, depths, color = "black", label = "Effective " * L"\delta^{18}\mathrm{O}_\mathrm{calcite}", s = 30, marker = "X")
+T
+ms = 15
+scatter(effd18Oc_cibs, depths, color = "black", label = "Effective " * L"\mathrm{\delta}^{18}\mathrm{O}_\mathrm{calcite}", markersize = ms, capsize = 3, fmt = "X", zorder = 0, linewidth = 3)
+#scatter(effd18Oc_uvi_fs[begin:3], depths[begin:3], color = "lightgray", label = "Effective " * L"\mathrm{\delta}^{18}\mathrm{O}_\mathrm{calcite}", markersize = ms, marker = "X", markeredgecolor = "black", capsize = 5)
+#scatter(effd18Oc_cibs_fs[4:end], depths[4:end], color = "lightgray", label = "Effective " * L"\mathrm{\delta}^{18}\mathrm{O}_\mathrm{calcite}", markersize = ms, marker = "X", markeredgecolor = "black", capsize = 5)
 #plot(effd18Oc_uvi, depths)
 ax.invert_yaxis()
 depths
 xl = ax.get_xlim()
 yt = ax.get_yticks()
 yl = ax.get_ylim()
-hlines(y = depths, xmin = xl[1], xmax = xl[2], color = "gray", zorder = 0)
-twinx.set_xlim(xl)
-twinx = ax.twinx()
-twinx.set_yticks(depths, string.(keys(locs)), fontsize = 9)
-twinx.set_ylim(yl)
+#hlines(y = depths, xmin = xl[1], xmax = xl[2], color = "gray", zorder = 0)
+tx = ax.twinx()
+tx.set_xlim(xl)
+
+tx.set_yticks(depths, string.(keys(locs)), fontsize = 12)
+tx.set_ylim(yl)
 
 
 ctd_dir = "/home/brynn/Documents/JP/rdata/EN539CTD/"
@@ -97,7 +133,7 @@ multicored18Oc = -0.224 * θmulticore[inds,"θ"] .+ d18O[inds, "d18O"] .+ 3.53 .
 
 ax.set_xticks(2.2:0.2:2.9, 2.2:0.2:2.9, fontsize = 12)
 ax.set_xlim(xl)
-ax.set_xlabel(L"\delta^{18}\mathrm{O}_\mathrm{calcite}", fontsize = 15)
+ax.set_xlabel(L"\delta^{18}\mathrm{O}_\mathrm{calcite}" *" [‰]", fontsize = 15)
 ax.set_yticks(2200:-200:1000, 2200:-200:1000, fontsize = 12)
 ax.set_ylabel("Depth [m]", fontsize = 15)
 tight_layout()

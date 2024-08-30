@@ -18,45 +18,51 @@ ptr=1, stack=
 
 ---the literal stack isn't empty for entry England-Eisenman-2021:Arctic
 while executing---line 5079 of file apacite.bst
-You've used 41 entries,
+Warning--No address in Gouretski-Koltermann-2004:WOCE
+Warning--No journal in Khider-Emile-Geay-2022:Pyleoclim
+ptr=1, stack=
+
+---the literal stack isn't empty for entry Khider-Emile-Geay-2022:Pyleoclim
+while executing---line 5079 of file apacite.bst
+You've used 50 entries,
             6951 wiz_defined-function locations,
-            1732 strings with 26400 characters,
-and the built_in function-call counts, 101551 in all, are:
-= -- 11937
-> -- 930
-< -- 5331
-+ -- 6116
-- -- 86
-* -- 7156
-:= -- 19043
-add.period$ -- 151
-call.type$ -- 41
-change.case$ -- 743
+            1805 strings with 28735 characters,
+and the built_in function-call counts, 119657 in all, are:
+= -- 14109
+> -- 1056
+< -- 6356
++ -- 7062
+- -- 104
+* -- 8420
+:= -- 22695
+add.period$ -- 187
+call.type$ -- 50
+change.case$ -- 900
 chr.to.int$ -- 0
-cite$ -- 83
-duplicate$ -- 3296
-empty$ -- 3676
-format.name$ -- 1838
-if$ -- 18098
+cite$ -- 103
+duplicate$ -- 3679
+empty$ -- 4345
+format.name$ -- 2038
+if$ -- 21390
 int.to.chr$ -- 0
-int.to.str$ -- 123
+int.to.str$ -- 150
 missing$ -- 0
-newline$ -- 1252
-num.names$ -- 328
-pop$ -- 1284
+newline$ -- 1484
+num.names$ -- 400
+pop$ -- 1560
 preamble$ -- 2
-purify$ -- 210
+purify$ -- 250
 quote$ -- 0
-skip$ -- 5742
+skip$ -- 6841
 stack$ -- 0
-substring$ -- 6616
-swap$ -- 1779
-text.length$ -- 130
+substring$ -- 7606
+swap$ -- 2022
+text.length$ -- 155
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 3280
-warning$ -- 1
-while$ -- 650
+type$ -- 4064
+warning$ -- 3
+while$ -- 722
 width$ -- 0
-write$ -- 1628
-(There was 1 error message)
+write$ -- 1903
+(There were 2 error messages)

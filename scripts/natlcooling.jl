@@ -1,6 +1,6 @@
 
 import Pkg;Pkg.activate("../")
-using OPTinv, PyPlot, PaleoData, StringDistances, Measurements, Statistics, Unitful, LinearAlgebra
+using OPTinv, PyPlot, PaleoData, StringDistances, Measurements, Statistics, Unitful, LinearAlgebra, UnitfulLinearAlgebra
 
 oc2k_binned, oc2k_binnedv, oc2k_ages = loadOcean2kBinned()
 oc2k, oc2kdata = loadOcean2k()
@@ -62,8 +62,8 @@ end
 figure()
     scatter(collect(bincenter), atlmean)
 
-    C = Diagonal(Measurements.uncertainty.(atlmean).^2)
-    lls, Cnew = linearleastsquares(collect(bincenter), Measurements.value.(atlmean), C = C)
+    C = UnitfulMatrix(Diagonal(Measurements.uncertainty.(atlmean).^2), fill(K, length(atlmean)), fill(K^-1, length(atlmean)))
+    lls, Cnew = linearleastsquares(UnitfulMatrix(collect(bincenter)yr), UnitfulMatrix(Measurements.value.(atlmean)K), C = C)
     println(lab)
     println(string(Measurements.measurement(lls[1] * 1000,sqrt(Cnew[1,1]) * 1000)) * "°C/kyr")
 
@@ -72,8 +72,8 @@ figure()
         y = binnedtemps[i, :]
         mind = (!).(isnan.(y))
         if sum(mind) > 1
-            C_ = Diagonal(Measurements.uncertainty.(y[mind]).^2)
-        lls_, Cnew_ = linearleastsquares(collect(bincenter[mind]), Measurements.value.(y[mind]), C=C_)
+            C_ = UnitfulMatrix(Diagonal(Measurements.uncertainty.(y[mind]).^2), fill(K, sum(mind)), fill(K^-1, sum(mind)))
+        lls_, Cnew_ = linearleastsquares(UnitfulMatrix(collect(bincenter[mind])yr), UnitfulMatrix(Measurements.value.(y[mind])K), C=C_)
             slopes[i] = Measurements.measurement(lls_[1]*1000, sqrt(Cnew_[1,1])*1000)
         else
             slopes[i] = NaN
