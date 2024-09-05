@@ -2,18 +2,12 @@
 import Pkg
 Pkg.activate("../")
 
-using OPTinv, Unitful, DimensionalData, BLUEs, Statistics, UnitfulLinearAlgebra, LinearAlgebra, PyPlot, Revise, DrWatson, PyCall, TMI, CSV, DataFrames, JLD2, NaNMath, Dates, RollingFunctions, PaleoData, DateFormats, Measurements, GH19
+using OPTinv 
+using Unitful, DimensionalData, BLUEs, Statistics, UnitfulLinearAlgebra, LinearAlgebra, Revise, DrWatson, TMI, CSV, DataFrames, JLD2, NaNMath, Dates, RollingFunctions, PaleoData, DateFormats, Measurements, GH19, PythonPlotExt, PythonPlot
 import Measurements.value as value
 import OPTinv.Est
 
 #plotting python packages 
-ccrs = pyimport("cartopy.crs")
-cm = pyimport("cmocean.cm")
-cfeature = pyimport("cartopy.feature")
-cu = pyimport("cartopy.util")
-mpath = pyimport("matplotlib.path")
-patches = pyimport("matplotlib.patches")
-cmap = pyimport("matplotlib.cm")
 #mpl = pyimport("matplotlib")
 #mpl.rcParams["font.family"] = "Lato-Italic"
 
@@ -365,7 +359,7 @@ savefig(plotsdir("meants" * suffix * ".png"))
 
 # ================= FIGURE 4: MAPS ============= #
 inds = collect(1100yr:200yr:2000yr)
-stepsize = 70 
+stepsize = 70  
 lev = -1.5:0.2:1.5
 
 proj = ccrs.Orthographic(central_longitude=-80+55,central_latitude = 35)
@@ -402,14 +396,21 @@ for (i, sol) in enumerate(solutions)
             plotme = sum(θ[:, :, start_index:stop_index], dims = 3)[:, :, 1] ./ stepsize #100yr at 1yr res
             plotme = plotme'
         end
+        #PyPlot version
         #ax =  axs[(ii-1) * (length(solutions)+1)+ i]
-        ax =  axs[(ii-1) * (length(solutions))+ i]
+        #ax =  axs[(ii-1) * (length(solutions))+ i]
+        #PythonCall version
+        ax = axs[i-1, ii-1]
         if (sol isa solution && y ∈ Ty) || (sol isa Array)
             
             ax_hdl = ax.plot(orthographic_axes(lat_box..., lon_box..., 5)...,
                              color="black", linewidth=0.5,
                              transform=noproj)
-            tx_path = ax_hdl[1]._get_transformed_path()
+            #PyPlot version
+            #tx_path = ax_hdl[1]._get_transformed_path()
+            #PythonPlot version
+            tx_path = first(ax_hdl)._get_transformed_path()
+            
             path_in_data_coords, _ = tx_path.get_transformed_path_and_affine()
             polygon1s = mpath.Path(path_in_data_coords.vertices)
             ax.set_boundary(polygon1s)
@@ -444,6 +445,7 @@ for (i, sol) in enumerate(solutions)
     savefig(plotsdir("surfacesol" * suffix * ".png"), bbox_inches = "tight")
 end
 
+#=
 # ==================== Figure 4alt: MAP of MCA-LIA  ==================== #
 lev = -1.5:0.2:1.5
 
@@ -539,7 +541,7 @@ gl.bottom_labels = false
 end
 
 savefig(plotsdir("pdlia.png"))
-
+=#
 # ===================== FIGURE 5alt: Labrador T and S  ================ #
 
 df = CSV.read(OPTinv.datadir("TLS1998Fig7Digitized.csv"), DataFrame)
@@ -1043,7 +1045,7 @@ ax = axs
 ax_hdl = ax.plot(orthographic_axes(lat_box..., lon_box..., 5)...,
                  color="black", linewidth=0.5,
                  transform=noproj)
-tx_path = ax_hdl[1]._get_transformed_path()
+tx_path = ax_hdl[0]._get_transformed_path()
 path_in_data_coords, _ = tx_path.get_transformed_path_and_affine()
 polygon1s = mpath.Path(path_in_data_coords.vertices)
 ax.set_boundary(polygon1s)
@@ -1127,23 +1129,23 @@ for i in 1:11
     if i ∈ [1,4,7,10]
         ylabel("Mode Mag. [K]", fontsize = 15)
     end
-    
+    xt = collect(500:500:2000)    
     if i ∉ [9,10,11]
-        xticks([])
+        xticks(xt,fill("", length(xt)))
         xlabel("")
     else
         xlabel("Time [years CE]", fontsize = 15)
-        xt = collect(500:500:2000)
+
         xticks(xt, xt, fontsize = 12)
     end    
 end
-tight_layout()
+#tight_layout()
 savefig(plotsdir("u0utilde.png"))
 
 # === just Mode 1 plot  === #
 gkw = ("height_ratios" => [1,1],)
 fig, axs = subplots(2,1, gridspec_kw = gkw)
-function specialplot(da::DimArray, ax::PyObject, color::String; fb = true)
+function specialplot(da::DimArray, ax, color::String; fb = true)
     x = ustrip.(Array(dims(da)[1]))
     y = Array(da)
     yunc = ustrip.(Measurements.uncertainty.(y))
@@ -1155,27 +1157,28 @@ function specialplot(da::DimArray, ax::PyObject, color::String; fb = true)
     
 end
 
-specialplot(allc.u₀.x[:, At(1), At(:θ)], axs[1], "gray")
-specialplot(allc.ũ.x[:, At(1), At(:θ)], axs[1], "red")
-specialplot(oldc.ũ.x[:, At(1), At(:θ)], axs[1], "blue")
-axs[1].set_ylabel("Mode Mag. [K]", fontsize = 15)
-yt = axs[1].get_yticks()
-axs[1].set_yticks(yt,yt,fontsize = 12)
+specialplot(allc.u₀.x[:, At(1), At(:θ)], axs[0], "gray")
+specialplot(allc.ũ.x[:, At(1), At(:θ)], axs[0], "red")
+specialplot(oldc.ũ.x[:, At(1), At(:θ)], axs[0], "blue")
+axs[0].set_ylabel("Mode Mag. [K]", fontsize = 15)
+yt = axs[0].get_yticks()
+axs[0].set_yticks(yt,yt,fontsize = 12)
 xt = collect(500:500:2000)
-axs[1].set_xticks(xt, fill("", length(xt)))
-axs[1].set_xlabel("")
-specialplot(allc.u₀.x[:, At(1), At(:θ)], axs[2], "gray", fb = false)
-specialplot(allc.ũ.x[:, At(1), At(:θ)], axs[2], "red", fb = false)
-specialplot(oldc.ũ.x[:, At(1), At(:θ)], axs[2], "blue", fb = false)
-axs[2].set_ylabel("Mode Mag. [K]", fontsize = 15)
-axs[1].text(x = 500, y = -60, s = "A", fontsize = 30, weight = "bold")
-axs[2].text(x = 500, y = -20, s = "B", fontsize = 30, weight = "bold")
+axs[0].set_xticks(xt, fill("", length(xt)))
+axs[0].set_xlabel("")
+specialplot(allc.u₀.x[:, At(1), At(:θ)], axs[1], "gray", fb = false)
+specialplot(allc.ũ.x[:, At(1), At(:θ)], axs[1], "red", fb = false)
+specialplot(oldc.ũ.x[:, At(1), At(:θ)], axs[1], "blue", fb = false)
+axs[1].set_ylabel("Mode Mag. [K]", fontsize = 15)
+axs[0].text(x = 500, y = -60, s = "A", fontsize = 30, weight = "bold")
+axs[1].text(x = 500, y = -20, s = "B", fontsize = 30, weight = "bold")
 xticks(xt, xt, fontsize = 12)
-axs[2].set_xlabel("Time [years CE]", fontsize = 15)
+axs[1].set_xlabel("Time [years CE]", fontsize = 15)
 tight_layout()
 savefig(plotsdir("u0utilde_mode1.png"))
 
 
+#=
 # =============== building up SVD maps ===== #
 figure(figsize = (10,10))
 for i in 1:11#iterate through mode
@@ -1186,6 +1189,8 @@ for i in 1:11#iterate through mode
     end
 end
 tight_layout()
+=#
+
 
 # =============== SINGULAR VALUES =========== #
 s = jldopen("../data/M/svd.jld2")["SVD"]
@@ -1201,7 +1206,7 @@ for i in 1:11
     xlim(-1, 1)
     xl = ax.get_xlim()
     yt = collect(1000:200:2200)
-    hlines(y = depths, xmin = xl[1], xmax = xl[2], color = "gray", zorder = 0)
+    hlines(y = depths, xmin = xl[0], xmax = xl[1], color = "gray", zorder = 0)
     tx = ax.twinx()
     tx.set_xlim(xl)
     
@@ -1229,6 +1234,7 @@ tight_layout()
 
 savefig(plotsdir("U.png"))
 
+#=
 # ================= FIGURE X: Comparison with EN4  ============= #
 path = "/home/brynn/Code/oceanFP/data/EN4/analyses"
 nct = NCDataset(joinpath(path, readdir(path)[1]))
@@ -1291,11 +1297,12 @@ for (i, sol) in enumerate([solutions..., en4])
             plotme = plotme'
         end
         if (sol isa solution && y ∈ Ty) || (sol isa Array)
-            ax =  axs[(ii-1) * (length(solutions)+1)+ i]
+            #ax =  axs[(ii-1) * (length(solutions)+1)+ i]
+            ax = axs[i-1, ii-1]
             ax_hdl = ax.plot(orthographic_axes(lat_box..., lon_box..., 5)...,
                              color="black", linewidth=0.5,
                              transform=noproj)
-            tx_path = ax_hdl[1]._get_transformed_path()
+            tx_path = ax_hdl[0]._get_transformed_path()
             path_in_data_coords, _ = tx_path.get_transformed_path_and_affine()
             polygon1s = mpath.Path(path_in_data_coords.vertices)
             ax.set_boundary(polygon1s)
@@ -1326,3 +1333,4 @@ for (i, sol) in enumerate([solutions..., en4])
     tight_layout()
     savefig(plotsdir("surfacesol" * suffix * ".png"), bbox_inches = "tight")
 end
+=# 

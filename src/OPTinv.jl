@@ -2,8 +2,8 @@ module OPTinv
 
 using DrWatson, Unitful, Revise, Statistics, BLUEs, LinearAlgebra,
     SparseArrays, TMI, Interpolations, UnitfulLinearAlgebra, Measurements,
-    PyPlot, CSV, DataFrames, JLD2, NCDatasets, NaNMath, XLSX, Downloads,
-    Dates, DimensionalData, TMItransient, NMF
+    CSV, DataFrames, JLD2, NCDatasets, NaNMath, Downloads,
+    Dates, DimensionalData, TMItransient, NMF, PythonCall
 
 import Interpolations.deduplicate_knots! as deduplicate! 
 import Interpolations.LinearInterpolation as LI
@@ -25,7 +25,7 @@ export loadLMR, loadOcean2k, loadThornalley, loadEN4, loadCESMLME
 
 export record, loadEN4MLD 
 
-export orthographic_axes
+export orthographic_axes, datadir 
 
 yr = u"yr"
 kyr = u"kyr"
@@ -36,13 +36,37 @@ using DimensionalData: @dim, YDim, XDim, TimeDim, ZDim
 @dim Cores "Cores" #can't use "Core" because that's the import for base Julia
 @dim Modes "Modes"
 @dim StateVar "state variable"
+export ccrs, cm, cfeature, cu, mpath, patches, cmap 
+
+#import Python packages
+
+const ccrs = pyimport("cartopy.crs")
+const cm = pyimport("cmocean.cm")
+const cfeature = pyimport("cartopy.feature")
+const cu = pyimport("cartopy.util")
+const mpath = pyimport("matplotlib.path")
+const patches = pyimport("matplotlib.patches")
+const cmap = pyimport("matplotlib.cm")
+
+function __init__()
+
+     PythonCall.pycopy!(ccrs,pyimport("cartopy.crs"))
+     PythonCall.pycopy!(cm,pyimport("cmocean.cm"))
+     PythonCall.pycopy!(cfeature,pyimport("cartopy.feature"))
+     PythonCall.pycopy!(cu,pyimport("cartopy.util"))
+     PythonCall.pycopy!(mpath,pyimport("matplotlib.path"))
+     PythonCall.pycopy!(patches,pyimport("matplotlib.patches"))
+     PythonCall.pycopy!(cmap,pyimport("matplotlib.cm"))
+     # following ClimatePlots.jl
+
+     println("OPTinv.jl: Python libraries installed")
+ end
 
 export yr, permil, K,
     Ti, Cores, Modes, StateVar,
     DiagRule, OffDiagRule
 
-
-include(srcdir("UnitfulPlots.jl"))
+datadir(x) = DrWatson.datadir(x)
 
 """
 struct CovMat
@@ -151,7 +175,7 @@ function invert(x::inversion)
     res = unique(diff(T))[1]
     Tᵤ = 500.0yr:res:T[end]
 
-    jld = jldopen(datadir("modemags.jld2"))
+    jld = jldopen(DrWatson.datadir("modemags.jld2"))
     mags = jld[x.modetype * "mags"]
     
     σθ = vec(std(mags, dims = 1)) * K
@@ -166,7 +190,7 @@ function invert(x::inversion)
     =#
 
     
-    #σθ = vec(2K ./ jldopen(datadir("M/" * x.modetype * ".jld2"))["absmax"])
+    #σθ = vec(2K ./ jldopen(DrWatson.datadir("M/" * x.modetype * ".jld2"))["absmax"])
     
     
     σδ = σθ ./ 10 .* permil/K
@@ -735,7 +759,7 @@ function loadM(filename::String, core_list::Vector{Symbol}; res = 10yr)
 end
 
 function loadcores(core_list::Vector{Symbol}, res = 10yr; dir = nothing, rules = nothing)
-    dir = isnothing(dir) ? datadir() : dir 
+    dir = isnothing(dir) ? DrWatson.datadir() : dir 
     files = readdir(dir)
     ae_files = [f for f in files if occursin("ae", f)]
     d18O_files = [f for f in files if occursin("d18O", f)]
@@ -1166,7 +1190,7 @@ struct record
 end
 
 function loadEN4MLD()
-    jld = jldopen(datadir("EN4_march_mld.jld2"))
+    jld = jldopen(DrWatson.datadir("EN4_march_mld.jld2"))
     mldtemp = jld["mldtemp"]
     mldsalinity = jld["mldsalinity"]
     mlddepthtemp = jld["mlddepthtemp"]
@@ -1175,7 +1199,7 @@ function loadEN4MLD()
     lat_rs = jld["lat_rs"]
     z = jld["z"]
     close(jld)
-    jld = jldopen(datadir("en4_recs.jld2")); recs = jld["recs"]; recstime = jld["recstime"];close(jld)
+    jld = jldopen(DrWatson.datadir("en4_recs.jld2")); recs = jld["recs"]; recstime = jld["recstime"];close(jld)
     return mldtemp, mldsalinity, lon_rs, lat_rs, recs, recstime
 end
 
