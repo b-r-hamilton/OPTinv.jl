@@ -1605,8 +1605,10 @@ uuid = "5432bcbf-9aad-5242-b902-cca2824c8663"
 version = "0.5.12"
 
 [[deps.PaleoData]]
-deps = ["CSV", "DataFrames", "DelimitedFiles", "Downloads", "GZip", "NCDatasets", "Revise", "XLSX", "ZipFile"]
-path = "/home/brynn/Code/PaleoData.jl/"
+deps = ["CSV", "DataFrames", "DelimitedFiles", "Downloads", "GZip", "NCDatasets", "Pkg", "Revise", "Test", "XLSX", "ZipFile"]
+git-tree-sha1 = "e0b2b2e1264388e4cfc6320e5d7186f24a5c1ce1"
+repo-rev = "main"
+repo-url = "https://github.com/b-r-hamilton/PaleoData.jl.git"
 uuid = "ea1376c8-097f-11ef-15fc-37a76906324d"
 version = "1.0.0-DEV"
 

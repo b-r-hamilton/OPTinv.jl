@@ -711,7 +711,7 @@ end
 
 
 function core_locations()
-    locations_file = "../data/EN539_locations.csv"
+    locations_file = datadir("EN539_locations.csv")
     cores_df = CSV.read(locations_file,DataFrame)
     locs = [(cores_df.Lon[i], cores_df.Lat[i], cores_df.Depth[i]) for i in 1:length(cores_df.Core)]
     cores = replace.(cores_df.Core, "EN539-"=>"")
