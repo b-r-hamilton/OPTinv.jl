@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.14)  30 AUG 2024 10:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.14)  5 SEP 2024 16:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2713,14 +2713,14 @@ Overfull \hbox (11.33862pt too wide) in paragraph at lines 443--444
 r/m/n/10 er-ror of the orig-i-nal sed-i-ment core records, im-ply-ing that 
  []
 
-</home/brynn/Code/OPTinv.jl/plots/reconsolallvold.png, id=77, 578.16pt x 709.69
-14pt>
+</home/brynn/Code/OPTinv.jl/plots/reconsolallvold.png, id=77, 578.16pt x 722.7p
+t>
 File: /home/brynn/Code/OPTinv.jl/plots/reconsolallvold.png Graphic file (type p
 ng)
 <use /home/brynn/Code/OPTinv.jl/plots/reconsolallvold.png>
 Package pdftex.def Info: /home/brynn/Code/OPTinv.jl/plots/reconsolallvold.png  
 used on input line 446.
-(pdftex.def)             Requested size: 397.48499pt x 487.91164pt.
+(pdftex.def)             Requested size: 397.48499pt x 496.85503pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 447--447
 []\OT1/cmr/bx/n/9 Figure  4. []\OT1/cmr/m/n/9 Re-con-struc-tion at core sites f
@@ -2853,7 +2853,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [14 </home/brynn/Code/OPTinv.jl/plots/u0utilde_mode1.png>] [15 </home/brynn/Co
 de/OPTinv.jl/plots/reconsolallvold.png>]
 Overfull \hbox (16.45999pt too wide) in paragraph at lines 456--457
-[]\OT1/cmr/m/n/10 In Fig-ure 6[], we present re-con-structed sea sur-face tem-p
+[]\OT1/cmr/m/n/10 In Fig-ure 5[], we present re-con-structed sea sur-face tem-p
 er-a-ture maps for five 70-year 
  []
 
@@ -2869,14 +2869,14 @@ Overfull \hbox (20.73792pt too wide) in paragraph at lines 456--457
 forced lin-ear re-la-tion-ship be-tween 
  []
 
-</home/brynn/Code/OPTinv.jl/plots/surfacesolallvold.png, id=87, 1075.3776pt x 3
-53.4003pt>
+</home/brynn/Code/OPTinv.jl/plots/surfacesolallvold.png, id=87, 1071.0414pt x 2
+80.4076pt>
 File: /home/brynn/Code/OPTinv.jl/plots/surfacesolallvold.png Graphic file (type
  png)
 <use /home/brynn/Code/OPTinv.jl/plots/surfacesolallvold.png>
 Package pdftex.def Info: /home/brynn/Code/OPTinv.jl/plots/surfacesolallvold.png
   used on input line 459.
-(pdftex.def)             Requested size: 668.4975pt x 219.69907pt.
+(pdftex.def)             Requested size: 668.4975pt x 175.02325pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 460--460
 []\OT1/cmr/bx/n/9 Figure  5. []\OT1/cmr/m/n/9 Re-con-struc-tion of sur-face po-
@@ -3041,7 +3041,7 @@ Overfull \hbox (3.15428pt too wide) in paragraph at lines 469--470
 
 Overfull \hbox (8.37677pt too wide) in paragraph at lines 469--470
 \OT1/cmr/m/n/10 com-bined es-ti-mate to be within er-ror of the plank-tic stack
-, which is shown in Fig-ure 7[].  
+, which is shown in Fig-ure 6[].  
  []
 
 </home/brynn/Code/OPTinv.jl/plots/effd18Ostack.png, id=88, 462.528pt x 346.896p
@@ -3104,7 +3104,7 @@ i-mates of sur-face $\OML/cmm/m/it/10 ^^N[]\OT1/cmr/m/n/10 O[]$
 
 
 Overfull \hbox (1.2656pt too wide) in paragraph at lines 478--479
-[]\OT1/cmr/m/n/10 In Fig-ure 8[], we present the mean North At-lantic (50$[]$W-
+[]\OT1/cmr/m/n/10 In Fig-ure 7[], we present the mean North At-lantic (50$[]$W-
 20$[]$E, 50$[]$N-90$[]$N) tem- 
  []
 
@@ -3631,7 +3631,7 @@ was sug-gested to ap-pear af-
 
 Overfull \hbox (14.2379pt too wide) in paragraph at lines 517--518
 \OT1/cmr/m/n/10 ter 1250 CE and per-sisted un-til the early 20th Cen-tury. As s
-tated in Sec-tion 4.4[], for the 
+tated in Sec-tion 4.3[], for the 
  []
 
 
@@ -3661,7 +3661,7 @@ than any of the es-ti-mates from prior re-search, which are all
 
 
 Overfull \hbox (6.48784pt too wide) in paragraph at lines 519--520
-[]\OT1/cmr/m/n/10 From Fig-ures 6[] and 8[], con-sid-er-able dis-agree-ment be-
+[]\OT1/cmr/m/n/10 From Fig-ures 5[] and 7[], con-sid-er-able dis-agree-ment be-
 tween our re-con-struc-tion and 
  []
 
@@ -3903,39 +3903,9 @@ ese re-la-tion-ships are dif-fer-ent, but
  []
 
 
-Overfull \hbox (9.82117pt too wide) in paragraph at lines 717--719
-[]\OT1/cmr/m/n/10 This sec-tion MUST con-tain a state-ment that de-scribes wher
-e the data sup-port-ing 
- []
-
-
-Overfull \hbox (5.90463pt too wide) in paragraph at lines 717--719
-\OT1/cmr/m/n/10 the con-clu-sions can be ob-tained. Data can-not be listed as '
-'Avail-able from au-thors'' or 
- []
-
-
-Overfull \hbox (4.4047pt too wide) in paragraph at lines 717--719
-\OT1/cmr/m/n/10 stored solely in sup-port-ing in-for-ma-tion. Ci-ta-tions to ar
-chived data should be in-cluded 
- []
-
-
-Overfull \hbox (18.51564pt too wide) in paragraph at lines 717--719
-\OT1/cmr/m/n/10 in your ref-er-ence list. Wi-ley will pub-lish it as a sep-a-ra
-te sec-tion on the pa-per's page. Ex- 
- []
-
-
-Overfull \hbox (71.11316pt too wide) in paragraph at lines 717--719
-\OT1/cmr/m/n/10 am-ples and com-plete in-for-ma-tion are here: https://www.agu.
-org/Publish with AGU/Publish/Author 
- []
-
-
-Overfull \hbox (8.65456pt too wide) in paragraph at lines 721--723
-\OT1/cmr/m/n/10 Enter ac-knowl-edg-ments here. This sec-tion is to ac-knowl-edg
-e fund-ing, thank col-leagues, 
+Overfull \hbox (11.75183pt too wide) in paragraph at lines 719--721
+\OT1/cmr/m/n/10 We thank David McGee, Sarah Shack-le-ton, and So-phie Hines for
+ their in-sight-ful dis-cus- 
  []
 
 [22] (./Hamilton2024.bbl
@@ -4694,10 +4664,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 7094 strings out of 480247
- 154111 string characters out of 5896151
- 440714 words of memory out of 5000000
- 24930 multiletter control sequences out of 15000+600000
+ 7093 strings out of 480247
+ 154098 string characters out of 5896151
+ 440704 words of memory out of 5000000
+ 24929 multiletter control sequences out of 15000+600000
  481908 words of font info for 72 fonts, out of 8000000 for 9000
  20 hyphenation exceptions out of 8191
  70i,11n,79p,1941b,522s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -4728,7 +4698,7 @@ re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/wasy-type1/wasy10.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/wasy-type1/wasy9.pfb>
-Output written on Hamilton2024.pdf (26 pages, 1416186 bytes).
+Output written on Hamilton2024.pdf (26 pages, 1272627 bytes).
 PDF statistics:
  253 PDF objects out of 1000 (max. 8388607)
  147 compressed objects within 2 object streams

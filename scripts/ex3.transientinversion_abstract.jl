@@ -1201,7 +1201,7 @@ figure(figsize = (10, 4))
 for i in 1:11
     ax = subplot(1, 11, i) 
     #plot(U[i, :], Array(allc.y.dims[2]), color = cm((11-i)/11), label = i)
-    scatter(U[i, :], depths, c = U[i, :], cmap = cm.balance, vmin = -1, vmax = 1,edgecolors = "gray", 100)
+    scatter(U[:, i], depths, c = U[:, i], cmap = cm.balance, vmin = -1, vmax = 1,edgecolors = "gray", 100)
     ax.invert_yaxis()
     xlim(-1, 1)
     xl = ax.get_xlim()
