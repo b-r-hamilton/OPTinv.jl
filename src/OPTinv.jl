@@ -692,8 +692,6 @@ function linearleastsquares(x::Vector{T},y::Vector{T};C=nothing) where T
     end
 end
 
-
-
 function  formattransientM(arr::Array, τ, modes, cores)
     ℳ = DimArray(arr, (Ti(τ), Modes(modes), Cores(cores)))
     return ℳ
