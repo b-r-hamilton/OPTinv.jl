@@ -1,7 +1,7 @@
 name = "OPTinv"
 uuid = "be359dbc-e715-4152-92a8-ea345ee2ca4a"
 authors = ["B. Hamilton"]
-version = "1.0.0-DEV"
+version = "1.0.0"
 
 [deps]
 BLUEs = "b3a7f272-e305-45d1-bcf3-14d22bb67726"
