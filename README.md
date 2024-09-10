@@ -30,15 +30,15 @@ Jake has attempted to wrap similar, experimental, functionality into `BLUEs.jl` 
 
 # Scripts 
 Transient Inversion of Lu et al, 2023 records 
-- `ex1.offsets.jl`: stand-alone script that generates depth-profile of effective modern-day d18Oc and compares to the full range of CE variability in recorded sediment core d18Oc 
-- `ex3.plotmodes.jl`: stand-alone script that plots surface spatial mode plots, impulse response of each mode at 3 select cores, and singular values w.r.t. sediment core/depth 
-- `ex3.transientinversion.jl`: generates the 2 solutions detailed in the manuscript
-- `ex3.transientinversionoc2k.jl`: attempt at constraining two solutions with Ocean2k cooling rate 
-- `ex4.utilde.jl`: follow-on script, plots the mode solutions to `ex3` 
-- `ex4.ytilde.jl`: follow-on script, plots the reconstructions at the core sites for each solution produced in `ex3`
-- `ex5.regionmean.jl`: follow-on script, plots the regional means (for N. Atl. region and subregions) for solutions in `ex3`. Compares to Ocean2k and LMR. 
-- `ex6.maps.jl`: follow-on script, plots the surface reconstruction maps for temperature 
-- `ex7.effd18Oc.jl`: follow-on script, computes the effective d18Oc at the surface and compares it to the planktic stack from the EN539 sediment cores. 
+- `offsets.jl`: stand-alone script that generates depth-profile of effective modern-day d18Oc and compares to the full range of CE variability in recorded sediment core d18Oc 
+- `modes.jl`: stand-alone script that plots surface spatial mode plots, impulse response of each mode at 3 select cores, and singular values w.r.t. sediment core/depth 
+- `transientinversion.jl`: generates the 2 solutions detailed in the manuscript
+- `transientinversionoc2k.jl`: attempt at constraining two solutions with Ocean2k cooling rate 
+- `utilde.jl`: follow-on script, plots the mode solutions to `ex3` 
+- `ytilde.jl`: follow-on script, plots the reconstructions at the core sites for each solution produced in `ex3`
+- `regionmean.jl`: follow-on script, plots the regional means (for N. Atl. region and subregions) for solutions in `ex3`. Compares to Ocean2k and LMR. 
+- `maps.jl`: follow-on script, plots the surface reconstruction maps for temperature 
+- `effd18Oc.jl`: follow-on script, computes the effective d18Oc at the surface and compares it to the planktic stack from the EN539 sediment cores. 
 
 Analysis of Common Era Data Products
 - `CEdatanalysis/lmr.jl`: plots LMR and Mod-ERA maps
@@ -49,8 +49,8 @@ Analysis of Common Era Data Products
 - `CEdatanalysis/en4labrador.jl`: Hovmoller plot of Labrador Sea in EN4, T and S plots of Labrador Sea Water
 
 Toy Problems 
-- `toyproblems/ex2.steadystateinversion.jl`: `ex3`, but uses steady-state Gebbie 2010 assumption at each timestep. Hasn't been tested in a while, no idea if it works 
-- `toyproblems/ex3.tests.jl`: toy problem 
+- `toyproblems/ex2.steadystateinversion.jl`: same idea as `transientinversion.jl`, but uses steady-state Gebbie 2010 assumption at each timestep. Hasn't been tested in a while, no idea if it works 
+- `toyproblems/tests.jl`: toy problem 
 
 Deglacial Problem 
 - `deglac/lund2015.jl`
