@@ -5,6 +5,21 @@
 # What is this?
 The source code for `OPTinv` holds methods to compute spatiotemporal surface maps of variables that explain the time evolution of some observed variable from benthic sediment core compilations. The scripts developed here focusing on applying this methodology to infer surface values of temperature and $\mathrm{\delta}^{18}\mathrm{O}\_{\mathrm{seawater}}$ from the [Lu et al, 2023](https://www.science.org/doi/10.1126/science.adf1646) dataset of 11 sediment core records of $\mathrm{\delta}^{18}\mathrm{O}\_{\mathrm{calcite}}$ from the Reykjanes Ridge in Iceland. 
 
+# How to run 
+Clone this repository, start a Julia session, activate the Julia environment in `OPTinv.jl`, and run `ex3.transientinversion.jl` to produce the two solutions detailed in the manuscript. Output can be plotted using any of the follow-on scripts. 
+
+# Philosophy, and important dependencies 
+The code developed here attempts to preserve information about the dimensionality and units of all variables. This is accomplished by using the following Julia libraries 
+- [`Unitful.jl`](https://github.com/PainterQubits/Unitful.jl) to manage quantities, 
+- [`DimensionalData`](https://github.com/rafaqz/DimensionalData.jl) for managing dimensioned data, 
+- [`BLUEs.jl`](https://github.com/ggebbie/BLUEs.jl) for solving the linear underdetermined system presented here, 
+- [`UnitfulLinearAlgebra.jl`](https://github.com/ggebbie/UnitfulLinearAlgebra.jl) for properly propagating physical quantities through linear algebra 
+
+Information about the modern-day circulation is obtained from the Total Matrix Intercomparison (TMI) results from [Gebbie, 2010](https://journals.ametsoc.org/view/journals/phoc/40/8/2010jpo4272.1.xml) and [Gebbie, 2012](https://journals.ametsoc.org/view/journals/phoc/42/2/jpo-d-11-043.1.xml). These results are accessed through the following Julia libraries 
+- [`TMI.jl`](https://github.com/ggebbie/TMI.jl)
+- [`TMItransient.jl`](https://github.com/ggebbie/TMItransient.jl) 
+
+
 # Scripts 
 Transient Inversion of Lu et al, 2023 records 
 - `ex1.offsets.jl`: stand-alone script that generates depth-profile of effective modern-day d18Oc and compares to the full range of CE variability in recorded sediment core d18Oc 
