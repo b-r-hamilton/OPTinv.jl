@@ -2173,7 +2173,7 @@ version = "0.2.2"
 deps = ["COSMO", "CSV", "Distances", "Distributions", "Downloads", "GibbsSeaWater", "GoogleDrive", "Interpolations", "JuMP", "LineSearches", "LinearAlgebra", "MAT", "NCDatasets", "NetCDF", "Optim", "OrderedCollections", "SparseArrays", "Statistics", "StatsBase", "UnicodePlots"]
 git-tree-sha1 = "090ef4ef851fd26486d21b895da45757fa5427fc"
 repo-rev = "main"
-repo-url = "https://github.com/ggebbie/TMI.jl.git"
+repo-url = "https://github.com/ggebbie/TMI.jl"
 uuid = "582500f6-28c8-4d8f-aabe-b197735ec1d4"
 version = "0.2.17"
 
