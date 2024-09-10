@@ -1,6 +1,6 @@
+using TMI 
 using OPTinv
 #using UnitfulLinearAlgebra # incl b.c. non-registered
-using TMI 
 using Documenter
 
 DocMeta.setdocmeta!(OPTinv, :DocTestSetup, :(using OPTinv); recursive=true)
