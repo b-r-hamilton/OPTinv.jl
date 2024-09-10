@@ -36,7 +36,7 @@ using DimensionalData: @dim, YDim, XDim, TimeDim, ZDim
 @dim Cores "Cores" #can't use "Core" because that's the import for base Julia
 @dim Modes "Modes"
 @dim StateVar "state variable"
-export ccrs, cm, cfeature, cu, mpath, patches, cmap 
+export ccrs, cm, cfeature, cu, mpath, patches, cmap, mal, mticker
 
 #import Python packages
 
@@ -47,20 +47,24 @@ const cu = pyimport("cartopy.util")
 const mpath = pyimport("matplotlib.path")
 const patches = pyimport("matplotlib.patches")
 const cmap = pyimport("matplotlib.cm")
+const mal = pyimport("mpl_toolkits.axes_grid1").make_axes_locatable
+const mticker = pyimport("matplotlib.ticker") 
 
 function __init__()
 
-     PythonCall.pycopy!(ccrs,pyimport("cartopy.crs"))
-     PythonCall.pycopy!(cm,pyimport("cmocean.cm"))
-     PythonCall.pycopy!(cfeature,pyimport("cartopy.feature"))
-     PythonCall.pycopy!(cu,pyimport("cartopy.util"))
-     PythonCall.pycopy!(mpath,pyimport("matplotlib.path"))
-     PythonCall.pycopy!(patches,pyimport("matplotlib.patches"))
-     PythonCall.pycopy!(cmap,pyimport("matplotlib.cm"))
-     # following ClimatePlots.jl
+    PythonCall.pycopy!(ccrs,pyimport("cartopy.crs"))
+    PythonCall.pycopy!(cm,pyimport("cmocean.cm"))
+    PythonCall.pycopy!(cfeature,pyimport("cartopy.feature"))
+    PythonCall.pycopy!(cu,pyimport("cartopy.util"))
+    PythonCall.pycopy!(mpath,pyimport("matplotlib.path"))
+    PythonCall.pycopy!(patches,pyimport("matplotlib.patches"))
+    PythonCall.pycopy!(cmap,pyimport("matplotlib.cm"))
+    PythonCall.pycopy!(mal,pyimport("mpl_toolkits.axes_grid1").make_axes_locatable)
+    PythonCall.pycopy!(mticker, pyimport("matplotlib.ticker"))
+    
 
-     println("OPTinv.jl: Python libraries installed")
- end
+    println("OPTinv.jl: Python libraries installed")
+end
 
 export yr, permil, K,
     Ti, Cores, Modes, StateVar,

@@ -1,16 +1,22 @@
 #=
+Are the sediment cores interpretable in the context of modern-day observations?
+E.g., can we quantify the depth-structure of d18Oc?
+
+This creates Figure 1, which shows
+- the range of CE variability of each sediment core
+- d18Oc computed from the steady-state TMI solution for T and d18Ow, using the Marchitto 2014 eqtns 
+=#
 using Pkg
 Pkg.activate("../")
-using OPTinv, Unitful, DimensionalData, DrWatson, LinearAlgebra, PyPlot, TMI,
-    XLSX, DataFrames, GibbsSeaWater, Measurements, UnitfulLinearAlgebra
+using OPTinv, Unitful, DimensionalData, DrWatson, LinearAlgebra, PythonPlot, TMI, DataFrames, GibbsSeaWater, Measurements, UnitfulLinearAlgebra
 
 import OPTinv.yr, OPTinv.permil
 
+#import sediment core data, interpolated to 10 yr resoltuion 
 corenums_full = [28, 26, 25, 22, 21, 20, 19,10, 9,13,14]
 core_list_full = Symbol.("MC".* string.(corenums_full) .* "A")
 
 y = loadcores(core_list_full)
-
 ycm = y.Cnn.ax
 yuncd = Dict()
 for c in core_list_full
@@ -23,6 +29,7 @@ depths = [locs[c][3] for c in keys(locs)]
 lats = [locs[c][2] for c in keys(locs)]
 lons = [locs[c][1] for c in keys(locs)]
 
+#"observe" temperature and d18O at the sediment core sites in TMIss 
 TMIversion = "modern_180x90x33_GH11_GH12"
 A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
 θ = readfield(TMIfile, "θ", γ) #potential temp, degC
@@ -36,7 +43,7 @@ loctuple = [convert(Tuple{Float64, Float64, Float64}, locs[c]) for c in keys(loc
 σθobs = observe(σθ, loctuple, γ) 
 d18Oobs = observe(d18O, loctuple, γ) #.- 0.27
 σd18Oobs = observe(σd18O, loctuple, γ)
-=#
+
 #=
 Spobs = observe(Sp, loctuple, γ)
 pobs = gsw_p_from_z.(-1 .* depths, lats)
@@ -50,12 +57,14 @@ effd18Oc_cibs_fs = @. -0.225 * T + 3.50 + d18Oobs - 0.27
 effd18Oc_uvi_fs = @. -0.207 * T + 3.75 + d18Oobs - 0.27 - 0.47
 =#
 
+#equation to follow the Marchitto 2014 recommendation of applying the Cibs eqtns to both Cibs and Uvi records 
 effd18Oc_cibs = (-0.224 ± 0.002) * (θobs .± σθobs) .+ (3.53 ± 0.02) .+ (d18Oobs .± σd18Oobs) .- 0.27
-effd18Oc_uvi = (-0.231 ± 0.004) * (θobs .± σθobs) .+ (4.03 ± 0.03) .+ (d18Oobs .± σd18Oobs) .- 0.27 .- (0.47 ± 0.04)
+#effd18Oc_uvi = (-0.231 ± 0.004) * (θobs .± σθobs) .+ (4.03 ± 0.03) .+ (d18Oobs .± σd18Oobs) .- 0.27 .- (0.47 ± 0.04)
 
-effd18Oc_cibs_fs =  (-0.225 ±0.006) * (θobs .± σθobs) .+ (3.50 ± 0.07) .+ (d18Oobs .± σd18Oobs) .- 0.27
-effd18Oc_uvi_fs = (-0.207 ± 0.007) * (θobs .± σθobs) .+ (3.75 ± 0.08) .+ (d18Oobs .± σd18Oobs) .- 0.27 .- (0.47 ± 0.04)
+#effd18Oc_cibs_fs =  (-0.225 ±0.006) * (θobs .± σθobs) .+ (3.50 ± 0.07) .+ (d18Oobs .± σd18Oobs) .- 0.27
+#effd18Oc_uvi_fs = (-0.207 ± 0.007) * (θobs .± σθobs) .+ (3.75 ± 0.08) .+ (d18Oobs .± σd18Oobs) .- 0.27 .- (0.47 ± 0.04)
 
+#plot d18Oc v. depth 
 fig = figure(figsize = (5,7)) 
 ax = gca()
 T = ustrip.(Array(dims(y.y)[1]))
@@ -85,11 +94,11 @@ yl = ax.get_ylim()
 #hlines(y = depths, xmin = xl[1], xmax = xl[2], color = "gray", zorder = 0)
 tx = ax.twinx()
 tx.set_xlim(xl)
-
 tx.set_yticks(depths, string.(keys(locs)), fontsize = 12)
 tx.set_ylim(yl)
 
 
+#= 
 ctd_dir = "/home/brynn/Documents/JP/rdata/EN539CTD/"
 d18Ofp = joinpath(ctd_dir, "EN539_O18water.xlsx")
 function get_d18O(filepath, index, ctd_col::Char, depth_col::Char, data_col, names) 
@@ -171,4 +180,5 @@ xlabel("Salinity [psu]")
 legend()
 tight_layout()
 
+=#
 =#
