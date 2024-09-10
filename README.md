@@ -19,6 +19,14 @@ Information about the modern-day circulation is obtained from the Total Matrix I
 - [`TMI.jl`](https://github.com/ggebbie/TMI.jl)
 - [`TMItransient.jl`](https://github.com/ggebbie/TMItransient.jl) 
 
+# Future Structural Work (i.e., how could this code be better?) 
+One of the cruxes of the problem presented here is the dimensionality of the output: we are inferring the temporal evolution of the magnitude of 11 distinct spatial modes for two different state variables, temperature and $\mathrm{\delta}^{18}\mathrm{O}\_{\mathrm{seawater}}$. This is a three-dimensional output that must be rearranged into a 1D vector. We also have a complete representation of the first and second moments of this variable, contained in a covariance matrix. Here, we use the `Est` and `CovMat` structures to manage these high-dimensional data structures. 
+
+The `Est` structure contains a dimensional array `y`, and associated `CovMat`, which is a structure that contains a matrix, and its associated `ax`. The `ax` is a list of Tuples, where each Tuple is generated according to the column-major vectorization of the dimensions associated with the `y`. An `ax` can easily be generated using the `covariancedims` method. 
+
+`CovMat`s can be populated using `fillcovariance` method, which relies upon the generation of `DiagRule` and `OffDiagRule`. This allows for a `CovMat` to be populated with certain values, that can be a constant, at particular dimensioned values, or functions of dimensioned values. 
+
+Jake has attempted to wrap similar, experimental, functionality into `BLUEs.jl` on the [this branch](https://github.com/ggebbie/BLUEs.jl/tree/multipliable-dimarrays) (has not been incorporated into the main code, needs testing). Future work would include testing that methodology, and possibly incorporating elements of what I have developed here, into that branch. 
 
 # Scripts 
 Transient Inversion of Lu et al, 2023 records 
