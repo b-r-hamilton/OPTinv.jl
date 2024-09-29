@@ -24,45 +24,45 @@ ptr=1, stack=
 
 ---the literal stack isn't empty for entry Khider-Emile-Geay-2022:Pyleoclim
 while executing---line 5079 of file apacite.bst
-You've used 50 entries,
+You've used 52 entries,
             6951 wiz_defined-function locations,
-            1805 strings with 28735 characters,
-and the built_in function-call counts, 119657 in all, are:
-= -- 14109
-> -- 1056
-< -- 6356
-+ -- 7062
-- -- 104
-* -- 8420
-:= -- 22695
-add.period$ -- 187
-call.type$ -- 50
-change.case$ -- 900
+            1827 strings with 29777 characters,
+and the built_in function-call counts, 124335 in all, are:
+= -- 14672
+> -- 1088
+< -- 6615
++ -- 7332
+- -- 106
+* -- 8763
+:= -- 23623
+add.period$ -- 195
+call.type$ -- 52
+change.case$ -- 942
 chr.to.int$ -- 0
-cite$ -- 103
-duplicate$ -- 3679
-empty$ -- 4345
-format.name$ -- 2038
-if$ -- 21390
+cite$ -- 107
+duplicate$ -- 3792
+empty$ -- 4515
+format.name$ -- 2091
+if$ -- 22232
 int.to.chr$ -- 0
-int.to.str$ -- 150
+int.to.str$ -- 156
 missing$ -- 0
-newline$ -- 1484
-num.names$ -- 400
-pop$ -- 1560
+newline$ -- 1551
+num.names$ -- 416
+pop$ -- 1605
 preamble$ -- 2
-purify$ -- 250
+purify$ -- 266
 quote$ -- 0
-skip$ -- 6841
+skip$ -- 7101
 stack$ -- 0
-substring$ -- 7606
-swap$ -- 2022
-text.length$ -- 155
+substring$ -- 7898
+swap$ -- 2089
+text.length$ -- 166
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 4064
+type$ -- 4224
 warning$ -- 3
-while$ -- 722
+while$ -- 745
 width$ -- 0
-write$ -- 1903
+write$ -- 1987
 (There were 2 error messages)

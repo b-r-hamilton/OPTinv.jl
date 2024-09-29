@@ -36,7 +36,7 @@ using DimensionalData: @dim, YDim, XDim, TimeDim, ZDim
 @dim Cores "Cores" #can't use "Core" because that's the import for base Julia
 @dim Modes "Modes"
 @dim StateVar "state variable"
-export ccrs, cm, cfeature, cu, mpath, patches, cmap, mal, mticker
+export ccrs, cm, cfeature, cu, mpath, patches, cmap, mal, mticker, inset_axes
 
 #import Python packages
 
@@ -48,7 +48,8 @@ const mpath = pyimport("matplotlib.path")
 const patches = pyimport("matplotlib.patches")
 const cmap = pyimport("matplotlib.cm")
 const mal = pyimport("mpl_toolkits.axes_grid1").make_axes_locatable
-const mticker = pyimport("matplotlib.ticker") 
+const mticker = pyimport("matplotlib.ticker")
+const inset_axes = pyimport("mpl_toolkits.axes_grid1.inset_locator").inset_axes
 
 function __init__()
 
@@ -61,7 +62,7 @@ function __init__()
     PythonCall.pycopy!(cmap,pyimport("matplotlib.cm"))
     PythonCall.pycopy!(mal,pyimport("mpl_toolkits.axes_grid1").make_axes_locatable)
     PythonCall.pycopy!(mticker, pyimport("matplotlib.ticker"))
-    
+    PythonCall.pycopy!(inset_axes, pyimport("mpl_toolkits.axes_grid1.inset_locator").inset_axes)
 
     println("OPTinv.jl: Python libraries installed")
 end
@@ -893,8 +894,8 @@ function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget,
     #this E matrix will only work for old cores 
     allcores = Symbol.("MC".* string.([28, 26, 25, 22, 21, 20, 19, 10, 9, 13, 14]) .* "A")
     Erange = vec(covariancedims((Ti(T), Cores(allcores))))
-    modes = ℳ.dims[2]
-    Edomain = vec(covariancedims((Ti(Tᵤ), Modes(1:11), StateVar([s for s in sv]))))
+    modes = Array(ℳ.dims[2])
+    Edomain = vec(covariancedims((Ti(Tᵤ), Modes(modes), StateVar([s for s in sv]))))
     xindices = [x[1] ∈ Ttarget && x[2]∈ core_list for x in Erange]
     yindices = [y[1] ∈ Tᵤtarget && y[2] ∈ modes for y in Edomain]
     predict_subset(u) = DimArray(cat([+([+([vec(u[At(t-τi), :, At(s)]' * coeffs[s] * ℳ[At(τi), :, :]) for τi in τ[t .- τ .> minimum(Tᵤtarget)]]...) for s in sv]...) for t in Ttarget]..., dims = 2)', (Ti(Ttarget), Cores(core_list)))

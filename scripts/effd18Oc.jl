@@ -1,3 +1,6 @@
+#=
+Compute the effective d18Oc at the surface 
+=# 
 if ! @isdefined(solutions)
     include("ex3.transientinversion_abstract.jl")
 end
@@ -46,6 +49,7 @@ savefig(plotsdir("effd18Omean.png"))
 # ============ EFFECTIVE d18Oc compared to PLANKTIC STACK ================= #
 cdims = vec(covariancedims(allc.ũ.dims))
 Tu = Array(allc.ũ.dims[1])
+locs = core_locations()
 corelons = 360 .+ [c[1] for c in locs]
 corelats = [c[2] for c in locs]
 surfind = γbox(oldc.γ, minimum(corelats)-1, maximum(corelats)+1, minimum(corelons)-1, maximum(corelons)+1)
@@ -69,7 +73,8 @@ for (tit, sol) in zip(["old", "all"], solutions)
     Css = mat*sol.ũ.C*transpose(mat)
     y = UnitfulMatrix(vec(mat*sol.ũ.v))
     unc = UnitfulMatrix(sqrt.(diag(parent(Css))), unitrange(y))
-    plot(DimArray(measurement.(vec(y), vec(unc)), Ti(Array(sol.ũ.dims[1]))), label = tit, color = sol.color)
+    ty = sol.y.dims[1]
+    plot(DimArray(measurement.(vec(y), vec(unc)), Ti(Array(sol.ũ.dims[1])))[ty[begin]..ty[end-1],:], label = tit, color = sol.color)
     if tit == "old"
         ind = findall(x->1800yr>x>1200yr, Tu)
         l, c= linearleastsquares(ustrip.(Tu)[ind], parent(y)[ind], C = parent(Css[ind,ind]))
@@ -92,7 +97,7 @@ plot(DimArray(mean(mat, dims = 2)[:], Ti(Array(Gb.y.dims[1]))), color = "black")
 xlabel("Time [years CE]", fontsize = 15)
 ylabel("Effective " * L"\mathrm{\delta}^{18}\mathrm{O_{calcite}}" * " [‰]", fontsize = 15)
 xticks(600:200:2000, fontsize = 12)
-yticks(-0.4:0.1:0.4, fontsize = 12)
+yticks(-0.4:0.1:0.3, fontsize = 12)
 gca().invert_yaxis()
 tight_layout()
 savefig(plotsdir("effd18Ostack.png"))

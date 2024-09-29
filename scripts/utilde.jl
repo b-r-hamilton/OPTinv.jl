@@ -2,7 +2,7 @@
 MODE MAGNITUDES THROUGH TIME 
 =#
 if ! @isdefined(solutions)
-    include("ex3.transientinversion_abstract.jl")
+    include("transientinversion.jl")
 end
 
 # ====================== MODE 1 ====================================== #

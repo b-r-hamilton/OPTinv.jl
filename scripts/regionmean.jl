@@ -2,14 +2,14 @@
 REGION MEAN
 =#
 if ! @isdefined(solutions)
-    include("ex3.transientinversion_abstract.jl")
+    include("transientinversion.jl")
 end
 
 # =================== MEAN OF N. ATL BOX, for each sol'n, compared to LMR and OC2k = #
 Tm1 = ustrip.(minimum([sol.y.dims[1][1] for sol in solutions]))
 Tm2 = ustrip.(maximum([sol.y.dims[1][end-1] for sol in solutions]))
 regionmeanindices = γbox(oldc.γ, 49, 89, 309, 21)
-figure()
+fig, ax1 = subplots(figsize = (8,4))
 
 for sol in solutions
     sol_anom_ind = findall(x->1850yr<x<1970yr, Array(sol.ũ.dims[1]))
@@ -36,7 +36,7 @@ for sol in solutions
     @show lls[1] * 1000 
     @show sqrt.(diag(C))[1] .* 1000
 
-    plot(θbox.x[inds], color = sol.color, label = sol.name, zorder = 10000)
+    plot(θbox.x[inds], color = sol.color, label = sol.name, lzorder = 3, fbzorder = 0,lwcentral = 3,lwedges = 1)
     newcolor = sol.color == "red" ? "pink" : "aqua"
     println()
 end
@@ -62,13 +62,15 @@ ystd_ocean2k[1, :] .= y_ocean2k .- ystd_ocean2k[1, :]
 ystd_ocean2k[2, :] .=  ystd_ocean2k[2, :] .- y_ocean2k
 #we want this to be anomaly from 1850-1970, but we can't do that for this dataset, next best thing is just use the last bin 
 y_ocean2k .-= y_ocean2k[end]
-#then use some hlines bb 
-hlines(y = y_ocean2k, xmin = t_ocean2k .- 100, xmax = t_ocean2k .+ 100, color = "gray", linewidth = 3)
-hlines(y = y_ocean2k .+ ystd_ocean2k[2, :], xmin = t_ocean2k .- 100, xmax = t_ocean2k .+ 100, color = "gray")
-hlines(y = y_ocean2k .- ystd_ocean2k[1, :], xmin = t_ocean2k .- 100, xmax = t_ocean2k .+ 100, color = "gray")
-vlines(x = t_ocean2k .- 100, ymin = y_ocean2k .- ystd_ocean2k[1, :], ymax = y_ocean2k .+ ystd_ocean2k[2,:], color = "gray")
-vlines(x = t_ocean2k .+ 100, ymin = y_ocean2k .- ystd_ocean2k[1, :], ymax = y_ocean2k .+ ystd_ocean2k[2,:], color = "gray")
-[fill_between(x = [t-100, t+100], y1 = y .- ystd1, y2 = y .+ ystd2, color = "gray", alpha = 0.25) for (t, y, ystd1, ystd2) in zip(t_ocean2k, y_ocean2k, ystd_ocean2k[1, :], ystd_ocean2k[2, :])]
+#then use some hlines bb
+oc2kzorder = 2
+oc2kcolor = "gray"
+hlines(y = y_ocean2k, xmin = t_ocean2k .- 100, xmax = t_ocean2k .+ 100, color = oc2kcolor, linewidth = 3, zorder = oc2kzorder)
+hlines(y = y_ocean2k .+ ystd_ocean2k[2, :], xmin = t_ocean2k .- 100, xmax = t_ocean2k .+ 100, color = oc2kcolor,zorder = oc2kzorder)
+hlines(y = y_ocean2k .- ystd_ocean2k[1, :], xmin = t_ocean2k .- 100, xmax = t_ocean2k .+ 100, color = oc2kcolor,zorder = oc2kzorder)
+vlines(x = t_ocean2k .- 100, ymin = y_ocean2k .- ystd_ocean2k[1, :], ymax = y_ocean2k .+ ystd_ocean2k[2,:], color = oc2kcolor,zorder = oc2kzorder)
+vlines(x = t_ocean2k .+ 100, ymin = y_ocean2k .- ystd_ocean2k[1, :], ymax = y_ocean2k .+ ystd_ocean2k[2,:], color = oc2kcolor,zorder = oc2kzorder)
+[fill_between(x = [t-100, t+100], y1 = y .- ystd1, y2 = y .+ ystd2, color = oc2kcolor,alpha = 0.5, zorder = oc2kzorder) for (t, y, ystd1, ystd2) in zip(t_ocean2k, y_ocean2k, ystd_ocean2k[1, :], ystd_ocean2k[2, :])]
 
 lmrdataset = loadLMR("sst")
 lmrtime = lmrdataset["time"][:]; lmrlon = lmrdataset["lon"][:]; lmrlat = lmrdataset["lat"][:]
@@ -82,10 +84,20 @@ for i in 1:20
     lmrglobal = rolling(mean, [NaNMath.mean(lmrsst[:, :, i]) for i in 1:size(lmrsst)[3]], 50)
 
     lmrbox = rolling(mean, boxmean(lmrsst, lmrlat, lmrlon, 50, 90, 360-50, 20), 50)
-    plot(DimArray((lmrbox  .- mean(lmrbox))* K, Ti(lmrtimeroll)), color = "black", label = "LMR", zorder = 0, linewidth = 1, linestyle = "solid")
+    plot(DimArray((lmrbox  .- mean(lmrbox))* K, Ti(lmrtimeroll)), color = "black", label = "LMR", zorder = 1, linewidth = 0.5, linestyle = "solid")
 end
-lmrsst = makeNaN(mean(lmrdataset["sst"][:, :, :, :], dims = 3))[:, :, 1, :]
-    
+
+ylabel("Surface Temperature Anomaly [K]", fontsize = 15)
+xlabel("Time [yr CE]", fontsize = 15)
+
+xlim(Tm1, Tm2)
+xticks(800:200:1800, fontsize = 12) 
+ax1.set_ylim(-0.5, 1.1)
+yticks(-0.5:0.25:0.75, fontsize = 12)
+tight_layout()
+
+inset_ax = ax1.inset_axes([1550,0.65,300,0.4], transform = ax1.transData ) 
+#subplot
 hadisst = loadHadISST()
 hadsst = makeNaN(hadisst["tos"][:, :, :])
 hadlat = hadisst["latitude"][:]; hadlon = hadisst["longitude"][:]; hadtime = hadisst["time"][:]
@@ -93,19 +105,32 @@ hadroll(x) = rolling(mean, x, 50 * 12)
 hadisst_gm = hadroll([NaNMath.mean(hadsst[:, :, i]) for i in 1:size(hadsst)[3]])
 hadisst_bm = hadroll(boxmean(hadsst, hadlat, hadlon, 50, 90, -50, 20))
 hadtimeroll = hadroll(yeardecimal.(hadtime))
-#plot(DimArray(hadisst_gm .- hadisst_gm[begin], Ti(hadtimeroll)), color = "green", label = "HadISST: global")
-#plot(DimArray(hadisst_bm .- mean(hadisst_bm), Ti(hadtimeroll)), color = "black", label = "HadISST", linewidth = 3, linestyle = "dashed")
+# hadisst_bm = boxmean(hadsst, hadlat, hadlon, 50, 90, -50, 20)
+# hadtimeroll = yeardecimal.(hadtime)
+hadtimeanom = findall(x->1850<x<1970, hadtimeroll)
+inset_ax.plot(hadtimeroll, hadisst_bm .- mean(hadisst_bm[hadtimeanom]), color = "black", label = "HadISST", linewidth = 3, linestyle = "dashed")
+for sol in solutions
+    sol_anom_ind = findall(x->1850yr<x<1970yr, Array(sol.ũ.dims[1]))
+    θbox = estimate(sol.ũ, sol.spatialmodes, :θ, spatialinds = regionmeanindices, rolling = 2)
+    inds = findall(x->x∈sol.y.dims[1], Array(sol.ũ.dims[1]))
+    μ = mean(θbox.v[sol_anom_ind])
+    θbox = DimEstimate(θbox.v .- μ, θbox.C, θbox.dims)
+    t = ustrip.(Array(θbox.x[inds].dims[1]))
+    y = ustrip.(θbox.v[inds])
+    yunc = ustrip.(Array(uncertainty.(θbox.x[inds])))
+    inset_ax.plot(t, y, color = sol.color, label = sol.name, zorder = 10000)
+    inset_ax.fill_between(x = t, y1 = y .- yunc, y2 = y .+ yunc, zorder = 10000, color = sol.color, alpha = 0.3)
+end
+inset_ax.set_xlim(1875,1970)
+inset_ax.set_ylim(-0.5, 0.5)
+inset_ax.set_ylabel("")
 
-ylabel("Surface Temperature Anomaly [K]", fontsize = 15)
-xlabel("Time [yr CE]", fontsize = 15)
+xl = inset_ax.get_xlim()
+yl = inset_ax.get_ylim()
 
-xlim(Tm1, Tm2)
-xticks(800:200:1800, fontsize = 12) 
-ylim(-0.5, 0.9)
-yticks(-0.5:0.25:0.75, fontsize = 12)
-tight_layout()
-savefig(plotsdir("meants" * suffix * ".png"))
-
+ax1.hlines(xmin = xl[0], xmax = xl[1], y = yl, color = "black")
+ax1.vlines(ymin = yl[0], ymax = yl[1], x = xl, color = "black")
+savefig(plotsdir("meants" * suffix * ".png"), dpi = 600)
 
 # ========== NORDIC SEA V. SPNA REGION MEAN  ==================== #
 
@@ -114,7 +139,8 @@ spg = γbox(oldc.γ, 50,65, 300,0)
 spgW= γbox(oldc.γ, 50,65, 300,330)
 spgE= γbox(oldc.γ, 50,65, 330,0)
 
-inds = NamedTuple{(:Nordic, :SPG, :SPGE, :SPGW)}([nordicind, spg, spgE, spgW])
+#inds = NamedTuple{(:Nordic, :SPG, :SPGE, :SPGW)}([nordicind, spg, spgE, spgW])
+inds = NamedTuple{(:Nordic, :SPG)}([nordicind, spg])
 
 fig = figure(figsize = (10,8));
 fig.subplots_adjust(right=0.75)
@@ -124,13 +150,14 @@ for (i, sol) in enumerate(solutions)
     grid()
     T = sol.y.dims[1]
     println("SOLUTION = " * sol.name)
-    for (k, ls, lw, col) in zip(keys(inds), ["solid", "solid", "dotted", "dashed"], [4,4,3,3], ["purple", "darkgreen", "darkgreen", "darkgreen"])
-        Tu = sol.ũ.dims[1]
-        temp = estimate(sol.ũ, sol.spatialmodes, :θ, spatialinds = inds[k])
-        anom = mean(ustrip.(temp.x[DimensionalData.Between(1850yr, 1970yr)]))
-        y1 = ustrip.(temp.x[DimensionalData.Between(T[1], T[end])]) .- anom 
-        plot(ustrip.(T), value.(y1), color = col, label = k, linestyle = ls, linewidth = lw)
-        
+    #for (k, ls, lw, col) in zip(keys(inds), ["solid", "solid", "dotted", "dashed"], [4,4,3,3], ["purple", "darkgreen", "darkgreen", "darkgreen"])
+    for (k, ls, lw, col) in zip(keys(inds), ["solid", "solid"], [4,4], ["purple", "darkgreen"])
+        sol_anom_ind = findall(x->1850yr<x<1970yr, Array(sol.ũ.dims[1]))
+        θbox = estimate(sol.ũ, sol.spatialmodes, :θ, spatialinds = inds[k], rolling = 2)
+        μ = mean(θbox.v[sol_anom_ind]) 
+        θbox = DimEstimate(θbox.v .- μ, θbox.C, θbox.dims)
+        plot(θbox.x[T[begin]..T[end-1], :], color = col, label = sol.name, lzorder = 3, fbzorder = 0,lwcentral = 3,lwedges = 1)
+        #=
         println(string(k))
         @show min = findmin(y1)
         @show t1 = T[min[2]]
@@ -152,16 +179,17 @@ for (i, sol) in enumerate(solutions)
         @show sqrt.(diag(C))[1] .* 1000
 
         println()
-        
+        =#
     end
     xlim(Tm1, Tm2)
-    ylabel("Temperature Anomaly [K]",fontsize = 15)
+    ylabel("Surfaec Temperature Anomaly [K]",fontsize = 15)
     if i == 2 xlabel("Time [years CE]", fontsize = 15) end
  
-    yticks(-0.5:0.25:0.75, fontsize = 12)
-    ylim(-0.5, 0.8)
+    yticks(-0.5:0.25:1.0, fontsize = 12)
+    ylim(-0.5, 1.25)
     xticks(800:200:1800, fontsize = 12)
     text(x = 810, y = -0.48, s = ["A", "B"][i], fontsize = 30, weight = "bold")
+    #=
     twin2 = ax.twinx()
     steinhilber = loadSteinhilber2009()
     st_time = 1950 .- steinhilber[!, "YearBP"]
@@ -170,13 +198,15 @@ for (i, sol) in enumerate(solutions)
     twin2.fill_between(x = st_time, y1 = steinhilber[!, "dTSI"] .-  steinhilber[!, "dTSI_sigma"], y2 = steinhilber[!, "dTSI"] .+  steinhilber[!, "dTSI_sigma"], color = "grey", alpha = 0.2)
     twin2.set_ylabel("Total Solar Insolation [Wm⁻²]", fontsize = 15, color = "grey")
     twin2.set_yticks(labels = -1.5:0.5:1.5, ticks = -1.5:0.5:1.5, fontsize = 12, color = "grey")
-
+    
     twin3 = ax.twinx()
-    twin3.spines.right.set_position(("axes", 1.1))
+    #twin3.spines.right.set_position(("axes", 1.1))
     gao = loadGao2008()
     twin3.plot(gao[!, "Year"], gao[!, "Global"], color = "red", alpha = 0.5, linewidth = 1)
     twin3.set_ylabel("Global strat. sulf. aer. inj. [Tg]", fontsize = 15, color = "red")
     twin3.set_yticks(labels = 0:100:250, ticks = 0:100:250, fontsize = 12, color = "red")
+    =#
 end
 tight_layout()
 savefig(plotsdir("EGWG" * suffix *".png"))
+

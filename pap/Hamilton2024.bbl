@@ -34,41 +34,6 @@ Amrhein, D\BPBI E.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Anchukaitis%
-\ \protect \BOthers {.}}{%
-Anchukaitis%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2019}}%
-}]{%
-Anchukaitis-Cook-2019:Coupled}
-\APACinsertmetastar {%
-Anchukaitis-Cook-2019:Coupled}%
-\begin{APACrefauthors}%
-Anchukaitis, K\BPBI J.%
-, Cook, E\BPBI R.%
-, Cook, B\BPBI I.%
-, Pearl, J.%
-, D’Arrigo, R.%
-\BCBL {}\ \BBA {} Wilson, R.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2019}{{\APACmonth{11}}}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Coupled Modes of North Atlantic Ocean‐Atmosphere
-  Variability and the Onset of the Little Ice Age} {Coupled modes of north
-  atlantic ocean‐atmosphere variability and the onset of the little ice
-  age}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Geophysical Research Letters}{46}{21}{12417–12426}.
-\newblock
-\begin{APACrefURL} \url{http://dx.doi.org/10.1029/2019gl084350}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.1029/2019gl084350} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Bemis%
 , Spero%
 , Bijma%
@@ -203,6 +168,74 @@ Brady, E.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1029/2019ms001663} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Buntgen%
+\ \protect \BOthers {.}}{%
+Buntgen%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2020}}%
+}]{%
+Buntgen-Arseneault-2020:Prominent}
+\APACinsertmetastar {%
+Buntgen-Arseneault-2020:Prominent}%
+\begin{APACrefauthors}%
+Buntgen, U.%
+, Arseneault, D.%
+, Boucher, E.%
+, Churakova~(Sidorova), O\BPBI V.%
+, Gennaretti, F.%
+, Crivellaro, A.%
+\BDBL {}Esper, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{{\APACmonth{12}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Prominent role of volcanism in Common Era climate
+  variability and human history} {Prominent role of volcanism in common era
+  climate variability and human history}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Dendrochronologia}{64}{}{125757}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1016/j.dendro.2020.125757}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.dendro.2020.125757} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Byrne%
+\ \BBA {} O’Gorman%
+}{%
+Byrne%
+\ \BBA {} O’Gorman%
+}{%
+{\protect \APACyear {2018}}%
+}]{%
+Byrne-OGorman-2018:Trends}
+\APACinsertmetastar {%
+Byrne-OGorman-2018:Trends}%
+\begin{APACrefauthors}%
+Byrne, M\BPBI P.%
+\BCBT {}\ \BBA {} O’Gorman, P\BPBI A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{{\APACmonth{04}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Trends in continental temperature and humidity directly
+  linked to ocean warming} {Trends in continental temperature and humidity
+  directly linked to ocean warming}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Proceedings of the National Academy of
+  Sciences}{115}{19}{4863–4868}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1073/pnas.1722312115}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1073/pnas.1722312115} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -369,42 +402,6 @@ England, M.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1002/essoar.10507036.1} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Gao%
-, Robock%
-\BCBL {}\ \BBA {} Ammann%
-}{%
-Gao%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2008}}%
-}]{%
-gao2008}
-\APACinsertmetastar {%
-gao2008}%
-\begin{APACrefauthors}%
-Gao, C.%
-, Robock, A.%
-\BCBL {}\ \BBA {} Ammann, C.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2008}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Volcanic forcing of climate over the past 1500 years: An
-  improved ice core-based index for climate models} {Volcanic forcing of
-  climate over the past 1500 years: An improved ice core-based index for
-  climate models}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Journal of Geophysical Research:
-  Atmospheres}{113}{D23}{}.
-\newblock
-\begin{APACrefURL}
-  \url{https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2008JD010239}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{https://doi.org/10.1029/2008JD010239} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -589,6 +586,102 @@ Hakim, G\BPBI J.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Hannachi%
+, Jolliffe%
+\BCBL {}\ \BBA {} Stephenson%
+}{%
+Hannachi%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2007}}%
+}]{%
+Hannachi-Jolliffe-2007:Empirical}
+\APACinsertmetastar {%
+Hannachi-Jolliffe-2007:Empirical}%
+\begin{APACrefauthors}%
+Hannachi, A.%
+, Jolliffe, I\BPBI T.%
+\BCBL {}\ \BBA {} Stephenson, D\BPBI B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{{\APACmonth{05}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Empirical orthogonal functions and related techniques in
+  atmospheric science: A review} {Empirical orthogonal functions and related
+  techniques in atmospheric science: A review}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{International Journal of
+  Climatology}{27}{9}{1119–1152}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1002/joc.1499} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1002/joc.1499} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hatun%
+, Sando%
+, Drange%
+, Hansen%
+\BCBL {}\ \BBA {} Valdimarsson%
+}{%
+Hatun%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2005}}%
+}]{%
+Hatun-Sando-2005:Influence}
+\APACinsertmetastar {%
+Hatun-Sando-2005:Influence}%
+\begin{APACrefauthors}%
+Hatun, H.%
+, Sando, A\BPBI B.%
+, Drange, H.%
+, Hansen, B.%
+\BCBL {}\ \BBA {} Valdimarsson, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2005}{{\APACmonth{09}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Influence of the Atlantic Subpolar Gyre on the
+  Thermohaline Circulation} {Influence of the atlantic subpolar gyre on the
+  thermohaline circulation}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Science}{309}{5742}{1841–1844}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1126/science.1114777}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1126/science.1114777} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Heuz{\'{e}}%
+}{%
+Heuz{\'{e}}%
+}{%
+{\protect \APACyear {2017}}%
+}]{%
+Heuze2017}
+\APACinsertmetastar {%
+Heuze2017}%
+\begin{APACrefauthors}%
+Heuz{\'{e}}, C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {{North Atlantic deep water formation and AMOC in CMIP5
+  models}} {{North Atlantic deep water formation and AMOC in CMIP5
+  models}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Ocean Science Discussions}{}{}{1--22}.
+\newblock
+\begin{APACrefDOI} \doi{10.5194/os-2017-2} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Khider%
 \ \protect \BOthers {.}}{%
 Khider%
@@ -622,62 +715,35 @@ Khider, D.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-{Lab Sea Group}%
-}{%
-{Lab Sea Group}%
-}{%
-{\protect \APACyear {1998}}%
-}]{%
-LSG--1998:Labrador}
-\APACinsertmetastar {%
-LSG--1998:Labrador}%
-\begin{APACrefauthors}%
-{Lab Sea Group}.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{1998}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {The {L}abrador {S}ea {D}eep {C}onvection {E}xperiment}
-  {The {L}abrador {S}ea {D}eep {C}onvection {E}xperiment}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Bull. of the Amer. Met. Soc.}{79}{}{2033-2058}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Lapointe%
-\ \protect \BOthers {.}}{%
+\ \BBA {} Bradley%
+}{%
 Lapointe%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2020}}%
+\ \BBA {} Bradley%
+}{%
+{\protect \APACyear {2021}}%
 }]{%
-doi:10.1073/pnas.2014166117}
+lapointe2021}
 \APACinsertmetastar {%
-doi:10.1073/pnas.2014166117}%
+lapointe2021}%
 \begin{APACrefauthors}%
 Lapointe, F.%
-, Bradley, R\BPBI S.%
-, Francus, P.%
-, Balascio, N\BPBI L.%
-, Abbott, M\BPBI B.%
-, Stoner, J\BPBI S.%
-\BDBL {}Labarre, T.%
+\BCBT {}\ \BBA {} Bradley, R\BPBI S.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2020}{}{}.
+\APACrefYearMonthDay{2021}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Annually resolved Atlantic sea surface temperature
-  variability over the past 2,900 y} {Annually resolved atlantic sea surface
-  temperature variability over the past 2,900 y}.{\BBCQ}
+{\BBOQ}\APACrefatitle {{Little Ice Age abruptly triggered by intrusion of
+  Atlantic waters into the Nordic Seas}} {{Little Ice Age abruptly triggered by
+  intrusion of Atlantic waters into the Nordic Seas}}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{Proceedings of the National Academy of
-  Sciences}{117}{44}{27171-27178}.
+\APACjournalVolNumPages{Science Advances}{7}{51}{eabi8230}.
 \newblock
-\begin{APACrefURL} \url{https://www.pnas.org/doi/abs/10.1073/pnas.2014166117}
+\begin{APACrefURL} \url{https://www.science.org/doi/abs/10.1126/sciadv.abi8230}
   \end{APACrefURL}
 \newblock
-\begin{APACrefDOI} \doi{10.1073/pnas.2014166117} \end{APACrefDOI}
+\begin{APACrefDOI} \doi{10.1126/sciadv.abi8230} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -781,38 +847,6 @@ Lu, W.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1126/science.adf1646} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Mann%
-\ \protect \BOthers {.}}{%
-Mann%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2009}}%
-}]{%
-mann09}
-\APACinsertmetastar {%
-mann09}%
-\begin{APACrefauthors}%
-Mann, M\BPBI E.%
-, Zhang, Z.%
-, Rutherford, S.%
-, Bradley, R.%
-, Hughes, M\BPBI K.%
-, Shindell, D.%
-\BDBL {}Ni, F.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2009}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Global signatures and dynamical origins of the {Little
-  Ice Age and Medieval Climate Anomaly}} {Global signatures and dynamical
-  origins of the {Little Ice Age and Medieval Climate Anomaly}}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Science}{326}{}{1256--1260}.
-\newblock
-\begin{APACrefDOI} \doi{10.1126/science.1177303} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -1334,6 +1368,41 @@ Schleussner, C\BPBI F.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Seltzer%
+, Blard%
+, Sherwood%
+\BCBL {}\ \BBA {} Kageyama%
+}{%
+Seltzer%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2023}}%
+}]{%
+Seltzer-Blard-2023:Terrestrial}
+\APACinsertmetastar {%
+Seltzer-Blard-2023:Terrestrial}%
+\begin{APACrefauthors}%
+Seltzer, A\BPBI M.%
+, Blard, P\BHBI H.%
+, Sherwood, S\BPBI C.%
+\BCBL {}\ \BBA {} Kageyama, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2023}{{\APACmonth{02}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Terrestrial amplification of past, present, and future
+  climate change} {Terrestrial amplification of past, present, and future
+  climate change}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Science Advances}{9}{6}{}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1126/sciadv.adf8119}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1126/sciadv.adf8119} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Shackleton%
 }{%
 Shackleton%
@@ -1398,7 +1467,7 @@ Sicre-Hall-2011:Sea}
 \APACinsertmetastar {%
 Sicre-Hall-2011:Sea}%
 \begin{APACrefauthors}%
-Sicre, M.%
+Sicre, M\BPBI A.%
 , Hall, I\BPBI R.%
 , Mignot, J.%
 , Khodri, M.%
@@ -1420,6 +1489,42 @@ Sicre, M.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1029/2011pa002169} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Sicre%
+\ \protect \BOthers {.}}{%
+Sicre%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2008}}%
+}]{%
+Sicre-Yiou-2008:North}
+\APACinsertmetastar {%
+Sicre-Yiou-2008:North}%
+\begin{APACrefauthors}%
+Sicre, M\BHBI A.%
+, Yiou, P.%
+, Eiríksson, J.%
+, Ezat, U.%
+, Guimbaut, E.%
+, Dahhaoui, I.%
+\BDBL {}Turon, J\BHBI L.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2008}{{\APACmonth{11}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A 4500-year reconstruction of sea surface temperature
+  variability at decadal time-scales off North Iceland} {A 4500-year
+  reconstruction of sea surface temperature variability at decadal time-scales
+  off north iceland}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Quaternary Science Reviews}{27}{21–22}{2041–2047}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1016/j.quascirev.2008.08.009}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.quascirev.2008.08.009} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -1455,38 +1560,6 @@ Spielhagen, R\BPBI F.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1126/science.1197397} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Steinhilber%
-, Beer%
-\BCBL {}\ \BBA {} Fröhlich%
-}{%
-Steinhilber%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2009}}%
-}]{%
-Steinhilber-Beer-2009:Total}
-\APACinsertmetastar {%
-Steinhilber-Beer-2009:Total}%
-\begin{APACrefauthors}%
-Steinhilber, F.%
-, Beer, J.%
-\BCBL {}\ \BBA {} Fröhlich, C.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2009}{{\APACmonth{10}}}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Total solar irradiance during the Holocene} {Total solar
-  irradiance during the holocene}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Geophysical Research Letters}{36}{19}{}.
-\newblock
-\begin{APACrefURL} \url{http://dx.doi.org/10.1029/2009gl040142}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.1029/2009gl040142} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

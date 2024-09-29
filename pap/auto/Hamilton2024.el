@@ -5,10 +5,10 @@
                      '(("agujournal2019" "draft")))
    (TeX-add-to-alist 'LaTeX-provided-package-options
                      '(("trackchanges" "inline")))
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
-   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
+   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "url")
    (TeX-run-style-hooks
     "latex2e"
     "agujournal2019"
@@ -23,7 +23,7 @@
     "xr")
    (LaTeX-add-labels
     "sec:ludata"
-    "sec:overview"
+    "eq:impresp"
     "eq:inverse"
     "sec:agemodel"
     "eq:covariance"
@@ -41,7 +41,6 @@
     "sec:E"
     "eq:diffeq"
     "eq:2"
-    "eq:impresp"
     "sec:solution"
     "eq:costfunc"
     "eq:twls"
@@ -56,8 +55,7 @@
     "fig:sst"
     "fig:plankticstack"
     "fig:meants"
-    "fig:ocean2kcomp"
-    "fig:EGWGSI")
+    "fig:ocean2kcomp")
    (LaTeX-add-bibliographies))
  :latex)
 

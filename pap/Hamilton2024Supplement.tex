@@ -80,7 +80,7 @@
 
 % Example: \title{This is a test title}
 
-\title{Supplmentary Information for ``Nordic Sea amplification of Little Ice Age cooling inferred from inversion of high-resolution benthic foraminiferal records''}
+\title{Supplementary Information for ``Nordic Sea amplification of Little Ice Age cooling inferred from inversion of high-resolution benthic foraminiferal records''}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -98,18 +98,19 @@
 % Additional author notes should be indicated with \thanks{} (for
 % example, for current addresses).
 
-% Example: \authors{A. B. Author\affil{1}\thanks{Current address, Antartica}, B. C. Author\affil{2,3}, and D. E.
-% Author\affil{3,4}\thanks{Also funded by Monsanto.}}
+\authors{Brynnydd Hamilton\affil{1}, Geoffrey Gebbie\affil{2}, Delia W. Oppo\affil{3}, Wanyi Lu\affil{4}}
 
-\authors{=list all authors here=}
-
-
-% \affiliation{1}{First Affiliation}
-% \affiliation{2}{Second Affiliation}
+\affiliation{1}{MIT-WHOI Joing Program in Oceanography/Applied Ocean Sciences and Engineering}
+\affiliation{2}{Department of Physical Oceanography, Woods Hole Oceanographic Institution}
+ \affiliation{3}{Department of Geology and Geophysics, Woods Hole Oceanographic Institution}
+ \affiliation{4}{Tongji University}
 % \affiliation{3}{Third Affiliation}
 % \affiliation{4}{Fourth Affiliation}
 
-\affiliation{=number=}{=Affiliation Address=}
+ \affiliation{1}{Woods Hole, MA, USA}
+ \affiliation{2}{Woods Hole, MA, USA}
+  \affiliation{3}{Woods Hole, MA, USA}
+ \affiliation{4}{Shanghai, China}
 %(repeat as many times as is necessary)
 
 
@@ -122,7 +123,7 @@
 
 % Example: \correspondingauthor{First and Last Name}{email@address.edu}
 
-\correspondingauthor{=name=}{=email address=}
+\correspondingauthor{Brynnydd Hamilton}{brynnydd.hamilton@whoi.edu}
 
 
 
@@ -163,38 +164,76 @@
 %% \begin{abstract} starts the second page
 
 \section{Surface source water contribution map SVD}
-The left singular vectors, or the unscaled principal components, of the surface source water origination maps, are shown in Figure S\ref{fig:U}. 
+The left singular vectors, or the unscaled principal components, of the surface source water origination maps, are shown in Supplemental Figure S\ref{fig:U}. 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/U.png}}
 \caption[]{\label{fig:U} Left singular vectors of the SVD presented in Equation (\ref{main-eq:svd}). Each value is color-coded according to its magnitude. Each vector is orthonormal, and the x-axis is the magnitude of the left singular value, which is a normalized, unitless quantity.}
 \end{figure}
-
-\section{$\bm{\mathcal{M}}$ Array}
+\section{$\bm{\mathcal{M}}$}
+The array $\bm{\mathcal{M}}$ contains the magnitude of each surface spatial mode (see Figure \ref{main-fig:svdmodes}), propagated as an impulse response through the discrete time transport operator $\mathbf{L}$, at time lags $\tau$. 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/modemags.png}}
 \caption[]{\label{fig:modemags} Each panel shows the observed mode magnitude (unitless) at the three cores in the \texttt{old} estimate, as a function of lagged time from an initial surface signal. MC26A (1190 m) is shown in orange, MC22A (1535 m) in blue, and MC13A (2129 m) in purple. Note different magnitudes on y-axis.}
 \end{figure}
-
-\section{Mode Estimates $\mathbf{\tilde{u}}$}
-
+\section{Temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ Relationship}
+An important parameter in the inversion presented in this work is the enforced relationship between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. Intuitively, we expect $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ and salinity to be strongly correlated, as they are both controlled by the same processes (evaporation, precepitation). We expect some correlation between temperature and salinity, as cooler waters tend to be fresher and warmer waters tend to be saltier. Therefore, we also expect some correlation between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. We explore the relationship between temperature, salinity, $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ first in the global, gridded, surface output from \citeA{gebbie2010}. These results confirm that salinity and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ are most strongly correlated (R$^{2}$ = 0.756), while temperature and salinity (R$^{2}$ = 0.224), and temperature and $\delta^{18}\mathrm{O}$ (R$^{2}$ = 0.511) are less related, but still exhibit some correlation. Here, we note a roughly linear (R$^2$ = 0.51) relationship between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$.
 \begin{figure}[htbp]
-\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/u0utilde.png}}
-\caption[]{\label{fig:u0utilde} }
+\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/T_v_d18O.png}}
+\caption[]{Relationships between temperature and salinity \textbf{A}, salinity and $\delta^{18}\mathrm{O}_{\textrm{seawater}}$ \textbf{B}, and temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ for global surface values in the TMI output \cite{gebbie2010}. \label{fig:td18O}}
 \end{figure}
 
-\section{Ocean2k Cooling Rate Estimation \label{sec:oc2k}}
-We computed the Ocean2k anomaly trend from 800-1800 CE by binning the records into 200 year bins, centered on the years 800-1800 CE. Uncertainty was quantified by the standard deviation of all values for a particular record that fell into a single bin. If there was only one data point within a bin, an uncertainty of 0 was assigned. A mean global time series was calculated by computing the average of all binned records that have data for each bin. Then, the linear least squares slope was computed. For all 57 records, this was computed to be -0.47 $\pm$ 0.1 $^{\circ}$C/kyr. \cite{ocean2k} reports this value as -0.42 $^{\circ}$C/kyr. For the subset of 28 North Atlantic records, this was computed to be -0.36 $\pm$ 0.12 $^{\circ}$C/kyr.
+However, our problem is constrained by the relationship between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ temporally, not spatially. Time-evolving, paired measurements of $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ and temperature are difficult to obtain for the instrumental era, and we are specifically interested in the covariance of these variables on longer timescales. For this reason, we explore the relationship between these variables in a coupled model. We use output from a single realization (002) of the fully-forced, isotope-enabled Community Earth System (iCESM1.2) Last Millenium Ensemble (LME) \cite[]{Brady-Stevenson-2019:Connected}. The results from this, while also not strictly linearly, reflect similar relationships to the relationship found in \cite[]{Gebbie-Huybers-2010:Total}. 
 
-\subsection{Solution Comparison to Instrumental Record}
-We can compute time-varying surface maps of temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ via Equation (\ref{main-eq:surfrecon}), which is shown in Figure \ref{main-fig:sst}. Although observational time series on relevant timescales are rare, we average the SST map in a Labrador Sea box, and compare it to a comparable region in the Hadley Centre Sea Ice and Sea Surface Temperature dataset (HadISST) \cite[]{Rayner-Parker-2003:Global}, as well as a digitized long-term Labrador Sea Water observational dataset \cite[]{LSG--1998:Labrador} in Figure \ref{fig:labcomp}. An approximation of salinity can be arrived at from our $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ reconstruction by using the ratio between salinity and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ changes of 0.5255 \cite{marchitto}, which can be compared to the long-term salinity record from \citeA{LSG--1998:Labrador}.
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPT2k.jl/plots/cesm_scatter.png}}
+\caption[]{\label{fig:td18O_cesm}Relationships between temperature and salinity \textbf{A}, salinity and $\delta^{18}\mathrm{O}_{\textrm{seawater}}$ \textbf{B}, and temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ from decadally-averaged timeseries from an interior grid cell near the sediment core locations (51.6 $^{\circ}$N, 21.9$^{\circ}$W, 1500m) in realization 002 of the iCESM1.2 LME. }
+\end{figure}
+\section{Mode Estimates $\mathbf{\tilde{u}}$}
+All 11 modes of the solution to the \texttt{OPT-3} and \texttt{OPT-11} solution are shown in Supplemental Figure S\ref{fig:u0utilde}, to complement the Mode 1 plot in Figure \ref{main-fig:utilde}.
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/u0utilde.png}}
+\caption[]{\label{fig:u0utilde} For all 11 modes, we show $\mathbf{u_0}$ and associated uncertainty $\mathbf{C_{u_0u_0}}$ (gray line and shading), and the best estimate of mode magnitude $\mathbf{\tilde{u}}$ for the \texttt{OPT-11} (red line and shading) and \texttt{OPT-3} (blue line and shading) solutions. Panels are titled with their associated mode number.}
+\end{figure}
+
+\section{Solution Comparison to Instrumental Record}
+We can compute time-varying surface maps of temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ via Equation (\ref{main-eq:surfrecon}), which is shown in Figure \ref{main-fig:sst}. Although observational time series on relevant timescales are rare, we average the SST map in a Labrador Sea box, and compare it to a comparable region in the Hadley Centre Sea Ice and Sea Surface Temperature dataset (HadISST) \cite[]{Rayner-Parker-2003:Global}, as well as a digitized long-term Labrador Sea Water observational dataset \cite[]{LSG--1998:Labrador} in Supplemental Figure S\ref{fig:labcomp}. An approximation of salinity can be arrived at from our $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ reconstruction by using the ratio between salinity and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ changes of 0.5255 \cite{marchitto}, which can be compared to the long-term salinity record from \citeA{LSG--1998:Labrador}.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/labcompallvold.png}}
-\caption[]{\label{fig:labcomp} \textbf{(A)} Reconstructed Labrador Sea (60$^{\circ}$W-30$^{\circ}$E, 55$^{\circ}$N-64$^{\circ}$N) temperature and \textbf{(B)} salinity (computed as $0.5255 \times \delta^{18}\mathrm{O}_{\mathrm{seawater}}$) over the instrumental period (1850-1970) is shown for \texttt{old} (blue) and \texttt{all} (red) solutions. Solid line shows digitized Labrador Sea record \cite{LSG--1998:Labrador}. Dashed line shows winter HadISST \cite{Rayner-Parker-2003:Global} Labrador Sea spatial mean (60$^{\circ}$W-30$^{\circ}$E, 55$^{\circ}$N-64$^{\circ}$N). All records are shown as an anomaly from 1970.}
+\caption[]{\label{fig:labcomp} \textbf{(A)} Reconstructed Labrador Sea (60$^{\circ}$W-30$^{\circ}$E, 55$^{\circ}$N-64$^{\circ}$N) temperature and \textbf{(B)} salinity (computed as $0.5255 \times \delta^{18}\mathrm{O}_{\mathrm{seawater}}$) over the instrumental period (1850-1970) is shown for \texttt{OPT-3} (blue) and \texttt{OPT-11} (red) solutions. Solid line shows digitized Labrador Sea record \cite{LSG--1998:Labrador}. Dashed line shows winter HadISST \cite{Rayner-Parker-2003:Global} Labrador Sea spatial mean (60$^{\circ}$W-30$^{\circ}$E, 55$^{\circ}$N-64$^{\circ}$N). All records are shown as an anomaly from 1970.}
 \end{figure}
 
-We expect some smoothing in our solution reconstruction, as a result of using benthic records which do not experience near-surface variability nor seasonal variations. This is evident in both the temperature and salinity panels in Figure \ref{fig:labcomp}. We note that the magnitude of changes in reconstructed temperature and salinity are within the range of decadal-scale variability for the sparse instrumental records in our region of interest. 
+We expect some smoothing in our solution reconstruction, as a result of using benthic records which do not experience near-surface variability nor seasonal variations. This is evident in both the temperature and salinity panels in Supplemental Figure S\ref{fig:labcomp}. The magnitude of changes in reconstructed temperature and salinity are within the range of decadal-scale variability for the sparse instrumental records in our region of interest. 
 
+\section{Additional Solutions \label{sec:sols}}
+As a test of the significance of the Mode 1 pattern, we provide an estimate in which, instead of using 11 distinct spatial modes, we use one globally uniform mode. In addition, we compute our solution using solely Mode 2, to illustrate if any North Atlantic pattern would be equally as skillful at fitting the sediment core observations. We refer to these two new solutions as \texttt{OPT-3-GLOBAL} and \texttt{OPT-3-MODE2}. The procedure is identical to that described in the main text, and we set the expected variance of the globally uniform mode for \texttt{OPT-3-GLOBAL} and Mode 2 for \texttt{OPT-3-MODE2} in the prior equal to the variance of Mode 1 in the \texttt{OPT-3} and \texttt{OPT-11} solutions. The cost functions are presented in Supplemental Table S\ref{tab:cost}.
+
+\begin{table}
+\caption{Cost function values for each solution \label{tab:cost}}
+\centering
+\begin{tabular}{l | c | c | c }
+\hline
+ Inversion  & $\mathbf{n}^T\mathbf{C_{nn}}^{-1}\mathbf{n}$ & $\mathbf{u_0}^T\mathbf{C_{u_0u_0}}^{-1}\mathbf{u_0}$ & $\mathbf{n}^T\mathbf{C_{nn}}^{-1}\mathbf{n} + \mathbf{u_0}^T\mathbf{C_{u_0u_0}}^{-1}\mathbf{u_0}$\\
+\hline
+  \texttt{OPT-3-GLOBAL}  & 13.1 & 7.17 &  20.3  \\
+  \texttt{OPT-3-MODE2}  &  89.9 & 3.98 & 93.9  \\
+\hline
+%\multicolumn{2}{l}{$^{a}$Footnote text here.}
+\end{tabular}
+\end{table}
+In Supplemental Table S\ref{tab:cost}, the \texttt{OPT-3-GLOBAL} solution has a very similar value to \texttt{OPT-3} for the portion of the cost function associated with the observational misfit (6.28 for \texttt{OPT-3}, 13.1 for \texttt{OPT-3-GLOBAL}, with an expected value of 572). \texttt{OPT-3} and \texttt{OPT-3-GLOBAL} solutions represent very similar fits to the sediment core data, which may suggest to the reader that any arbitrary surface pattern could fit the data within error. However, the portion of the cost function associated with observational misfit is much higher for \texttt{OPT-3-MODE2}, although still less than the expected value. This implies that the, although a uniform global surface pattern can fit the sediment core data as well as the SVD-derived Mode 1, arbitrary North Atlantic surface patterns are not guaranteed to fit the sediment core signals. 
+
+To further examine this finding, we recreate Figure \ref{main-fig:recon}, but for \texttt{OPT-3-GLOBAL} and \texttt{OPT-11-GLOBAL}. In Supplemental Figure S\ref{fig:recon}, the \texttt{OPT-11-GLOBAL} solution has a fairly similar core site reconstruction to the \texttt{OPT-11} solution. However, the \texttt{OPT-3-GLOBAL} reconstruction has a much worse fit to sediment cores MC22A and MC13A than the \texttt{OPT-3} solution, implying that the spatial pattern of Mode 1 is important for capturing the sediment core data. This can be further investigated by contrasting the response of a globally-uniform impulse versus a Mode 2 impulse, which is shown in Figure \ref{fig:impulse}
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/reconsolglobal.png}}
+\caption[]{\label{fig:recon} Reconstruction at core sites for \texttt{OPT-11-GLOBAL} estimate (red line and shading) and \texttt{OPT-3-GLOBAL} estimate (blue line and shading). Black line shows sediment core record. Note inverted $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ axis.}
+\end{figure}
+
+The impulse response due to a global surface signal bears similarity to the impulse response due to Mode 1 (see Supplemental Figure S\ref{fig:modemags}), in that the signal is fairly similar when observed at the three sediment cores of interest. The response at the sediment core sites due to a Mode 2 impulse response consists of a negative signal at MC26A and MC22A, with larger amplitude on MC26A than MC22A, and a positive signal at MC13A. Mode 2 is characterized by a negative anomaly south of Iceland, and a positive anomaly north of Iceland (Figure \ref{main-fig:svdmodes}). Waters from the Nordic Seas north of Iceland are expected to experience deep convection, and will affect the deep sediment core site MC13A at 2129 m more than the shallower sites MC26A (1190 m) and MC22A (1535 m), hence why the MC13A experiences a negative signal due to Mode 2, while MC26A and MC22A experience a positive signal. 
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = 0.8\textwidth]{/home/brynn/Code/OPTinv.jl/plots/Mode2.png}}
+\caption[]{\label{fig:impulse} Impulse response due to a global surface signal (\textbf{A}) and a Mode 2 surface signal (\textbf{B}). MC26A (1190 m) is shown in orange, MC22A (1535 m) in blue, and MC13A (2129 m) in purple.}
+\end{figure}
 
 
 %

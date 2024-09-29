@@ -2,7 +2,7 @@
 RECONSTRUCTION OF SOLUTIONS AT CORE SITES 
 =# 
 if ! @isdefined(solutions)
-    include("ex3.transientinversion_abstract.jl")
+    include("transientinversion.jl")
 end
 
 locs = core_locations() 
