@@ -97,8 +97,8 @@ tx.set_xlim(xl)
 tx.set_yticks(depths, string.(keys(locs)), fontsize = 12)
 tx.set_ylim(yl)
 
+#=
 
-#= 
 ctd_dir = "/home/brynn/Documents/JP/rdata/EN539CTD/"
 d18Ofp = joinpath(ctd_dir, "EN539_O18water.xlsx")
 function get_d18O(filepath, index, ctd_col::Char, depth_col::Char, data_col, names) 
@@ -139,14 +139,14 @@ inds = vcat([findall(x->x==c, d18O[!, "CTD"]) for c in θmulticore[!, "CTD"]]...
 
 multicored18Oc = -0.224 * θmulticore[inds,"θ"] .+ d18O[inds, "d18O"] .+ 3.53 .- 0.27
 #scatter(multicored18Oc, θmulticore[inds, "depth"], color = "blue", s = 25, marker = "x")
-
+=#
 ax.set_xticks(2.2:0.2:2.9, 2.2:0.2:2.9, fontsize = 12)
 ax.set_xlim(xl)
 ax.set_xlabel(L"\delta^{18}\mathrm{O}_\mathrm{calcite}" *" [‰]", fontsize = 15)
 ax.set_yticks(2200:-200:1000, 2200:-200:1000, fontsize = 12)
 ax.set_ylabel("Depth [m]", fontsize = 15)
 tight_layout()
-savefig(plotsdir("offsets.png"))
+savefig(plotsdir("offsets.png"), dpi = 600)
 
 using Statistics
 @show (mean(y.y, dims = Ti))[1, :] .- effd18Oc_cibs .* permil
@@ -180,5 +180,5 @@ xlabel("Salinity [psu]")
 legend()
 tight_layout()
 
-=#
+
 =#

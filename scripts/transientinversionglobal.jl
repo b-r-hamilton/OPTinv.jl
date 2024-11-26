@@ -1,4 +1,4 @@
-#=
+
 #=
 Inversion using a single, global surface pattern
 Basically just the `invert` method + `loadM` are copied here
@@ -13,7 +13,7 @@ oldcores = Symbol.("MC" .* string.([26, 22, 13]) .* "A")
 xall = inversion(oldcores, "global", "all", "#5D3A9B")
 xold = inversion(oldcores, "mode2", "old", "#E66100")
 corenums_full = Symbol.("MC" .* string.([28, 26, 25, 22, 21, 20, 19, 10, 9,13,14]) .* "A")
-sols = Vector{solution}(undef, 2)
+solutions = Vector{solution}(undef, 2)
 for (i,x) in enumerate([xall, xold])
     corenums_sorted = [i for i in corenums_full if i in x.cores]
     filename = x.modetype * ".jld2"
@@ -76,30 +76,31 @@ for (i,x) in enumerate([xall, xold])
 
     #yes this is bad to force the permil, but I'll come back to it...
     ỹ₀ = DimEstimate(E*u₀de.v, parent(E*u₀de.C*E')*permil^2, y.y.dims)#predict(u₀de.x) 
-    sols[i] = solution(yde, ỹde, ỹ₀, u₀de, ũ, θ, δ, γ,spatialmodes, x.name, x.color, E, predict)
+    solutions[i] = solution(yde, ỹde, ỹ₀, u₀de, ũ, θ, δ, γ,spatialmodes, x.name, x.color, E, predict)
 end
-
+suffix = "globmode2"
+#=
 #mode plot
 figure();
 for sol in sols
     plot(sol.ũ.x[:,At(1), At(:θ)], color = sol.color)
 end
-
-min_age = [minimum(s.y.dims[1]) for s in sols]
-max_age = [maximum(s.y.dims[1]) for s in sols]
+=#
+min_age = [minimum(s.y.dims[1]) for s in solutions]
+max_age = [maximum(s.y.dims[1]) for s in solutions]
 xl = [minimum(min_age), maximum(max_age)]
 
 locs = core_locations()
 #recon @ cores
-figure(figsize = (8,3))
+figure(figsize = (10,3))
 for (i, c) in enumerate(oldcores)
     ax = subplot(1,3,i)
-    plot(sols[1].ỹ.x[:, At(c)], color = sols[1].color)
+    plot(solutions[1].ỹ.x[:, At(c)], color = solutions[1].color)
     if c ∉ oldcores
-        plot(sols[1].y.x[:, At(c)], color = "black",lwcentral = 2, alpha = 0.2)
+        plot(solutions[1].y.x[:, At(c)], color = "black",lwcentral = 2, alpha = 0.2)
     else
-        plot(sols[2].ỹ.x[:, At(c)], color = sols[2].color, lwcentral = 2)
-        plot(sols[2].y.x[:, At(c)], color = "black", lwcentral = 2)
+        plot(solutions[2].ỹ.x[:, At(c)], color = solutions[2].color, lwcentral = 2)
+        plot(solutions[2].y.x[:, At(c)], color = "black", lwcentral = 2)
     end
 
     
@@ -123,17 +124,19 @@ for (i, c) in enumerate(oldcores)
     ax.invert_yaxis()
 end
 tight_layout()
-savefig(DrWatson.plotsdir("reconsol" * "global" * ".png"))
-
+savefig(DrWatson.plotsdir("reconsol" * "global" * ".png"), dpi = 600)
 #=
+
 figure();
-for sol in sols
-    plot(DimArray(vcat(unique.(sol.θ)...), Ti(collect(sol.ũ.dims[1]))), color = sol.color)
-end
-=#
+#for sol in solutions
+plot(estimate(solutions[1].ũ, solutions[1].spatialmodes, :θ, spatialinds = 1:1:11113, rolling = 2).x, color = solutions[1].color) #this line only works for `global` because `Mode2` doesn't have a unique T value at each timestep 
+#end
+xlim(800,1970)
+grid()
+ylabel("Global Surf. Temp. Anom. [K]", fontsize = 15)
+xlabel("Time [years CE]", fontsize = 15) 
 
 
-=#
 figure(figsize = (8,4))
 for (i, file) in enumerate(["global.jld2", "mode2.jld2"])
     subplot(1,2,i) 
@@ -160,3 +163,4 @@ for (i, file) in enumerate(["global.jld2", "mode2.jld2"])
 end
 tight_layout()
 savefig(plotsdir("Mode2.png"))
+=#

@@ -87,12 +87,14 @@ for (i, sol) in enumerate(solutions)
         end
     end
     tight_layout()
-    savefig(plotsdir("surfacesol" * suffix * ".png"), bbox_inches = "tight")
+    savefig(plotsdir("surfacesol" * suffix * ".png"), bbox_inches = "tight",dpi = 600)
 end
 
-# ==================== SLOPE AT EVERY POINT, COMPARE TO OC2k SLOPES ==== # 
-ind = findall(x->1900yr>x>1140yr, Array(Tu))
+# ==================== SLOPE AT EVERY POINT, COMPARE TO OC2k SLOPES ==== #
 sol = oldc
+Tu = Array(sol.ũ.dims[1])
+ind = findall(x->1900yr>x>1140yr, Array(Tu))
+
 θmat = value.(ustrip.(hcat(sol.θ...)))
 lls = Vector{Float64}(undef, size(θmat)[1])
 
@@ -170,4 +172,4 @@ gl.right_labels = false
 gl.bottom_labels = false
 
 tight_layout()
-savefig(plotsdir("ocean2kcomp.png"))
+savefig(plotsdir("ocean2kcomp.png"), dpi = 600)

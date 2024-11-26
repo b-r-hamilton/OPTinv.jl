@@ -1,14 +1,16 @@
+
 #=
 REGION MEAN
 =#
 if ! @isdefined(solutions)
     include("transientinversion.jl")
 end
+using UnitfulLinearAlgebra, LinearAlgebra, PaleoData, NaNMath, DateFormats, Dates, RollingFunctions
 
 # =================== MEAN OF N. ATL BOX, for each sol'n, compared to LMR and OC2k = #
 Tm1 = ustrip.(minimum([sol.y.dims[1][1] for sol in solutions]))
 Tm2 = ustrip.(maximum([sol.y.dims[1][end-1] for sol in solutions]))
-regionmeanindices = γbox(oldc.γ, 49, 89, 309, 21)
+regionmeanindices = γbox(solutions[1].γ, 49, 89, 309, 21)
 fig, ax1 = subplots(figsize = (8,4))
 
 for sol in solutions
@@ -25,6 +27,7 @@ for sol in solutions
     println(sol.name * ": pre-1900 maxima") 
     @show max = findmax(θbox.x[pre1900inds])
     @show sol.ũ.dims[1][pre1900inds][max[2]]
+    @show findmax(θbox.x[pre1900inds])[1] - findmin(θbox.x[inds])[1]
 
     println("LLS, LIA cooling")
     #we need to subset to the time period we want to compute the slope over 
@@ -75,6 +78,8 @@ vlines(x = t_ocean2k .+ 100, ymin = y_ocean2k .- ystd_ocean2k[1, :], ymax = y_oc
 lmrdataset = loadLMR("sst")
 lmrtime = lmrdataset["time"][:]; lmrlon = lmrdataset["lon"][:]; lmrlat = lmrdataset["lat"][:]
 
+month.(lmrtime)
+
 for i in 1:20
     lmrsst = makeNaN(lmrdataset["sst"][:, :, i, :])
     anomindex = findall(x->1850 < x < 1970, year.(lmrtime))
@@ -121,9 +126,10 @@ for sol in solutions
     inset_ax.plot(t, y, color = sol.color, label = sol.name, zorder = 10000)
     inset_ax.fill_between(x = t, y1 = y .- yunc, y2 = y .+ yunc, zorder = 10000, color = sol.color, alpha = 0.3)
 end
+
 inset_ax.set_xlim(1875,1970)
 inset_ax.set_ylim(-0.5, 0.5)
-inset_ax.set_ylabel("")
+inset_ax.set_ylabel("T [K]")
 
 xl = inset_ax.get_xlim()
 yl = inset_ax.get_ylim()
@@ -134,10 +140,10 @@ savefig(plotsdir("meants" * suffix * ".png"), dpi = 600)
 
 # ========== NORDIC SEA V. SPNA REGION MEAN  ==================== #
 
-nordicind = γbox(oldc.γ, 65, 80,360-20, 20)
-spg = γbox(oldc.γ, 50,65, 300,0)
-spgW= γbox(oldc.γ, 50,65, 300,330)
-spgE= γbox(oldc.γ, 50,65, 330,0)
+nordicind = γbox(solutions[1].γ, 65, 80,360-20, 20)
+spg = γbox(solutions[1].γ, 50,65, 300,0)
+spgW= γbox(solutions[1].γ, 50,65, 300,330)
+spgE= γbox(solutions[1].γ, 50,65, 330,0)
 
 #inds = NamedTuple{(:Nordic, :SPG, :SPGE, :SPGW)}([nordicind, spg, spgE, spgW])
 inds = NamedTuple{(:Nordic, :SPG)}([nordicind, spg])
@@ -184,7 +190,7 @@ for (i, sol) in enumerate(solutions)
     xlim(Tm1, Tm2)
     ylabel("Surfaec Temperature Anomaly [K]",fontsize = 15)
     if i == 2 xlabel("Time [years CE]", fontsize = 15) end
- 
+    
     yticks(-0.5:0.25:1.0, fontsize = 12)
     ylim(-0.5, 1.25)
     xticks(800:200:1800, fontsize = 12)
@@ -209,4 +215,115 @@ for (i, sol) in enumerate(solutions)
 end
 tight_layout()
 savefig(plotsdir("EGWG" * suffix *".png"))
+
+# ================== OPT-3, OPT-11 vs. GH19 ================== #
+Tm1 = ustrip.(minimum([sol.y.dims[1][1] for sol in solutions]))
+Tm2 = ustrip.(maximum([sol.y.dims[1][end-1] for sol in solutions]))
+regionmeanindices = γbox(solutions[1].γ, 49, 89, 309, 21)
+fig, ax1 = subplots(figsize = (8,4))
+
+for sol in solutions
+    sol_anom_ind = findall(x->1850yr<x<1970yr, Array(sol.ũ.dims[1]))
+    θbox = estimate(sol.ũ, sol.spatialmodes, :θ, spatialinds = regionmeanindices, rolling = 2)
+    μ = mean(θbox.v[sol_anom_ind])
+    θbox = DimEstimate(θbox.v .- μ, θbox.C, θbox.dims)
+    inds = findall(x->x∈sol.y.dims[1], Array(sol.ũ.dims[1]))
+    pre1900inds = intersect(inds, findall(x->1000yr<x<1900yr, Array(sol.ũ.dims[1])))
+    minv = findmin(θbox.x[inds])
+    println(sol.name * ": minima")
+    @show sol.ũ.dims[1][inds][minv[2]]
+    
+    println(sol.name * ": pre-1900 maxima") 
+    @show max = findmax(θbox.x[pre1900inds])
+    @show sol.ũ.dims[1][pre1900inds][max[2]]
+    @show findmax(θbox.x[pre1900inds])[1] - findmin(θbox.x[inds])[1]
+
+    println("LLS, LIA cooling")
+    #we need to subset to the time period we want to compute the slope over 
+    liainds = findall(x->sol.ũ.dims[1][inds][minv[2]] > x > sol.ũ.dims[1][pre1900inds][max[2]], Array(sol.ũ.dims[1]))
+    x = UnitfulMatrix(Array(sol.ũ.dims[1][liainds]))
+    C = UnitfulMatrix(parent(θbox.C[liainds, liainds]), unitrange(θbox.C)[liainds], unitdomain(θbox.C)[liainds])
+    y = UnitfulMatrix(θbox.v[liainds])
+    lls, C = linearleastsquares(x, y, C=C)
+    @show lls[1] * 1000 
+    @show sqrt.(diag(C))[1] .* 1000
+
+    plot(θbox.x[inds], color = sol.color, label = sol.name, lzorder = 3, fbzorder = 0,lwcentral = 3,lwedges = 1)
+    newcolor = sol.color == "red" ? "pink" : "aqua"
+    println()
+end
+
+using NCDatasets, GH19 
+exp = explist()[end]
+filename = download_exp(exp, true)
+tmi = NCDataset(TMI.download_ncfile(TMIversion()))
+lat = tmi["lat"][:]
+lon = tmi["lon"][:]
+natl = tmi["d_NATL"][:, :]
+natl[natl .== 0] .= NaN
+ant =  tmi["d_ANT"][:, :]
+ant[ant .== 0] .= NaN
+glob = tmi["d_GLOBAL"][:,:]
+glob[glob .== 0] .= NaN               
+nc = NCDataset(filename)
+θGH19 = nc["theta"][:, 1, :, :]
+tGH19 = nc["year"][:]
+GHanomindex = findall(x->1850 < x < 1970, tGH19)
+θGH19NATL = [NaNMath.mean(θGH19[i,:, :] .* natl') for i in 1:size(θGH19)[1]]
+θGH19ANT = [NaNMath.mean(θGH19[i,:, :] .* ant') for i in 1:size(θGH19)[1]]
+θGH19GLOB = [NaNMath.mean(θGH19[i,:, :] .* glob') for i in 1:size(θGH19)[1]]
+ind1970 = findall(x->x==1970, tGH19)[1]
+ind1880 = findall(x->x==1880, tGH19)[1]
+ind1780 = findall(x->x==1780, tGH19)[1]    
+θGH19NATL[ind1970]-θGH19NATL[ind1780]
+θGH19NATL[ind1970]-θGH19NATL[ind1780]
+
+
+plot(tGH19, θGH19NATL .- mean(θGH19NATL[GHanomindex]), color = "green", linestyle = "solid", linewidth = 5)
+plot(tGH19, θGH19GLOB .- mean(θGH19GLOB[GHanomindex]), color = "black", linestyle = "solid", linewidth = 5)
+
+
+
+tGH19
+θGH19NATL
+t_ocean2k = 100:200:1900
+oc2k_binned, oc2k_binnedv, oc2k_ages = loadOcean2kBinned()
+#the following values are from from McGregor 2015, Supp. Table S13
+#sd_ocean2k = vec([0.78 0.58 0.39 0.38 0.23 0.07 -0.19 -0.70 -0.71 -0.60])
+#this is the same as the above (and I promise the timing matches up) 
+median_sd_ocean2k = reverse([NaNMath.median(oc2k_binned[i, :]) for i in 1:size(oc2k_binned)[1]])
+#Here, I calculate the 0.25 and 0.75 percentile range (same as McGregor 2015 Figure 2)
+std_sd_ocean2k = reverse([quantile(oc2k_binned[i,:][(!).(isnan.(oc2k_binned[i, :]))], [0.25, 0.75]) for i in 1:size(oc2k_binned)[1]])
+
+#the following 0.42degC/kyr value is from from McGregor 2015, Supp. Table S6
+#this calculation converts to °C 
+#0.42degC/kyr * (sd) / (std/kyr) 
+y_ocean2k = 0.42.*median_sd_ocean2k./(median_sd_ocean2k[4]-median_sd_ocean2k[9])
+#apply same conversion to the quantile values 
+ystd_ocean2k = 0.42 .* std_sd_ocean2k ./(median_sd_ocean2k[4]-median_sd_ocean2k[9])
+ystd_ocean2k = hcat(ystd_ocean2k...) #2 x 10
+#to plot these, we need them as +/- from the median estimate values
+ystd_ocean2k[1, :] .= y_ocean2k .- ystd_ocean2k[1, :]
+ystd_ocean2k[2, :] .=  ystd_ocean2k[2, :] .- y_ocean2k
+#we want this to be anomaly from 1850-1970, but we can't do that for this dataset, next best thing is just use the last bin 
+y_ocean2k .-= y_ocean2k[end]
+#then use some hlines bb
+oc2kzorder = 2
+oc2kcolor = "gray"
+hlines(y = y_ocean2k, xmin = t_ocean2k .- 100, xmax = t_ocean2k .+ 100, color = oc2kcolor, linewidth = 3, zorder = oc2kzorder)
+hlines(y = y_ocean2k .+ ystd_ocean2k[2, :], xmin = t_ocean2k .- 100, xmax = t_ocean2k .+ 100, color = oc2kcolor,zorder = oc2kzorder)
+hlines(y = y_ocean2k .- ystd_ocean2k[1, :], xmin = t_ocean2k .- 100, xmax = t_ocean2k .+ 100, color = oc2kcolor,zorder = oc2kzorder)
+vlines(x = t_ocean2k .- 100, ymin = y_ocean2k .- ystd_ocean2k[1, :], ymax = y_ocean2k .+ ystd_ocean2k[2,:], color = oc2kcolor,zorder = oc2kzorder)
+vlines(x = t_ocean2k .+ 100, ymin = y_ocean2k .- ystd_ocean2k[1, :], ymax = y_ocean2k .+ ystd_ocean2k[2,:], color = oc2kcolor,zorder = oc2kzorder)
+[fill_between(x = [t-100, t+100], y1 = y .- ystd1, y2 = y .+ ystd2, color = oc2kcolor,alpha = 0.5, zorder = oc2kzorder) for (t, y, ystd1, ystd2) in zip(t_ocean2k, y_ocean2k, ystd_ocean2k[1, :], ystd_ocean2k[2, :])]
+
+ylabel("Surface Temperature Anomaly [K]", fontsize = 15)
+xlabel("Time [yr CE]", fontsize = 15)
+
+xlim(Tm1, Tm2)
+xticks(800:200:1800, fontsize = 12) 
+ax1.set_ylim(-0.7, 1.1)
+yticks(-0.5:0.25:0.75, fontsize = 12)
+tight_layout()
+savefig(plotsdir("meants_gh19" * suffix * ".png"), dpi = 600)
 

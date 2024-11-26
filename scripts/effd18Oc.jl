@@ -2,10 +2,11 @@
 Compute the effective d18Oc at the surface 
 =# 
 if ! @isdefined(solutions)
-    include("ex3.transientinversion_abstract.jl")
+    include("transientinversion.jl")
 end
 
 ## ============ EFFECTIVE δ¹⁸Oc ============= ##
+regionmeanindices = γbox(solutions[1].γ, 49, 89, 309, 21)
 modes = allc.spatialmodes
 cdims = vec(covariancedims(allc.ũ.dims))
 Tu = Array(allc.ũ.dims[1])
@@ -37,7 +38,6 @@ for (tit, sol) in zip(["old", "all"], solutions)
         display(sqrt.(diag(c)))
     end
 end
-
 xlabel("Time [years CE]", fontsize = 15)
 ylabel("Effective " * L"\mathrm{\delta}^{18}\mathrm{O_{calcite}}" * " [‰]", fontsize = 15)
 xticks(600:200:2000, fontsize = 12)
@@ -96,7 +96,8 @@ mat .-= mean(value.(mat[inds, :]), dims = 1)
 plot(DimArray(mean(mat, dims = 2)[:], Ti(Array(Gb.y.dims[1]))), color = "black")
 xlabel("Time [years CE]", fontsize = 15)
 ylabel("Effective " * L"\mathrm{\delta}^{18}\mathrm{O_{calcite}}" * " [‰]", fontsize = 15)
-xticks(600:200:2000, fontsize = 12)
+xlim(800,1970)
+xticks(800:200:1900, fontsize = 12)
 yticks(-0.4:0.1:0.3, fontsize = 12)
 gca().invert_yaxis()
 tight_layout()

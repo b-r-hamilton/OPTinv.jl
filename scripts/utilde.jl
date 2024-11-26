@@ -38,7 +38,7 @@ axs[1].text(x = 500, y = -20, s = "B", fontsize = 30, weight = "bold")
 xticks(xt, xt, fontsize = 12)
 axs[1].set_xlabel("Time [years CE]", fontsize = 15)
 tight_layout()
-savefig(plotsdir("u0utilde_mode1.png"))
+savefig(plotsdir("u0utilde_mode1.png"), dpi = 600)
 
 # ==================== ALL MODES, WITH UNC. =========================== #
 figure(figsize = (10,10))
@@ -64,7 +64,7 @@ for i in 1:11
     end    
 end
 #tight_layout()
-savefig(plotsdir("u0utilde.png"))
+savefig(plotsdir("u0utilde.png"), dpi = 600)
 
 
 # ===================== FIRST THREE MODES, AS Z-SCORE, NO ERROR REP. ==== # 

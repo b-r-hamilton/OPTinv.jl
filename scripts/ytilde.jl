@@ -66,5 +66,5 @@ for (i, core) in enumerate(allcores)
     gca().invert_yaxis()
 end
 tight_layout()
-savefig(plotsdir("reconsol" * suffix * ".png"))
+savefig(plotsdir("reconsol" * suffix * ".png"), dpi = 600)
 

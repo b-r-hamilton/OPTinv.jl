@@ -254,6 +254,23 @@ and Lenton, Timothy M.},
 	timestamp = {2015.12.29}
 }
 
+@Article{Byrne-OGorman-2018:Trends,
+	timestamp = {2024-09-26 19:14:47 (EDT)},
+	author = {Byrne, Michael P. and O’Gorman, Paul A.},
+	title = {Trends in continental temperature and humidity
+                  directly linked to ocean warming},
+	journal = {Proceedings of the National Academy of Sciences},
+	year = 2018,
+	volume = 115,
+	number = 19,
+	month = apr,
+	pages = {4863–4868},
+	issn = {1091-6490},
+	doi = {10.1073/pnas.1722312115},
+	url = {http://dx.doi.org/10.1073/pnas.1722312115},
+	publisher = {Proceedings of the National Academy of Sciences}
+}
+
 @ARTICLE{Consortium--2013:Continental,
 	author = {{PAGES 2k Consortium}},
 	title = {Continental-scale temperature variability during the past two millennia},
@@ -555,6 +572,47 @@ and Lenton, Timothy M.},
                   (AAAS)}
 }
 
+@article{Heuze2017,
+	timestamp = {2022-08-06 09:43:27 (EDT)},
+	title = {{North Atlantic deep water formation and AMOC in CMIP5 models}},
+	year = {2017},
+	journal = {Ocean Science Discussions},
+	author = {Heuz{\'{e}}, Céline},
+	pages = {1--22},
+	doi = {10.5194/os-2017-2}
+}
+
+@ARTICLE{Kaufman2009,
+	title = "Recent warming reverses long-term arctic cooling",
+	author = "Kaufman, Darrell S and Schneider, David P and McKay, Nicholas P
+               and Ammann, Caspar M and Bradley, Raymond S and Briffa, Keith R
+               and Miller, Gifford H and Otto-Bliesner, Bette L and Overpeck,
+               Jonathan T and Vinther, Bo M and {Arctic Lakes 2k Project
+               Members}",
+	abstract = "The temperature history of the first millennium C.E. is sparsely
+               documented, especially in the Arctic. We present a synthesis of
+               decadally resolved proxy temperature records from poleward of 60
+               degrees N covering the past 2000 years, which indicates that a
+               pervasive cooling in progress 2000 years ago continued through
+               the Middle Ages and into the Little Ice Age. A 2000-year
+               transient climate simulation with the Community Climate System
+               Model shows the same temperature sensitivity to changes in
+               insolation as does our proxy reconstruction, supporting the
+               inference that this long-term trend was caused by the steady
+               orbitally driven reduction in summer insolation. The cooling
+               trend was reversed during the 20th century, with four of the
+               five warmest decades of our 2000-year-long reconstruction
+               occurring between 1950 and 2000.",
+	journal = "Science",
+	publisher = "American Association for the Advancement of Science (AAAS)",
+	volume = 325,
+	number = 5945,
+	pages = "1236--1239",
+	month = sep,
+	year = 2009,
+	language = "en"
+}
+
 @Article{Khider-Emile-Geay-2022:Pyleoclim,
 	timestamp = {2024-08-26 16:25:31 (EDT)},
 	author = {Khider, Deborah and Emile-Geay, Julien and Zhu, Feng
@@ -757,6 +815,28 @@ and Lenton, Timothy M.},
 	publisher = {Springer Science and Business Media LLC}
 }
 
+@Article{MoffaSanchez:Variability,
+	timestamp = {2022-09-07 15:03:25 (EDT)},
+	author = {Moffa-Sanchez, P. and Moreno-Chamarro, E. and
+                  Reynolds, D. J. and Ortega, P. and Cunningham,
+                  L. and Swingedouw, D. and Amrhein, D. E. and Halfar,
+                  J. and Jonkers, L. and Jungclaus, J. H. and Perner,
+                  K. and Wanamaker, A. and Yeager, S.},
+	title = {Variability in the Northern North Atlantic and
+                  Arctic Oceans Across the Last Two Millennia: A
+                  Review},
+	journal = {Paleoceanography and Paleoclimatology},
+	year = 2019,
+	volume = 34,
+	number = 8,
+	month = {Aug},
+	pages = {1399–1436},
+	issn = {2572-4525},
+	doi = {10.1029/2018pa003508},
+	url = {http://dx.doi.org/10.1029/2018PA003508},
+	publisher = {American Geophysical Union (AGU)}
+}
+
 @Article{Moreno-Chamarro-Zanchettin-2016:Little,
 	timestamp = {2024-05-16 14:55:12 (EDT)},
 	author = {Moreno-Chamarro, Eduardo and Zanchettin, Davide and
@@ -886,6 +966,24 @@ and Lenton, Timothy M.},
 	publisher = {Springer Science and Business Media LLC}
 }
 
+@Article{Seltzer-Blard-2023:Terrestrial,
+	timestamp = {2024-09-26 19:13:04 (EDT)},
+	author = {Seltzer, Alan M. and Blard, Pierre-Henri and
+                  Sherwood, Steven C. and Kageyama, Masa},
+	title = {Terrestrial amplification of past, present, and
+                  future climate change},
+	journal = {Science Advances},
+	year = 2023,
+	volume = 9,
+	number = 6,
+	month = feb,
+	issn = {2375-2548},
+	doi = {10.1126/sciadv.adf8119},
+	url = {http://dx.doi.org/10.1126/sciadv.adf8119},
+	publisher = {American Association for the Advancement of Science
+                  (AAAS)}
+}
+
 @Article{Shackleton-Opdyke-1977:Oxygen,
 	timestamp = {2024-08-29 13:24:24 (EDT)},
 	author = {Shackleton, N. J. and Opdyke, N. D.},
@@ -912,7 +1010,7 @@ and Lenton, Timothy M.},
 
 @Article{Sicre-Hall-2011:Sea,
 	timestamp = {2024-08-04 19:03:02 (EDT)},
-	author = {Sicre, M.‐A. and Hall, I. R. and Mignot, J. and
+	author = {Sicre, M. A. and Hall, I. R. and Mignot, J. and
                   Khodri, M. and Ezat, U. and Truong, M.‐X. and
                   Eiríksson, J. and Knudsen, K.‐L.},
 	title = {Sea surface temperature variability in the subpolar
@@ -1024,6 +1122,24 @@ and Lenton, Timothy M.},
 	publisher = {American Geophysical Union (AGU)}
 }
 
+@Article{Stommel-1979:Determination,
+	timestamp = {2024-10-28 16:24:03 (EDT)},
+	author = {Stommel, Henry},
+	title = {Determination of water mass properties of water
+                  pumped down from the Ekman layer to the geostrophic
+                  flow below},
+	journal = {Proceedings of the National Academy of Sciences},
+	year = 1979,
+	volume = 76,
+	number = 7,
+	month = jul,
+	pages = {3051–3055},
+	issn = {1091-6490},
+	doi = {10.1073/pnas.76.7.3051},
+	url = {http://dx.doi.org/10.1073/pnas.76.7.3051},
+	publisher = {Proceedings of the National Academy of Sciences}
+}
+
 @Article{Tardif2019,
 	author = {Tardif, Robert and Hakim, Gregory J. and Perkins,
                   Walter A. and Horlick, Kaleb A. and Erb, Michael
@@ -1115,6 +1231,23 @@ and Lenton, Timothy M.},
 	doi = {10.1039/jr9470000562},
 	url = {http://dx.doi.org/10.1039/jr9470000562},
 	publisher = {Royal Society of Chemistry (RSC)}
+}
+
+@Article{Williams-Marshall-1995:Does,
+	timestamp = {2024-10-28 16:24:29 (EDT)},
+	author = {Williams, Richard G. and Marshall, John C. and
+                  Spall, Michael A.},
+	title = {Does Stommel’s Mixed Layer “Demon” Work?},
+	journal = {Journal of Physical Oceanography},
+	year = 1995,
+	volume = 25,
+	number = 12,
+	month = dec,
+	pages = {3089–3102},
+	issn = {1520-0485},
+	doi = {10.1175/1520-0485(1995)025<3089:dsmlw>2.0.co;2},
+	url = {http://dx.doi.org/10.1175/1520-0485(1995)025<3089:dsmlw>2.0.co;2},
+	publisher = {American Meteorological Society}
 }
 
 @Book{Wunsch-2006:Discrete,

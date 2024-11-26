@@ -53,7 +53,7 @@ for (sm, t) in zip([spatialmodessvd], ["SVD"])
         cb.ax.tick_params(rotation = 45, labelsize = 10)
     end
     tight_layout()
-    savefig(plotsdir(t * "_modes.png"))
+    savefig(plotsdir(t * "_modes.png"), dpi = 600)
 end
 
 # =========== PLOT THE IMPULSE RESPONSE OF EACH MODE AT THREE SELECT CORES ===== #
@@ -84,7 +84,7 @@ for i in 1:11
     end
 end
 tight_layout() 
-savefig(plotsdir("modemags.png"))
+savefig(plotsdir("modemags.png"), dpi = 600)
 
 # ================================ PLOT SINGULAR VALUES ================= #
 s = jldopen("../data/M/svd.jld2")["SVD"]
@@ -125,4 +125,4 @@ end
 end
 tight_layout()
 
-savefig(plotsdir("U.png"))
+savefig(plotsdir("U.png"), dpi = 600)
