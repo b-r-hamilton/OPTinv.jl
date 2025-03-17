@@ -63,6 +63,16 @@ ebib-main-file: /home/brynn/.config/texmf/bibtex/bib/main.bib
 @String{tel = {Tellus}}
 @String{nil = {Behringer, David and Gov, Yan}}
 
+@InProceedings{<new-entry2>,
+	url = {http://inis.iaea.org/search/search.aspx?orig_q=RN:18075746},
+	abstract = {The results of the intercomparison on stable isotope reference samples for the determination of isotope ratio are reported The data from twenty-five laboratories from fourteen countries have been considered and include the determination of the stable isotopes 2H, 13C, 18O and 34S There were no samples distributed to determine 15N values, but the difficulty is discussed enountered in the use of air nitrogen as a standard and the influence of argon contents in nitrogen gas samples on 15N values measured},
+	address = {International Atomic Energy Agency (IAEA)},
+	series = {Consultants' group meeting on stable isotope reference samples for geochemical any hydrological investigations},
+	year = {1987},
+	author = {Hut, G.},
+	timestamp = {2025-01-07 15:08:36 (EST)}
+}
+
 @Article{Alonso-Garcia-Kleiven-2017:Freshening,
 	timestamp = {2022-09-07 14:47:48 (EDT)},
 	author = {Alonso-Garcia, Montserrat and Kleiven, Helga (Kikki)
@@ -476,6 +486,23 @@ and Lenton, Timothy M.},
 	timestamp = {2015.12.29}
 }
 
+@Article{Gebbie2006,
+	author = {Gebbie, Geoffrey and Huybers, Peter},
+	title = {Meridional circulation during the Last Glacial
+                  Maximum explored through a combination of South
+                  Atlantic d18O observations and a geostrophic inverse
+                  model},
+	journal = {Geochemistry, Geophysics, Geosystems},
+	year = 2006,
+	volume = 7,
+	number = 11,
+	month = nov,
+	issn = {1525-2027},
+	doi = {10.1029/2006gc001383},
+	url = {http://dx.doi.org/10.1029/2006gc001383},
+	publisher = {American Geophysical Union (AGU)}
+}
+
 @article{Gebbie2012a,
 	timestamp = {2022-08-06 09:43:27 (EDT)},
 	title = {{Tracer transport timescales and the observed Atlantic-Pacific lag in the timing of the Last Termination}},
@@ -520,6 +547,19 @@ and Lenton, Timothy M.},
 	timestamp = {2015.12.29}
 }
 
+@Article{Haine-Griffies-2024:Review,
+	timestamp = {2025-01-08 15:06:58 (EST)},
+	author = {Haine, Thomas W N and Griffies, Stephen M and
+                  Gebbie, Geoffrey and Jiang, Wenrui},
+	title = {A Review of Green’s Function Methods for Tracer
+                  Timescales and Pathways in Ocean Models},
+	year = 2024,
+	month = aug,
+	doi = {10.22541/essoar.172405906.63110239/v1},
+	url = {http://dx.doi.org/10.22541/essoar.172405906.63110239/v1},
+	publisher = {Authorea, Inc.}
+}
+
 @ARTICLE{Hakim-Emile-Geay-2016:last,
 	author = {Hakim, Gregory J and Emile-Geay, Julien and Steig, Eric J and Noone,
 	David and Anderson, David M and Tardif, Robert and Steiger, Nathan
@@ -551,6 +591,17 @@ and Lenton, Timothy M.},
 	doi = {10.1002/joc.1499},
 	url = {http://dx.doi.org/10.1002/joc.1499},
 	publisher = {Wiley}
+}
+
+@Book{Hart-1995:Multidimension,
+	timestamp = {2025-01-27 10:22:33 (EST)},
+	author = {Hart, George W.},
+	title = {Multidimensional Analysis},
+	year = 1995,
+	publisher = {Springer New York},
+	isbn = 9781461242086,
+	doi = {10.1007/978-1-4612-4208-6},
+	url = {http://dx.doi.org/10.1007/978-1-4612-4208-6}
 }
 
 @Article{Hatun-Sando-2005:Influence,
@@ -638,6 +689,24 @@ and Lenton, Timothy M.},
 	timestamp = {2015.12.29}
 }
 
+@Article{LeGrand-Wunsch-1995:Constraints,
+	timestamp = {2024-12-18 13:54:18 (EST)},
+	author = {LeGrand, Pascal and Wunsch, Carl},
+	title = {Constraints from paleotracer data on the North
+                  Atlantic circulation during the Last Glacial
+                  Maximum},
+	journal = {Paleoceanography},
+	year = 1995,
+	volume = 10,
+	number = 6,
+	month = dec,
+	pages = {1011–1045},
+	issn = {1944-9186},
+	doi = {10.1029/95pa01455},
+	url = {http://dx.doi.org/10.1029/95pa01455},
+	publisher = {American Geophysical Union (AGU)}
+}
+
 @Article{LeGrande-Schmidt-2006:Global,
 	timestamp = {2024-08-12 11:53:33 (EDT)},
 	author = {LeGrande, Allegra N. and Schmidt, Gavin A.},
@@ -721,6 +790,35 @@ and Lenton, Timothy M.},
 	doi = {10.1038/nature05277},
 	url = {http://dx.doi.org/10.1038/nature05277},
 	publisher = {Springer Science and Business Media LLC}
+}
+
+@InBook{Lynch-Stieglitz-2003:Tracers,
+	timestamp = {2024-11-05 13:26:36 (EST)},
+	title = {Tracers of Past Ocean Circulation},
+	year = 2003,
+	author = {Lynch-Stieglitz, J.},
+	booktitle = {Treatise on Geochemistry},
+	publisher = {Elsevier},
+	isbn = 9780080437514,
+	pages = {433–451},
+	doi = {10.1016/b0-08-043751-6/06117-x},
+	url = {http://dx.doi.org/10.1016/b0-08-043751-6/06117-x}
+}
+
+@Article{Marchal-Curry-2008:Abyssal,
+	timestamp = {2024-12-18 13:55:36 (EST)},
+	author = {Marchal, Olivier and Curry, William B.},
+	title = {On the Abyssal Circulation in the Glacial Atlantic},
+	journal = {Journal of Physical Oceanography},
+	year = 2008,
+	volume = 38,
+	number = 9,
+	month = sep,
+	pages = {2014–2037},
+	issn = {0022-3670},
+	doi = {10.1175/2008jpo3895.1},
+	url = {http://dx.doi.org/10.1175/2008jpo3895.1},
+	publisher = {American Meteorological Society}
 }
 
 @Article{McCrea-1950:Isotopic,
@@ -966,6 +1064,23 @@ and Lenton, Timothy M.},
 	publisher = {Springer Science and Business Media LLC}
 }
 
+@Article{Scheen-Stocker-2020:Effect,
+	timestamp = {2025-01-07 16:09:01 (EST)},
+	author = {Scheen, Jeemijn and Stocker, Thomas F.},
+	title = {Effect of changing ocean circulation on deep ocean
+                  temperature in the last millennium},
+	journal = {Earth System Dynamics},
+	year = 2020,
+	volume = 11,
+	number = 4,
+	month = nov,
+	pages = {925–951},
+	issn = {2190-4987},
+	doi = {10.5194/esd-11-925-2020},
+	url = {http://dx.doi.org/10.5194/esd-11-925-2020},
+	publisher = {Copernicus GmbH}
+}
+
 @Article{Seltzer-Blard-2023:Terrestrial,
 	timestamp = {2024-09-26 19:13:04 (EDT)},
 	author = {Seltzer, Alan M. and Blard, Pierre-Henri and
@@ -1105,6 +1220,24 @@ and Lenton, Timothy M.},
 	doi = {10.1029/2020gl087577},
 	url = {http://dx.doi.org/10.1029/2020gl087577},
 	publisher = {American Geophysical Union (AGU)}
+}
+
+@Article{Stammer-1997:Global,
+	timestamp = {2024-12-16 12:33:56 (EST)},
+	author = {Stammer, Detlef},
+	title = {Global Characteristics of Ocean Variability
+                  Estimated from Regional TOPEX/POSEIDON Altimeter
+                  Measurements},
+	journal = {Journal of Physical Oceanography},
+	year = 1997,
+	volume = 27,
+	number = 8,
+	month = aug,
+	pages = {1743–1769},
+	issn = {1520-0485},
+	doi = {10.1175/1520-0485(1997)027<1743:gcoove>2.0.co;2},
+	url = {http://dx.doi.org/10.1175/1520-0485(1997)027<1743:gcoove>2.0.co;2},
+	publisher = {American Meteorological Society}
 }
 
 @Article{Steinhilber-Beer-2009:Total,
@@ -1300,6 +1433,21 @@ and Lenton, Timothy M.},
 	doi = {10.1007/s00382-010-0967-z},
 	url = {http://dx.doi.org/10.1007/s00382-010-0967-z},
 	publisher = {Springer Science and Business Media LLC}
+}
+
+@article{amrhein2015,
+	author = {Amrhein, Daniel E. and Gebbie, Geoffrey and Marchal, Olivier and Wunsch, Carl},
+	title = {Inferring surface water equilibrium calcite d18O during the last deglacial period from benthic foraminiferal records: Implications for ocean circulation},
+	journal = {Paleoceanography},
+	volume = {30},
+	number = {11},
+	pages = {1470-1489},
+	keywords = {oxygen isotopes, inverse modeling, deglaciation, tracers, ocean circulation, Green's function},
+	doi = {https://doi.org/10.1002/2014PA002743},
+	url = {https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1002/2014PA002743},
+	eprint = {https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1002/2014PA002743},
+	abstract = {Abstract The ocean circulation modifies mixed layer (ML) tracer signals as they are communicated to the deep ocean by advection and mixing. We develop and apply a procedure for using tracer signals observed “upstream” (by planktonic foraminifera) and “downstream” (by benthic foraminifera) to constrain how tracer signals are modified by the intervening circulation and, by extension, to constrain properties of that circulation. A history of ML equilibrium calcite δ18O (δ18Oc) spanning the last deglaciation is inferred from a least-squares fit of eight benthic foraminiferal δ18Oc records to Green's function estimated for the modern ocean circulation. Disagreements between this history and the ML history implied by planktonic records would indicate deviations from the modern circulation. No deviations are diagnosed because the two estimates of ML δ18Oc agree within their uncertainties, but we suggest data collection and modeling procedures useful for inferring circulation changes in future studies. Uncertainties of benthic-derived ML δ18Oc are lowest in the high-latitude regions chiefly responsible for ventilating the deep ocean; additional high-resolution planktonic records constraining these regions are of particular utility. Benthic records from the Southern Ocean, where data are sparse, appear to have the most power to reduce uncertainties in benthic-derived ML δ18Oc. Understanding the spatiotemporal covariance of deglacial ML δ18Oc will also improve abilities of δ18Oc records to constrain deglacial circulation.},
+	year = {2015}
 }
 
 @article{cesm2,

@@ -1,4 +1,3 @@
-
 #=
 Inversion using a single, global surface pattern
 Basically just the `invert` method + `loadM` are copied here
@@ -30,7 +29,6 @@ for (i,x) in enumerate([xall, xold])
         spatialmodes = reshape(spatialmodestemp[2, :], (1,N))
     end
     
-    sum(spatialmodes.^2)
     τ = 0:1:1000
     filepath = joinpath("../data/M", filename)
     if !isfile(filepath)
@@ -52,18 +50,22 @@ for (i,x) in enumerate([xall, xold])
     T = Array(y.y.dims[1])
     res = unique(diff(T))[1]
     Tᵤ = 500.0yr:res:T[end]
-
-    jld = jldopen(DrWatson.datadir("modemags.jld2"))
-    mags = jld["svdmags"]
-
-    σθ = vec(std(mags, dims = 1)) * K
-    println("dividing σθ by 5") 
-    #σθ ./= 5
-    σδ = σθ ./ 10 .* permil/K
+    
     if x.modetype == "global"
-        u₀ = firstguess(Tᵤ, ℳ.dims[2][:], [σθ[1]], [σδ[1]], ρ) #u₀ with correct T_u
+        jld = jldopen(DrWatson.datadir("modemags_global.jld2"))
+        mags = jld["svdmags"]
+        σθ = vec(std(mags, dims = 1)) * K
+        σθ .*= 8
+        σδ = σθ ./ 14.84 .* permil/K
+        u₀ = firstguess(Tᵤ, ℳ.dims[2][:], σθ, σδ, ρ) #u₀ with correct T_u
     elseif x.modetype == "mode2"
-        u₀ = firstguess(Tᵤ, ℳ.dims[2][:], [σθ[1]], [σδ[1]], ρ) #u₀ with correct T_u
+        jld = jldopen(DrWatson.datadir("modemags.jld2"))
+        mags = jld["svdmags"]
+
+        σθ = vec(std(mags, dims = 1)) * K
+        σθ .*= 8
+        σδ = σθ ./ 14.84 .* permil/K
+        u₀ = firstguess(Tᵤ, ℳ.dims[2][:], [σθ[2]], [σδ[2]], ρ) #u₀ with correct T_u
     end
     
     E, predict = loadE(filename, ℳ, Tᵤ, T, σθ, σδ, ρ, corenums_sorted, y.Cnn.ax)
@@ -113,11 +115,11 @@ for (i, c) in enumerate(oldcores)
     #end
     
     if i ∈ [1]#,4,7,10]
-        yticks(-0.2:0.1:0.2, fontsize = 12) 
+        yticks(-0.2:0.1:0.1, fontsize = 12) 
         ylabel(L"\mathrm{\delta}^{18}\mathrm{O}_\mathrm{calcite}" * " [‰]", fontsize = 15)
     else
         ylabel("")
-        yticks(-0.2:0.2:0.2, ["", "", ""])
+        yticks(-0.2:0.1:0.1, ["", "", "", ""])
     end
         
     title(string(c) * ", " * string(locs[c][3]) * "m", fontsize = 15)
@@ -125,7 +127,7 @@ for (i, c) in enumerate(oldcores)
 end
 tight_layout()
 savefig(DrWatson.plotsdir("reconsol" * "global" * ".png"), dpi = 600)
-#=
+
 
 figure();
 #for sol in solutions
@@ -163,4 +165,4 @@ for (i, file) in enumerate(["global.jld2", "mode2.jld2"])
 end
 tight_layout()
 savefig(plotsdir("Mode2.png"))
-=#
+

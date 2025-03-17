@@ -1,4 +1,3 @@
-
 #=
 REGION MEAN
 =#
@@ -30,6 +29,7 @@ for sol in solutions
     @show findmax(θbox.x[pre1900inds])[1] - findmin(θbox.x[inds])[1]
 
     println("LLS, LIA cooling")
+
     #we need to subset to the time period we want to compute the slope over 
     liainds = findall(x->sol.ũ.dims[1][inds][minv[2]] > x > sol.ũ.dims[1][pre1900inds][max[2]], Array(sol.ũ.dims[1]))
     x = UnitfulMatrix(Array(sol.ũ.dims[1][liainds]))
@@ -97,11 +97,11 @@ xlabel("Time [yr CE]", fontsize = 15)
 
 xlim(Tm1, Tm2)
 xticks(800:200:1800, fontsize = 12) 
-ax1.set_ylim(-0.5, 1.1)
-yticks(-0.5:0.25:0.75, fontsize = 12)
+ax1.set_ylim(-0.42, 0.75)
+yticks(-0.25:0.25:0.75, fontsize = 12)
 tight_layout()
 
-inset_ax = ax1.inset_axes([1550,0.65,300,0.4], transform = ax1.transData ) 
+inset_ax = ax1.inset_axes([1550,0.4,300,0.3], transform = ax1.transData ) 
 #subplot
 hadisst = loadHadISST()
 hadsst = makeNaN(hadisst["tos"][:, :, :])
@@ -128,7 +128,7 @@ for sol in solutions
 end
 
 inset_ax.set_xlim(1875,1970)
-inset_ax.set_ylim(-0.5, 0.5)
+inset_ax.set_ylim(-0.4, 0.5)
 inset_ax.set_ylabel("T [K]")
 
 xl = inset_ax.get_xlim()
@@ -137,7 +137,7 @@ yl = inset_ax.get_ylim()
 ax1.hlines(xmin = xl[0], xmax = xl[1], y = yl, color = "black")
 ax1.vlines(ymin = yl[0], ymax = yl[1], x = xl, color = "black")
 savefig(plotsdir("meants" * suffix * ".png"), dpi = 600)
-
+#=
 # ========== NORDIC SEA V. SPNA REGION MEAN  ==================== #
 
 nordicind = γbox(solutions[1].γ, 65, 80,360-20, 20)
@@ -216,6 +216,7 @@ end
 tight_layout()
 savefig(plotsdir("EGWG" * suffix *".png"))
 
+#=
 # ================== OPT-3, OPT-11 vs. GH19 ================== #
 Tm1 = ustrip.(minimum([sol.y.dims[1][1] for sol in solutions]))
 Tm2 = ustrip.(maximum([sol.y.dims[1][end-1] for sol in solutions]))
@@ -327,3 +328,5 @@ yticks(-0.5:0.25:0.75, fontsize = 12)
 tight_layout()
 savefig(plotsdir("meants_gh19" * suffix * ".png"), dpi = 600)
 
+=#
+=#

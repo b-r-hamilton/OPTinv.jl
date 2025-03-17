@@ -2,6 +2,40 @@
 \begin{thebibliography}{}
 
 \bibitem [\protect \citeauthoryear {%
+Alonso-Garcia%
+\ \protect \BOthers {.}}{%
+Alonso-Garcia%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+Alonso-Garcia-Kleiven-2017:Freshening}
+\APACinsertmetastar {%
+Alonso-Garcia-Kleiven-2017:Freshening}%
+\begin{APACrefauthors}%
+Alonso-Garcia, M.%
+, Kleiven, H\BPBI K\BPBI F.%
+, McManus, J\BPBI F.%
+, Moffa-Sanchez, P.%
+, Broecker, W\BPBI S.%
+\BCBL {}\ \BBA {} Flower, B\BPBI P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{Apr}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Freshening of the Labrador Sea as a trigger for Little
+  Ice Age development} {Freshening of the labrador sea as a trigger for little
+  ice age development}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Climate of the Past}{13}{4}{317–331}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.5194/cp-13-317-2017}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.5194/cp-13-317-2017} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Amrhein%
 , Gebbie%
 , Marchal%
@@ -135,6 +169,42 @@ Bonnet, S.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Brady%
+\ \protect \BOthers {.}}{%
+Brady%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+Brady-Stevenson-2019:Connected}
+\APACinsertmetastar {%
+Brady-Stevenson-2019:Connected}%
+\begin{APACrefauthors}%
+Brady, E.%
+, Stevenson, S.%
+, Bailey, D.%
+, Liu, Z.%
+, Noone, D.%
+, Nusbaumer, J.%
+\BDBL {}Zhu, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{{\APACmonth{08}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The Connected Isotopic Water Cycle in the Community
+  Earth System Model Version 1} {The connected isotopic water cycle in the
+  community earth system model version 1}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Advances in Modeling Earth
+  Systems}{11}{8}{2547–2566}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1029/2019ms001663}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1029/2019ms001663} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Buntgen%
 \ \protect \BOthers {.}}{%
 Buntgen%
@@ -263,38 +333,6 @@ Emiliani, C.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-England%
-, Eisenman%
-, Lutsko%
-\BCBL {}\ \BBA {} Wagner%
-}{%
-England%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2021}}%
-}]{%
-England-Eisenman-2021:Arctic}
-\APACinsertmetastar {%
-England-Eisenman-2021:Arctic}%
-\begin{APACrefauthors}%
-England, M.%
-, Eisenman, I.%
-, Lutsko, N.%
-\BCBL {}\ \BBA {} Wagner, T\BPBI J\BPBI W.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2021}{{\APACmonth{05}}}{}.
-\newblock
-{\BBOQ}\APACrefatitle {The recent emergence of Arctic Amplification} {The
-  recent emergence of arctic amplification}.{\BBCQ}
-\newblock
-\begin{APACrefURL} \url{http://dx.doi.org/10.1002/essoar.10507036.1}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.1002/essoar.10507036.1} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Gebbie%
 }{%
 Gebbie%
@@ -318,6 +356,40 @@ Gebbie, G.%
 \newblock
 \APACjournalVolNumPages{Paleoceanography}{27}{}{PA3225,
   doi:10.1029/2011PA002273}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Gebbie%
+\ \BBA {} Huybers%
+}{%
+Gebbie%
+\ \BBA {} Huybers%
+}{%
+{\protect \APACyear {2006}}%
+}]{%
+Gebbie2006}
+\APACinsertmetastar {%
+Gebbie2006}%
+\begin{APACrefauthors}%
+Gebbie, G.%
+\BCBT {}\ \BBA {} Huybers, P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2006}{{\APACmonth{11}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Meridional circulation during the Last Glacial Maximum
+  explored through a combination of South Atlantic d18O observations and a
+  geostrophic inverse model} {Meridional circulation during the last glacial
+  maximum explored through a combination of south atlantic d18o observations
+  and a geostrophic inverse model}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Geochemistry, Geophysics, Geosystems}{7}{11}{}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1029/2006gc001383}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1029/2006gc001383} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -418,6 +490,40 @@ Gebbie, G.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Haine%
+, Griffies%
+, Gebbie%
+\BCBL {}\ \BBA {} Jiang%
+}{%
+Haine%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2024}}%
+}]{%
+Haine-Griffies-2024:Review}
+\APACinsertmetastar {%
+Haine-Griffies-2024:Review}%
+\begin{APACrefauthors}%
+Haine, T\BPBI W\BPBI N.%
+, Griffies, S\BPBI M.%
+, Gebbie, G.%
+\BCBL {}\ \BBA {} Jiang, W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{{\APACmonth{08}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A Review of Green’s Function Methods for Tracer
+  Timescales and Pathways in Ocean Models} {A review of green’s function
+  methods for tracer timescales and pathways in ocean models}.{\BBCQ}
+\newblock
+\begin{APACrefURL}
+  \url{http://dx.doi.org/10.22541/essoar.172405906.63110239/v1}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.22541/essoar.172405906.63110239/v1} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Hakim%
 \ \protect \BOthers {.}}{%
 Hakim%
@@ -449,29 +555,27 @@ Hakim, G\BPBI J.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Heuz{\'{e}}%
+Hut%
 }{%
-Heuz{\'{e}}%
+Hut%
 }{%
-{\protect \APACyear {2017}}%
+{\protect \APACyear {1987}}%
 }]{%
-Heuze2017}
+<new-entry2>}
 \APACinsertmetastar {%
-Heuze2017}%
+<new-entry2>}%
 \begin{APACrefauthors}%
-Heuz{\'{e}}, C.%
+Hut, G.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2017}{}{}.
+\APACrefYearMonthDay{1987}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {{North Atlantic deep water formation and AMOC in CMIP5
-  models}} {{North Atlantic deep water formation and AMOC in CMIP5
-  models}}.{\BBCQ}
+\APACaddressPublisher{International Atomic Energy Agency (IAEA)}{}.
 \newblock
-\APACjournalVolNumPages{Ocean Science Discussions}{}{}{1--22}.
-\newblock
-\begin{APACrefDOI} \doi{10.5194/os-2017-2} \end{APACrefDOI}
+\begin{APACrefURL}
+  \url{http://inis.iaea.org/search/search.aspx?orig_q=RN:18075746}
+  \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -566,6 +670,74 @@ Lapointe, F.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1126/sciadv.abi8230} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+LeGrand%
+\ \BBA {} Wunsch%
+}{%
+LeGrand%
+\ \BBA {} Wunsch%
+}{%
+{\protect \APACyear {1995}}%
+}]{%
+LeGrand-Wunsch-1995:Constraints}
+\APACinsertmetastar {%
+LeGrand-Wunsch-1995:Constraints}%
+\begin{APACrefauthors}%
+LeGrand, P.%
+\BCBT {}\ \BBA {} Wunsch, C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1995}{{\APACmonth{12}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Constraints from paleotracer data on the North Atlantic
+  circulation during the Last Glacial Maximum} {Constraints from paleotracer
+  data on the north atlantic circulation during the last glacial
+  maximum}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Paleoceanography}{10}{6}{1011–1045}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1029/95pa01455} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1029/95pa01455} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Linderholm%
+\ \protect \BOthers {.}}{%
+Linderholm%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+Linderholm-Nicolle-2018:Arctic}
+\APACinsertmetastar {%
+Linderholm-Nicolle-2018:Arctic}%
+\begin{APACrefauthors}%
+Linderholm, H\BPBI W.%
+, Nicolle, M.%
+, Francus, P.%
+, Gajewski, K.%
+, Helama, S.%
+, Korhola, A.%
+\BDBL {}Väliranta, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{{\APACmonth{04}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Arctic hydroclimate variability during the last 2000
+  years: current understanding and research challenges} {Arctic hydroclimate
+  variability during the last 2000 years: current understanding and research
+  challenges}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Climate of the Past}{14}{4}{473–514}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.5194/cp-14-473-2018}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.5194/cp-14-473-2018} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -665,6 +837,37 @@ Lynch-Stieglitz, J.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1016/b0-08-043751-6/06117-x} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Marchal%
+\ \BBA {} Curry%
+}{%
+Marchal%
+\ \BBA {} Curry%
+}{%
+{\protect \APACyear {2008}}%
+}]{%
+Marchal-Curry-2008:Abyssal}
+\APACinsertmetastar {%
+Marchal-Curry-2008:Abyssal}%
+\begin{APACrefauthors}%
+Marchal, O.%
+\BCBT {}\ \BBA {} Curry, W\BPBI B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2008}{{\APACmonth{09}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {On the Abyssal Circulation in the Glacial Atlantic} {On
+  the abyssal circulation in the glacial atlantic}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Physical Oceanography}{38}{9}{2014–2037}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1175/2008jpo3895.1}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1175/2008jpo3895.1} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -797,79 +1000,6 @@ McKay, N\BPBI P.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Miller%
-\ \protect \BOthers {.}}{%
-Miller%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2010}}%
-}]{%
-Miller-Alley-2010:Arctic}
-\APACinsertmetastar {%
-Miller-Alley-2010:Arctic}%
-\begin{APACrefauthors}%
-Miller, G\BPBI H.%
-, Alley, R\BPBI B.%
-, Brigham-Grette, J.%
-, Fitzpatrick, J\BPBI J.%
-, Polyak, L.%
-, Serreze, M\BPBI C.%
-\BCBL {}\ \BBA {} White, J\BPBI W.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2010}{{\APACmonth{07}}}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Arctic amplification: can the past constrain the
-  future?} {Arctic amplification: can the past constrain the future?}{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Quaternary Science Reviews}{29}{15–16}{1779–1790}.
-\newblock
-\begin{APACrefURL} \url{http://dx.doi.org/10.1016/j.quascirev.2010.02.008}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.1016/j.quascirev.2010.02.008} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Moffa-Sanchez%
-, Hall%
-, Thornalley%
-, Barker%
-\BCBL {}\ \BBA {} Stewart%
-}{%
-Moffa-Sanchez%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2015}}%
-}]{%
-moffasanchez2015}
-\APACinsertmetastar {%
-moffasanchez2015}%
-\begin{APACrefauthors}%
-Moffa-Sanchez, P.%
-, Hall, I\BPBI R.%
-, Thornalley, D\BPBI J.%
-, Barker, S.%
-\BCBL {}\ \BBA {} Stewart, C.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2015}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Changes in the strength of the Nordic Seas Overflows
-  over the past 3000 years} {Changes in the strength of the nordic seas
-  overflows over the past 3000 years}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Quaternary Science Reviews}{123}{}{134-143}.
-\newblock
-\begin{APACrefURL}
-  \url{https://www.sciencedirect.com/science/article/pii/S0277379115300172}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{https://doi.org/10.1016/j.quascirev.2015.06.007}
-  \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Moffa-Sanchez%
 \ \protect \BOthers {.}}{%
 Moffa-Sanchez%
@@ -975,78 +1105,6 @@ Consortium--2013:Continental}%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Park%
-, Kim%
-, Stewart%
-, Son%
-\BCBL {}\ \BBA {} Seo%
-}{%
-Park%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2019}}%
-}]{%
-Park-Kim-2019:Mid}
-\APACinsertmetastar {%
-Park-Kim-2019:Mid}%
-\begin{APACrefauthors}%
-Park, H\BHBI S.%
-, Kim, S\BHBI J.%
-, Stewart, A\BPBI L.%
-, Son, S\BHBI W.%
-\BCBL {}\ \BBA {} Seo, K\BHBI H.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2019}{{\APACmonth{12}}}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Mid-Holocene Northern Hemisphere warming driven by
-  Arctic amplification} {Mid-holocene northern hemisphere warming driven by
-  arctic amplification}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Science Advances}{5}{12}{}.
-\newblock
-\begin{APACrefURL} \url{http://dx.doi.org/10.1126/sciadv.aax8203}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.1126/sciadv.aax8203} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Rahmstorf%
-\ \protect \BOthers {.}}{%
-Rahmstorf%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2015}}%
-}]{%
-Rahmstorf-Box-2015:Exceptional}
-\APACinsertmetastar {%
-Rahmstorf-Box-2015:Exceptional}%
-\begin{APACrefauthors}%
-Rahmstorf, S.%
-, Box, J\BPBI E.%
-, Feulner, G.%
-, Mann, M\BPBI E.%
-, Robinson, A.%
-, Rutherford, S.%
-\BCBL {}\ \BBA {} Schaffernicht, E\BPBI J.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2015}{Mar}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Exceptional twentieth-century slowdown in Atlantic Ocean
-  overturning circulation} {Exceptional twentieth-century slowdown in atlantic
-  ocean overturning circulation}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Nature Climate Change}{5}{5}{475–480}.
-\newblock
-\begin{APACrefURL} \url{http://dx.doi.org/10.1038/nclimate2554}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.1038/nclimate2554} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Rayner%
 \ \protect \BOthers {.}}{%
 Rayner%
@@ -1115,6 +1173,159 @@ Richter, T.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1016/j.quascirev.2009.04.008} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Rudnick%
+\ \BBA {} Martin%
+}{%
+Rudnick%
+\ \BBA {} Martin%
+}{%
+{\protect \APACyear {2002}}%
+}]{%
+Rudnick-Martin-2002}
+\APACinsertmetastar {%
+Rudnick-Martin-2002}%
+\begin{APACrefauthors}%
+Rudnick, D\BPBI L.%
+\BCBT {}\ \BBA {} Martin, J\BPBI P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2002}{{\APACmonth{11}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {On the horizontal density ratio in the upper ocean} {On
+  the horizontal density ratio in the upper ocean}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Dynamics of Atmospheres and Oceans}{36}{1–3}{3–21}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1016/s0377-0265(02)00022-2}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1016/s0377-0265(02)00022-2} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Scheen%
+\ \BBA {} Stocker%
+}{%
+Scheen%
+\ \BBA {} Stocker%
+}{%
+{\protect \APACyear {2020}}%
+}]{%
+Scheen-Stocker-2020:Effect}
+\APACinsertmetastar {%
+Scheen-Stocker-2020:Effect}%
+\begin{APACrefauthors}%
+Scheen, J.%
+\BCBT {}\ \BBA {} Stocker, T\BPBI F.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{{\APACmonth{11}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Effect of changing ocean circulation on deep ocean
+  temperature in the last millennium} {Effect of changing ocean circulation on
+  deep ocean temperature in the last millennium}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Earth System Dynamics}{11}{4}{925–951}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.5194/esd-11-925-2020}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.5194/esd-11-925-2020} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Schmidt%
+}{%
+Schmidt%
+}{%
+{\protect \APACyear {1998}}%
+}]{%
+Schmidt-1998:Oxygen}
+\APACinsertmetastar {%
+Schmidt-1998:Oxygen}%
+\begin{APACrefauthors}%
+Schmidt, G\BPBI A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1998}{{\APACmonth{04}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Oxygen‐18 variations in a global ocean model}
+  {Oxygen‐18 variations in a global ocean model}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Geophysical Research Letters}{25}{8}{1201–1204}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1029/98gl50866} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1029/98gl50866} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Schmidt%
+}{%
+Schmidt%
+}{%
+{\protect \APACyear {1999}}%
+}]{%
+Schmidt-1999:Error}
+\APACinsertmetastar {%
+Schmidt-1999:Error}%
+\begin{APACrefauthors}%
+Schmidt, G\BPBI A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1999}{{\APACmonth{06}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Error analysis of paleosalinity calculations} {Error
+  analysis of paleosalinity calculations}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Paleoceanography}{14}{3}{422–429}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1029/1999pa900008}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1029/1999pa900008} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Schmidt%
+, LeGrande%
+\BCBL {}\ \BBA {} Hoffmann%
+}{%
+Schmidt%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2007}}%
+}]{%
+Schmidt-LeGrande-2007:Water}
+\APACinsertmetastar {%
+Schmidt-LeGrande-2007:Water}%
+\begin{APACrefauthors}%
+Schmidt, G\BPBI A.%
+, LeGrande, A\BPBI N.%
+\BCBL {}\ \BBA {} Hoffmann, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{{\APACmonth{05}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Water isotope expressions of intrinsic and forced
+  variability in a coupled ocean‐atmosphere model} {Water isotope expressions
+  of intrinsic and forced variability in a coupled ocean‐atmosphere
+  model}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Geophysical Research:
+  Atmospheres}{112}{D10}{}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1029/2006jd007781}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1029/2006jd007781} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -1278,6 +1489,38 @@ Spielhagen, R\BPBI F.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Stammer%
+}{%
+Stammer%
+}{%
+{\protect \APACyear {1997}}%
+}]{%
+Stammer-1997:Global}
+\APACinsertmetastar {%
+Stammer-1997:Global}%
+\begin{APACrefauthors}%
+Stammer, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1997}{{\APACmonth{08}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Global Characteristics of Ocean Variability Estimated
+  from Regional TOPEX/POSEIDON Altimeter Measurements} {Global characteristics
+  of ocean variability estimated from regional topex/poseidon altimeter
+  measurements}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Physical Oceanography}{27}{8}{1743–1769}.
+\newblock
+\begin{APACrefURL}
+  \url{http://dx.doi.org/10.1175/1520-0485(1997)027<1743:gcoove>2.0.co;2}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1175/1520-0485(1997)027<1743:gcoove>2.0.co;2}
+  \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Stommel%
 }{%
 Stommel%
@@ -1341,41 +1584,6 @@ Tardif, R.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.5194/cp-15-1251-2019} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Thornalley%
-\ \protect \BOthers {.}}{%
-Thornalley%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2018}}%
-}]{%
-Thornalley-Oppo-2018:Anomalously}
-\APACinsertmetastar {%
-Thornalley-Oppo-2018:Anomalously}%
-\begin{APACrefauthors}%
-Thornalley, D\BPBI J\BPBI R.%
-, Oppo, D\BPBI W.%
-, Ortega, P.%
-, Robson, J\BPBI I.%
-, Brierley, C\BPBI M.%
-, Davis, R.%
-\BDBL {}Keigwin, L\BPBI D.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2018}{{\APACmonth{04}}}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Anomalously weak Labrador Sea convection and Atlantic
-  overturning during the past 150 years} {Anomalously weak labrador sea
-  convection and atlantic overturning during the past 150 years}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Nature}{556}{7700}{227–230}.
-\newblock
-\begin{APACrefURL} \url{http://dx.doi.org/10.1038/s41586-018-0007-4}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.1038/s41586-018-0007-4} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -1467,6 +1675,41 @@ Wunsch, C.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1017/cbo9780511535949} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Yashayaev%
+, van Aken%
+, Holliday%
+\BCBL {}\ \BBA {} Bersch%
+}{%
+Yashayaev%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2007}}%
+}]{%
+Yashayaev-Aken-2007:Transformation}
+\APACinsertmetastar {%
+Yashayaev-Aken-2007:Transformation}%
+\begin{APACrefauthors}%
+Yashayaev, I.%
+, van Aken, H\BPBI M.%
+, Holliday, N\BPBI P.%
+\BCBL {}\ \BBA {} Bersch, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{{\APACmonth{11}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Transformation of the Labrador Sea Water in the subpolar
+  North Atlantic} {Transformation of the labrador sea water in the subpolar
+  north atlantic}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Geophysical Research Letters}{34}{22}{}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1029/2007gl031812}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1029/2007gl031812} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \end{thebibliography}

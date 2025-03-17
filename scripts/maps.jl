@@ -9,8 +9,8 @@ lev = -1.5:0.2:1.5
 
 proj = ccrs.Orthographic(central_longitude=-80+55,central_latitude = 35)
 noproj = ccrs.PlateCarree(central_longitude = 0)
-fig, axs = subplots(nrows = length(solutions), ncols = length(inds),
-                    subplot_kw = Dict("projection"=>proj), figsize = (15, 4),
+fig, axs = subplots(nrows = length(inds), ncols = length(solutions),
+                    subplot_kw = Dict("projection"=>proj), figsize = (8,12),
                     constrained_layout = true)
 #(80,35,-80,30,5)
 lon_box = [-80, 30]
@@ -45,7 +45,7 @@ for (i, sol) in enumerate(solutions)
         #ax =  axs[(ii-1) * (length(solutions)+1)+ i]
         #ax =  axs[(ii-1) * (length(solutions))+ i]
         #PythonCall version
-        ax = axs[i-1, ii-1]
+        ax = axs[ii-1, i-1]
         if (sol isa solution && y ∈ Ty) || (sol isa Array)
             
             ax_hdl = ax.plot(orthographic_axes(lat_box..., lon_box..., 5)...,
@@ -62,7 +62,7 @@ for (i, sol) in enumerate(solutions)
             ax.add_feature(cfeature.NaturalEarthFeature("physical", "land", "110m", edgecolor="k", facecolor="gray"))
 
             if i == 1
-                ax.set_title(string(convert(Int64, ustrip(Tu[start_index]))) * "-" *string(convert(Int64, ustrip(Tu[stop_index]))), fontsize = 20, fontweight = "bold")
+                #ax.set_title(string(convert(Int64, ustrip(Tu[start_index]))) * "-" *string(convert(Int64, ustrip(Tu[stop_index]))), fontsize = 20, fontweight = "bold")
             end
             ax.set_extent([lon_box..., lat_box[1]- 10, lat_box[2]], noproj)
             
@@ -89,6 +89,7 @@ for (i, sol) in enumerate(solutions)
     tight_layout()
     savefig(plotsdir("surfacesol" * suffix * ".png"), bbox_inches = "tight",dpi = 600)
 end
+
 
 # ==================== SLOPE AT EVERY POINT, COMPARE TO OC2k SLOPES ==== #
 sol = oldc
@@ -173,3 +174,4 @@ gl.bottom_labels = false
 
 tight_layout()
 savefig(plotsdir("ocean2kcomp.png"), dpi = 600)
+

@@ -2,7 +2,7 @@
 
 julia_version = "1.10.0"
 manifest_format = "2.0"
-project_hash = "6113e2423a7cc75b191694d3a0caa8e3748c65d9"
+project_hash = "278d91bf444686ae51120667d491d9576d8154de"
 
 [[deps.ADTypes]]
 git-tree-sha1 = "016833eb52ba2d6bea9fcb50ca295980e728ee24"
@@ -712,14 +712,6 @@ version = "0.1.3"
 [[deps.Future]]
 deps = ["Random"]
 uuid = "9fa8497b-333b-5362-9e8d-4d0656e87820"
-
-[[deps.GH19]]
-deps = ["Downloads", "GoogleDrive", "Interpolations", "JLD2", "NCDatasets", "Revise", "Statistics", "TMI"]
-git-tree-sha1 = "f748973762493bea0ed06570843e005c7df4d210"
-repo-rev = "main"
-repo-url = "https://github.com/ggebbie/GH19.jl"
-uuid = "91947a82-a5b4-404a-862e-a85adaeb659d"
-version = "0.1.1"
 
 [[deps.GPUArraysCore]]
 deps = ["Adapt"]
@@ -1606,9 +1598,7 @@ version = "0.5.12"
 
 [[deps.PaleoData]]
 deps = ["CSV", "DataFrames", "DelimitedFiles", "Downloads", "GZip", "NCDatasets", "Pkg", "Revise", "Test", "XLSX", "ZipFile"]
-git-tree-sha1 = "e0b2b2e1264388e4cfc6320e5d7186f24a5c1ce1"
-repo-rev = "main"
-repo-url = "https://github.com/b-r-hamilton/PaleoData.jl.git"
+path = "/home/brynn/Code/PaleoData.jl/"
 uuid = "ea1376c8-097f-11ef-15fc-37a76906324d"
 version = "1.0.0-DEV"
 

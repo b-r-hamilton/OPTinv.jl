@@ -5,14 +5,15 @@
                      '(("agujournal2019" "draft")))
    (TeX-add-to-alist 'LaTeX-provided-package-options
                      '(("trackchanges" "inline")))
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
-   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
+   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "url")
    (TeX-run-style-hooks
     "latex2e"
     "agujournal2019"
     "agujournal201910"
+    "amsmath"
     "url"
     "lineno"
     "trackchanges"
@@ -22,23 +23,27 @@
     "bm"
     "xr")
    (LaTeX-add-labels
-    "sec:spatmode"
-    "fig:svdmodes"
-    "sec:prop"
-    "eq:diffeq"
-    "sec:agemodel"
+    "sec:y"
     "eq:cibs"
     "fig:offset"
-    "sec:E"
-    "eq:impresp"
-    "eq:inverse"
+    "sec:prop"
+    "eq:diffeq"
+    "eq:diffeqspec"
+    "eq:yeff"
+    "eq:expand"
+    "eq:modeleq"
+    "sec:spatmode"
+    "eq:surfbc"
+    "eq:modeleqfin"
+    "fig:svdmodes"
     "sec:solution"
     "eq:costfunc"
     "eq:twls"
     "eq:twlsCuu"
+    "sec:som"
     "sec:solchar"
-    "fig:utilde"
     "tab:cost"
+    "fig:utilde"
     "sec:reconcore"
     "eq:solcov"
     "fig:recon"
@@ -47,12 +52,20 @@
     "eq:surfreconunc"
     "fig:meants"
     "fig:sst"
-    "fig:plankticstack"
     "fig:ocean2kcomp"
+    "fig:plankticstack"
     "sec:singlemode"
+    "tab:costalt"
     "fig:reconalt"
     "fig:meantsgm2"
-    "fig:meantsgh19")
+    "sec:gammasens"
+    "eq:2"
+    "sec:agemodel"
+    "eq:covariance"
+    "eq:sumC"
+    "sec:corr"
+    "fig:td18O_cesm"
+    "fig:td18O")
    (LaTeX-add-bibliographies))
  :latex)
 

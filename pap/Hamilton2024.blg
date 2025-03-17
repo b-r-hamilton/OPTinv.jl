@@ -13,55 +13,59 @@ Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: Hamilton2024.bib
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
-Warning--No journal in England-Eisenman-2021:Arctic
+Warning--No journal in Haine-Griffies-2024:Review
 ptr=1, stack=
 
----the literal stack isn't empty for entry England-Eisenman-2021:Arctic
+---the literal stack isn't empty for entry Haine-Griffies-2024:Review
+while executing---line 5079 of file apacite.bst
+ptr=1, stack=
+
+---the literal stack isn't empty for entry <new-entry2>
 while executing---line 5079 of file apacite.bst
 Warning--No journal in Khider-Emile-Geay-2022:Pyleoclim
 ptr=1, stack=
 
 ---the literal stack isn't empty for entry Khider-Emile-Geay-2022:Pyleoclim
 while executing---line 5079 of file apacite.bst
-You've used 45 entries,
+You've used 53 entries,
             6951 wiz_defined-function locations,
-            1771 strings with 26652 characters,
-and the built_in function-call counts, 106047 in all, are:
-= -- 12549
-> -- 923
-< -- 5608
-+ -- 6163
-- -- 94
-* -- 7426
-:= -- 20118
-add.period$ -- 169
-call.type$ -- 45
-change.case$ -- 814
+            1833 strings with 29000 characters,
+and the built_in function-call counts, 122090 in all, are:
+= -- 14473
+> -- 1011
+< -- 6523
++ -- 6977
+- -- 110
+* -- 8585
+:= -- 23428
+add.period$ -- 199
+call.type$ -- 53
+change.case$ -- 967
 chr.to.int$ -- 0
-cite$ -- 92
-duplicate$ -- 3187
-empty$ -- 3874
-format.name$ -- 1750
-if$ -- 19025
+cite$ -- 108
+duplicate$ -- 3490
+empty$ -- 4497
+format.name$ -- 1881
+if$ -- 21932
 int.to.chr$ -- 0
-int.to.str$ -- 135
+int.to.str$ -- 159
 missing$ -- 0
-newline$ -- 1322
-num.names$ -- 360
-pop$ -- 1387
+newline$ -- 1536
+num.names$ -- 424
+pop$ -- 1596
 preamble$ -- 2
-purify$ -- 228
+purify$ -- 278
 quote$ -- 0
-skip$ -- 6168
+skip$ -- 7141
 stack$ -- 0
-substring$ -- 6651
-swap$ -- 1773
-text.length$ -- 149
+substring$ -- 7504
+swap$ -- 1992
+text.length$ -- 183
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 3728
+type$ -- 4432
 warning$ -- 2
-while$ -- 625
+while$ -- 685
 width$ -- 0
-write$ -- 1679
-(There were 2 error messages)
+write$ -- 1921
+(There were 3 error messages)

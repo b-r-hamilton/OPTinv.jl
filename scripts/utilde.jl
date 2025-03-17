@@ -33,8 +33,8 @@ specialplot(allc.u₀.x[:, At(1), At(:θ)], axs[1], "gray", fb = false)
 specialplot(allc.ũ.x[:, At(1), At(:θ)], axs[1], "red", fb = false)
 specialplot(oldc.ũ.x[:, At(1), At(:θ)], axs[1], "blue", fb = false)
 axs[1].set_ylabel("Mode Mag. [K]", fontsize = 15)
-axs[0].text(x = 500, y = -60, s = "A", fontsize = 30, weight = "bold")
-axs[1].text(x = 500, y = -20, s = "B", fontsize = 30, weight = "bold")
+axs[0].text(x = 500, y = -50, s = "A", fontsize = 30, weight = "bold")
+axs[1].text(x = 500, y = -15, s = "B", fontsize = 30, weight = "bold")
 xticks(xt, xt, fontsize = 12)
 axs[1].set_xlabel("Time [years CE]", fontsize = 15)
 tight_layout()
@@ -52,14 +52,16 @@ for i in 1:11
     ax.set_yticks(yt,yt,fontsize = 12)
     if i ∈ [1,4,7,10]
         ylabel("Mode Mag. [K]", fontsize = 15)
+    else
+        ylabel("")
     end
+    
     xt = collect(500:500:2000)    
     if i ∉ [9,10,11]
         xticks(xt,fill("", length(xt)))
         xlabel("")
     else
         xlabel("Time [years CE]", fontsize = 15)
-
         xticks(xt, xt, fontsize = 12)
     end    
 end

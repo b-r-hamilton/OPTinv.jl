@@ -184,8 +184,8 @@ function invert(x::inversion)
     mags = jld[x.modetype * "mags"]
     
     σθ = vec(std(mags, dims = 1)) * K
-    println("dividing σθ by 5") 
-    σθ ./= 5
+    println("multiplying σθ by 4") 
+    σθ .*= 4
     #=
     if x.modetype == "svd"    
         σθ *= 5
@@ -198,7 +198,7 @@ function invert(x::inversion)
     #σθ = vec(2K ./ jldopen(DrWatson.datadir("M/" * x.modetype * ".jld2"))["absmax"])
     
     
-    σδ = σθ ./ 10 .* permil/K
+    σδ = σθ ./ 14.84 .* permil/K
     u₀ = firstguess(Tᵤ, ℳ.dims[2][:], σθ, σδ, ρ) #u₀ with correct T_u
     E, predict = loadE(filename, ℳ, Tᵤ, T, σθ, σδ, ρ, corenums_sorted, y.Cnn.ax)
     

@@ -2,7 +2,7 @@ import Pkg
 Pkg.activate("../")
 
 using OPTinv 
-using Unitful, DimensionalData, BLUEs, Statistics, UnitfulLinearAlgebra, LinearAlgebra, Revise, DrWatson, TMI, CSV, DataFrames, JLD2, NaNMath, Dates, RollingFunctions, PaleoData, DateFormats, Measurements, GH19, PythonPlotExt, PythonPlot
+using Unitful, DimensionalData, BLUEs, Statistics, UnitfulLinearAlgebra, LinearAlgebra, Revise, DrWatson, TMI, CSV, DataFrames, JLD2, NaNMath, Dates, RollingFunctions, PaleoData, DateFormats, Measurements, PythonPlotExt, PythonPlot
 import Measurements.value as value
 import OPTinv.Est
 

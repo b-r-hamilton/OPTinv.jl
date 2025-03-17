@@ -41,7 +41,7 @@ for (i, core) in enumerate(allcores)
             plot(ỹold.x[:, At(core)], color = "blue", zorder = j, linestyle = "dashed")
         end 
     end
-    ylim(-0.2, 0.2)
+    ylim(-0.2, 0.16)
     xlim(ustrip.(xl))
 
 
@@ -54,11 +54,11 @@ for (i, core) in enumerate(allcores)
     end
     
     if i ∈ [1,4,7,10]
-        yticks(-0.2:0.2:0.2, fontsize = 12) 
+        yticks(-0.2:0.1:0.1, fontsize = 12) 
         ylabel(L"\mathrm{\delta}^{18}\mathrm{O}_\mathrm{calcite}" * " [‰]", fontsize = 15)
     else
         ylabel("")
-        yticks(-0.2:0.2:0.2, ["", "", ""])
+        yticks(-0.2:0.1:0.1, ["", "", "", ""])
     end
         
     title(string(core) * ", " * string(locs[core][3]) * "m", fontsize = 15)
