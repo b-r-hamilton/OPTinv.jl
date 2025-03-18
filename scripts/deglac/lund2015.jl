@@ -165,7 +165,8 @@ mat = [NADWlgmd18O AAIWlgmd18O AABWlgmd18O
        NADWlgmd13C AAIWlgmd13C AABWlgmd13C
        1 1 1]
 
-res = hcat([inv(mat) * [lgmd18O[i], lgmd13C[i], 1] for i in 1:12]...)
+using NonNegLeastSquares
+res = hcat([nonneg_lsq(mat, [lgmd18O[i], lgmd13C[i], 1]) for i in 1:12]...)
 #how well did we fit the obs? 
 [mat * res[:, i] for i in 1:12] .- [[lgmd18O[i], lgmd13C[i], 1] for i in 1:12]
 
@@ -175,12 +176,11 @@ plot(res[1,:][sortperm(depths)], sort(depths), label = "%NADW", color = "tab:blu
 for (linestyle, TMIv, TMId) in zip(linestyles, TMIversions, TMIdats)
     plot(TMId.obsNH[sortperm(depths)], sort(depths), alpha = 0.5, color = "tab:blue", label = "NADW: " * TMIv, linestyle = linestyle)
 end
-
 ylabel("depth [m]")
 xlabel("proportion of contribution")
 title("NADW")
 errorbar([0.7,0.56,0.42], [1820,2082,2296], xerr = [0.22, 0.20, 0.19], label = "LGM (from d18O, Lund2015)", color = "darkblue", fmt = "x", capsize = 5)
-xlim(0,1)
+xlim(-0.01,1)
 gca().invert_yaxis()
 subplot(1,3,2)
 
@@ -190,7 +190,7 @@ for (linestyle, TMIv, TMId) in zip(linestyles, TMIversions, TMIdats)
 end
 xlabel("proportion of contribution")
 title("AAIW")
-xlim(0,1)
+xlim(-0.01,1)
 gca().invert_yaxis()
 subplot(1,3,3)
 for (linestyle, TMIv, TMId) in zip(linestyles, TMIversions, TMIdats)
@@ -200,8 +200,7 @@ plot(res[3,:][sortperm(depths)], sort(depths), label = "%AABW", color = "tab:gre
 
 xlabel("proportion of contribution")
 title("AABW")
-legend()
-xlim(0,1)
+xlim(-0.01,1)
 gca().invert_yaxis()
 #legend()
 tight_layout()
