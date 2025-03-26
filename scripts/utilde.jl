@@ -24,7 +24,7 @@ specialplot(allc.u₀.x[:, At(1), At(:θ)], axs[0], "gray")
 specialplot(allc.ũ.x[:, At(1), At(:θ)], axs[0], "red")
 specialplot(oldc.ũ.x[:, At(1), At(:θ)], axs[0], "blue")
 axs[0].set_ylabel("Mode Mag. [K]", fontsize = 15)
-yt = axs[0].get_yticks()
+yt = -40:20:40
 axs[0].set_yticks(yt,yt,fontsize = 12)
 xt = collect(500:500:2000)
 axs[0].set_xticks(xt, fill("", length(xt)))
@@ -32,14 +32,16 @@ axs[0].set_xlabel("")
 specialplot(allc.u₀.x[:, At(1), At(:θ)], axs[1], "gray", fb = false)
 specialplot(allc.ũ.x[:, At(1), At(:θ)], axs[1], "red", fb = false)
 specialplot(oldc.ũ.x[:, At(1), At(:θ)], axs[1], "blue", fb = false)
+axs[0].set_xlim(500,1980)
 axs[1].set_ylabel("Mode Mag. [K]", fontsize = 15)
-axs[0].text(x = 500, y = -50, s = "A", fontsize = 30, weight = "bold")
-axs[1].text(x = 500, y = -15, s = "B", fontsize = 30, weight = "bold")
+axs[0].text(x = 510, y = -40, s = "A", fontsize = 30, weight = "bold")
+axs[1].text(x = 500, y = -17, s = "B", fontsize = 30, weight = "bold")
+xlim(500,1980)
 xticks(xt, xt, fontsize = 12)
 axs[1].set_xlabel("Time [years CE]", fontsize = 15)
 tight_layout()
 savefig(plotsdir("u0utilde_mode1.png"), dpi = 600)
-
+#=
 # ==================== ALL MODES, WITH UNC. =========================== #
 figure(figsize = (10,10))
 for i in 1:11
@@ -116,3 +118,4 @@ figure(figsize = (8,8))
     tight_layout()
     savefig(plotsdir("modemags"*string(s)* suffix* ".png"))
 end
+=#

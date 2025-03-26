@@ -1,6 +1,7 @@
+#=
 import Pkg
 Pkg.activate("../../")
-using OPTinv, PaleoData, LinearAlgebra, TMI, PythonPlot, Interpolations
+using OPTinv, PaleoData, LinearAlgebra, TMI, PythonPlot, Interpolations, NonNegLeastSquares
 locs, data = loadLund2015()
 
 #TMIversion = "modern_180x90x33_GH11_GH12"
@@ -149,60 +150,94 @@ end
 legend()
 ylabel("Depth [m]")
 xlabel("d18Oc [‰ VPDB]")
-savefig("holorec.png") 
+savefig("holorec.png")
+=#
+tperiod = (LGM = (19,22), HS1 = (16, 17))
+for key in keys(tperiod)
+    val = getfield(tperiod, key)
+    @show (key, val)
+    lgmd18O = [mean(data[k].d18Ocwuell250[findall(x->val[1]<x<val[2], data[k].age_calkaBP)]) for k in keys(data)]
+    lgmd13C = [mean(data[k].d13Ccwuell250[findall(x->val[1]<x<val[2], data[k].age_calkaBP)]) for k in keys(data)]
+    NADWlgmd18O = NaNMath.mean(red18O[findall(x->val[1]<x<val[2], reage)])
+    AAIWlgmd18O = mean(data.ggc14.d18Ocwuell250[findall(x->val[1]<x<val[2], data.ggc14.age_calkaBP)])
+    AABWlgmd18O =mean(data.ggc22.d18Ocwuell250[findall(x->val[1]<x<val[2], data.ggc22.age_calkaBP)])
 
-lgmd18O = [mean(data[k].d18Ocwuell250[findall(x->19<x<22, data[k].age_calkaBP)]) for k in keys(data)]
-lgmd13C = [mean(data[k].d13Ccwuell250[findall(x->19<x<22, data[k].age_calkaBP)]) for k in keys(data)]
-NADWlgmd18O = NaNMath.mean(red18O[findall(x->19<x<22, reage)])
-AAIWlgmd18O = mean(data.ggc14.d18Ocwuell250[findall(x->19<x<22, data.ggc14.age_calkaBP)])
-AABWlgmd18O =mean(data.ggc22.d18Ocwuell250[findall(x->19<x<22, data.ggc22.age_calkaBP)])
+    NADWlgmd13C = NaNMath.mean(red13C[findall(x->val[1]<x<val[2], reage)])
+    AAIWlgmd13C = mean(data.ggc14.d13Ccwuell250[findall(x->val[1]<x<val[2], data.ggc14.age_calkaBP)])
+    AABWlgmd13C =mean(data.ggc22.d13Ccwuell250[findall(x->val[1]<x<val[2], data.ggc22.age_calkaBP)])
 
-NADWlgmd13C = NaNMath.mean(red13C[findall(x->19<x<22, reage)])
-AAIWlgmd13C = mean(data.ggc14.d13Ccwuell250[findall(x->19<x<22, data.ggc14.age_calkaBP)])
-AABWlgmd13C =mean(data.ggc22.d13Ccwuell250[findall(x->19<x<22, data.ggc22.age_calkaBP)])
+    mat = [NADWlgmd18O AAIWlgmd18O AABWlgmd18O
+           NADWlgmd13C AAIWlgmd13C AABWlgmd13C
+           1 1 1]
 
-mat = [NADWlgmd18O AAIWlgmd18O AABWlgmd18O
-       NADWlgmd13C AAIWlgmd13C AABWlgmd13C
-       1 1 1]
 
-res = hcat([inv(mat) * [lgmd18O[i], lgmd13C[i], 1] for i in 1:12]...)
-#how well did we fit the obs? 
-[mat * res[:, i] for i in 1:12] .- [[lgmd18O[i], lgmd13C[i], 1] for i in 1:12]
+    #res = hcat([inv(mat) * [lgmd18O[i], lgmd13C[i], 1] for i in 1:12]...)
+    res = hcat([nonneg_lsq(mat, [lgmd18O[i], lgmd13C[i], 1]) for i in 1:12]...)
 
-figure()
-subplot(1,3,1)
-plot(res[1,:][sortperm(depths)], sort(depths), label = "%NADW", color = "tab:blue")
-for (linestyle, TMIv, TMId) in zip(linestyles, TMIversions, TMIdats)
-    plot(TMId.obsNH[sortperm(depths)], sort(depths), alpha = 0.5, color = "tab:blue", label = "NADW: " * TMIv, linestyle = linestyle)
+    #how well did we fit the obs? 
+    display([mat * res[:, i] for i in 1:12] .- [[lgmd18O[i], lgmd13C[i], 1] for i in 1:12])
+    display(res)
+
+    figure()
+    subplot(1,3,1)
+    plot(res[1,:][sortperm(depths)], sort(depths), label = "%NADW", color = "tab:blue")
+    for (linestyle, TMIv, TMId) in zip(linestyles, TMIversions, TMIdats)
+        plot(TMId.obsNH[sortperm(depths)], sort(depths), alpha = 0.5, color = "tab:blue", label = "NADW: " * TMIv, linestyle = linestyle)
+    end
+
+    ylabel("depth [m]")
+    xlabel("% cont.")
+    title("NADW")
+    if key == :LGM
+        errorbar([0.7,0.56,0.42], [1820,2082,2296], xerr = [0.22, 0.20, 0.19], label = "LGM (from d18O, Lund2015)", color = "darkblue", fmt = "x", capsize = 5)
+    elseif key == :HS1
+        errorbar([0.52,0.45,0.35], [1820,2082,2296], xerr = [0.10, 0.10, 0.09], label = "HS1 (from d18O, Lund2015)", color = "darkblue", fmt = "x", capsize = 5)
+    end
+    
+    xlim(-0.1,1)
+    gca().invert_yaxis()
+    subplot(1,3,2)
+
+    plot(res[2,:][sortperm(depths)], sort(depths), label = "%AAIW", color = "tab:orange")
+    for (linestyle, TMIv, TMId) in zip(linestyles, TMIversions, TMIdats)
+        plot((TMId.obsSH .- TMId.obsSSH)[sortperm(depths)], sort(depths), alpha = 0.5, color = "tab:orange", label = "AAIW: " * TMIv, linestyle = linestyle)
+    end
+    xlabel("% cont.")
+    title("AAIW")
+    xlim(-0.1,1)
+    gca().invert_yaxis()
+    subplot(1,3,3)
+    for (linestyle, TMIv, TMId) in zip(linestyles, TMIversions, TMIdats)
+        plot(TMId.obsSSH[sortperm(depths)], sort(depths), alpha = 0.5, color = "tab:green", label = "AABW: " * TMIv, linestyle = linestyle)
+    end
+    plot(res[3,:][sortperm(depths)], sort(depths), label = "%AABW", color = "tab:green")
+
+    xlabel("% cont.")
+    title("AABW")
+    xlim(-0.1,1)
+    gca().invert_yaxis()
+    #legend()
+    tight_layout()
+    suptitle(key)
+    savefig("lgmprop" * string(key) * ".png")
 end
 
-ylabel("depth [m]")
-xlabel("proportion of contribution")
-title("NADW")
-errorbar([0.7,0.56,0.42], [1820,2082,2296], xerr = [0.22, 0.20, 0.19], label = "LGM (from d18O, Lund2015)", color = "darkblue", fmt = "x", capsize = 5)
-xlim(0,1)
-gca().invert_yaxis()
-subplot(1,3,2)
+#=
 
-plot(res[2,:][sortperm(depths)], sort(depths), label = "%AAIW", color = "tab:orange")
-for (linestyle, TMIv, TMId) in zip(linestyles, TMIversions, TMIdats)
-    plot((TMId.obsSH .- TMId.obsSSH)[sortperm(depths)], sort(depths), alpha = 0.5, color = "tab:orange", label = "AAIW: " * TMIv, linestyle = linestyle)
+# plot(data.ggc14.age_calkaBP, data.ggc14.d18Ocwuell250 .- mean(data.ggc14.d18Ocwuell250[findall(x->19 < x < 23, data.ggc14.age_calkaBP)]), color = "red", label = "GGC14 (AAIW?)")
+# plot(data.ggc22.age_calkaBP, data.ggc22.d18Ocwuell250 .- mean(data.ggc22.d18Ocwuell250[findall(x->19 < x < 23, data.ggc22.age_calkaBP)]), color = "green", label = "GGC22 (AABW?)")
+# plot(reage, red18O .- NaNMath.mean(red18O[findall(x->19<x<23, reage)]), color = "blue", label = "R&E2005 (NADW?)")
+figure(figsize = (10,4))
+for (i, key) in enumerate([:d18Ocwuell250, :d13Ccwuell250])
+    subplot(1,2,i) 
+    plot(data.ggc14.age_calkaBP, getfield(data.ggc14, key), color = "red", label = "GGC14 (AAIW?)")
+    plot(data.ggc22.age_calkaBP, getfield(data.ggc22, key), color = "green", label = "GGC22 (AABW?)")
+    p = key == :d18Ocwuell250 ? red18O : red13C
+    plot(reage, p, color = "blue", label = "R&E2005 (NADW?)")
+    legend()
+    xlabel("Time [kyr BP]")
+    ylabel(string(key) * " [‰]")
 end
-xlabel("proportion of contribution")
-title("AAIW")
-xlim(0,1)
-gca().invert_yaxis()
-subplot(1,3,3)
-for (linestyle, TMIv, TMId) in zip(linestyles, TMIversions, TMIdats)
-    plot(TMId.obsSSH[sortperm(depths)], sort(depths), alpha = 0.5, color = "tab:green", label = "AABW: " * TMIv, linestyle = linestyle)
-end
-plot(res[3,:][sortperm(depths)], sort(depths), label = "%AABW", color = "tab:green")
-
-xlabel("proportion of contribution")
-title("AABW")
-legend()
-xlim(0,1)
-gca().invert_yaxis()
-#legend()
 tight_layout()
-savefig("lgmprop.png")
+savefig("endmember.png")
+=#
