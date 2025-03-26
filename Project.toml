@@ -5,6 +5,7 @@ version = "1.0.0"
 
 [deps]
 BLUEs = "b3a7f272-e305-45d1-bcf3-14d22bb67726"
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 CondaPkg = "992eb4ea-22a4-4c89-a5bb-47a3300528ab"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
