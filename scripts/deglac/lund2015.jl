@@ -221,8 +221,27 @@ for key in keys(tperiod)
     suptitle(key)
     savefig("lgmprop" * string(key) * ".png")
 end
+ylabel("depth [m]")
+xlabel("proportion of contribution")
+title("NADW")
+errorbar([0.7,0.56,0.42], [1820,2082,2296], xerr = [0.22, 0.20, 0.19], label = "LGM (from d18O, Lund2015)", color = "darkblue", fmt = "x", capsize = 5)
+xlim(-0.01,1)
+gca().invert_yaxis()
+subplot(1,3,2)
+xlabel("proportion of contribution")
+title("AAIW")
+xlim(-0.01,1)
+gca().invert_yaxis()
+subplot(1,3,3)
+for (linestyle, TMIv, TMId) in zip(linestyles, TMIversions, TMIdats)
+    plot(TMId.obsSSH[sortperm(depths)], sort(depths), alpha = 0.5, color = "tab:green", label = "AABW: " * TMIv, linestyle = linestyle)
+end
+plot(res[3,:][sortperm(depths)], sort(depths), label = "%AABW", color = "tab:green")
 
-#=
+xlabel("proportion of contribution")
+title("AABW")
+xlim(-0.01,1)
+gca().invert_yaxis()
 
 # plot(data.ggc14.age_calkaBP, data.ggc14.d18Ocwuell250 .- mean(data.ggc14.d18Ocwuell250[findall(x->19 < x < 23, data.ggc14.age_calkaBP)]), color = "red", label = "GGC14 (AAIW?)")
 # plot(data.ggc22.age_calkaBP, data.ggc22.d18Ocwuell250 .- mean(data.ggc22.d18Ocwuell250[findall(x->19 < x < 23, data.ggc22.age_calkaBP)]), color = "green", label = "GGC22 (AABW?)")
@@ -240,4 +259,4 @@ for (i, key) in enumerate([:d18Ocwuell250, :d13Ccwuell250])
 end
 tight_layout()
 savefig("endmember.png")
-=#
+
