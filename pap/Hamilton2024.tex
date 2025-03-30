@@ -271,11 +271,6 @@ estimated 0.2 $^{\circ}$C/kyr from 1200-1940 CE in the northeast North
 Atlantic, while \citeA{ocean2k} estimated 0.42 $^{\circ}$C/kyr from
 800-1800 CE globally.
 
-%Previously, modeling studies have been used to examine the ocean dynamics related to the LIA, and have suggested a strong connection between volcanism, Atlantic convection, and global temperature trends \cite{Zhong-Miller-2010:Centennial, miller12, Lehner2013, schleussner2013}. The internal variability of the subpolar gyre has also been suggested to play a strong role in amplifying LIA cooling \cite[]{Moreno-Chamarro-Zanchettin-2016:Little}. However, the full magnitude of the LIA cannot be explained through coupled climate models \cite{ottobliesner16}, complicating efforts to understand the relationship between climatic perturbations and response. Overall, more robust, data-informed estimates of the spatiotemporal structure of oceanic change related to the LIA is required to confirm the magnitude of cooling and more fully understand the associated dynamics. 
-% Diverse paleoceanographic proxy records have been used to constrain the circulation properties such as the flow rate of bottom water \cite{Thornalley-Oppo-2018:Anomalously, moffasanchez2015}, subpolar gyre strength \cite{Copard-Colin-2012:Late, Arellano-Nava2022, Moffa-Sanchez-Born-2014:Solar, moffasanchez2017, Spooner-Thornalley-202:Exceptional}, 
-%In addition, paleoceanographic proxy records have not identified large-scale circulation anomalies in the pre-industrial CE \cite{Thornalley-Oppo-2018:Anomalously, moffasanchez2015, Rahmstorf-Box-2015:Exceptional}. Dynamics related to a weakened subpolar gyre \cite{Moffa-Sanchez-Born-2014:Solar, Moreno-Chamarro-Zanchettin-2016:Little} have also been suggested to be a key reinforcement mechanism, and have been supported through deep-sea coral records \cite{Copard-Colin-2012:Late}, bivalve resiliency records \cite{Arellano-Nava2022}, and planktonic foraminiferal records \cite[]{Moffa-Sanchez-Born-2014:Solar, moffasanchez2017, Spooner-Thornalley-2020:Exceptional}, although exact timing and spatial extent of subpolar gyre variability still remain unclear. 
-
-%[Jake comment: ``current paragraph is a keeper, although it sets up the spatial pattern story, suggest a GH19 paragraph as well that is related to overall MCA-LIA cooling and how its magnitude will determine whether pre-industrial variability is large enough to still be affecting the ocean and climate today'']
 In this paper, we develop an inverse approach to infer surface
 properties from a compilation of benthic
 $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ records. Previously, these
@@ -517,7 +512,6 @@ Equation (\ref{eq:diffeq}) with the paleotemperature Equation
 (\ref{eq:cibs}) to form a boundary propagator equation for the
 effective $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ at any interior
 location due to time-evolving
-% temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$
 surface boundary conditions,
 \begin{equation}
 \label{eq:diffeqspec}
@@ -737,14 +731,7 @@ towards every sediment core site. This implies that we cannot explain
 any depth-dependent variability using solely Mode 1. In addition, Mode
 1 cannot be used to explain a signal that arrives at different
 sediment cores with different
-timings. 
-% In order to explain depth-dependent features, or features with
-% different timings, there must be free parameters that have these
-% effects upon misfit to the $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$
-% anomalies from the sediment core
-% records.
-% JG: didn't quite understand previous sentence
-This approach minimizes the degrees of freedom in the problem, while
+timings.This approach minimizes the degrees of freedom in the problem, while
 maximizing the amount of information our optimized estimate contains
 by quantifying the spatially-varying contribution of the surface ocean
 to the sediment core sites.
@@ -789,7 +776,6 @@ rows of the model matrix $\mathbf{E}$ can be identified by making
 small perturbations to an arbitrary state vector, $\mathbf{\hat{u}}$,
 applying Equation (\ref{eq:modeleqfin}), and scaling the result by the
 perturbation.
-% JG: is yhat the same as yeff?
 
 In this underdetermined problem, we further constrain the solution
 through a prior estimate of $\mathbf{\hat{u}}$, referred to as
@@ -904,12 +890,11 @@ estimates.
 \centering
 \begin{tabular}{l | c | c | c }
 \hline
- Estimate & Temporal Coverage [years CE] & $\mathbf{n}^T\mathbf{C_{nn}}^{-1}\mathbf{n}$ & $\mathbf{u_0}^T\mathbf{C_{u_0u_0}}^{-1}\mathbf{u_0} $ \\ %& $\mathbf{n}^T\mathbf{C_{nn}}^{-1}\mathbf{n} + \mathbf{u_0}^T\mathbf{C_{u_0u_0}}^{-1}\mathbf{u_0}$\\
+ Estimate & Temporal Coverage [years CE] & $\mathbf{n}^T\mathbf{C_{nn}}^{-1}\mathbf{n}$ & $\mathbf{u_0}^T\mathbf{C_{u_0u_0}}^{-1}\mathbf{u_0} $ \\ 
 \hline
-  \texttt{OPT-11} & 1470-1980 & 28.7 & 0.997 \\ %&  29.6  \\
-  \texttt{OPT-3}  &  800-1980 & 12.3 & 10.5 \\ %& 18.0  \\
+  \texttt{OPT-11} & 1470-1980 & 28.7 & 0.997 \\
+  \texttt{OPT-3}  &  800-1980 & 12.3 & 10.5 \\ 
 \hline
-%\multicolumn{2}{l}{$^{a}$Footnote text here.}
 \end{tabular}
 \end{table}
 
@@ -1142,7 +1127,7 @@ the surface is within the error of the planktonic stack from the
 sediment cores in this dataset. This confirms that both of our
 estimates agree with the independent estimates of surface
 $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ at the sediment core
-sites. %In addition, we can compute an estimate of the trend in mean effective surface $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$. For the \texttt{OPT-3} solution, this trend is 0.090 $\pm$ 0.033 $\permil$/kyr.
+sites.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = 0.75\textwidth]{/home/brynn/Code/OPTinv.jl/plots/effd18Ostack.png} }
@@ -1175,9 +1160,8 @@ able to fit all sediment core signals within uncertainty, suggesting
 that this sediment core record compilation can be fit without the
 necessity of explaining depth-dependent signals.
 
-%When interpreting these results, the reader may wonder if
-Are other North
-Atlantic surface spatial modes besides Mode 1 also able to explain the sediment core
+
+Are other North Atlantic surface spatial modes besides Mode 1 also able to explain the sediment core
 records? And, if not, what are the important characteristics of a
 surface spatial mode that could solely explain the signals recorded in
 these sediment cores? To address these questions, we assess the ability
@@ -1512,147 +1496,6 @@ outweighs some marine planktonic reconstructions
 of North American and European terrestrial cooling
 \cite{Consortium--2013:Continental}.
 
-%
-% The main text should start with an introduction. Except for short
-% manuscripts (such as comments and replies), the text should be divided
-% into sections, each with its own heading.
-
-% Headings should be sentence fragments and do not begin with a
-% lowercase letter or number. Examples of good headings are:
-
-% \section{Materials and Methods}
-% Here is text on Materials and Methods.
-%
-% \subsection{A descriptive heading about methods}
-% More about Methods.
-%
-% \section{Data} (Or section title might be a descriptive heading about data)
-%
-% \section{Results} (Or section title might be a descriptive heading about the
-% results)
-%
-% \section{Conclusions}
-
-
-
-%Text here ===>>>
-
-
-%%
-
-%  Numbered lines in equations:
-%  To add line numbers to lines in equations,
-%  \begin{linenomath*}
-%  \begin{equation}
-%  \end{equation}
-%  \end{linenomath*}
-
-
-
-%% Enter Figures and Tables near as possible to where they are first mentioned:
-%
-% DO NOT USE \psfrag or \subfigure commands.
-%
-% Figure captions go below the figure.
-% Acronyms used in figure captions will be spelled out in the final, published version.
-
-% Table titles go above tables;  other caption information
-%  should be placed in last line of the table, using
-% \multicolumn2l{$^a$ This is a table note.}
-% NOTE that there is no difference between table caption and table heading in the final, published version
-%
-%----------------
-% EXAMPLE FIGURES
-%
-% \begin{figure}
-% \includegraphics{example.png}
-% \caption{caption}
-% \end{figure}
-%
-% Giving latex a width will help it to scale the figure properly. A simple trick is to use \textwidth. Try this if large figures run off the side of the page.
-% \begin{figure}
-% \noindent\includegraphics[width=\textwidth]{anothersample.png}
-%\caption{caption}
-%\label{pngfiguresample}
-%\end{figure}
-%
-%
-% If you get an error about an unknown bounding box, try specifying the width and height of the figure with the natwidth and natheight options. This is common when trying to add a PDF figure without pdflatex.
-% \begin{figure}
-% \noindent\includegraphics[natwidth=800px,natheight=600px]{samplefigure.pdf}
-%\caption{caption}
-%\label{pdffiguresample}
-%\end{figure}
-%
-%
-% PDFLatex does not seem to be able to process EPS figures. You may want to try the epstopdf package.
-%
-
-%
-% ---------------
-% EXAMPLE TABLE
-%
-% \begin{table}
-% \caption{Time of the Transition Between Phase 1 and Phase 2$^{a}$}
-% \centering
-% \begin{tabular}{l c}
-% \hline
-%  Run  & Time (min)  \\
-% \hline
-%   $l1$  & 260   \\
-%   $l2$  & 300   \\
-%   $l3$  & 340   \\
-%   $h1$  & 270   \\
-%   $h2$  & 250   \\
-%   $h3$  & 380   \\
-%   $r1$  & 370   \\
-%   $r2$  & 390   \\
-% \hline
-% \multicolumn{2}{l}{$^{a}$Footnote text here.}
-% \end{tabular}
-% \end{table}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SIDEWAYS FIGURES and TABLES
-% AGU prefers the use of {sidewaystable} over {landscapetable} as it causes fewer problems.
-%
-% \begin{sidewaysfigure}
-% \includegraphics[width=20pc]{figsamp}
-% \caption{caption here}
-% \label{newfig}
-% \end{sidewaysfigure}
-%
-%  \begin{sidewaystable}
-%  \caption{Caption here}
-% \label{tab:signif_gap_clos}
-%  \begin{tabular}{ccc}
-% one&two&three\\
-% four&five&six
-%  \end{tabular}
-%  \end{sidewaystable}
-
-%% If using numbered lines, please surround equations with \begin{linenomath*}...\end{linenomath*}
-%\begin{linenomath*}
-%\begin{equation}
-%y|{f} \sim g(m, \sigma),
-%\end{equation}
-%\end{linenomath*}
-
-%%% End of body of article
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Optional Appendices go here
-%
-% The \appendix command resets counters and redefines section heads
-%
-% After typing \appendix
-%
-%\section{Here Is Appendix Title}
-% will show
-% A: Here Is Appendix Title
-%
-%\appendix
-%\section
 \appendix
 \section{Incorporating age model uncertainty \label{sec:agemodel}}
 For every sediment core, we generate mean timeseries of
@@ -1776,54 +1619,6 @@ multiple ways to arrive at a correlation value, and multiple possible
 correlation values. In Section \ref{sec:gammasens}, we develop a model
 for the sensitivity of our estimated North Atlantic temperature change
 to this correlation value.
-%p = gsw_p_from_z(-1500, 51) = 1518.62
-%gsw_beta(35.1, 4, 1518) / gsw_alpha(35.1,4,1518)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Optional Glossary, Notation or Acronym section goes here:
-%
-% Glossary is only allowed in Reviews of Geophysics
-%  \begin{glossary}
-%  \term{Term}
-%   Term Definition here
-%  \term{Term}
-%   Term Definition here
-%  \term{Term}
-%   Term Definition here
-%  \end{glossaSry}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Acronyms
-%% NOTE that acronyms in the final published version will be spelled out when used in figure captions.
-%   \begin{acronyms}
-%   \acro{Acronym}
-%   Definition here
-%   \acro{EMOS}
-%   Ensemble model output statistics
-%   \acro{ECMWF}
-%   Centre for Medium-Range Weather Forecasts
-%   \end{acronyms}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Notation
-%   \begin{notation}
-%   \notation{$a+b$} Notation Definition here
-%   \notation{$e=mc^2$}
-%   Equation in German-born physicist Albert Einstein's theory of special
-%  relativity that showed that the increased relativistic mass ($m$) of a
-%  body comes from the energy of motion of the body—that is, its kinetic
-%  energy ($E$)—divided by the speed of light squared ($c^2$).
-%   \end{notation}
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% DATA SECTION and ACKNOWLEDGMENTS
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Open Research Section}
 Code and documentation is available on Zenodo at [INSERT LINK HERE]
@@ -1832,185 +1627,7 @@ Code and documentation is available on Zenodo at [INSERT LINK HERE]
 We thank David McGee, Sarah Shackleton, and Sophie Hines for their insightful discussion of the material here. In addition, we thank Michael Evans for an insightful comment on the temporal coverage of proxies in the Last Millennium Reanalysis. This work was supported by NSF OCE-2031929 and the WHOI Investment in Science Program. 
 
 \clearpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% REFERENCES and BIBLIOGRAPHY
-%
+
 \bibliography{Hamilton2024} 
-% don't specify bibliographystyle
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%Reference citation instructions and examples:
-%
-% Please use ONLY \cite and \citeA for reference citations.
-% \cite for parenthetical references
-% ...as shown in recent studies (Simpson et al., 2019)
-% \citeA for in-text citations
-% ...Simpson et al. (2019) have shown...
-%
-%
-%...as shown by \citeA{jskilby}.
-%...as shown by \citeA{lewin76}, \citeA{carson86}, \citeA{bartoldy02}, and \citeA{rinaldi03}.
-%...has been shown \cite{jskilbye}.
-%...has been shown \cite{lewin76,carson86,bartoldy02,rinaldi03}.
-%... \cite <i.e.>[]{lewin76,carson86,bartoldy02,rinaldi03}.
-%...has been shown by \cite <e.g.,>[and others]{lewin76}.
-%
-% apacite uses < > for prenotes and [ ] for postnotes
-% DO NOT use other cite commands (e.g., \citet, \citep, \citeyear, \nocite, \citealp, etc.).
-%
-
-
 \clearpage
 \end{document}
-
-
-
-More Information and Advice:
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%  SECTION HEADS
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Capitalize the first letter of each word (except for
-% prepositions, conjunctions, and articles that are
-% three or fewer letters).
-
-% AGU follows standard outline style; therefore, there cannot be a section 1 without
-% a section 2, or a section 2.3.1 without a section 2.3.2.
-% Please make sure your section numbers are balanced.
-% ---------------
-% Level 1 head
-%
-% Use the \section{} command to identify level 1 heads;
-% type the appropriate head wording between the curly
-% brackets, as shown below.
-%
-%An example:
-%\section{Level 1 Head: Introduction}
-%
-% ---------------
-% Level 2 head
-%
-% Use the \subsection{} command to identify level 2 heads.
-%An example:
-%\subsection{Level 2 Head}
-%
-% ---------------
-% Level 3 head
-%
-% Use the \subsubsection{} command to identify level 3 heads
-%An example:
-%\subsubsection{Level 3 Head}
-%
-%---------------
-% Level 4 head
-%
-% Use the \subsubsubsection{} command to identify level 3 heads
-% An example:
-%\subsubsubsection{Level 4 Head} An example.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%  IN-TEXT LISTS
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Do not use bulleted lists; enumerated lists are okay.
-% \begin{enumerate}
-% \item
-% \item
-% \item
-% \end{enumerate}
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%  EQUATIONS
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Single-line equations are centered.
-% Equation arrays will appear left-aligned.
-
-Math coded inside display math mode \[ ...\]
- will not be numbered, e.g.,:
- \[ x^2=y^2 + z^2\]
-
- Math coded inside \begin{equation} and \end{equation} will
- be automatically numbered, e.g.,:
- \begin{equation}
- x^2=y^2 + z^2
- \end{equation}
-
-
-% To create multiline equations, use the
-% \begin{eqnarray} and \end{eqnarray} environment
-% as demonstrated below.
-\begin{eqnarray}
-  x_{1} & = & (x - x_{0}) \cos \Theta \nonumber \\
-        && + (y - y_{0}) \sin \Theta  \nonumber \\
-  y_{1} & = & -(x - x_{0}) \sin \Theta \nonumber \\
-        && + (y - y_{0}) \cos \Theta.
-\end{eqnarray}
-
-%If you don't want an equation number, use the star form:
-%\begin{eqnarray*}...\end{eqnarray*}
-
-% Break each line at a sign of operation
-% (+, -, etc.) if possible, with the sign of operation
-% on the new line.
-
-% Indent second and subsequent lines to align with
-% the first character following the equal sign on the
-% first line.
-
-% Use an \hspace{} command to insert horizontal space
-% into your equation if necessary. Place an appropriate
-% unit of measure between the curly braces, e.g.
-% \hspace{1in}; you may have to experiment to achieve
-% the correct amount of space.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%  EQUATION NUMBERING: COUNTER
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% You may change equation numbering by resetting
-% the equation counter or by explicitly numbering
-% an equation.
-
-% To explicitly number an equation, type \eqnum{}
-% (with the desired number between the brackets)
-% after the \begin{equation} or \begin{eqnarray}
-% command.  The \eqnum{} command will affect only
-% the equation it appears with; LaTeX will number
-% any equations appearing later in the manuscript
-% according to the equation counter.
-%
-
-% If you have a multiline equation that needs only
-% one equation number, use a \nonumber command in
-% front of the double backslashes (\\) as shown in
-% the multiline equation above.
-
-% If you are using line numbers, remember to surround
-% equations with \begin{linenomath*}...\end{linenomath*}
-
-%  To add line numbers to lines in equations:
-%  \begin{linenomath*}
-%  \begin{equation}
-%  \end{equation}
-%  \end{linenomath*}
-
-
-
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: t
-%%% End:
