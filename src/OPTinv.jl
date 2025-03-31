@@ -180,6 +180,9 @@ function invert(x::inversion)
     res = unique(diff(T))[1]
     Tᵤ = 500.0yr:res:T[end]
 
+    if !isfile(DrWatson.datadir("modemags.jld2"))
+        include(DrWatson.scriptsdir("CEdatanalysis/sigma.jl"))
+    end
     jld = jldopen(DrWatson.datadir("modemags.jld2"))
     mags = jld[x.modetype * "mags"]
     
