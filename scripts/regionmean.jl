@@ -137,6 +137,58 @@ yl = inset_ax.get_ylim()
 ax1.hlines(xmin = xl[0], xmax = xl[1], y = yl, color = "black")
 ax1.vlines(ymin = yl[0], ymax = yl[1], x = xl, color = "black")
 savefig(plotsdir("meants" * suffix * ".png"), dpi = 600)
+
+# ================== LABRADOR SEA =============================== #
+figure(figsize = (8, 8))
+lab_lon = (360-60, 360-45)
+lab_lat = (55, 64)
+df = CSV.read(OPTinv.datadir("TLS1998Fig7Digitized.csv"), DataFrame)
+df = df[sortperm(df[!, "Year"]), :]
+
+tls_anom_ind = findall(x->x == 70, df[!, "Year"])
+tls_sal = df[!, "Salinity"] .- df[tls_anom_ind, "Salinity"]
+tls_temp = df[!, "Temperature"] .- df[tls_anom_ind, "Temperature"]
+tls_time = 1900 .+ df[!, "Year"]
+
+labmeanindices = γbox(solutions[1].γ, 55, 64, 360-60, 360-45)
+subplot(2,1,1)
+text(x = 1901, y = 0.75, s = "A", fontsize = 30, weight = "bold")
+grid()
+for sol in solutions
+    sol_anom_ind = findall(x->x==1970yr, Array(sol.ũ.dims[1]))
+    labθ = estimate(sol.ũ, sol.spatialmodes, :θ, spatialinds = labmeanindices, rolling = 2)
+    labθ = DimEstimate(labθ.v .- value(labθ.x[At(1970yr), :]), labθ.C, labθ.dims)
+    plot(labθ.x, color = sol.color, label = sol.name, lzorder = 2)
+end
+    
+plot(1900 .+ df[!, "Year"], tls_temp, color = "black", label = "TLS1998", zorder = 1, linestyle = "solid", linewidth = 3)
+xlim(1900, 1970)
+ylim(-1,1)
+xticks(1900:10:1970, fontsize = 12)
+yticks(-1:0.5:1, fontsize = 12)
+ylabel("Temperature Anomaly [K]", fontsize = 15)
+
+subplot(2,1,2)
+text(x = 1901, y = 0.045, s = "B", fontsize = 30, weight = "bold")
+for sol in solutions
+    sol_anom_ind = findall(x->x==1970yr, Array(sol.ũ.dims[1]))
+    labS = estimate(sol.ũ, sol.spatialmodes, :δ, spatialinds = labmeanindices, rolling = 2) 
+    labS = DimEstimate((labS.v .- value(labS.x[At(1970yr), :])) ./ 0.5255, labS.C, labS.dims)
+    plot(labS.x, color = sol.color, label = sol.name, lzorder = 2)
+end
+
+plot(1900 .+ df[!, "Year"], tls_sal, color = "black", label = "TLS1998", linestyle = "solid", linewidth = 3)
+
+xlim(1900, 1970)
+grid()
+ylim(-0.06, 0.06)
+ylabel("Salinity Anomaly [g/kg]", fontsize = 15)
+xlabel("Time [years CE]", fontsize = 15)
+xticks(1900:10:1970, fontsize = 12)
+yticks(-0.06:0.03:0.06, fontsize = 12)
+tight_layout()
+savefig(plotsdir("labcomp" * suffix * ".png")) 
+
 #=
 # ========== NORDIC SEA V. SPNA REGION MEAN  ==================== #
 
