@@ -2,7 +2,7 @@
 
 julia_version = "1.10.0"
 manifest_format = "2.0"
-project_hash = "d4a1f885664e25249b636bc05546f3bbb9b328f4"
+project_hash = "da64e941df7d98f76a48db0d6261f17312e5b853"
 
 [[deps.ADTypes]]
 git-tree-sha1 = "016833eb52ba2d6bea9fcb50ca295980e728ee24"
@@ -1598,7 +1598,9 @@ version = "0.5.12"
 
 [[deps.PaleoData]]
 deps = ["CSV", "DataFrames", "DelimitedFiles", "Downloads", "GZip", "NCDatasets", "Pkg", "Revise", "Test", "XLSX", "ZipFile"]
-path = "/home/brynn/Code/PaleoData.jl/"
+git-tree-sha1 = "e9fe01922d4ebc39ffd0073585c6147f27f85acf"
+repo-rev = "main"
+repo-url = "https://github.com/b-r-hamilton/PaleoData.jl"
 uuid = "ea1376c8-097f-11ef-15fc-37a76906324d"
 version = "1.0.0-DEV"
 
@@ -1754,7 +1756,9 @@ version = "1.0.5"
 
 [[deps.PythonPlotExt]]
 deps = ["CondaPkg", "DimensionalData", "Measurements", "Pkg", "PythonCall", "PythonPlot", "Revise", "Test", "Unitful"]
-path = "/home/brynn/Code/PythonPlotExt"
+git-tree-sha1 = "00ea69f33180206aed45e99de81d356b93ed4ea5"
+repo-rev = "main"
+repo-url = "https://github.com/b-r-hamilton/PythonPlotExt.jl"
 uuid = "755d1a7d-d1f6-4f47-beec-5db026b93327"
 version = "1.0.0-DEV"
 
