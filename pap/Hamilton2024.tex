@@ -65,7 +65,7 @@
 
 \journalname{Paleoceanography and Paleoclimatology}
 
-
+\graphicspath{{../plots}}
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -471,7 +471,7 @@ convert all quantities into anomalies by subtracting the mean value
 between 1850-1980 CE from each record.
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width = 0.75\textwidth]{/home/brynn/Code/OPTinv.jl/plots/offsets}}
+\centerline{\includegraphics[width = 0.75\textwidth]{offsets}}
 \caption[]{\label{fig:offset} : Mean
   $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ timeseries for each sediment
   core record, with 0.47$\permil$ equilibration offset removed from
@@ -693,7 +693,7 @@ surface grid cell, making this underdetermined problem more
 computationally tractable.
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/SVD_modes.png}}
+\centerline{\includegraphics[width = \textwidth]{SVD_modes.png}}
 \caption[]{\label{fig:svdmodes} Orthonormal surface spatial modes
   obtained from the singular value decomposition of surface source
   water origination maps to the core sites. Titles show mode number,
@@ -910,7 +910,7 @@ implies that the sediment core records do not exhibit depth-dependent
 variability above the noise level.
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width = 0.75\textwidth]{/home/brynn/Code/OPTinv.jl/plots/u0utilde_mode1.png}}
+\centerline{\includegraphics[width = 0.75\textwidth]{u0utilde_mode1.png}}
 \caption[]{\label{fig:utilde} (\textbf{A}) The prior,
   $\mathbf{\hat{u_0}}$ and associated uncertainty
   $\mathbf{C_{u_0u_0}}$ (gray line and shading), and the best estimate
@@ -967,7 +967,7 @@ MC19A, MC10A, MC9A, and MC14A are not observational constraints on
 \texttt{OPT-3}, we compute the effective reconstructed values at these
 sediment core sites according to \texttt{OPT-3} as cross-validation.
 \begin{figure}[htbp]
-\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/reconsolallvold.png}}
+\centerline{\includegraphics[width = \textwidth]{reconsolallvold.png}}
 \caption[]{\label{fig:recon} Reconstruction at core sites
   ($\mathbf{\hat{\tilde{y}}}$) for \texttt{OPT-11} (red line and
   shading) and \texttt{OPT-3} (blue line and shading). Blue dashed
@@ -1032,7 +1032,7 @@ computed by scaling the median, 5-, and 95-percentile range
 standardized Ocean2k SST by the published global Ocean2k cooling trend
 of 0.42 $^{\circ}$C/kyr \cite{ocean2k}.
 \begin{figure}[htbp]
-\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/meantsallvold.png}}
+\centerline{\includegraphics[width = \textwidth]{meantsallvold.png}}
 \caption[]{\label{fig:meants} Mean North Atlantic temperature anomaly
   (50$^{\circ}$W-20$^{\circ}$E, 50$^{\circ}$N-90$^{\circ}$N) for \texttt{OPT-11} (red)
   and \texttt{OPT-3} (blue), with a 50-year rolling mean applied and
@@ -1062,7 +1062,7 @@ CE. Reconstructed $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ maps are not
 shown here because they exhibit identical, but scaled, behavior due to
 the enforced linear relationship between the two variables.
 \begin{figure}
-\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/surfacesolallvold_text.png}}
+\centerline{\includegraphics[width = \textwidth]{surfacesolallvold_text.png}}
 \caption[]{\label{fig:sst} Average reconstructed surface temperature over 70-year periods, every 200 years between 1000-2000 CE, shown as a temperature anomaly from 1850-1970, for the \texttt{OPT-3} and \texttt{OPT-11} estimates.}
 \end{figure}
 Both estimates exhibit a scaled, time-evolving version of the Mode 1
@@ -1084,7 +1084,7 @@ to the cooling trend estimated from any Ocean2k records within the
 region of interest, that have temporal coverage for the majority of
 the LIA (Figure \ref{fig:ocean2kcomp}).
 \begin{figure}[htbp]
-\centerline{\includegraphics[width = 0.75\textwidth, trim = {5cm 10cm 5cm 7cm}]{/home/brynn/Code/OPTinv.jl/plots/ocean2kcomp.png}}
+\centerline{\includegraphics[width = 0.75\textwidth, trim = {5cm 10cm 5cm 7cm}]{ocean2kcomp.png}}
 \caption[]{\label{fig:ocean2kcomp} The linear least squares trend
   estimated at every grid cell in \texttt{OPT-3} between 1140-1900 CE,
   compared to the linear least squares trend at every Ocean2k record
@@ -1130,7 +1130,7 @@ $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ at the sediment core
 sites.
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width = 0.75\textwidth]{/home/brynn/Code/OPTinv.jl/plots/effd18Ostack.png} }
+\centerline{\includegraphics[width = 0.75\textwidth]{effd18Ostack.png} }
 \caption[]{\label{fig:plankticstack} Effective
   $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ and 1$\sigma$ uncertainty at the
   surface location overlying the sediment core site location
@@ -1195,7 +1195,7 @@ magnitude of MCA-LIA cooling must be higher globally (0.54 K) than in
 the global spatial mode not accounting for the strong regional influence of the 
 North Atlantic deep water formation sites. 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/reconsolglobal.png}}
+\centerline{\includegraphics[width = \textwidth]{reconsolglobal.png}}
 \caption[]{\label{fig:reconalt} Reconstruction at core sites for
   \texttt{OPT-3-GLOBAL} estimate (purple line and shading) and
   \texttt{OPT-3-MODE2} estimate (orange line and shading). Black line
@@ -1206,7 +1206,7 @@ North Atlantic deep water formation sites.
 \end{figure}
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/meantsglobmode2.png}}
+\centerline{\includegraphics[width = \textwidth]{meantsglobmode2.png}}
 \caption[]{\label{fig:meantsgm2} Mean North Atlantic temperature
   (50$^{\circ}$W-20$^{\circ}$E, 50$^{\circ}$N-90$^{\circ}$N) for \texttt{OPT-3-GLOBAL}
   (purple) with a 50-year rolling mean applied and 1-$\sigma$ uncertainty
@@ -1560,7 +1560,7 @@ temperature or salinity timeseries, and may complicate its
 interpretation.
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPT2k.jl/plots/cesm_scatter.png}}
+\centerline{\includegraphics[width = \textwidth]{cesm_scatter.png}}
 \caption[]{\label{fig:td18O_cesm}Relationships between (\textbf{A})
   temperature and salinity, and (\textbf{B}) salinity and
   $\delta^{18}\mathrm{O}_{\textrm{seawater}}$ from 5-year averaged
