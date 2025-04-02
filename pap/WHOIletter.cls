@@ -37,7 +37,6 @@
 \newcommand*{\officephone}[1]{\def\WHOIofficephone{#1}}
 \newcommand*{\cellphone}[1]{\def\WHOIcellphone{#1}}
 \newcommand*{\email}[1]{\def\WHOIemail{#1}}
-\newcommand*{\sigfile}[1]{\def\sigfile{#1}}
 
 \def\WHOILogofile{WHOI_newlogo}
 \def\WHOIlogo{\includegraphics[width=7.5cm]{\WHOILogofile}}
@@ -97,7 +96,6 @@
     \begin{minipage}{\linewidth}
     \raggedright
     \raisebox{0pt}[0pt][0pt]{%
-      %\includegraphics[width=100px]{Signature.png}}%
-      \includegraphics[width=100px]{\sigfile}}%
+      \includegraphics[width=100px]{Signature.png}}%
     \end{minipage}}
 \signature{\sigfig}
