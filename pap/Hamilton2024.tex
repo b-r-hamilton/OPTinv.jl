@@ -1,16 +1,3 @@
-
-% AGUJournalTemplate.tex: this template file is for articles formatted with LaTeX
-%
-% This file includes commands and instructions
-% given in the order necessary to produce a final output that will
-% satisfy AGU requirements, including customized APA reference formatting.
-%
-% You may copy this file and give it your
-% article name, and enter your text.
-%
-% guidelines and troubleshooting are here: 
-
-%% To submit your paper:
 \documentclass[draft]{agujournal2019}
 \usepackage{amsmath}
 \usepackage{url} %this package should fix any errors with URLs in refs.
@@ -22,154 +9,27 @@
 \usepackage{bm}
 \usepackage{xr}\externaldocument[supp-]{Hamilton2024Supplement}
 \linenumbers
-%%%%%%%
-% As of 2018 we recommend use of the TrackChanges package to mark revisions.
-% The trackchanges package adds five new LaTeX commands:
-%
-%  \note[editor]{The note}
-%  \annote[editor]{Text to annotate}{The note}
-%  \add[editor]{Text to add}
-%  \remove[editor]{Text to remove}
-%  \change[editor]{Text to remove}{Text to add}
-%
-% complete documentation is here: http://trackchanges.sourceforge.net/
-%%%%%%%
-
 \draftfalse
-
-%% Enter journal name below.
-%% Choose from this list of Journals:
-%
-% JGR: Atmospheres
-% JGR: Biogeosciences
-% JGR: Earth Surface
-% JGR: Oceans
-% JGR: Planets
-% JGR: Solid Earth
-% JGR: Space Physics
-% Global Biogeochemical Cycles
-% Geophysical Research Letters
-% Paleoceanography and Paleoclimatology
-% Radio Science
-% Reviews of Geophysics
-% Tectonics
-% Space Weather
-% Water Resources Research
-% Geochemistry, Geophysics, Geosystems
-% Journal of Advances in Modeling Earth Systems (JAMES)
-% Earth's Future
-% Earth and Space Science
-% Geohealth
-%
-% ie, \journalname{Water Resources Research}
-
 \journalname{Paleoceanography and Paleoclimatology}
-
 \graphicspath{{../plots}}
 \begin{document}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  TITLE
-%
-% (A title should be specific, informative, and brief. Use
-% abbreviations only if they are defined in the abstract. Titles that
-% start with general keywords then specific terms are optimized in
-% searches)
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Example: \title{This is a test title}
-
 \title{Amplified North Atlantic Little Ice Age cooling inferred from inversion of benthic foraminiferal records}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%  AUTHORS AND AFFILIATIONS
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Authors are individuals who have significantly contributed to the
-% research and preparation of the article. Group authors are allowed, if
-% each author in the group is separately identified in an appendix.)
-
-% List authors by first name or initial followed by last name and
-% separated by commas. Use \affil{} to number affiliations, and
-% \thanks{} for author notes.
-% Additional author notes should be indicated with \thanks{} (for
-% example, for current addresses).
-
-% Example: \authors{A. B. Author\affil{1}\thanks{Current address, Antartica}, B. C. Author\affil{2,3}, and D. E.
-% Author\affil{3,4}\thanks{Also funded by Monsanto.}}
-
 \authors{Brynnydd Hamilton\affil{1, 2}, Geoffrey Gebbie\affil{2}, Delia W. Oppo\affil{2}, Wanyi Lu\affil{2}}
 
 \affiliation{1}{MIT-WHOI Joint Program in Oceanography/Applied Ocean Sciences and Engineering}
 \affiliation{2}{Woods Hole Oceanographic Institution}
-% \affiliation{3}{Third Affiliation}
-% \affiliation{4}{Fourth Affiliation}
 
  \affiliation{1}{Woods Hole, MA, USA}
  \affiliation{2}{Woods Hole, MA, USA}
-%(repeat as many times as is necessary)
-
-
-% Corresponding author mailing address and e-mail address:
-
-% (include name and email addresses of the corresponding author.  More
-% than one corresponding author is allowed in this LaTeX file and for
-% publication; but only one corresponding author is allowed in our
-% editorial system.)
-
-% Example: \correspondingauthor{First and Last Name}{email@address.edu}
 
 \correspondingauthor{Brynnydd Hamilton}{brynnydd.hamilton@whoi.edu}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% KEY POINTS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  List up to three key points (at least one is required)
-%  Key Points summarize the main points and conclusions of the article
-%  Each must be 140 characters or fewer with no special characters or punctuation and must be complete sentences
-
-% Example:
-% \begin{keypoints}
-% \item	List up to three key points (at least one is required)
-% \item	Key Points summarize the main points and conclusions of the article
-% \item	Each must be 140 characters or fewer with no special characters or punctuation and must be complete sentences
-% \end{keypoints}
 
 \begin{keypoints}
 \item We infer surface properties from benthic records, accounting for age model uncertainty, circulation lags, and paleotemperature equations (136/140 characters)
 \item A high-latitude ($>50^{\circ}$N) North Atlantic MCA-LIA cooling of 0.41 $\pm$ 0.13 K cooling from 1140-1880 CE is reconstructed (127/140 characters)
 \item The identified cooling is consistent with marine surface reconstructions, and is greater than that of the Last Millennium Reanalysis (132/140 characters) 
 \end{keypoints}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%  ABSTRACT and PLAIN LANGUAGE SUMMARY
-%
-% A good Abstract will begin with a short description of the problem
-% being addressed, briefly describe the new data or analyses, then
-% briefly states the main conclusion(s) and how they are supported and
-% uncertainties.
-
-% The Plain Language Summary should be written for a broad audience,
-% including journalists and the science-interested public, that will not have 
-% a background in your field.
-%
-% A Plain Language Summary is required in GRL, JGR: Planets, JGR: Biogeosciences,
-% JGR: Oceans, G-Cubed, Reviews of Geophysics, and JAMES.
-% see http://sharingscience.agu.org/creating-plain-language-summary/)
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% \begin{abstract} starts the second page
-
 \begin{abstract}
-  [244 words]
-  
   Paleoceanographic reconstructions indicate a large-scale cooling in
   the last millennium, but significant disagreement on the spatial
   pattern and timing still exists. This disagreement is partially due
@@ -199,8 +59,6 @@
   to have more noise.  These results are consistent with the global
   SST trends inferred from the Ocean2k planktonic SST compilation and
   corroborate robust Little Ice Age cooling in the North Atlantic.
-%Our reconstruction is characterized by maximum cooling in the Nordic Seas, which has been previously identified in planktonic records.
-% It agrees with the reconstruction of \citeA{gebbie19}, suggesting support for their finding of a pre-industrial ocean that was in disequilibrium with the atmosphere. %Our results, coupled with prior terrestrial estimates, suggest an Arctic amplification of Little Ice Age cooling may have occurred. 
 \end{abstract}
 
 \section*{Plain Language Summary}
@@ -211,34 +69,23 @@ Age. Past estimates of the oceanic cooling related to the Little Ice
 Age have been obtained from chemical analyses on the shells of
 single-celled organisms, called foraminifera, that dwell in the
 surface layer of the ocean, and are preserved in the sediment when
-they die. However, the geochemistry of the sediment records only
+they die. However, planktonic foraminiferal records only
 reflects oceanic conditions at the surface at a particular point in
 space. Here, we build on prior techniques to infer the oceanic
 conditions at the surface over a continuous spatial area by using
 chemical analyses on the shells of ocean bottom-dwelling
 foraminifera. These foraminifera record large-scale climate signals
-with higher fidelity, as they are not affected by near-surface
-variability, but are instead affected by bottom waters, which are
+with higher fidelity, as they record bottom water properties, which are
 composed of waters sourced from large areas of the surface ocean. We
 use an ocean circulation model to relate the composition of waters at
-the sediment core sites to the surface ocean, and quantify how surface
-signals may be modified by ocean circulation. From this relationship,
+the sediment core sites to the surface ocean. From this relationship,
 we can infer surface water characteristics over broad swaths of the
 surface based on bottom-dwelling foraminifera records. We find that
 the Little Ice Age cooling had an average magnitude of 0.41 $\pm$ 0.13 K
 in the high-latitude ($>50^{\circ}$N) North Atlantic that provides independent support for
 previous estimates of the global LIA cooling inferred from
 surface-dwelling foraminifera.
-%The reconstructed cooling agrees broadly with prior research, and provides support for the hypothesis that the pre-industrial ocean was not in equilibrium with the atmosphere due to the long residence times of deep waters. %[something to parallel final abstract sentence]%We suggest that this spatial pattern may be indicative of an Arctic amplification of the Little Ice Age cooling. 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%  BODY TEXT
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%% Suggested section heads:
 \section{Introduction}
 The past 2,000 years, referred to as the Common Era (CE), is a
 critical period for understanding the response of the Earth's climate
@@ -463,7 +310,6 @@ as well as uncertainty in modern day estimates of
 $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ at depth, we choose to work in
 $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ anomaly space, as was done in
 \citeA{Amrhein-Gebbie-2015:Inferring}.
-% This ensures that we maximize the fit to the coherent temporal CE signal, instead of the depth structure of $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$, which we believe to be partially affected by species offsets.
 This ensures that we maximize the fit to the coherent temporal CE
 signal, without contamination by the mean offset at each core site,
 which we believe to be partially affected by species offsets. We

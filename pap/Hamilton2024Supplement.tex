@@ -1,16 +1,3 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-% AGUJournalTemplate.tex: this template file is for articles formatted with LaTeX
-%
-% This file includes commands and instructions
-% given in the order necessary to produce a final output that will
-% satisfy AGU requirements, including customized APA reference formatting.
-%
-% You may copy this file and give it your
-% article name, and enter your text.
-%
-% guidelines and troubleshooting are here: 
-
-%% To submit your paper:
 \documentclass[draft]{agujournal2019}
 \usepackage{amsmath}
 \usepackage{url} %this package should fix any errors with URLs in refs.
@@ -26,46 +13,8 @@
 \usepackage{longtable}
 \externaldocument[main-]{Hamilton2024}
 \linenumbers
-%%%%%%%
-% As of 2018 we recommend use of the TrackChanges package to mark revisions.
-% The trackchanges package adds five new LaTeX commands:
-%
-%  \note[editor]{The note}
-%  \annote[editor]{Text to annotate}{The note}
-%  \add[editor]{Text to add}
-%  \remove[editor]{Text to remove}
-%  \change[editor]{Text to remove}{Text to add}
-%
-% complete documentation is here: http://trackchanges.sourceforge.net/
-%%%%%%%
 
 \draftfalse
-
-%% Enter journal name below.
-%% Choose from this list of Journals:
-%
-% JGR: Atmospheres
-% JGR: Biogeosciences
-% JGR: Earth Surface
-% JGR: Oceans
-% JGR: Planets
-% JGR: Solid Earth
-% JGR: Space Physics
-% Global Biogeochemical Cycles
-% Geophysical Research Letters
-% Paleoceanography and Paleoclimatology
-% Radio Science
-% Reviews of Geophysics
-% Tectonics
-% Space Weather
-% Water Resources Research
-% Geochemistry, Geophysics, Geosystems
-% Journal of Advances in Modeling Earth Systems (JAMES)
-% Earth's Future
-% Earth and Space Science
-% Geohealth
-%
-% ie, \journalname{Water Resources Research}
 
 \journalname{Paleoceanography and Paleoclimatology}
 \graphicspath{{../plots}}
@@ -76,98 +25,18 @@
 \renewcommand{\thesection}{S\arabic{section}}
 \renewcommand{\thetable}{S\arabic{table}}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  TITLE
-%
-% (A title should be specific, informative, and brief. Use
-% abbreviations only if they are defined in the abstract. Titles that
-% start with general keywords then specific terms are optimized in
-% searches)
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Example: \title{This is a test title}
-
 \title{Supplementary Information for ``Amplified North Atlantic Little Ice Age cooling inferred from inversion of benthic foraminiferal records''}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%  AUTHORS AND AFFILIATIONS
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Authors are individuals who have significantly contributed to the
-% research and preparation of the article. Group authors are allowed, if
-% each author in the group is separately identified in an appendix.)
-
-% List authors by first name or initial followed by last name and
-% separated by commas. Use \affil{} to number affiliations, and
-% \thanks{} for author notes.
-% Additional author notes should be indicated with \thanks{} (for
-% example, for current addresses).
 
 \authors{Brynnydd Hamilton\affil{1, 2}, Geoffrey Gebbie\affil{2}, Delia W. Oppo\affil{2}, Wanyi Lu\affil{2}}
 
 \affiliation{1}{MIT-WHOI Joint Program in Oceanography/Applied Ocean Sciences and Engineering}
 \affiliation{2}{Woods Hole Oceanographic Institution}
 
-% \affiliation{3}{Third Affiliation}
-% \affiliation{4}{Fourth Affiliation}
-
  \affiliation{1}{Woods Hole, MA, USA}
  \affiliation{2}{Woods Hole, MA, USA}
 
-
-
-% Corresponding author mailing address and e-mail address:
-
-% (include name and email addresses of the corresponding author.  More
-% than one corresponding author is allowed in this LaTeX file and for
-% publication; but only one corresponding author is allowed in our
-% editorial system.)
-
-% Example: \correspondingauthor{First and Last Name}{email@address.edu}
-
 \correspondingauthor{Brynnydd Hamilton}{brynnydd.hamilton@whoi.edu}
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% KEY POINTS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  List up to three key points (at least one is required)
-%  Key Points summarize the main points and conclusions of the article
-%  Each must be 140 characters or fewer with no special characters or punctuation and must be complete sentences
-
-% Example:
-% \begin{keypoints}
-% \item	List up to three key points (at least one is required)
-% \item	Key Points summarize the main points and conclusions of the article
-% \item	Each must be 140 characters or fewer with no special characters or punctuation and must be complete sentences
-% \end{keypoints}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%  ABSTRACT and PLAIN LANGUAGE SUMMARY
-%
-% A good Abstract will begin with a short description of the problem
-% being addressed, briefly describe the new data or analyses, then
-% briefly states the main conclusion(s) and how they are supported and
-% uncertainties.
-
-% The Plain Language Summary should be written for a broad audience,
-% including journalists and the science-interested public, that will not have 
-% a background in your field.
-%
-% A Plain Language Summary is required in GRL, JGR: Planets, JGR: Biogeosciences,
-% JGR: Oceans, G-Cubed, Reviews of Geophysics, and JAMES.
-% see http://sharingscience.agu.org/creating-plain-language-summary/)
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% \begin{abstract} starts the second page
 
 \section{Quantifying the $\mathrm{\delta^{18}O_{calcite}}$ offset from modern-day conditions \label{sec:offset}}
 In Section \ref{main-sec:solution}, we introduce the concept of the prior, $\mathbf{\hat{u_{0}}}$. The values used to define the prior must be put on a common scale to the problem, such that the prior propagated to the core sites, $\mathbf{E\hat{u_0}}$, is on the same scale as observational vector, $\mathbf{\hat{y}}$. There is a depth structure in the observations with $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ increasing as depth increases, as expected due to the presence of denser, and thus colder and saltier, waters at depth (Figure \ref{main-fig:offset}). In order to fit the $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ depth structure in the reconstructed prior, the prior must represent surface conditions that generate the observed depth structure when propagated to depth. We use Equation (\ref{main-eq:cibs}) to estimate effective modern-day $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ at the core sites from the global gridded estimate of $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ and temperature from \citeA[]{gebbie2010}. This product is informed by measurements from the World Ocean Circulation Experiment \cite[]{Gouretski-Koltermann-2004:WOCE}, as well as gridded estimates of $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ \cite[]{LeGrande-Schmidt-2006:Global}, and represents the best estimate of temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ that satisfies a steady-state ocean circulation and minimizes misfit to measurements obtained between 1950-2000 CE.
@@ -275,7 +144,6 @@ In Supplemental Figure \ref{fig:modemags}, we show the set of boundary propagato
 
 \section{Expected statistics of surface spatial mode magnitudes \label{sec:Cuu}}
 \subsection{Temporal variance of temperature \label{sec:tempvar}}
-%The adherence of the best estimate, $\mathbf{\tilde{u}}$, to the prior, $\mathbf{u_0}$, is partially controlled via the prior's associated covariance matrix $\mathbf{C_{u_0u_0}}$. We remove the mean value from 1850-1980 CE from each sediment core in our data vector $\mathbf{y}$, and define the prior as surface conditions that, when propagated to depth, will be equivalent to the mean 1850-1980 CE value at each sediment core site (see Section \ref{main-sec:agemodel} for rationale). Mathematically, we accomplish this by setting $\mathbf{u_0} = \vec{0}$.
 In order to set a realistic variance for the prior, $\mathbf{u_0}$, we use SST fields from historical realization \texttt{r11i1p1f1} of the Community Earth System Model (CESM), version 2 \cite{cesm2}. At each model timestep, the decadally-averaged CESM2 SST fields are linearly interpolated to the TMI grid and vectorized, forming a vector $\mathbf{s}_\mathrm{model}(t)$ in which $t$ is a time index in the annually-averaged  CESM2 `historical' run (1850-2015). We then solve for the vector of surface spatial mode magnitudes, $\mathbf{u}_\mathrm{model}$, at some time $t$, by inverting
 \begin{equation}
 \label{eq:Cuustats}
@@ -289,7 +157,7 @@ As an example, we show the $u_{\mathrm{model}}(t)$ timeseries associated with Mo
 \end{figure}
 
 \subsection{Temporal variance of $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ and temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ correlation \label{sec:oxygenvar}}
-% Our observational vector, $\mathbf{y}$, does not independently constrain temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$, so our solution will have a linear relationship between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ by virtue of the enforced relationship in Equation (\ref{main-eq:cibs}).
+
 The diagonal elements of $\mathbf{C_{u_{0}u_0}}$ that are associated with $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ are populated according to $\bm{\sigma}$, scaled by the temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ correlation value. The final constraint on the statistics of the prior is the expected correlation between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. This is controlled via the off-diagonal elements of $\mathbf{C_{u_0u_0}}$ associated with the covariance between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. For a given mode $m$, off-diagonal values will be populated by  $\rho \sigma_m^2\gamma^{-1}$, where $\rho$ is the correlation coefficient, and controls how tightly the estimate will be held to the correlation value $\gamma$. Despite non-perfect correlation between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ in reality, we choose to enforce perfect correlation by setting the correlation coefficient, $\rho$, equal to one. As there are not independent constraints on temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$, but linearity is enforced via the problem definition, the solution will similarly have a linear relationship between the two variables regardless of the correlation coefficient, $\rho$. In order for the estimate to have a linear relationship between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ at the correlation constant value, $\gamma$, we must set the correlation coefficient, $\rho$, to 1. If the correlation coefficient were set to a lower value, the relationship between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ would still be perfectly correlated, but have a linear relationship different from that defined by the prescribed value $\gamma$.
 
 % see `optinv_decompose.jl` for details on this
