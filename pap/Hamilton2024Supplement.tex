@@ -2,7 +2,7 @@
 \usepackage{amsmath}
 \usepackage{url} %this package should fix any errors with URLs in refs.
 \usepackage{lineno}
-%\usepackage[inline]{trackchanges} %for better track changes. finalnew option will compile document with changes incorporated.
+\usepackage[inline]{trackchanges} %for better track changes. finalnew option will compile document with changes incorporated.
 \usepackage{wasysym}[nointegrals]
 \usepackage{soul}
 \usepackage{siunitx}
@@ -21,7 +21,7 @@
 
 \begin{document}
 \renewcommand{\theequation}{S\arabic{equation}}
-\renewcommand{\figurename}{S\arabic{figure}}
+\renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\thesection}{S\arabic{section}}
 \renewcommand{\thetable}{S\arabic{table}}
 
@@ -37,6 +37,12 @@
 
 \correspondingauthor{Brynnydd Hamilton}{brynnydd.hamilton@whoi.edu}
 
+\begin{center} \textbf{Contents of this file} \end{center}
+\begin{itemize}
+\item Supplemental Sections \ref{sec:offset} - \ref{sec:gammasens}
+\item Supplemental Figures \ref{fig:U} - \ref{fig:gamma}
+\item Supplemental Table \ref{var}  
+\end{itemize}
 
 \section{Quantifying the $\mathrm{\delta^{18}O_{calcite}}$ offset from modern-day conditions \label{sec:offset}}
 In Section \ref{main-sec:solution}, we introduce the concept of the prior, $\mathbf{\hat{u_{0}}}$. The values used to define the prior must be put on a common scale to the problem, such that the prior propagated to the core sites, $\mathbf{E\hat{u_0}}$, is on the same scale as observational vector, $\mathbf{\hat{y}}$. There is a depth structure in the observations with $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ increasing as depth increases, as expected due to the presence of denser, and thus colder and saltier, waters at depth (Figure \ref{main-fig:offset}). In order to fit the $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ depth structure in the reconstructed prior, the prior must represent surface conditions that generate the observed depth structure when propagated to depth. We use Equation (\ref{main-eq:cibs}) to estimate effective modern-day $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ at the core sites from the global gridded estimate of $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ and temperature from \citeA[]{gebbie2010}. This product is informed by measurements from the World Ocean Circulation Experiment \cite[]{Gouretski-Koltermann-2004:WOCE}, as well as gridded estimates of $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ \cite[]{LeGrande-Schmidt-2006:Global}, and represents the best estimate of temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ that satisfies a steady-state ocean circulation and minimizes misfit to measurements obtained between 1950-2000 CE.
@@ -135,7 +141,7 @@ The left singular vectors, or the unscaled principal components, of the surface 
 \centerline{\includegraphics[width = \textwidth]{U.png}}
 \caption[]{\label{fig:U} Left singular vectors of the SVD presented in Supplemental Equation (\ref{eq:svd}). Each value is color-coded according to its magnitude. Each vector is orthonormal, and the x-axis is the magnitude of the left singular value, which is a normalized, unitless quantity.}
 \end{figure}
-\section{boundary propagator functions \label{sec:irf}}
+\section{Boundary propagator functions \label{sec:irf}}
 In Supplemental Figure \ref{fig:modemags}, we show the set of boundary propagator functions $m(t_{\mathrm{obs}}, t_{\mathrm{surface}})$. These boundary propagator functions are the result of propagating the set of surface spatial modes identified in Supplemental Section \ref{sec:spatmode} through Supplemental Equation (\ref{eq:mtau}) and taking the finite time center difference. In Supplemental Figure \ref{fig:modemags}, we show the boundary propagator functions with respect to lagged time, which is the difference between $t_{\mathrm{obs}}$ and $t_{\mathrm{surface}}$. 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = \textwidth]{modemags.png}}
@@ -160,7 +166,6 @@ As an example, we show the $u_{\mathrm{model}}(t)$ timeseries associated with Mo
 
 The diagonal elements of $\mathbf{C_{u_{0}u_0}}$ that are associated with $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ are populated according to $\bm{\sigma}$, scaled by the temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ correlation value. The final constraint on the statistics of the prior is the expected correlation between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. This is controlled via the off-diagonal elements of $\mathbf{C_{u_0u_0}}$ associated with the covariance between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. For a given mode $m$, off-diagonal values will be populated by  $\rho \sigma_m^2\gamma^{-1}$, where $\rho$ is the correlation coefficient, and controls how tightly the estimate will be held to the correlation value $\gamma$. Despite non-perfect correlation between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ in reality, we choose to enforce perfect correlation by setting the correlation coefficient, $\rho$, equal to one. As there are not independent constraints on temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$, but linearity is enforced via the problem definition, the solution will similarly have a linear relationship between the two variables regardless of the correlation coefficient, $\rho$. In order for the estimate to have a linear relationship between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ at the correlation constant value, $\gamma$, we must set the correlation coefficient, $\rho$, to 1. If the correlation coefficient were set to a lower value, the relationship between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ would still be perfectly correlated, but have a linear relationship different from that defined by the prescribed value $\gamma$.
 
-% see `optinv_decompose.jl` for details on this
 In \ref{main-sec:corr}, we used output from a Last Millennium Ensemble (LME) realization of iCESM1.2 to estimate the temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ correlation value. Temperature and salinity timeseries have similar temporal characteristics between equivalent realizations of CESM1.1 and iCESM1.2 (Supplemental Figure \ref{fig:cesmts}). Both temperature and salinity, in each simulation, exhibit a characteristic ``red noise'' signal, with high frequency variability superimposed on lower frequency variability. The exact signals vary in each simulation, with the most unifying feature being a subtle CE cooling. In contrast, the iCESM1.2 $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ timeseries appears to be more of a step-function signal, with high frequency variability and some extreme values superimposed. We would expect the salinity and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ signals to have fairly similar characteristics, as they are affected by similar processes. 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = \textwidth]{cesm_timeseries.png}}
@@ -220,9 +225,9 @@ In this manuscript, the tilde (e.g. $\tilde{x}$) is used to denote a quantity th
 
 In Supplemental Table \ref{var}, all variables used in this manuscript are defined, for the ease of the reader. All vectors, and matrices have units following the approach of \citeA[]{Hart-1995:Multidimension}, in which the domain and range are assumed to each be associated with an appropriately sized vector of units. Most unit vectors in this work are uniform. Here, a matrix with an entry of ($\permil \times$ K) would be assumed to have a range defined by a uniform vector with units $\permil$, and a domain defined by a uniform vector with units of K. For the quantities that have non-uniform range or domains, the unit vector is defined in a footnote. In this table, the $\times$ symbol is always assumed to separate the range and domain, while the $\cdot$ symbol multiplies two quantities within either the range or domain. In addition, the dimensionality $N_{ty}$ refers to the number of timesteps in the observations, $N_{i}$ to the number of TMI interior grid cells, $N_{s}$ to the number of TMI surface grid cells, $N_{c}$ to the number of cores, $N_{tu}$ to the number of timesteps in the state vector $\mathbf{u}$, and $N$ to the number of modes.
 \begin{longtable}{| p{0.75in}|p{3.5in}|p{1in}|p{1in} |}
-%\begin{center}
+
 \caption{All major variables used in equations in main text and supplemental, listed in order of introduction. \label{var}}\\
-%\begin{tabular}{|p{0.75in}|p{3.5in}|p{1in}|p{1in}|}
+
 \hline
  \textbf{Variable} & \textbf{Description} & \textbf{Units} & \textbf{Dimensionality} \\ 
   \hline
@@ -344,380 +349,11 @@ $\mathbf{y}$ & mean $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ according to age 
   \hline
   $\mathbf{C_{\tilde{s}\tilde{s}}}$ & covariance matrix associated with $\mathbf{\tilde{s}}$ & units of state variable $s$ & $N_{s} \times N_{s}$ \\
   \hline
-%\end{tabular}
-%\end{center}
 \end{longtable}
 
-%
-% The main text should start with an introduction. Except for short
-% manuscripts (such as comments and replies), the text should be divided
-% into sections, each with its own heading.
-
-% Headings should be sentence fragments and do not begin with a
-% lowercase letter or number. Examples of good headings are:
-
-% \section{Materials and Methods}
-% Here is text on Materials and Methods.
-%
-% \subsection{A descriptive heading about methods}
-% More about Methods.
-%
-% \section{Data} (Or section title might be a descriptive heading about data)
-%
-% \section{Results} (Or section title might be a descriptive heading about the
-% results)
-%
-% \section{Conclusions}
-
-
-
-%Text here ===>>>
-
-
-%%
-
-%  Numbered lines in equations:
-%  To add line numbers to lines in equations,
-%  \begin{linenomath*}
-%  \begin{equation}
-%  \end{equation}
-%  \end{linenomath*}
-
-
-
-%% Enter Figures and Tables near as possible to where they are first mentioned:
-%
-% DO NOT USE \psfrag or \subfigure commands.
-%
-% Figure captions go below the figure.
-% Acronyms used in figure captions will be spelled out in the final, published version.
-
-% Table titles go above tables;  other caption information
-%  should be placed in last line of the table, using
-% \multicolumn2l{$^a$ This is a table note.}
-% NOTE that there is no difference between table caption and table heading in the final, published version
-%
-%----------------
-% EXAMPLE FIGURES
-%
-% \begin{figure}
-% \includegraphics{example.png}
-% \caption{caption}
-% \end{figure}
-%
-% Giving latex a width will help it to scale the figure properly. A simple trick is to use \textwidth. Try this if large figures run off the side of the page.
-% \begin{figure}
-% \noindent\includegraphics[width=\textwidth]{anothersample.png}
-%\caption{caption}
-%\label{pngfiguresample}
-%\end{figure}
-%
-%
-% If you get an error about an unknown bounding box, try specifying the width and height of the figure with the natwidth and natheight options. This is common when trying to add a PDF figure without pdflatex.
-% \begin{figure}
-% \noindent\includegraphics[natwidth=800px,natheight=600px]{samplefigure.pdf}
-%\caption{caption}
-%\label{pdffiguresample}
-%\end{figure}
-%
-%
-% PDFLatex does not seem to be able to process EPS figures. You may want to try the epstopdf package.
-%
-
-%
-% ---------------
-% EXAMPLE TABLE
-%
-% \begin{table}
-% \caption{Time of the Transition Between Phase 1 and Phase 2$^{a}$}
-% \centering
-% \begin{tabular}{l c}
-% \hline
-%  Run  & Time (min)  \\
-% \hline
-%   $l1$  & 260   \\
-%   $l2$  & 300   \\
-%   $l3$  & 340   \\
-%   $h1$  & 270   \\
-%   $h2$  & 250   \\
-%   $h3$  & 380   \\
-%   $r1$  & 370   \\
-%   $r2$  & 390   \\
-% \hline
-% \multicolumn{2}{l}{$^{a}$Footnote text here.}
-% \end{tabular}
-% \end{table}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SIDEWAYS FIGURES and TABLES
-% AGU prefers the use of {sidewaystable} over {landscapetable} as it causes fewer problems.
-%
-% \begin{sidewaysfigure}
-% \includegraphics[width=20pc]{figsamp}
-% \caption{caption here}
-% \label{newfig}
-% \end{sidewaysfigure}
-%
-%  \begin{sidewaystable}
-%  \caption{Caption here}
-% \label{tab:signif_gap_clos}
-%  \begin{tabular}{ccc}
-% one&two&three\\
-% four&five&six
-%  \end{tabular}
-%  \end{sidewaystable}
-
-%% If using numbered lines, please surround equations with \begin{linenomath*}...\end{linenomath*}
-%\begin{linenomath*}
-%\begin{equation}
-%y|{f} \sim g(m, \sigma),
-%\end{equation}
-%\end{linenomath*}
-
-%%% End of body of article
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Optional Appendices go here
-%
-% The \appendix command resets counters and redefines section heads
-%
-% After typing \appendix
-%
-%\section{Here Is Appendix Title}
-% will show
-% A: Here Is Appendix Title
-%
-%\appendix
-%\section{Here is a sample appendix}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Optional Glossary, Notation or Acronym section goes here:
-%
-% Glossary is only allowed in Reviews of Geophysics
-%  \begin{glossary}
-%  \term{Term}
-%   Term Definition here
-%  \term{Term}
-%   Term Definition here
-%  \term{Term}
-%   Term Definition here
-%  \end{glossary}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Acronyms
-%% NOTE that acronyms in the final published version will be spelled out when used in figure captions.
-%   \begin{acronyms}
-%   \acro{Acronym}
-%   Definition here
-%   \acro{EMOS}
-%   Ensemble model output statistics
-%   \acro{ECMWF}
-%   Centre for Medium-Range Weather Forecasts
-%   \end{acronyms}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Notation
-%   \begin{notation}
-%   \notation{$a+b$} Notation Definition here
-%   \notation{$e=mc^2$}
-%   Equation in German-born physicist Albert Einstein's theory of special
-%  relativity that showed that the increased relativistic mass ($m$) of a
-%  body comes from the energy of motion of the body—that is, its kinetic
-%  energy ($E$)—divided by the speed of light squared ($c^2$).
-%   \end{notation}
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% DATA SECTION and ACKNOWLEDGMENTS
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \clearpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% REFERENCES and BIBLIOGRAPHY
-%
+
 \bibliography{Hamilton2024} 
-% don't specify bibliographystyle
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%Reference citation instructions and examples:
-%
-% Please use ONLY \cite and \citeA for reference citations.
-% \cite for parenthetical references
-% ...as shown in recent studies (Simpson et al., 2019)
-% \citeA for in-text citations
-% ...Simpson et al. (2019) have shown...
-%
-%
-%...as shown by \citeA{jskilby}.
-%...as shown by \citeA{lewin76}, \citeA{carson86}, \citeA{bartoldy02}, and \citeA{rinaldi03}.
-%...has been shown \cite{jskilbye}.
-%...has been shown \cite{lewin76,carson86,bartoldy02,rinaldi03}.
-%... \cite <i.e.>[]{lewin76,carson86,bartoldy02,rinaldi03}.
-%...has been shown by \cite <e.g.,>[and others]{lewin76}.
-%
-% apacite uses < > for prenotes and [ ] for postnotes
-% DO NOT use other cite commands (e.g., \citet, \citep, \citeyear, \nocite, \citealp, etc.).
-%
-
 
 \clearpage
 \end{document}
-
-
-
-More Information and Advice:
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%  SECTION HEADS
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Capitalize the first letter of each word (except for
-% prepositions, conjunctions, and articles that are
-% three or fewer letters).
-
-% AGU follows standard outline style; therefore, there cannot be a section 1 without
-% a section 2, or a section 2.3.1 without a section 2.3.2.
-% Please make sure your section numbers are balanced.
-% ---------------
-% Level 1 head
-%
-% Use the \section{} command to identify level 1 heads;
-% type the appropriate head wording between the curly
-% brackets, as shown below.
-%
-%An example:
-%\section{Level 1 Head: Introduction}
-%
-% ---------------
-% Level 2 head
-%
-% Use the \subsection{} command to identify level 2 heads.
-%An example:
-%\subsection{Level 2 Head}
-%
-% ---------------
-% Level 3 head
-%
-% Use the \subsubsection{} command to identify level 3 heads
-%An example:
-%\subsubsection{Level 3 Head}
-%
-%---------------
-% Level 4 head
-%
-% Use the \subsubsubsection{} command to identify level 3 heads
-% An example:
-%\subsubsubsection{Level 4 Head} An example.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%  IN-TEXT LISTS
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Do not use bulleted lists; enumerated lists are okay.
-% \begin{enumerate}
-% \item
-% \item
-% \item
-% \end{enumerate}
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%  EQUATIONS
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Single-line equations are centered.
-% Equation arrays will appear left-aligned.
-
-Math coded inside display math mode \[ ...\]
- will not be numbered, e.g.,:
- \[ x^2=y^2 + z^2\]
-
- Math coded inside \begin{equation} and \end{equation} will
- be automatically numbered, e.g.,:
- \begin{equation}
- x^2=y^2 + z^2
- \end{equation}
-
-
-% To create multiline equations, use the
-% \begin{eqnarray} and \end{eqnarray} environment
-% as demonstrated below.
-\begin{eqnarray}
-  x_{1} & = & (x - x_{0}) \cos \Theta \nonumber \\
-        && + (y - y_{0}) \sin \Theta  \nonumber \\
-  y_{1} & = & -(x - x_{0}) \sin \Theta \nonumber \\
-        && + (y - y_{0}) \cos \Theta.
-\end{eqnarray}
-
-%If you don't want an equation number, use the star form:
-%\begin{eqnarray*}...\end{eqnarray*}
-
-% Break each line at a sign of operation
-% (+, -, etc.) if possible, with the sign of operation
-% on the new line.
-
-% Indent second and subsequent lines to align with
-% the first character following the equal sign on the
-% first line.
-
-% Use an \hspace{} command to insert horizontal space
-% into your equation if necessary. Place an appropriate
-% unit of measure between the curly braces, e.g.
-% \hspace{1in}; you may have to experiment to achieve
-% the correct amount of space.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%  EQUATION NUMBERING: COUNTER
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% You may change equation numbering by resetting
-% the equation counter or by explicitly numbering
-% an equation.
-
-% To explicitly number an equation, type \eqnum{}
-% (with the desired number between the brackets)
-% after the \begin{equation} or \begin{eqnarray}
-% command.  The \eqnum{} command will affect only
-% the equation it appears with; LaTeX will number
-% any equations appearing later in the manuscript
-% according to the equation counter.
-%
-
-% If you have a multiline equation that needs only
-% one equation number, use a \nonumber command in
-% front of the double backslashes (\\) as shown in
-% the multiline equation above.
-
-% If you are using line numbers, remember to surround
-% equations with \begin{linenomath*}...\end{linenomath*}
-
-%  To add line numbers to lines in equations:
-%  \begin{linenomath*}
-%  \begin{equation}
-%  \end{equation}
-%  \end{linenomath*}
-
-
-
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: t
-%%% End:
