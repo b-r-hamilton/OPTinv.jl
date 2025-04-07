@@ -120,6 +120,7 @@ In order to relate water mass fluxes at the sediment core sites to the surface, 
 \mathbf{s} = \mathbf{Ac}. 
 \end{equation}
 The matrix $\mathbf{A}$ consists of the mass fractions of waters propagated from any surface grid cell to any interior cell.
+% JG: at first glance, confused why this isn't c = A s
 
 The relationship between the water mass composition at each core site and every surface grid cell, can be obtained by inverting Supplemental Equation (\ref{eq:ss}) for $\mathbf{s_{c}}$, which is a vectorized surface map of source water contribution to some core site $c$. This is accomplished by setting $\mathbf{c}$ equivalent to a unit vector containing the location of the sediment core interpolated to the grid system used in the Total Matrix Intercomparison (TMI) method \cite{gebbie2010}. Therefore, $\mathbf{s_c}$ will be a normalized surface map, in which every grid cell will be assigned a value corresponding to the fraction of water at the core site location that is contributed by the specified surface grid cell. 
 
@@ -157,7 +158,9 @@ In order to set a realistic variance for the prior, $\mathbf{\hat{u_0}}$, we use
 \mathbf{Vu}_\mathrm{model}(t) = \mathbf{s}_\mathrm{model}(t).
 \end{equation}
 As an example, we show the $u_{\mathrm{model}}(t)$ timeseries associated with Mode 1 in Supplemental Figure \ref{fig:umodel}A. The Mode 1 $u_{\mathrm{model}}(t)$ timeseries has similar properties to the CESM2 mean temperature in a North Atlantic box centered on the region where Mode 1 has the most power (0$^{\circ}$-20$^{\circ}$E, 60$^{\circ}$N-80$^{\circ}$N). We compute the standard deviation of $\mathbf{u_{\mathrm{model}}}$ for each mode, at all times, which we refer to as the vector $\bm{\sigma}$ (Supplemental Figure \ref{fig:umodel}B). For the more coherent modes, such as Modes 1 and 2, $\bm{\sigma}$ has higher standard deviation. The standard deviation drops off as we get to higher number modes, which are less coherent. We assume that the variance of signals during the CE was less than 4 times 1850-1980 variability. Therefore, the diagonal elements of $\mathbf{C_{u_{0}u_0}}$ that are associated with temperature are populated according to $(4\sigma_{i})^{2}$.
- 
+% JG: briefly you could mention that if you used 2\sigma or 1\sigma then your resulting error bars would have been smaller, i.e., you are being conservative here
+
+% JG: no mean removed from model output? shouldn't matter except for presentation purposes
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = \textwidth]{sigma.png}}
 \caption[]{\label{fig:umodel} (\textbf{A}) $u_{\mathrm{model}}(t)$ timeseries for Mode 1 (black solid line, left axis), mean temperature in CESM2 output in box centered on focus of Mode 1 pattern (0$^{\circ}$-20$^{\circ}$E, 60$^{\circ}$N-80$^{\circ}$N) (red solid line, right axis). (\textbf{B}) Temporal standard deviation for each mode, $\bm{\sigma}$.}
@@ -189,6 +192,7 @@ All 11 optimized mode magnitudes ($\mathbf{\tilde{\hat{u}}}$) from \texttt{OPT-3
 \caption[]{\label{fig:u0utilde} For all 11 modes, the prior, $\mathbf{u_0}$, and associated uncertainty $\mathbf{C_{u_0u_0}}$ (gray line and shading) is shown. Central estimate and 1$\sigma$ uncertainty of optimized mode magnitude $\mathbf{\tilde{u}}$ for the \texttt{OPT-11} (red line and shading) and \texttt{OPT-3} (blue line and shading) estimates. Panels are titled with their associated mode number.}
 \end{figure}
 
+% JG: suggest removing this section and figures, just keep in thesis, no need to make this decision now
 \section{Estimate comparison to instrumental record \label{sec:instrumental}}
 We can compute time-varying surface maps of temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ via Equation (\ref{main-eq:surfrecon}), which is shown in Figure \ref{main-fig:sst}. Although observational time series on relevant timescales are rare, we average the SST map in a Labrador Sea box, and compare it to a digitized long-term Labrador Sea Water observational dataset \cite[]{LSG--1998:Labrador} in Supplemental Figure \ref{fig:labcomp}. An approximation of salinity can be arrived at from our $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ reconstruction by using the ratio between salinity and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ changes of 0.5255 \cite{marchitto}, which can be compared to the long-term salinity record from \citeA{LSG--1998:Labrador}.
 
@@ -206,6 +210,7 @@ We expect some smoothing in our reconstruction, as a result of using benthic rec
 \caption[]{\label{fig:impulse} Boundary propagator function for a (\textbf{A}) global surface signal and (\textbf{B}) a Mode 2 surface signal, interpolated at the three sediment core sites in the \texttt{OPT-3} estimate. MC26A (1190 m) is shown in orange, MC22A (1535 m) in blue, and MC13A (2129 m) in purple.}
 \end{figure}
 
+% JG: nice section that would go well in an appendix if we could find the space, keep this in mind when we get a chance to revise ms
 \section{Sensitivity of estimate to temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ correlation \label{sec:gammasens}}
 In Supplemental Figure \ref{fig:gamma}A, we estimate mean high-latitude North Atlantic temperature change as a function of the correlation constant, $\gamma$. We find that the mean high-latitude North Atlantic temperature change required to explain a change in $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ of 0.08$\permil$ (an approximation of the mean change of the sediment core records) is largely stable for values of $\gamma$ greater than 10 K$\permil^{-1}$. Both the value used in the main text ($\gamma = 14.8$ K$\permil^{-1}$) and the alternative value from \ref{main-sec:corr} ($\gamma = 36.8$ K$\permil^{-1}$) are in the stable region of this equation. However, as $\gamma$ decreases towards the critical point of $\gamma = \alpha^{-1} = 4.45 $ K$\permil^{-1}$, the mean high-latitude North Atlantic temperature rapidly decreases to negative infinity. For values of $\gamma$ greater less than, but near the critical value, the mean high latitude North Atlantic temperature change is positive. 
 
@@ -221,6 +226,7 @@ In Supplemental Figure \ref{fig:gamma}B, we examine the sensitivity of high-lati
 \caption[]{\label{fig:gamma} (\textbf{A}) North Atlantic CE temperature change necessary to explain $\Delta \delta^{18}\mathrm{O}_{\mathrm{calcite}} = 0.08$ $\permil$ according to Equation (\ref{main-eq:2}) plotted for correlation constant values from $\gamma = 5$ K $\permil^{-1}$ to $\gamma = 40$  K $\permil^{-1}$. The two unfilled circle markers depict the values of $\gamma$ discussed in the main text $\gamma = 14.8$ K $\permil^{-1}$ and $\gamma = 36.8$K $\permil^{-1}$. The dashed gray line shows the limit value of $\Delta T = -0.36$ K. The dotted gray line shows the critical value of $\gamma = \alpha^{-1}$. (\textbf{B}) North Atlantic CE temperature change necessary to explain $\Delta \delta^{18}\mathrm{O}_{\mathrm{calcite}} = 0.08$ $\permil$ as a function of both the temperature-salinity correlation constant, $\gamma_{t}$ ($T = \gamma_{t}S$), and the salinity-$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ correlation constant $\gamma_{s}$ ($S = \gamma_{s}\delta^{18}\mathrm{O}_{\mathrm{seawater}}$). The unfilled circles show the values identified in the text of ($\gamma_{t} = 5.3 $ K (g kg$^{-1}$)$^{-1}$, $\gamma_{s}$ = 2.8 g kg$^{-1}\permil^{-1}$) and ($\gamma_{t} = 16 $ K (g kg$^{-1}$)$^{-1}$, $\gamma_{s}$ = 2.3 g kg$^{-1}\permil^{-1}$).}
 \end{figure}
 
+% JG: impressive attention to detail here that the reviewers may appreciate
 \section{Mathematical notation}
 In this manuscript, the tilde (e.g. $\tilde{x}$) is used to denote a quantity that has either been estimated via the Gauss-Markov Theorem, or derived from a quantity that has been estimated via the Gauss-Markov Theorem. The hat (e.g. $\hat{\mathbf{x}}$) is used to denote a vector quantity that has been concatenated in time. The prime notation (e.g. $\mathbf{X}'$) is used to denote some type of propagator matrix. 
 
