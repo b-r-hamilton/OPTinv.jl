@@ -6,9 +6,40 @@
 The source code for `OPTinv` holds methods to compute spatiotemporal surface maps of variables that explain the time evolution of some observed variable from benthic sediment core compilations. The scripts developed here focusing on applying this methodology to infer surface values of temperature and $\mathrm{\delta}^{18}\mathrm{O}\_{\mathrm{seawater}}$ from the [Lu et al, 2023](https://www.science.org/doi/10.1126/science.adf1646) dataset of 11 sediment core records of $\mathrm{\delta}^{18}\mathrm{O}\_{\mathrm{calcite}}$ from the Reykjanes Ridge in Iceland. 
 
 # How to run 
-Clone this repository, start a Julia session, activate the Julia environment in `OPTinv.jl`, and run `ex3.transientinversion.jl` to produce the two solutions detailed in the manuscript. Output can be plotted using any of the follow-on scripts. 
+(assuming in terminal) 
+0. Get [Julia](https://julialang.org/downloads/) 
+1. Navigate to this directory (`OPTinv.jl/scripts`)
+2. Start a Julia session in terminal by typing `julia` 
+3. Activate the Julia environment in `OPTinv.jl` by typing `]` to enter Package Manager mode, then type `activate ../`. The first time, you will have to instantiate (download) all supporting code, so type `instantiate`. This will take a bit to run. 
+4. Exit package manager by pressing back space 
+5. Run a script by typing `include("transientinversion.jl")` 
 
-# Philosophy, and important dependencies 
+Note: there is a small issue with downloading the 2 degree TMI file used in this project. To circumvent this, download `TMI_modern_180x90x33_GH11_GH12` from [Google Drive](https://drive.google.com/drive/folders/1nFDSINbst84pK68aWwRGBVfYZkfN1mUR), then paste it into the data folder in the TMI package in your package manager system (e.g., on my Unix system, this is at `/home/brynn/.julia/packages/TMI/[version name]/data`.
+
+# Scripts 
+Transient Inversion of Lu et al, 2023 records 
+- `transientinversion.jl`: main script that generates the 2 estimates (OPT-3 and OPT-11) detailed in the manuscript
+- `transientinversionglobal.jl`: same as `transientinversion.jl` but generates the OPT-3-GLOBAL and OPT-3-MODE2 solutions in the manuscript (Figure 9, Figure 10) 
+
+The first time that either `transientinversion.jl` or `transientinversionglobal.jl` are run on a machine, it will need to calculate the SVD modes, propagate them through the transient TMI matrix, and also compute the uncertainties of these modes in CESM. This will take 2+ hours, but the output will be saved for faster (~100 second) runtimes from there on out. 
+
+The following scripts either need to be run after `transientinversion.jl` or `transientinversionglobal.jl`. If you attempt to run with no `solutions` already calculated, it will run `transientinversion.jl`
+
+- `gamma.jl`: stand-alone script that explores sensitivity of theoretical North Atlantic temperature change to the correlation constant (Supplemental Figure S9) 
+- `offsets.jl`: stand-alone script that generates depth-profile of effective modern-day d18Oc and compares to the full range of CE variability in recorded sediment core d18Oc (Figure 1) 
+- `modes.jl`: stand-alone script that plots surface spatial mode plots, impulse response of each mode at 3 select cores, and singular values w.r.t. sediment core/depth (Figure 2, Supplemental Figure S1, Supplemental Figure S2) 
+- `utilde.jl`: follow-on script, plots the mode solutions to `ex3` (Supplemental Figure S6, Figure 3)
+- `ytilde.jl`: follow-on script, plots the reconstructions at the core sites for each solution produced in `ex3` (Figure 4) 
+- `regionmean.jl`: follow-on script, plots the regional means (for N. Atl. region and subregions) for solutions in `ex3`. Compares to Ocean2k and LMR and HadISST (Figure 5)
+- `maps.jl`: follow-on script, plots the surface reconstruction maps for temperature (Figure 6, 7) 
+- `effd18Oc.jl`: follow-on script, computes the effective d18Oc at the surface and compares it to the planktic stack from the EN539 sediment cores (Figure 8) 
+
+Analysis of Common Era Data Products
+- `CEdatanalysis/NATL_iCESM.jl`: two-part script, first part is code to copy and paste into Casper to download a timeseries of T, S, and d18O from a iCESM and CESM realization. Second part makes Figure B1 and Supplemental Figure S4 
+- `CEdatanalysis/T_v_d18O.jl`: generates Supplemental Figure S5
+- `CEdatanalysis/sigma.jl`: computes the variance of calculated spatial modes in a CESM historical realization and saves them to a JLD2 file. Will automatically run the first time, shouldn't need to run after that. Also makes Supplemental Figure S3. 
+- 
+# Philosophy, and important dependencies
 The code developed here attempts to preserve information about the dimensionality and units of all variables. This is accomplished by using the following Julia libraries 
 - [`Unitful.jl`](https://github.com/PainterQubits/Unitful.jl) to manage quantities, 
 - [`DimensionalData`](https://github.com/rafaqz/DimensionalData.jl) for managing dimensioned data, 
@@ -28,32 +59,6 @@ The `Est` structure contains a dimensional array `y`, and associated `CovMat`, w
 
 Jake has attempted to wrap similar, experimental, functionality into `BLUEs.jl` on the [this branch](https://github.com/ggebbie/BLUEs.jl/tree/multipliable-dimarrays) (has not been incorporated into the main code, needs testing). Future work would include testing that methodology, and possibly incorporating elements of what I have developed here, into that branch. 
 
-# Scripts 
-Transient Inversion of Lu et al, 2023 records 
-- `offsets.jl`: stand-alone script that generates depth-profile of effective modern-day d18Oc and compares to the full range of CE variability in recorded sediment core d18Oc 
-- `modes.jl`: stand-alone script that plots surface spatial mode plots, impulse response of each mode at 3 select cores, and singular values w.r.t. sediment core/depth 
-- `transientinversion.jl`: generates the 2 solutions detailed in the manuscript
-- `transientinversionoc2k.jl`: attempt at constraining two solutions with Ocean2k cooling rate 
-- `utilde.jl`: follow-on script, plots the mode solutions to `ex3` 
-- `ytilde.jl`: follow-on script, plots the reconstructions at the core sites for each solution produced in `ex3`
-- `regionmean.jl`: follow-on script, plots the regional means (for N. Atl. region and subregions) for solutions in `ex3`. Compares to Ocean2k and LMR. 
-- `maps.jl`: follow-on script, plots the surface reconstruction maps for temperature 
-- `effd18Oc.jl`: follow-on script, computes the effective d18Oc at the surface and compares it to the planktic stack from the EN539 sediment cores. 
-
-Analysis of Common Era Data Products
-- `CEdatanalysis/lmr.jl`: plots LMR and Mod-ERA maps
-- `CEdatanalysis/NATL_cesmLME.jl`: a script to run on Casper that collects corresponding regional mean SSTs from relevant CESM-LME ensembles 
-- `CEdatanalysis/NATL_cesmLME_analysis.jl`: script to analyze the mean SST timeseries collected in `NATL_cesmLME.jl` 
-- `CEdatanalysis/ocean2k.jl`: plot all Ocean2k plots and compute the trend in Ocean2k values 
-- `CEdatanalysis/en4MLD.jl`: Attempt at computing the bottom-of-MLD T and S in EN4 and comparing to my results. Probably needs better data quality and understanding of EN4 to make this any good 
-- `CEdatanalysis/en4labrador.jl`: Hovmoller plot of Labrador Sea in EN4, T and S plots of Labrador Sea Water
-
-Toy Problems 
-- `toyproblems/ex2.steadystateinversion.jl`: same idea as `transientinversion.jl`, but uses steady-state Gebbie 2010 assumption at each timestep. Hasn't been tested in a while, no idea if it works 
-- `toyproblems/tests.jl`: toy problem 
-
-Deglacial Problem 
-- `deglac/lund2015.jl`
 
 # Started package by doing
 ```

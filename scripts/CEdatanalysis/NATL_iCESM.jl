@@ -2,7 +2,7 @@
 This script consists of two parts
 (1) a script that can be copy and pasted into a Julia REPL on Casper to
 download a timeseries of T, S, δ¹⁸O from a CESM and iCESM realization
-(2) an analysis script that will make Supplemental Figure B1 
+(2) an analysis script that will make Figure B1 
 =#
 
 # ============== CODE TO RUN ON CASPER ==================== #

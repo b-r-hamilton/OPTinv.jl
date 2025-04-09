@@ -1,5 +1,5 @@
 #=
-Analyzes TMI output for T v. S and T v. d18O 
+Analyzes TMI output for T v. S and T v. d18O from TMI output 
 =#
 import Pkg;Pkg.activate("../../")
 using TMI, NCDatasets, PythonPlot, OPTinv, UnitfulLinearAlgebra, PythonCall, Statistics, DrWatson, PythonPlotExt, Measurements
