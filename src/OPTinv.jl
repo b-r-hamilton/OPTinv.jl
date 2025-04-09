@@ -313,6 +313,11 @@ function formatbacon(age_file::Vector{String}, d18O_file::Vector{String},
     
 end
 
+"""
+struct means
+
+    structure for holding age model uncertainty information
+"""
 struct means
     μ
     T
@@ -531,72 +536,6 @@ function covary(d::Vector, ages::Matrix, t₁, t₂, μ₁, μ₂)
 end
 
 """
-function formatbacon(μ, T, Cnn, c)
-
-make an Est object, assumes you already computed mean and Cnn
-
-# Arguments
-    - `μ`: Vector of means
-    - `T`: time
-    - `Cnn`: CovMat
-"""
-function formatbacon(μ::Vector, T, Cnn::CovMat, c::Symbol)
-    if length(size(μ)) !== 2
-        μ = reshape(μ, (length(μ), 1))
-    end
-    if c isa Symbol
-        c = [c]
-    end
-    
-    da = DimArray(μ, (Ti(T), Cores(vec(c))))
-    return Est(da, Cnn) 
-end
-
-"""
-function formatbacon(af::String, df::String, core::Symbol; res = 5yr)
-
-start at age_file, d18O_file, go to Est object
-
-# Arguments
-    - `af`: age_file String
-    - `df`: d18O_File String
-    - `core`: Symbol, core name
-# Optional Arguments
-    - `res`: target time resolution, default = 5yr 
-"""
-function formatbacon(af::String, df::String, core::Symbol; res = 5yr)
-    ages, d18O = readbacon(af, df) 
-    T, int = interpolatebacon(ages, d18O, res);
-    μ, T = meanbacon(int, T, ages)
-    Cnn = covariancebacon(int, T, μ, ages, core)
-    de = formatbacon(μ, T, Cnn, core)
-end
-
-"""
-function steadystateM(locs, cores, TMIversion)
-
-for some list of lat, lon boxes, compute the steady-state M matrix for core locs
-
-# Arguments
-    - `locs`: NamedTuple of core locations (lon, lat, depth) 
-    - `patches`: NamedTuple of surface patch grid boxes 
-"""
-function steadystateM(locs::NamedTuple, patches::NamedTuple; TMIversion = "modern_180x90x33_GH11_GH12")
-    A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
-    patches = NamedTuple{keys(patches)}([surfacepatch(patches[k]..., γ) for k in keys(patches)])
-    si = [steadyinversion(Alu, p, γ) for p in patches]
-    N = length(locs)
-    wis= Vector{Tuple{Interpolations.WeightedAdjIndex{2, Float64}, Interpolations.WeightedAdjIndex{2, Float64}, Interpolations.WeightedAdjIndex{2, Float64}}}(undef,N)
-    [wis[i] = interpindex(locs[i],γ) for i in 1:N]
-    obs = [observe(s, wis, γ) for s in si]
-    #θ = readfield(TMIfile, "θ", γ) #potential temp
-    #d18O = readfield(TMIfile, "δ¹⁸Ow", γ) #.- 0.27
-    modes = [m for m in keys(patches)]
-    cores = [c for c in keys(locs)]
-    return DimArray(hcat(obs...)', (Modes(modes), Cores(cores)))
-end
-
-"""
 function firstguess(T, modes, σθ, σδ, c; fill_val = [0K, 0permil])
 
     compute u₀ and Cᵤᵤ
@@ -774,7 +713,11 @@ function subsampletransientM(ℳ::DimArray, newres::Quantity)
     return ℳnew, newτ
 end
 
+"""
+function core_locations
 
+    returns a NamedTuple with core names and locations 
+"""
 function core_locations()
     locations_file = datadir("EN539_locations.csv")
     cores_df = CSV.read(locations_file,DataFrame)
@@ -784,7 +727,11 @@ function core_locations()
     
 end
 
+"""
+function γreshape
 
+    takes a vectorized wet surface points and reshapes them into a lat x lon grid 
+"""
 function γreshape(v::Vector{T}, γ) where T
     template = Array{T}(undef, size.(γ.axes)[1][1], size.(γ.axes)[2][1])
     template .= NaN
@@ -792,6 +739,12 @@ function γreshape(v::Vector{T}, γ) where T
     return template
 end
 
+"""
+function loadM
+
+    if a file is available, open, format, and return V and ℳ files
+    otherwise, compute SVD and then propagate through TMItransient
+"""
 function loadM(filename::String, core_list::Vector{Symbol}; res = 10yr) 
     filepath = joinpath("../data/M", filename)
     !isdir("../data/M") && mkdir("../data/M")
@@ -805,7 +758,6 @@ function loadM(filename::String, core_list::Vector{Symbol}; res = 10yr)
         spatialmodes = jld["SVD"].Vt
         close(jld)
     else
-
         surforigin, SVD = generatemodes(corelocs)
         res = 1
         τ = 0:res:1000
@@ -826,6 +778,11 @@ function loadM(filename::String, core_list::Vector{Symbol}; res = 10yr)
 
 end
 
+"""
+function loadcores
+
+    generate Est objects for a list of cores 
+"""
 function loadcores(core_list::Vector{Symbol}, res = 10yr; dir = nothing, rules = nothing)
     dir = isnothing(dir) ? DrWatson.datadir() : dir 
     files = readdir(dir)
@@ -840,7 +797,6 @@ function loadcores(core_list::Vector{Symbol}, res = 10yr; dir = nothing, rules =
     directory_cores = Tuple([Symbol(split(f, ".")[1]) for f in ae_files])
 
     #re-order directory cores so they line up with core_list
-    #@show sort_indices = [findall(x->x== c, core_list)[1] for c in directory_cores if c in core_list]
     sort_indices = []
     for c in core_list
         ind = findall(x->x == c, directory_cores)
@@ -849,11 +805,6 @@ function loadcores(core_list::Vector{Symbol}, res = 10yr; dir = nothing, rules =
         end
     end
     
-    #=
-    @show ae_files[sort_indices]
-    @show d18O_files[sort_indices]
-    @show core_list
-    =#
     println("Pulling in core data, calculating covariance matrices") 
     @time e = formatbacon(joinpath.(dir, ae_files)[sort_indices], joinpath.(dir, d18O_files)[sort_indices], core_list, res = res)
     #add in measurement uncertainty 
@@ -1168,7 +1119,7 @@ function loadCESMLME(d, start, stop)
     return sst, lon, lat 
     
 end
-
+#=
 """
 struct record
 
@@ -1202,7 +1153,7 @@ function loadEN4MLD()
     jld = jldopen(DrWatson.datadir("en4_recs.jld2")); recs = jld["recs"]; recstime = jld["recstime"];close(jld)
     return mldtemp, mldsalinity, lon_rs, lat_rs, recs, recstime
 end
-
+=#
 """
 function estimate(ũ::DimEstimate, spatialmodes::Matrix, variable::Symbol; spatialinds = :)
 
@@ -1295,7 +1246,17 @@ function estimate(ũ::DimEstimate, spatialmodes::Matrix, variable::Symbol, t1::
     return getindexqty(y,1) ± sqrt(getindexqty(Css,1,1))
 end
 
+"""
+function transientM
 
+    propagates some set of surface boundary conditions through the transient TMI matrix
+    and observes at an interior location
+
+    # Arguments
+    - `corelocs`: NamedTuple of core locations
+    - `patches`: NamedTuple of boundary conditions (should be TMI.BoundaryCondition)
+    - `τ`: vector of lagged times to compute at 
+"""
 function transientM(corelocs, patches::NamedTuple, τ; TMIversion = "modern_180x90x33_GH11_GH12")
     A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
     patches = NamedTuple{keys(patches)}([surfacepatch(patches[k]..., γ) for k in keys(patches)])
