@@ -34,11 +34,11 @@ The following scripts either need to be run after `transientinversion.jl` or `tr
 - `maps.jl`: follow-on script, plots the surface reconstruction maps for temperature (Figure 6, 7) 
 - `effd18Oc.jl`: follow-on script, computes the effective d18Oc at the surface and compares it to the planktic stack from the EN539 sediment cores (Figure 8) 
 
-Analysis of Common Era Data Products
+_Analysis of Common Era Data Products_
 - `CEdatanalysis/NATL_iCESM.jl`: two-part script, first part is code to copy and paste into Casper to download a timeseries of T, S, and d18O from a iCESM and CESM realization. Second part makes Figure B1 and Supplemental Figure S4 
 - `CEdatanalysis/T_v_d18O.jl`: generates Supplemental Figure S5
 - `CEdatanalysis/sigma.jl`: computes the variance of calculated spatial modes in a CESM historical realization and saves them to a JLD2 file. Will automatically run the first time, shouldn't need to run after that. Also makes Supplemental Figure S3. 
-- 
+
 # Philosophy, and important dependencies
 The code developed here attempts to preserve information about the dimensionality and units of all variables. This is accomplished by using the following Julia libraries 
 - [`Unitful.jl`](https://github.com/PainterQubits/Unitful.jl) to manage quantities, 
