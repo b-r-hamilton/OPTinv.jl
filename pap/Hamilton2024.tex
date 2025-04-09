@@ -2,12 +2,12 @@
 \usepackage{amsmath}
 \usepackage{url} %this package should fix any errors with URLs in refs.
 \usepackage{lineno}
-%\usepackage[inline]{trackchanges} %for better track changes. finalnew option will compile document with changes incorporated.
+\usepackage[inline]{trackchanges} %for better track changes. finalnew option will compile document with changes incorporated.
 \usepackage{wasysym}[nointegrals]
 \usepackage{soul}
 \usepackage{siunitx}
 \usepackage{bm}
-\usepackage{xr}\externaldocument[supp-]{Hamilton2024Supplement}
+%\usepackage{xr}\externaldocument[supp-]{Hamilton2024Supplement}
 \linenumbers
 \draftfalse
 \journalname{Paleoceanography and Paleoclimatology}
@@ -173,7 +173,7 @@ the sediment core sites (Section \ref{sec:spatmode}). Finally, we
 invert for the time-varying magnitudes of the surface boundary
 condition via a statistical solution technique (Section
 \ref{sec:solution}). A table of all variable definitions, units, and
-dimensions is provided in Supplemental Table \ref{supp-var}.
+dimensions is provided in Supplemental Table S1.%\ref{supp-var}.
 
 \subsection{Benthic foraminiferal observations \label{sec:y}}
 In this inversion, we are solving for the evolution of surface
@@ -269,7 +269,7 @@ especially at shallower depths (Figure \ref{fig:offset}). These
 offsets are large compared to the CE variability recorded in the
 sediment core records.  Further details on effective modern-day
 $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ and interpretation of Figure
-\ref{fig:offset} are in Supplemental Section \ref{supp-sec:offset}.
+\ref{fig:offset} are in Supplemental Section S1. %\ref{supp-sec:offset}.
 
 Due to uncertainty in the equilibration offset of
 \textit{U. peregrina} \cite[]{Shackleton1974AttainmentOI, marchitto},
@@ -377,8 +377,8 @@ requires a time-stepping approach to solve that is computationally
 intensive. To circumvent a time-stepping approach, we apply a boundary
 propagator technique to remove the direct dependence on prior interior
 tracer concentrations in Equation (\ref{eq:diffeqspec}) (see
-Supplemental Section \ref{supp-sec:ttm} and
-\citeA[]{Haine-Griffies-2024:Review} for more discussion).
+Supplemental Section S2 %\ref{supp-sec:ttm}
+and \citeA[]{Haine-Griffies-2024:Review} for more discussion).
 
 We seek a formulation that
 infers effective $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ values at the
@@ -471,7 +471,7 @@ $\mathbf{\hat{u}_{s}}$. The number of columns in our boundary
 propagator matrix is reduced from $1.7\times10^{6}$ to $149N$, where $N$
 is the chosen number of spatial modes. Equation (\ref{eq:modeleqfin})
 combines both the proxy system model and the lagged response at the
-core sites due to ocean circulation into one equation (Supplemental Section \ref{supp-sec:ttm}).
+core sites due to ocean circulation into one equation (Supplemental Section %\ref{supp-sec:ttm}).
 
 We make several simplifying assumptions in order to arrive at a
 minimal set of surface spatial modes that provide a diverse possible
@@ -494,7 +494,9 @@ surface spatial modes that fulfill these simplifications, we identify
 orthonormal surface spatial modes based on the singular value
 decomposition of surface water origination maps for each sediment
 core, obtained via a steady-state water-mass model (Supplemental
-Section \ref{supp-sec:spatmode}). We arrive at a set
+Section
+S3). % \ref{supp-sec:spatmode}).
+We arrive at a set
 of 11 surface spatial modes, limited by the number of sediment core
 records in the dataset. Our $\mathbf{M}'$ matrix will
 have 1639 columns, down from $1.7 \times 10^{6}$ columns that would be required to invert for each
@@ -507,7 +509,9 @@ surface grid cell, which increases computational tractability.
   water origination maps to the core sites. Titles show mode number,
   followed by the percentage of the variance of all surface source
   water origination maps explained (Supplemental Equation
-  (\ref{supp-eq:pervar})). Each colorbar is centered on zero, but has
+  % (\ref{supp-eq:pervar})).
+   (S8). 
+  Each colorbar is centered on zero, but has
   differing magnitudes.}
 \end{figure}
 
@@ -531,7 +535,8 @@ origination maps, this does not necessarily imply that it is the only
 surface mode needed to explain the sediment core data. The left singular vectors, or unscaled principal components, of the surface source water origination maps,
 have a consistently-valued negative contribution
 towards every sediment core site for Mode 1 (Supplemental Figure
-\ref{supp-fig:U}). Thus, we cannot explain
+ S1). %\ref{supp-fig:U}).
+Thus, we cannot explain
 any depth-dependent variability using solely Mode 1.
 This approach minimizes the degrees of freedom in the problem, while
 maximizing the amount of information our optimized estimate contains
@@ -539,7 +544,9 @@ by quantifying the spatially-varying contribution of the surface ocean
 to the sediment core sites.
 
 Once the spatial modes are identified, we compute the associated
-boundary propagator (Supplemental Section \ref{supp-sec:ttm}). This system can be
+boundary propagator (Supplemental Section S2).
+%\ref{supp-sec:ttm}).
+This system can be
 integratively solved at any timestep via a quasi-constant timestep
 numerical differentiation function (QNDF) solver
 \cite[]{doi:10.1137/S1064827594276424}. We compute each boundary propagator function over a period that exceeds the greatest
@@ -548,7 +555,8 @@ the signal propagation (10 years).
 
 Mode 1's boundary propagator function has nearly
 identical evolution at the sediment core sites (Supplemental Figure
-\ref{supp-fig:modemags}), in line with the finding that it has similar
+S2), %\ref{supp-fig:modemags}),
+in line with the finding that it has similar
 influence over all sediment core sites. Mode 2's boundary propagator function demonstrates that the positive-signed anomaly north of
 Iceland in Mode 2 is more important for deep sediment cores, while the
 negative-signed anomaly south of Iceland affects the intermediate
@@ -591,7 +599,8 @@ We control how tightly the estimated mode magnitudes,
 $\mathbf{\hat{\tilde{u}}}$, are constrained to the prior,
 $\mathbf{\hat{u_{0}}}$, via the prior's covariance matrix,
 $\mathbf{C_{u_{0}u_{0}}}$ (Supplemental Section
-\ref{supp-sec:Cuu}). This matrix controls the prior in
+ S6).%\ref{supp-sec:Cuu}).    
+This matrix controls the prior in
 three ways. First, we constrain the variance of the mode magnitudes
 associated with temperature by the estimated temporal variance of each
 surface spatial mode magnitude for temperature from coupled climate
@@ -703,7 +712,8 @@ estimates.
 The values of $\mathbf{\tilde{\hat{u}}}$ throughout time reflect the
 optimized magnitude of surface modes. For both the
 \texttt{OPT-3} and \texttt{OPT-11} estimates, only Mode 1 is
-constrained (Supplemental Figure \ref{supp-fig:u0utilde}). Modes 2-11
+constrained (Supplemental Figure
+ S6). %\ref{supp-fig:u0utilde}). Modes 2-11
 are not well-constrained in either estimate, which, in conjunction
 with the low cost function values, implies that the data can be
 well-fit by solely Mode 1. We stated earlier that Mode 1 could not fit
@@ -736,7 +746,9 @@ by an industrial warming signal.
 The relationship between the optimized mode magnitudes and
 observations is defined via the boundary propagator functions of each
 surface spatial mode interpolated at each sediment core sites
-(Supplemental Figure \ref{supp-fig:modemags}). Most boundary propagator
+(Supplemental Figure
+S2). % \ref{supp-fig:modemags}).
+Most boundary propagator
 functions have initial signal peaks between 10-25 years from the
 initial signal, and return to null values by 100 years. This means
 that an observation has the most
@@ -1016,14 +1028,15 @@ the rate of cooling in planktonic Mg/Ca records
 To determine if any North Atlantic spatial mode would be equally as
 skillful at fitting the sediment core observations, we generate an
 estimate using solely Mode 2.
-% Mode 2 is characterized by a negative anomaly south of Iceland and a positive anomaly north of Iceland (Figure \ref{fig:svdmodes}).
 This estimate (\texttt{OPT-3-MODE2}) exhibits a worse fit to the observational
 cost function than either \texttt{OPT-3} or \texttt{OPT-3-GLOBAL},
 although still less than the expected value.
 Contrary to the globally uniform mode, the Mode 2 boundary propagator
 functions have very different time evolution and magnitudes, in which the MC26A and
 MC25A functions respond strongly to the negative anomaly south of Iceland, while the
-MC13A function responds to the weakly to the positive anomaly north of Iceland (Supplemental Figure \ref{supp-fig:impulse}). For this reason, the
+MC13A function responds to the weakly to the positive anomaly north of Iceland (Supplemental Figure
+S8). %\ref{supp-fig:impulse}).
+For this reason, the
 sediment core reconstruction has a negative trend for the two
 shallower sediment cores, and minimal trend for MC13A.
 Therefore, we conclude that, in order to fit this particular sediment core record
@@ -1060,7 +1073,8 @@ temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ correlation
 value. In this extreme, we would expect interior variability to be
 more related to the depth structure of temperature, salinity, and
 $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. In Supplemental Section
-\ref{supp-sec:oxygenvar}, we estimate a correlation value of
+S6.2,%\ref{supp-sec:oxygenvar},
+we estimate a correlation value of
 $\gamma = 36.8$ K$\permil^{-1}$, which is much higher than the value used
 in the main text of this paper ($\gamma = 14.8$ K$\permil^{-1}$).
 
@@ -1089,7 +1103,8 @@ K. If we increase the correlation coefficient to $\gamma = 36.8$ K
 $\permil^{-1}$, Equation (\ref{eq:2}) estimates a cooling of $0.40$ K.
 As $\gamma$ increases, the required cooling decreases
 towards a limit value of $0.36$ K. In Supplemental Figure
-\ref{supp-fig:gamma}, we plot Equation (\ref{eq:2}) for reasonable
+S9, % \ref{supp-fig:gamma},
+we plot Equation (\ref{eq:2}) for reasonable
 values of $\gamma$, and show that there is very little sensitivity for
 values of $\gamma >$10 K$\permil^{-1}$. However, there is a critical point,
 where $\gamma_{\mathrm{crit}} = \alpha^{-1} = 4.45$ K$\permil^{-1}$, and as
@@ -1320,7 +1335,7 @@ site ($\sim$1500 m) at the grid cell nearest to the sediment core
 locations. The $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ timeseries exhibits
 step-function variability, that is not present in either the
 temperature or salinity timeseries, and may complicate its
-interpretation (Supplemental Figure \ref{supp-fig:cesmts}).
+interpretation (Supplemental Figure S4).%\ref{supp-fig:cesmts}).
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = \textwidth]{cesm_scatter.png}}
@@ -1375,7 +1390,8 @@ $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$
 ($T = 14.8 \delta^{18}\mathrm{O}_{\mathrm{seawater}}$). This value will be
 used to enforce correlation between surface temperature and
 $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. However,
-as noted in Supplemental Section \ref{supp-sec:oxygenvar}, there are
+as noted in Supplemental Section S2,%\ref{supp-sec:oxygenvar},
+there are
 multiple ways to arrive at a correlation value, and multiple possible
 correlation values. In Section \ref{sec:gammasens}, we develop a model
 for the sensitivity of our estimated North Atlantic temperature change
