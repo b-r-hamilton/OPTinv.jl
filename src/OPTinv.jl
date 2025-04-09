@@ -27,19 +27,19 @@ export record, loadEN4MLD
 
 export orthographic_axes, datadir 
 
+#import units 
 yr = u"yr"
 kyr = u"kyr"
 permil = Unitful.FixedUnits(u"permille")
 K = u"K"
 using DimensionalData: @dim, YDim, XDim, TimeDim, ZDim
 
-@dim Cores "Cores" #can't use "Core" because that's the import for base Julia
+@dim Cores "Cores" 
 @dim Modes "Modes"
 @dim StateVar "state variable"
 export ccrs, cm, cfeature, cu, mpath, patches, cmap, mal, mticker, inset_axes
 
 #import Python packages
-
 const ccrs = pyimport("cartopy.crs")
 const cm = pyimport("cmocean.cm")
 const cfeature = pyimport("cartopy.feature")
@@ -145,6 +145,23 @@ struct OffDiagRule
     rule2::Tuple
 end
 
+"""
+struct inversion
+
+details for inversion 
+
+# Arguments
+    - `cores`: Vector of symbols of cores to include
+    - `modetype`: mostly deprecated, "svd" or "nnmf" (non-negative matrix fact.)
+    - `name`: name of inversion
+    - `color`: color for plotting 
+
+# Example
+    ```
+    oldcores = Symbol.("MC" .* string.([26, 22, 13]) .* "A")
+    inversion(oldcores, "svd", "old", "blue")
+    ```
+"""
 struct inversion
     cores::Vector{Symbol}
     modetype::String
@@ -152,6 +169,26 @@ struct inversion
     color::String
 end
 
+"""
+struct solution
+
+very big structure holding all estimate parameters and reconstructed fields 
+
+# Arguments
+    - `y`: DimEstimate of original sediment core data
+    - `ỹ`: DimEstimate of reconstructed sediment core data according to solution
+    - `ỹ₀`: DimEstimate of reconstructed sediment core data according to prior 
+    - `u₀`: DimEstimate of prior 
+    - `ũ`: DimEstimate of estimated mode magnitudes
+    - `θ`: Vector of vectorized surface temperature ± 1σ unc. for each timestep 
+    - `δ`: Vector of vectorized surface δ¹⁸O ± 1σ unc. for each timestep
+    - `γ`: TMI.Grid
+    - `spatialmodes`: V matrix 
+    - `name`: String name of inversion 
+    - `color`: String color for plotting
+    - `E`: UnitfulMatrix 
+    - `predict`: Function version of E
+"""
 struct solution
     y::DimEstimate
     ỹ::DimEstimate
@@ -168,8 +205,16 @@ struct solution
     predict::Function
 end
 
+"""
+function invert
 
-function invert(x::inversion)
+    completes inversion, checks to see if M, spatialmodes, modemags, exist, calculates
+    if they don't, and runs inversion 
+
+# Arguments
+    - `x`: `inversion` type
+"""
+function invert(x::inversion)::solution
     corenums_full = Symbol.("MC" .* string.([28, 26, 25, 22, 21, 20, 19, 10, 9,13,14]) .* "A")
     corenums_sorted = [i for i in corenums_full if i in x.cores]
     filename = x.modetype * ".jld2"
@@ -187,19 +232,8 @@ function invert(x::inversion)
     mags = jld[x.modetype * "mags"]
     
     σθ = vec(std(mags, dims = 1)) * K
-    println("multiplying σθ by 4") 
+    println("multiplying σθ by 4")  #fitting at 4 σ level
     σθ .*= 4
-    #=
-    if x.modetype == "svd"    
-        σθ *= 5
-    else
-        σθ *= 0.1
-    end
-    =#
-
-    
-    #σθ = vec(2K ./ jldopen(DrWatson.datadir("M/" * x.modetype * ".jld2"))["absmax"])
-    
     
     σδ = σθ ./ 14.84 .* permil/K
     u₀ = firstguess(Tᵤ, ℳ.dims[2][:], σθ, σδ, ρ) #u₀ with correct T_u
@@ -210,14 +244,11 @@ function invert(x::inversion)
     
     TMIversion = "modern_180x90x33_GH11_GH12"
     γ = Grid(download_ncfile(TMIversion))
-
-    #yes this is bad to force the permil, but I'll come back to it...
-    ỹ₀ = DimEstimate(E*u₀de.v, parent(E*u₀de.C*E')*permil^2, y.y.dims)#predict(u₀de.x) 
+    
+    ỹ₀ = DimEstimate(E*u₀de.v, parent(E*u₀de.C*E')*permil^2, y.y.dims)
 
     return solution(yde, ỹde, ỹ₀, u₀de, ũ, θ, δ, γ,spatialmodes, x.name, x.color, E, predict) 
 end
-
-
 
 """
 function readbacon(age_file::String, d18O_file::String)
@@ -630,7 +661,17 @@ function firstguess(T, modes, σθ::DimArray, σδ::Vector, ρ; fill_val = [0K, 
     return Est(da, Cuu) 
 end
 
+"""
+function solvesystem
 
+    optimizes system, prints cost function, returns optimized values 
+
+# Arguments
+    - `e`: Est object of observations
+    - `u₀`: Est object of prior
+    - `E`: UnitfulMatrix that maps between prior and observations
+    - `predict`: function version of E 
+"""
 function solvesystem(e::Est, u₀::Est, E::UnitfulMatrix, predict::Function)
     if e.y.dims[1][begin] < u₀.y.dims[1][begin]
         error("Tᵤ must precede T")
@@ -683,6 +724,14 @@ function linearleastsquares(x::UnitfulMatrix,y::UnitfulMatrix;C=nothing)
     end
 end
 
+"""
+function linearleastsquares(x,y)
+
+    use linear algebra representation to find the linear least squares solution of
+    y = a*x+b
+
+    returns lls: vector where a = lls[1], b = lls[2]
+"""
 function linearleastsquares(x::Vector{T},y::Vector{T};C=nothing) where T
     E = hcat(parent(x), ones(length(x)))
     C = isnothing(C) ? I(length(x)) : C 
@@ -696,7 +745,17 @@ function linearleastsquares(x::Vector{T},y::Vector{T};C=nothing) where T
     end
 end
 
-function  formattransientM(arr::Array, τ, modes, cores)
+"""
+function formattransientM
+
+    returns ℳ as a DimArray
+# Arguments
+    - `arr`: Array
+    - `τ`: lags vector
+    - `modes`: vector of mode names
+    - `cores`: vector of core names 
+"""
+function formattransientM(arr::Array, τ, modes, cores)
     ℳ = DimArray(arr, (Ti(τ), Modes(modes), Cores(cores)))
     return ℳ
 end
@@ -750,7 +809,7 @@ function loadM(filename::String, core_list::Vector{Symbol}; res = 10yr)
         τ = 0:res:1000
         println("computing ℳ, will take a while!") 
         ℳ_ = transientM(corelocs, SVD.Vt, τ)
-        jldsave(filepath; ℳ, τ, res, surforigin, SVD)
+        jldsave(filepath; ℳ_, τ, res, surforigin, SVD)
         spatialmodes = SVD.Vt 
     end
     cores = keys(core_locations())    
@@ -799,48 +858,6 @@ function loadcores(core_list::Vector{Symbol}, res = 10yr; dir = nothing, rules =
     @show isposdef(e.Cnn.mat)
     return e 
 end
-
-#=
-function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget, u₀::Est,
-               core_list::Vector{Symbol}, yax::Vector{Tuple})
-    sv = (:θ, :δ)
-    coeffs = NamedTuple{sv}([-0.224permil/K, 1])
-    τ = [t for t in ℳ.dims[1]]
-
-    #T = collect(0yr:10yr:2020yr)
-    #Tᵤ = -500yr:10yr:2020yr
-    
-    #this is the same as BLUEs.convolve, I just did it explicitly here 
-    predict(u) = DimArray(cat([+([+([vec(u[At(t-τi), :, At(s)]' * coeffs[s] * ℳ[At(τi), :, :]) for τi in τ[t .- τ .> minimum(Tᵤ)]]...) for s in sv]...) for t in T]..., dims = 2)', (Ti(T), Cores(core_list)))
-
-    filename = split(filename, ".")[1] .* "_E.jld2"
-    filepath = joinpath("../data/M", filename) 
-    if !isfile(filepath)
-        println("Computing E, will take a little while!") 
-        @time E = impulseresponse(predict, u₀.y) #328 seconds
-        jldsave(filepath; E)
-    else
-    
-        println("Loading in pre-saved file") 
-        jld = jldopen(filepath)
-        E = jld["E"]
-        close(jld)
-    end
-    
-    return E, predict
-    #following subsetting doesn't work but might be moot because we need to calc. over a new time period anyways... 
-
-    #=
-    allcores = Symbol.("MC".* string.([28, 26, 25, 22, 21, 20, 19, 10, 9, 13, 14]) .* "A")
-    
-    Erange = vec(covariancedims((Ti(T), Cores(allcores))))
-    Edomain = u₀.Cnn.ax 
-    xindices = [x[1] ∈ Ttarget && x[2]∈core_list for x in Erange]
-    yindices = [y[1] ∈ Tᵤtarget for y in Edomain] 
-    return UnitfulMatrix(parent(E[indices, :]), unitrange(E)[xindices], unitdomain(E)[yindices]), predict
-   =# 
-end
-=#
 
 """
 function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget,
@@ -1020,32 +1037,6 @@ function γbox(γ::TMI.Grid, latsouth, latnorth, lonwest, loneast)
                          findall(x->latsouth<x<latnorth, lat_index))
     end
 end
-
-#calculates full covariance matrix spatially, very expensive 
-#=
-function reconstructsurface(spatialmodes, ũ)
-    
-    θ = Vector{Estimate}(undef, length(ũ.dims[1]))
-    δ = Vector{Estimate}(undef, length(ũ.dims[1]))
-    covdims = vec(covariancedims(ũ.dims))
-    convertθ = UnitfulMatrix(Matrix{Float32}(undef, 11113, length(covdims)), fill(K, 11113), unit.(vec(ũ.x)));
-    convertδ = UnitfulMatrix(Matrix{Float32}(undef, 11113, length(covdims)), fill(permil, 11113), unit.(vec(ũ.x)));
-    for (i, t) in enumerate(ũ.dims[1])
-        @show t 
-        indθ = findall(x->x[1] == t && x[3] == :θ, covdims)
-        indδ = findall(x->x[1] == t && x[3] == :δ, covdims)
-        println("found indices") 
-        [convertθ[:, i] = spatialmodes[covdims[i][2], :] for i in indθ]
-        [convertδ[:, i] = spatialmodes[covdims[i][2], :] for i in indδ]
-        println("filled mat") 
-        θ[i] = convertθ * ũ
-        println("first conversion")
-        δ[i] = convertδ * ũ
-    end
-    return θ, δ
-end
-
-=#
 
 function reconstructsurface(spatialmodes, ũ)
     θvals = [spatialmodes' * vec(ũ.x[At(t), :, At(:θ)]) for t in ũ.dims[1]]
@@ -1318,11 +1309,19 @@ function transientM(corelocs, patches::NamedTuple, τ; TMIversion = "modern_180x
         Ḡ = hcat(Ḡ...)'    
         arr[begin:size(Ḡ)[1], i, :] = Ḡ
     end
-    #ℳ = DimArray(arr, (Ti(τ * yr), Modes(modes), Cores(cores)))
-    #return ℳ
     return arr 
 end
 
+"""
+function generatemodes
+
+    based on core location water source maps, generate generate SVD or NNMF
+# Arguments
+    - `corelocs`: NamedTuple of core locations
+# Optional Arguments
+    - `TMIversion`: String of TMIversion to use, defaults to 2° modern
+    - `func`: decomposition function to use, defaults to svd 
+"""
 function generatemodes(corelocs; TMIversion = "modern_180x90x33_GH11_GH12", func = svd)
     A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
     tracers = hcat([surfaceorigin(corelocs[c], Alu, γ).tracer[γ.wet[:, :, 1]] for c in keys(corelocs)]...)
@@ -1338,7 +1337,19 @@ function generatemodes(corelocs; TMIversion = "modern_180x90x33_GH11_GH12", func
     end    
 end
 
+"""
+function transientM
 
+    propagate matrix of boundary conditions through transient TMI
+    and observe at core sites
+
+# Arguments
+    - `corelocs`: NamedTuple of core locations
+    - `mat`: V matrix
+    - `τ`: lags to compute over
+# Optional Arguments
+    - `TMIversion`
+"""
 function transientM(corelocs, mat::Matrix, τ; TMIversion = "modern_180x90x33_GH11_GH12")
     A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
     
@@ -1346,11 +1357,8 @@ function transientM(corelocs, mat::Matrix, τ; TMIversion = "modern_180x90x33_GH
     N = length(corelocs)
     wis= Vector{Tuple{Interpolations.WeightedAdjIndex{2, Float64}, Interpolations.WeightedAdjIndex{2, Float64}, Interpolations.WeightedAdjIndex{2, Float64}}}(undef,N)
     [wis[i] = interpindex(corelocs[i],γ) for i in 1:N]
-    #modes = [k for k in keys(patches)]
-    #cores = [c for c in keys(corelocs)]
     arr = Array{Float64}(undef, length(τ), length(bcs), length(corelocs)) # dimensions = Ti x cores x modes
     for (i, bc) in enumerate(bcs)
-        #bc = patches[key]
         @time D̄ = stepresponse(TMIversion, bc, γ, L, B, τ, eval_func = observe, args = (wis, γ))
         Ḡ, _ = globalmean_impulseresponse(D̄, τ)
         Ḡ = hcat(Ḡ...)'    
