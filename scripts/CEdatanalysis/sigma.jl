@@ -1,5 +1,8 @@
+#=
+Script to generate σ vector of mode magnitude uncertainties from CESM output
+Also makes supplementary plot
+=# 
 #cd("/home/brynn/Code/OPTinv.jl/scripts/CEdatanalysis")
-import Pkg;Pkg.activate("../../")
 using NCDatasets, OPTinv, Interpolations, TMI, PythonPlot, DrWatson, JLD2, Statistics, PythonCall
 """
 function ginterp

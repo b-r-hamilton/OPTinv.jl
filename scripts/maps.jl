@@ -15,7 +15,7 @@ fig, axs = subplots(nrows = length(inds), ncols = length(solutions),
 #(80,35,-80,30,5)
 lon_box = [-80, 30]
 lat_box = [35, 80]
-#for (i, sol) in enumerate([solutions..., lmrsst])
+
 for (i, sol) in enumerate(solutions) 
     Tu = sol isa solution ? Array(sol.ũ.dims[1]) : year.(lmrtime)yr
     Ty = sol isa solution ? Array(sol.y.dims[1]) : year.(lmrtime)yr 
@@ -41,19 +41,13 @@ for (i, sol) in enumerate(solutions)
             plotme = sum(θ[:, :, start_index:stop_index], dims = 3)[:, :, 1] ./ stepsize #100yr at 1yr res
             plotme = plotme'
         end
-        #PyPlot version
-        #ax =  axs[(ii-1) * (length(solutions)+1)+ i]
-        #ax =  axs[(ii-1) * (length(solutions))+ i]
-        #PythonCall version
+        
         ax = axs[ii-1, i-1]
         if (sol isa solution && y ∈ Ty) || (sol isa Array)
             
             ax_hdl = ax.plot(orthographic_axes(lat_box..., lon_box..., 5)...,
                              color="black", linewidth=0.5,
                              transform=noproj)
-            #PyPlot version
-            #tx_path = ax_hdl[1]._get_transformed_path()
-            #PythonPlot version
             tx_path = first(ax_hdl)._get_transformed_path()
             
             path_in_data_coords, _ = tx_path.get_transformed_path_and_affine()
@@ -61,9 +55,6 @@ for (i, sol) in enumerate(solutions)
             ax.set_boundary(polygon1s)
             ax.add_feature(cfeature.NaturalEarthFeature("physical", "land", "110m", edgecolor="k", facecolor="gray"))
 
-            if i == 1
-                #ax.set_title(string(convert(Int64, ustrip(Tu[start_index]))) * "-" *string(convert(Int64, ustrip(Tu[stop_index]))), fontsize = 20, fontweight = "bold")
-            end
             ax.set_extent([lon_box..., lat_box[1]- 10, lat_box[2]], noproj)
             
             #add a cyclic point

@@ -794,33 +794,36 @@ end
 
 function loadM(filename::String, core_list::Vector{Symbol}; res = 10yr) 
     filepath = joinpath("../data/M", filename)
+    !isdir("../data/M") && mkdir("../data/M")
     corelocs = core_locations()
     #load in variables from ex3.svdmodes.jl
     if isfile(filepath)
         println("opening pre-computed Vt and ℳ file") 
         jld = jldopen(filepath)
-        ℳ_ = jld["ℳ"][begin:end-1, :, :]
+        ℳ = jld["ℳ"][begin:end-1, :, :]
         τ = jld["τ"][begin:end-1]yr
         spatialmodes = jld["SVD"].Vt
         close(jld)
     else
+
         surforigin, SVD = generatemodes(corelocs)
         res = 1
         τ = 0:res:1000
         println("computing ℳ, will take a while!") 
-        ℳ_ = transientM(corelocs, SVD.Vt, τ)
-        jldsave(filepath; ℳ_, τ, res, surforigin, SVD)
-        spatialmodes = SVD.Vt 
+        ℳ = transientM(corelocs, SVD.Vt, τ)
+        jldsave(filepath; ℳ, τ, res, surforigin, SVD)
+        spatialmodes = SVD.Vt
+        res = 10yr
     end
     cores = keys(core_locations())    
     modes = 1:size(spatialmodes)[1]
     #format into DimArray 
-    ℳ = formattransientM(ℳ_, τ, [m for m in modes], [c for c in cores])
+    ℳ_ = formattransientM(ℳ, τ, [m for m in modes], [c for c in cores])
     
     #M has 1 yr resolution
-    ℳ, τ = subsampletransientM(ℳ, res)
-    return ℳ[:, :, At(core_list)], spatialmodes
-    #return ℳ, spatialmodes
+    ℳ_, τ = subsampletransientM(ℳ_, res)
+    return ℳ_[:, :, At(core_list)], spatialmodes
+
 end
 
 function loadcores(core_list::Vector{Symbol}, res = 10yr; dir = nothing, rules = nothing)

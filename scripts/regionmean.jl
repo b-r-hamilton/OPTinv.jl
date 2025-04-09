@@ -190,85 +190,6 @@ tight_layout()
 savefig(plotsdir("labcomp" * suffix * ".png")) 
 
 #=
-# ========== NORDIC SEA V. SPNA REGION MEAN  ==================== #
-
-nordicind = γbox(solutions[1].γ, 65, 80,360-20, 20)
-spg = γbox(solutions[1].γ, 50,65, 300,0)
-spgW= γbox(solutions[1].γ, 50,65, 300,330)
-spgE= γbox(solutions[1].γ, 50,65, 330,0)
-
-#inds = NamedTuple{(:Nordic, :SPG, :SPGE, :SPGW)}([nordicind, spg, spgE, spgW])
-inds = NamedTuple{(:Nordic, :SPG)}([nordicind, spg])
-
-fig = figure(figsize = (10,8));
-fig.subplots_adjust(right=0.75)
-for (i, sol) in enumerate(solutions)
-    
-    ax = subplot(length(solutions), 1, i)
-    grid()
-    T = sol.y.dims[1]
-    println("SOLUTION = " * sol.name)
-    #for (k, ls, lw, col) in zip(keys(inds), ["solid", "solid", "dotted", "dashed"], [4,4,3,3], ["purple", "darkgreen", "darkgreen", "darkgreen"])
-    for (k, ls, lw, col) in zip(keys(inds), ["solid", "solid"], [4,4], ["purple", "darkgreen"])
-        sol_anom_ind = findall(x->1850yr<x<1970yr, Array(sol.ũ.dims[1]))
-        θbox = estimate(sol.ũ, sol.spatialmodes, :θ, spatialinds = inds[k], rolling = 2)
-        μ = mean(θbox.v[sol_anom_ind]) 
-        θbox = DimEstimate(θbox.v .- μ, θbox.C, θbox.dims)
-        plot(θbox.x[T[begin]..T[end-1], :], color = col, label = sol.name, lzorder = 3, fbzorder = 0,lwcentral = 3,lwedges = 1)
-        #=
-        println(string(k))
-        @show min = findmin(y1)
-        @show t1 = T[min[2]]
-        pre1900inds = findall(x->x<1900yr, Array(T))
-        @show max = findmax(y1[pre1900inds])
-        @show t2 = T[pre1900inds][max[2]]
-        println(estimate(sol.ũ, sol.spatialmodes, :θ, t1,t2,Tm1, Tm2, spatialinds = inds[k]))
-        @show t1
-        t1ind = findall(x->x == t1, Array(Tu))[1]
-        t2ind = findall(x->x == t2, Array(Tu))[1]
-        #calculate slope 
-        wind = t2ind:t1ind
-        x = UnitfulMatrix(Array(sol.ũ.dims[1][wind]))
-        C = UnitfulMatrix(parent(temp.C[wind, wind]), unitrange(temp.C)[wind], unitdomain(temp.C)[wind])
-        y = UnitfulMatrix(temp.v[wind])
-        
-        lls, C = linearleastsquares(x, y; C)
-        @show getindexqty(lls,1) * 1000 
-        @show sqrt.(diag(C))[1] .* 1000
-
-        println()
-        =#
-    end
-    xlim(Tm1, Tm2)
-    ylabel("Surfaec Temperature Anomaly [K]",fontsize = 15)
-    if i == 2 xlabel("Time [years CE]", fontsize = 15) end
-    
-    yticks(-0.5:0.25:1.0, fontsize = 12)
-    ylim(-0.5, 1.25)
-    xticks(800:200:1800, fontsize = 12)
-    text(x = 810, y = -0.48, s = ["A", "B"][i], fontsize = 30, weight = "bold")
-    #=
-    twin2 = ax.twinx()
-    steinhilber = loadSteinhilber2009()
-    st_time = 1950 .- steinhilber[!, "YearBP"]
-    st = Measurements.measurement.(steinhilber[!, "dTSI"], steinhilber[!, "dTSI_sigma"])
-    twin2.plot(st_time, steinhilber[!, "dTSI"], color = "grey")
-    twin2.fill_between(x = st_time, y1 = steinhilber[!, "dTSI"] .-  steinhilber[!, "dTSI_sigma"], y2 = steinhilber[!, "dTSI"] .+  steinhilber[!, "dTSI_sigma"], color = "grey", alpha = 0.2)
-    twin2.set_ylabel("Total Solar Insolation [Wm⁻²]", fontsize = 15, color = "grey")
-    twin2.set_yticks(labels = -1.5:0.5:1.5, ticks = -1.5:0.5:1.5, fontsize = 12, color = "grey")
-    
-    twin3 = ax.twinx()
-    #twin3.spines.right.set_position(("axes", 1.1))
-    gao = loadGao2008()
-    twin3.plot(gao[!, "Year"], gao[!, "Global"], color = "red", alpha = 0.5, linewidth = 1)
-    twin3.set_ylabel("Global strat. sulf. aer. inj. [Tg]", fontsize = 15, color = "red")
-    twin3.set_yticks(labels = 0:100:250, ticks = 0:100:250, fontsize = 12, color = "red")
-    =#
-end
-tight_layout()
-savefig(plotsdir("EGWG" * suffix *".png"))
-
-#=
 # ================== OPT-3, OPT-11 vs. GH19 ================== #
 Tm1 = ustrip.(minimum([sol.y.dims[1][1] for sol in solutions]))
 Tm2 = ustrip.(maximum([sol.y.dims[1][end-1] for sol in solutions]))
@@ -379,6 +300,5 @@ ax1.set_ylim(-0.7, 1.1)
 yticks(-0.5:0.25:0.75, fontsize = 12)
 tight_layout()
 savefig(plotsdir("meants_gh19" * suffix * ".png"), dpi = 600)
+=#
 
-=#
-=#

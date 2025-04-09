@@ -1,13 +1,10 @@
 #=
-Inversion using a single, global surface pattern
-Basically just the `invert` method + `loadM` are copied here
-This is a single mode solution, where the single mode is a global uniform pattern
-
+Script to generate OPT-3-GLOBAL and OPT-3-MODE2 estimates and custom plots 
 =#
 import Pkg;Pkg.activate("../")
 using OPTinv, PythonPlot, JLD2, DrWatson, Statistics, Unitful, DimensionalData, PythonPlotExt, BLUEs, TMI
 
-allcores = Symbol.("MC" .* string.([28, 26, 25, 22, 21, 20, 19, 10, 9,13,14]) .* "A")
+
 oldcores = Symbol.("MC" .* string.([26, 22, 13]) .* "A")
 xall = inversion(oldcores, "global", "all", "#5D3A9B")
 xold = inversion(oldcores, "mode2", "old", "#E66100")
@@ -81,13 +78,7 @@ for (i,x) in enumerate([xall, xold])
     solutions[i] = solution(yde, ỹde, ỹ₀, u₀de, ũ, θ, δ, γ,spatialmodes, x.name, x.color, E, predict)
 end
 suffix = "globmode2"
-#=
-#mode plot
-figure();
-for sol in sols
-    plot(sol.ũ.x[:,At(1), At(:θ)], color = sol.color)
-end
-=#
+
 min_age = [minimum(s.y.dims[1]) for s in solutions]
 max_age = [maximum(s.y.dims[1]) for s in solutions]
 xl = [minimum(min_age), maximum(max_age)]
@@ -104,17 +95,11 @@ for (i, c) in enumerate(oldcores)
         plot(solutions[2].ỹ.x[:, At(c)], color = solutions[2].color, lwcentral = 2)
         plot(solutions[2].y.x[:, At(c)], color = "black", lwcentral = 2)
     end
-
     
-    #if i ∈ [9,10,11]
-        xticks(1000:250:1750, fontsize = 12)
-        xlabel("Time [years CE]", fontsize = 15)
-    #else
-        #xticks(1000:250:1750, ["", "", "", ""])
-        #xlabel("")
-    #end
+    xticks(1000:250:1750, fontsize = 12)
+    xlabel("Time [years CE]", fontsize = 15)
     
-    if i ∈ [1]#,4,7,10]
+    if i ∈ [1]
         yticks(-0.2:0.1:0.1, fontsize = 12) 
         ylabel(L"\mathrm{\delta}^{18}\mathrm{O}_\mathrm{calcite}" * " [‰]", fontsize = 15)
     else

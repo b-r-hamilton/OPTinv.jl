@@ -1,4 +1,6 @@
-
+#=
+Script to explore sensitivity of theoretical ΔT equation to γ
+=# 
 import Pkg;Pkg.activate("../")
 using PythonPlot
 Δδ¹⁸O = 0.08

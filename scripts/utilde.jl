@@ -41,7 +41,7 @@ xticks(xt, xt, fontsize = 12)
 axs[1].set_xlabel("Time [years CE]", fontsize = 15)
 tight_layout()
 savefig(plotsdir("u0utilde_mode1.png"), dpi = 600)
-#=
+
 # ==================== ALL MODES, WITH UNC. =========================== #
 figure(figsize = (10,10))
 for i in 1:11
@@ -67,55 +67,6 @@ for i in 1:11
         xticks(xt, xt, fontsize = 12)
     end    
 end
-#tight_layout()
+
 savefig(plotsdir("u0utilde.png"), dpi = 600)
 
-
-# ===================== FIRST THREE MODES, AS Z-SCORE, NO ERROR REP. ==== # 
-for s in [:θ, :δ]
-figure(figsize = (8,8))
-    for (i, sol) in enumerate(solutions)
-        subplot(length(solutions),1, i)
-        modes = sol.ũ.dims[2]
-        for m in 1:3
-            #color = cmap.get_cmap("nipy_spectral")(1/(maximum(modes) - minimum(modes)) * m)
-            color = ["purple", "green", "darkorange"][m]
-            ls = ["solid", "dashed", "dotted"][m]
-            tr = (minimum(sol.y.dims[1]), maximum(sol.y.dims[1]))
-            ts = value.(sol.ũ.x[:, At(m), At(s)])
-            plot((ts .- mean(ts)) ./ std(ts), label = string(m), color = color, zorder = length(modes) - m, linewidth = 4, linestyle = ls)
-            
-        end
-        if i == 2
-
-            xticks(600:200:2000, fontsize = 12)
-            xlabel("Time [years CE]", fontsize = 15)
-        else
-            xticks(600:200:2000, fill("", length(600:200:2000)))
-            xlabel("")
-        end
-        
-        yticks(-4:2:6, fontsize = 12) 
-        ylabel("Mode Magnitude Anomaly [σ]", fontsize = 15)
-        #legend(loc = "center left")
-        text(x = 485, y = 5, s = ["A", "B"][i], fontsize = 30, fontweight = "bold")
-        grid()
-        
-        xlim(475, 2000)
-        ylim(-4, 6)
-
-        ax = gca()
-        twin2 = ax.twinx()
-        twin2.spines.right.set_position(("axes", 1.15))
-        steinhilber = loadSteinhilber2009()
-        st_time = 1950 .- steinhilber[!, "YearBP"]
-        st = Measurements.measurement.(steinhilber[!, "dTSI"], steinhilber[!, "dTSI_sigma"])
-        twin2.plot(st_time, steinhilber[!, "dTSI"], color = "grey")
-        twin2.fill_between(x = st_time, y1 = steinhilber[!, "dTSI"] .-  steinhilber[!, "dTSI_sigma"], y2 = steinhilber[!, "dTSI"] .+  steinhilber[!, "dTSI_sigma"], color = "grey", alpha = 0.2)
-        twin2.set_ylabel("Total Solar Insolation [Wm⁻²]", fontsize = 15, color = "grey")
-        twin2.set_yticks(labels = -1.5:0.5:1.5, ticks = -1.5:0.5:1.5, fontsize = 12, color = "grey")
-    end
-    tight_layout()
-    savefig(plotsdir("modemags"*string(s)* suffix* ".png"))
-end
-=#
