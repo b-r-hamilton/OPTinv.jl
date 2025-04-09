@@ -1,7 +1,7 @@
 #=
 RECONSTRUCTION OF SOLUTIONS AT CORE SITES 
 =# 
-if ! @isdefined(solutions)
+if ! @isdefined(solutions)y
     include("transientinversion.jl")
 end
 

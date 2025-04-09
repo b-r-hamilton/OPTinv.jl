@@ -908,7 +908,7 @@ function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget,
         @time E = impulseresponse(predict, u₀.y) #2 hrs
         jldsave(filepath; E)
     else
-        println("Loading in pre-saved file") 
+        println("Loading in pre-saved E file") 
         jld = jldopen(filepath)
         E = jld["E"]
         close(jld)
@@ -1369,6 +1369,24 @@ function transientM(corelocs, mat::Matrix, τ; TMIversion = "modern_180x90x33_GH
     end
     return arr 
 end
+
+"""
+function ginterp
+
+    interpolate z(x,z) to (x2,y2) grid
+"""
+function ginterp(x,y,z::Array{Float32, 2}, x2, y2)
+    x2 = matchvec(x2, x)
+    y2 = matchvec(y2, y) 
+    itp = LinearInterpolation((x, y), z)
+    z2 = [itp(x,y) for x in x2, y in y2]
+    return z2, x2, y2
+end
+"""
+matchvec: trim a vector x1 so that it does not exceed extrema of x2
+"""
+matchvec(x1, x2) =  x1[x1 .< maximum(x2) .&& x1 .> minimum(x2)]
+
 
 end
 
