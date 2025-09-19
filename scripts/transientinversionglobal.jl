@@ -53,7 +53,7 @@ for (i,x) in enumerate([xall, xold])
         mags = jld["svdmags"]
         σθ = vec(std(mags, dims = 1)) * K
         σθ .*= 8
-        σδ = σθ ./ 14.84 .* permil/K
+        σδ = σθ ./ 14.93 .* permil/K
         u₀ = firstguess(Tᵤ, ℳ.dims[2][:], σθ, σδ, ρ) #u₀ with correct T_u
     elseif x.modetype == "mode2"
         jld = jldopen(DrWatson.datadir("modemags.jld2"))
@@ -150,4 +150,5 @@ for (i, file) in enumerate(["global.jld2", "mode2.jld2"])
 end
 tight_layout()
 savefig(plotsdir("Mode2.png"))
-
+solutions = [solutions[1]]
+include("regionmean.jl")

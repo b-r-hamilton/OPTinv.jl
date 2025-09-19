@@ -132,24 +132,24 @@ function plotme(x,y,ax, xlab,ylab,t,varx, vary, letter, cb = true)
     ylabel(ylab, fontsize = 12)
     xlabel(xlab, fontsize = 12)
 
-    lls = linearleastsquares(x,y)
+    @show lls = linearleastsquares(x,y)
     ỹ = lls[1] .* x .+ lls[2]
 
 
-    xt = round.(pyconvert(Vector{Float64}, gca().get_xticks()), sigdigits = 5)
-    yt = round.(pyconvert(Vector{Float64}, gca().get_yticks()), sigdigits = 5)
+    xt = round.(pyconvert(Vector{Float64}, gca().get_xticks()), sigdigits = 4)
+    yt = round.(pyconvert(Vector{Float64}, gca().get_yticks()), sigdigits = 4)
     xl = gca().get_xlim()
     yl = gca().get_ylim() 
-    plot(x, ỹ, color = "red", label = "slope = " * string(round(lls[1], sigdigits = 3)) * "°C/g/kg", linewidth = 5)
+    plot(x, ỹ, color = "red", label = "slope = " * string(round(lls[1], sigdigits = 4)) * "°C/g/kg", linewidth = 5)
 
     xticks(xt, xt, fontsize = 12)
     yticks(yt, yt, fontsize = 12)
     gca().set_xlim(xl)
     gca().set_ylim(yl)
     
-    r2 = round(1 - sum((y .- ỹ).^2) /sum((y .- mean(y)).^2), sigdigits = 3)
-    α = round(lls[1], sigdigits = 2)
-    β = round(lls[2], sigdigits = 2) 
+    r2 = round(1 - sum((y .- ỹ).^2) /sum((y .- mean(y)).^2), sigdigits = 4)
+    α = round(lls[1], sigdigits = 4)
+    β = round(lls[2], sigdigits = 4) 
     text(x = xl[0] + (xl[1] - xl[0])*0.03, y = yl[0] + (yl[1] - yl[0])*0.85, s = vary * " = " * string(α) * varx * " + " * string(β) * "\nR² = " * string(r2), fontweight = "bold", fontsize = 12)
     text(x = xl[0] + (xl[1] - xl[0])*0.85, y = yl[0] + (yl[1] - yl[0])*0.05, s = letter, fontweight = "bold", fontsize = 30)
 end

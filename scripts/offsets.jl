@@ -1,3 +1,4 @@
+
 #=
 Are the sediment cores interpretable in the context of modern-day observations?
 E.g., can we quantify the depth-structure of d18Oc?
@@ -8,7 +9,8 @@ This creates Figure 1, which shows
 =#
 using Pkg
 Pkg.activate("../")
-using OPTinv, Unitful, DimensionalData, DrWatson, LinearAlgebra, PythonPlot, TMI, DataFrames, GibbsSeaWater, Measurements, UnitfulLinearAlgebra
+using OPTinv, Unitful, DimensionalData, DrWatson, LinearAlgebra, PythonPlot, TMI, DataFrames, GibbsSeaWater, Measurements, UnitfulLinearAlgebra, PythonPlotExt
+using PythonCall, Shapefile 
 
 import OPTinv.yr, OPTinv.permil
 
@@ -65,7 +67,7 @@ effd18Oc_cibs = (-0.224 ± 0.002) * (θobs .± σθobs) .+ (3.53 ± 0.02) .+ (d1
 #effd18Oc_uvi_fs = (-0.207 ± 0.007) * (θobs .± σθobs) .+ (3.75 ± 0.08) .+ (d18Oobs .± σd18Oobs) .- 0.27 .- (0.47 ± 0.04)
 
 #plot d18Oc v. depth 
-fig = figure(figsize = (5,7)) 
+fig = figure(figsize = (6,8)) 
 ax = gca()
 T = ustrip.(Array(dims(y.y)[1]))
 for c in keys(locs)
@@ -74,13 +76,12 @@ for c in keys(locs)
     d = fill(locs[c][3], length(ytmp)) 
     s = scatter(ytmp, d, c = T, cmap = "rainbow", s = (2050 .- T) ./ 5, zorder = 10)
     #s = scatter([ytmp], [d], c = "red", s = 50)
-    if c == keys(locs)[end]
+    if c == keys(locs)[end]++
         cb = colorbar(s, location = "top")
         cb.set_label("Time [years CE]", fontsize = 12)
         
     end
 end
-T
 ms = 15
 scatter(effd18Oc_cibs, depths, color = "black", label = "Effective " * L"\mathrm{\delta}^{18}\mathrm{O}_\mathrm{calcite}", markersize = ms, capsize = 3, fmt = "X", zorder = 0, linewidth = 3)
 #scatter(effd18Oc_uvi_fs[begin:3], depths[begin:3], color = "lightgray", label = "Effective " * L"\mathrm{\delta}^{18}\mathrm{O}_\mathrm{calcite}", markersize = ms, marker = "X", markeredgecolor = "black", capsize = 5)
@@ -140,7 +141,7 @@ inds = vcat([findall(x->x==c, d18O[!, "CTD"]) for c in θmulticore[!, "CTD"]]...
 multicored18Oc = -0.224 * θmulticore[inds,"θ"] .+ d18O[inds, "d18O"] .+ 3.53 .- 0.27
 #scatter(multicored18Oc, θmulticore[inds, "depth"], color = "blue", s = 25, marker = "x")
 =#
-ax.set_xticks(2.2:0.2:2.9, 2.2:0.2:2.9, fontsize = 12)
+ax.set_xticks(2.2:0.2:3.0, 2.2:0.2:3.0, fontsize = 12)
 ax.set_xlim(xl)
 ax.set_xlabel(L"\delta^{18}\mathrm{O}_\mathrm{calcite}" *" [‰]", fontsize = 15)
 ax.set_yticks(2200:-200:1000, 2200:-200:1000, fontsize = 12)
@@ -182,3 +183,80 @@ tight_layout()
 
 
 =#
+
+
+
+# = LOCATIONS PLOT = #
+lats = [c[2] for c in core_locations()]
+lons = [c[1] for c in core_locations()]
+depths = [c[3] for c in core_locations()]
+
+#=
+bath_path = "/home/brynn/Downloads/ne_10m_bathymetry_all/"
+files = readdir(bath_path)[endswith.(readdir(bath_path), "shp")]
+cmap = get_cmap("Blues_r")
+points_to_list(x::Vector{Shapefile.Point}) = ([x_.x for x_ in x], [x_.y for x_ in x])
+pyfill = pyimport("matplotlib.pyplot").fill
+figure()
+subplot(projection = ccrs.PlateCarree())
+for (i, f) in enumerate(reverse(files)) 
+    tab = Shapefile.Table(joinpath(bath_path, f))
+    geoms = Shapefile.shapes(tab)
+    gca().coastlines()
+    color = cmap((length(files) - i + 1)/ (length(files) + 1))
+    for g in geoms
+        if length(g.parts) > 1 
+            pyfill(points_to_list(g.points[begin:g.parts[2]])..., color = color)
+            #plot(points_to_list(g.points[begin:g.parts[2]])..., color = color)
+            for i in 2:length(g.parts)-1
+                pyfill(points_to_list(g.points[g.parts[i]+1:g.parts[i+1]])..., color = "white")
+                #plot(points_to_list(g.points[g.parts[i]+1:g.parts[i+1]])..., color = color)
+            end
+        else
+            pyfill(points_to_list(g.points)..., color = color)
+            #plot(points_to_list(g.points)..., color = color)
+        end
+        
+    end
+end
+=#
+
+cmocean = pyimport("cmocean.cm")
+using NCDatasets
+     
+nc = NCDataset("/home/brynn/Downloads/GEBCO_31_Jul_2025_c74a8a91cc12/gebco_2024_n81.958_s36.6943_w-73.2129_e24.873.nc")
+
+lon = nc["lon"][:]
+lat = nc["lat"][:]
+lati = findall(x->57.5<x<67.5, lat)
+loni = findall(x->-30<x<-10, lon)
+elev = nc["elevation"][loni, lati]
+
+elev = convert(Matrix{Float32}, elev)
+elev[elev .> 0] .= NaN
+figure()
+ax = subplot(projection = ccrs.PlateCarree())
+cf = contourf(lon[loni], lat[lati],  elev', cmap = cmocean.deep_r, transform = ccrs.PlateCarree())
+# cb = colorbar(cf, fraction = 0.03, pad = 0.07)
+# cb.set_label("Depth [m]", fontsize = 20)
+# cbyt = collect(0:-500:-4000)
+# cb.ax.set_yticks(cbyt, abs.(cbyt), fontsize = 15)
+lev = collect(0:1000:4000)
+#c = ax.contour(lon[loni], lat[lati], (-1) .* elev', lev, colors = "black", transform = ccrs.PlateCarree())
+#ax.clabel(c)
+scatter(lons, lats, c = "white", edgecolors = "black", transform = ccrs.PlateCarree(), s = 300)
+cfeature = pyimport("cartopy.feature")
+ax.add_feature(cfeature.LAND, facecolor = "black")
+lon[loni]
+xt = collect(-29:2:-10)
+xtlabels = string.(abs.(xt)[begin:2:end]) .* "°W"
+xtlabels2 = vec(cat(reshape(xtlabels, (1,5)), reshape(["" for i in 1:5], (1,5)), dims = 1))
+xticks(xt, xtlabels2, fontsize = 20)
+yt = collect(59:2:67)
+yticks(yt, string.(abs.(yt)) .* "°N", fontsize = 20)
+grid()
+TMIversion = "modern_180x90x33_GH11_GH12"
+γ = Grid(download_ncfile(TMIversion))
+
+tight_layout()
+savefig(plotsdir("offsets_submap.png"), dpi = 600, transparent = true)

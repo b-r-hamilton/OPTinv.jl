@@ -1,4 +1,4 @@
-#=
+
 import Pkg
 Pkg.activate("../../")
 using OPTinv, PaleoData, LinearAlgebra, TMI, PythonPlot, Interpolations, NonNegLeastSquares
@@ -151,7 +151,7 @@ legend()
 ylabel("Depth [m]")
 xlabel("d18Oc [‰ VPDB]")
 savefig("holorec.png")
-=#
+
 tperiod = (LGM = (19,22), HS1 = (16, 17))
 for key in keys(tperiod)
     val = getfield(tperiod, key)

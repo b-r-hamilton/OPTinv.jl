@@ -1,51 +1,80 @@
+
 #=
 REGION MEAN
 =#
+
 if ! @isdefined(solutions)
     include("transientinversion.jl")
 end
-using UnitfulLinearAlgebra, LinearAlgebra, PaleoData, NaNMath, DateFormats, Dates, RollingFunctions
+using UnitfulLinearAlgebra, LinearAlgebra, PaleoData, NaNMath, DateFormats, Dates, RollingFunctions, SkipNan, PythonCall, CSV 
 
 # =================== MEAN OF N. ATL BOX, for each sol'n, compared to LMR and OC2k = #
 Tm1 = ustrip.(minimum([sol.y.dims[1][1] for sol in solutions]))
 Tm2 = ustrip.(maximum([sol.y.dims[1][end-1] for sol in solutions]))
+ΔT = unique(diff(Array(solutions[1].y.dims[1])))[1] #ASSUMES EACH SOL HAS SAME TIMESTEP
 regionmeanindices = γbox(solutions[1].γ, 49, 89, 309, 21)
+ca = vec(cellarea(solutions[1].γ).tracer)[regionmeanindices]
+∑ca = sum(ca)
+ca ./= sum(ca)
 fig, ax1 = subplots(figsize = (8,4))
-
+roll = 2
+rollyrs = isnothing(roll) ? ΔT : ((2 * roll) + 1) * ΔT
+rollyrs = convert(Int64, ustrip(rollyrs))
 for sol in solutions
     sol_anom_ind = findall(x->1850yr<x<1970yr, Array(sol.ũ.dims[1]))
-    θbox = estimate(sol.ũ, sol.spatialmodes, :θ, spatialinds = regionmeanindices, rolling = 2)
+    θbox = estimate(sol.ũ, sol.spatialmodes, :θ, spatialinds = regionmeanindices, rolling = roll, weights = ca)
     μ = mean(θbox.v[sol_anom_ind])
     θbox = DimEstimate(θbox.v .- μ, θbox.C, θbox.dims)
     inds = findall(x->x∈sol.y.dims[1], Array(sol.ũ.dims[1]))
     pre1900inds = intersect(inds, findall(x->1000yr<x<1900yr, Array(sol.ũ.dims[1])))
     minv = findmin(θbox.x[inds])
-    println(sol.name * ": minima")
-    @show sol.ũ.dims[1][inds][minv[2]]
+    maxv = findmax(θbox.x[pre1900inds])
+    println(sol.name)
+    println("Time of minima: " * string(sol.ũ.dims[1][inds][minv[2]])) 
+    println("Time of maxima (pre1900): "*string(sol.ũ.dims[1][pre1900inds][maxv[2]]))
     
-    println(sol.name * ": pre-1900 maxima") 
-    @show max = findmax(θbox.x[pre1900inds])
-    @show sol.ũ.dims[1][pre1900inds][max[2]]
-    @show findmax(θbox.x[pre1900inds])[1] - findmin(θbox.x[inds])[1]
-
-    println("LLS, LIA cooling")
-
     #we need to subset to the time period we want to compute the slope over 
-    liainds = findall(x->sol.ũ.dims[1][inds][minv[2]] > x > sol.ũ.dims[1][pre1900inds][max[2]], Array(sol.ũ.dims[1]))
+    liainds = findall(x->sol.ũ.dims[1][inds][minv[2]] ≥ x ≥ sol.ũ.dims[1][pre1900inds][maxv[2]], Array(sol.ũ.dims[1]))
     x = UnitfulMatrix(Array(sol.ũ.dims[1][liainds]))
     C = UnitfulMatrix(parent(θbox.C[liainds, liainds]), unitrange(θbox.C)[liainds], unitdomain(θbox.C)[liainds])
     y = UnitfulMatrix(θbox.v[liainds])
     lls, C = linearleastsquares(x, y, C=C)
-    @show lls[1] * 1000 
-    @show sqrt.(diag(C))[1] .* 1000
-
+    println("LIA cooling rate: " * string(round(lls[1] * 1000, sigdigits = 2)) * "±" * string(round(ustrip(sqrt.(diag(C))[1]) .* 1000, sigdigits = 2)) * " K/kyr")
+    println()
+            
     plot(θbox.x[inds], color = sol.color, label = sol.name, lzorder = 3, fbzorder = 0,lwcentral = 3,lwedges = 1)
     newcolor = sol.color == "red" ? "pink" : "aqua"
-    println()
+
+end
+oc2k_binned, oc2k_N, oc2k_ages, oc2k_binnedv, oc2k = loadOcean2kBinned()
+
+#=
+f1(x,f) = [f(skipnan(x[i, :])) for i in 1:size(x)[1]]
+f2(x,f) = [f(skipnan(x[:, i])) for i in 1:size(x)[2]]
+
+
+
+oc2k_anomrem = oc2k_binned .- repeat(f2(oc2k_binned, mean)', inner = (10, 1))
+globalanom = f1(weighted_regional_mean, sum)
+
+figure();plot(t_ocean2k, globalanom);ylim(-3,3)
+[convert(Vector{Int64}, vec(oc2k[r .* "d"])) for r in regions]
+
+tlls =  convert(Vector{Float64}, collect(t_ocean2k)) ./ 1000
+weighted_regional_mean
+
+function lls_remnan(t,y)
+    nanind = findall(x->!isnan(x),y)
+    return linearleastsquares(t[nanind], y[nanind])
+end
+for i in 1:57
+    @show i 
+    lls_remnan(tlls, oc2k_anomrem[:,i])
 end
 
-t_ocean2k = 100:200:1900
-oc2k_binned, oc2k_binnedv, oc2k_ages = loadOcean2kBinned()
+=#
+
+t_ocean2k = collect(100:200:1900)
 #the following values are from from McGregor 2015, Supp. Table S13
 #sd_ocean2k = vec([0.78 0.58 0.39 0.38 0.23 0.07 -0.19 -0.70 -0.71 -0.60])
 #this is the same as the above (and I promise the timing matches up) 
@@ -75,22 +104,59 @@ vlines(x = t_ocean2k .- 100, ymin = y_ocean2k .- ystd_ocean2k[1, :], ymax = y_oc
 vlines(x = t_ocean2k .+ 100, ymin = y_ocean2k .- ystd_ocean2k[1, :], ymax = y_ocean2k .+ ystd_ocean2k[2,:], color = oc2kcolor,zorder = oc2kzorder)
 [fill_between(x = [t-100, t+100], y1 = y .- ystd1, y2 = y .+ ystd2, color = oc2kcolor,alpha = 0.5, zorder = oc2kzorder) for (t, y, ystd1, ystd2) in zip(t_ocean2k, y_ocean2k, ystd_ocean2k[1, :], ystd_ocean2k[2, :])]
 
-lmrdataset = loadLMR("sst")
-lmrtime = lmrdataset["time"][:]; lmrlon = lmrdataset["lon"][:]; lmrlat = lmrdataset["lat"][:]
+if ! @isdefined(lmrdataset)
+    lmrdataset = loadLMR("sst")
+    lmrtime = lmrdataset["time"][:]; lmrlon = lmrdataset["lon"][:]; lmrlat = lmrdataset["lat"][:]
+end
 
-month.(lmrtime)
-
+##= SUBMISSION 1 LMR PLOTTING 
 for i in 1:20
     lmrsst = makeNaN(lmrdataset["sst"][:, :, i, :])
     anomindex = findall(x->1850 < x < 1970, year.(lmrtime))
     lmrsst = lmrsst .- mean(lmrsst[:, :, anomindex], dims = 3)[:, :, 1]
 
-    lmrtimeroll = rolling(mean, year.(lmrtime), 50)
-    lmrglobal = rolling(mean, [NaNMath.mean(lmrsst[:, :, i]) for i in 1:size(lmrsst)[3]], 50)
 
-    lmrbox = rolling(mean, boxmean(lmrsst, lmrlat, lmrlon, 50, 90, 360-50, 20), 50)
+    lmrtimeroll = rolling(mean, year.(lmrtime), rollyrs)
+    lmrglobal = rolling(mean,
+                        [NaNMath.mean(lmrsst[:, :, i]) for i in 1:size(lmrsst)[3]],
+                        rollyrs)
+    lmrbox = rolling(mean, boxmean(lmrsst, lmrlat, lmrlon, 50, 90, 360-50, 20),
+                     rollyrs)
     plot(DimArray((lmrbox  .- mean(lmrbox))* K, Ti(lmrtimeroll)), color = "black", label = "LMR", zorder = 1, linewidth = 0.5, linestyle = "solid")
 end
+
+
+# = SUBMISSION 2 LMR PLOTTING
+wet = (!).(ismissing.(lmrdataset["sst"][:, :, 1, 1]))
+I = cartesianindex(wet)
+area = computearea(lmrlon, lmrlat, I)
+natlbox =  vcat([[CartesianIndex(i, j) for i in findall(x->20>x|| x>360-50, lmrlon)] for j in findall(x->50<x<90, lmrlat)]...)
+notnatlbox = [i for i in I if i ∉ natlbox]
+area[notnatlbox] .= 0 
+
+areaweight = area ./ sum(area) .* wet
+lmraw = lmrdataset["sst"][:, :, :, :] .* areaweight
+lmrsstμ = mean(lmraw, dims = 3)[:, :, 1, :]
+lmrsststd = std(lmraw, dims = 3)[:, :, 1, :]
+
+sst_aw_mean = rolling(mean, [sum(skipmissing(lmrsstμ[:, :, i])) for i in 1:2001], 50)
+sst_aw_std =  rolling(mean, [sum(skipmissing(lmrsststd[:, :, i])) for i in 1:2001], 50)
+rlmrtime = rolling(mean, year.(lmrtime), 50)
+lmr_anom_ind = findall(x->1850<x<1970, rlmrtime)
+sst_aw_mean .-= mean(sst_aw_mean[lmr_anom_ind])
+
+#plot(rlmrtime, sst_aw_mean, color = "black")
+#fill_between(rlmrtime, y1 = sst_aw_mean .- sst_aw_std, y2 = sst_aw_mean .+ sst_aw_std, color = "black", alpha = 0.2)
+
+
+ tind = findall(x->800<x<1800, year.(lmrtime)) #ocean2k indices 
+ lls, llsC = linearleastsquares(convert(Vector{Float64}, year.(lmrtime))[tind],
+                               sst_aw_mean[tind], C = diagm(sst_aw_std[tind].^2))
+
+#plot(year.(lmrtime)[tind], year.(lmrtime)[tind] .* lls[1] .+ lls[2], color = "red")
+#ylim(-0.4, 0.75)
+println("LMR cooling rate: " *string(round(lls[1,1] * 1000, sigdigits = 2))  * string("±") * string(round(sqrt(llsC[1,1]) * 1000, sigdigits = 2)) * " °C/kyr")
+
 
 ylabel("Surface Temperature Anomaly [K]", fontsize = 15)
 xlabel("Time [yr CE]", fontsize = 15)
@@ -103,10 +169,19 @@ tight_layout()
 
 inset_ax = ax1.inset_axes([1550,0.4,300,0.3], transform = ax1.transData ) 
 #subplot
-hadisst = loadHadISST()
-hadsst = makeNaN(hadisst["tos"][:, :, :])
-hadlat = hadisst["latitude"][:]; hadlon = hadisst["longitude"][:]; hadtime = hadisst["time"][:]
-hadroll(x) = rolling(mean, x, 50 * 12)
+if ! @isdefined(hadisst)
+    hadisst = loadHadISST()
+    hadsst = makeNaN(hadisst["tos"][:, :, :])
+    hadlat = hadisst["latitude"][:]; hadlon = hadisst["longitude"][:]; hadtime = hadisst["time"][:]
+end
+
+
+if !isnothing(rolling)
+    hadroll(x) = rolling(mean, x, 50 * 12)
+else
+    hadroll(x) = rolling(mean, x, ustrip(rollyrs) * 12)
+end
+
 hadisst_gm = hadroll([NaNMath.mean(hadsst[:, :, i]) for i in 1:size(hadsst)[3]])
 hadisst_bm = hadroll(boxmean(hadsst, hadlat, hadlon, 50, 90, -50, 20))
 hadtimeroll = hadroll(yeardecimal.(hadtime))
@@ -116,7 +191,7 @@ hadtimeanom = findall(x->1850<x<1970, hadtimeroll)
 inset_ax.plot(hadtimeroll, hadisst_bm .- mean(hadisst_bm[hadtimeanom]), color = "black", label = "HadISST", linewidth = 3, linestyle = "dashed")
 for sol in solutions
     sol_anom_ind = findall(x->1850yr<x<1970yr, Array(sol.ũ.dims[1]))
-    θbox = estimate(sol.ũ, sol.spatialmodes, :θ, spatialinds = regionmeanindices, rolling = 2)
+    θbox = estimate(sol.ũ, sol.spatialmodes, :θ, spatialinds = regionmeanindices, rolling = roll)
     inds = findall(x->x∈sol.y.dims[1], Array(sol.ũ.dims[1]))
     μ = mean(θbox.v[sol_anom_ind])
     θbox = DimEstimate(θbox.v .- μ, θbox.C, θbox.dims)
@@ -156,8 +231,8 @@ text(x = 1901, y = 0.75, s = "A", fontsize = 30, weight = "bold")
 grid()
 for sol in solutions
     sol_anom_ind = findall(x->x==1970yr, Array(sol.ũ.dims[1]))
-    labθ = estimate(sol.ũ, sol.spatialmodes, :θ, spatialinds = labmeanindices, rolling = 2)
-    labθ = DimEstimate(labθ.v .- value(labθ.x[At(1970yr), :]), labθ.C, labθ.dims)
+    labθ = estimate(sol.ũ, sol.spatialmodes, :θ, spatialinds = labmeanindices, rolling = roll)
+    labθ = DimEstimate(labθ.v .- value(labθ.x[Near(1970yr), :]), labθ.C, labθ.dims)
     plot(labθ.x, color = sol.color, label = sol.name, lzorder = 2)
 end
     
@@ -172,8 +247,8 @@ subplot(2,1,2)
 text(x = 1901, y = 0.045, s = "B", fontsize = 30, weight = "bold")
 for sol in solutions
     sol_anom_ind = findall(x->x==1970yr, Array(sol.ũ.dims[1]))
-    labS = estimate(sol.ũ, sol.spatialmodes, :δ, spatialinds = labmeanindices, rolling = 2) 
-    labS = DimEstimate((labS.v .- value(labS.x[At(1970yr), :])) ./ 0.5255, labS.C, labS.dims)
+    labS = estimate(sol.ũ, sol.spatialmodes, :δ, spatialinds = labmeanindices, rolling = roll) 
+    labS = DimEstimate((labS.v .- value(labS.x[Near(1970yr), :])) ./ 0.5255, labS.C, labS.dims)
     plot(labS.x, color = sol.color, label = sol.name, lzorder = 2)
 end
 
@@ -187,7 +262,35 @@ xlabel("Time [years CE]", fontsize = 15)
 xticks(1900:10:1970, fontsize = 12)
 yticks(-0.06:0.03:0.06, fontsize = 12)
 tight_layout()
-savefig(plotsdir("labcomp" * suffix * ".png")) 
+savefig(plotsdir("labcomp" * suffix * ".png"))
+
+# SUBMISSION 2, d18Osw results
+fig, ax1 = subplots(figsize = (8,4))
+for sol in solutions
+    sol_anom_ind = findall(x->1850yr<x<1970yr, Array(sol.ũ.dims[1]))
+    δbox = estimate(sol.ũ, sol.spatialmodes, :δ, spatialinds = regionmeanindices, rolling = roll, weights = ca)
+
+    μ = mean(δbox.v[sol_anom_ind])
+    δbox = DimEstimate(δbox.v .- μ, δbox.C, δbox.dims)
+    inds = findall(x->x∈sol.y.dims[1], Array(sol.ũ.dims[1]))
+    #Sbox = 2.796 .* δbox.x .+ 34.38 
+    plot(δbox.x[inds], color = sol.color, label = sol.name, lzorder = 3, fbzorder = 0,lwcentral = 3,lwedges = 1)
+end
+yl = ax1.get_ylim()
+yl = (yl[0], yl[1])
+ylnew = yl .* 2.796 #.+ 34.38
+ax2 = ax1.twinx()
+ax2.set_ylim(ylnew)
+ax1.set_ylabel("Surface δ¹⁸O" * L"_{\mathrm{seawater}}" * " Anomaly [‰]", fontsize = 15)
+ax1.set_xlabel("Time [yr CE]", fontsize = 15)
+ax2.set_ylabel("Salinity Anomaly [psu]", fontsize = 15)
+xlim(Tm1, Tm2)
+ax1.set_xticklabels(800:200:1800, fontsize = 12)
+ax1.set_yticklabels(-0.03:0.01:0.04,fontsize = 12)
+ax2.set_yticklabels(-0.075:0.025:0.125,fontsize = 12) 
+tight_layout()
+savefig(plotsdir("meantsd18O" * suffix * ".png"))
+
 
 #=
 # ================== OPT-3, OPT-11 vs. GH19 ================== #

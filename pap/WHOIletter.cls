@@ -84,7 +84,7 @@
 
 \renewcommand{\opening}[1]{
   \thispagestyle{firstpage}
-  \vspace*{-0.2in}
+  \vspace*{0.4in}
   \par\noindent\toname \\ \toaddress
 
   \vspace{1ex}

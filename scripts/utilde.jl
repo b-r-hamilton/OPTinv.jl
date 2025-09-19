@@ -39,6 +39,8 @@ axs[1].text(x = 500, y = -17, s = "B", fontsize = 30, weight = "bold")
 xlim(500,1980)
 xticks(xt, xt, fontsize = 12)
 axs[1].set_xlabel("Time [years CE]", fontsize = 15)
+yt = -15:5:0
+axs[1].set_yticks(yt,yt,fontsize = 12)
 tight_layout()
 savefig(plotsdir("u0utilde_mode1.png"), dpi = 600)
 
@@ -67,6 +69,6 @@ for i in 1:11
         xticks(xt, xt, fontsize = 12)
     end    
 end
-
+tight_layout()
 savefig(plotsdir("u0utilde.png"), dpi = 600)
 

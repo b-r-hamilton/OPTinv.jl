@@ -55,8 +55,8 @@ for (i, (p, xlab, ylab, varx, vary, letter)) in enumerate(zip(pairs, xlabels, yl
     end
     
     r2 = round(1 - sum((y .- ỹ).^2) /sum((y .- mean(y)).^2), sigdigits = 3)
-    α = round(lls[1], sigdigits = 2)
-    β = round(lls[2], sigdigits = 2)
+    α = round(lls[1], sigdigits = 4)
+    β = round(lls[2], sigdigits = 4)
 
 
     xlabel(xlab, fontsize = 15)
@@ -78,4 +78,4 @@ end
 
 
 tight_layout()
-savefig(plotsdir("T_v_d18O.png"))
+savefig(plotsdir("T_v_d18O.png"), dpi = 600)

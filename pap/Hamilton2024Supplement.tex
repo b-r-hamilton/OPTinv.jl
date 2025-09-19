@@ -39,15 +39,15 @@
 
 \begin{center} \textbf{Contents of this file} \end{center}
 \begin{itemize}
-\item Supplemental Sections \ref{sec:offset} - \ref{sec:gammasens}
-\item Supplemental Figures \ref{fig:U} - \ref{fig:gamma}
-\item Supplemental Table \ref{var}  
+\item Supplemental Sections S1-S13
+\item Supplemental Figures S1-S12 
+\item Supplemental Tables S1-S2 
 \end{itemize}
 
 \section{Quantifying the $\mathrm{\delta^{18}O_{calcite}}$ offset from modern-day conditions \label{sec:offset}}
 In Section \ref{main-sec:solution}, we introduce the concept of the prior, $\mathbf{\hat{u_{0}}}$. The values used to define the prior must be put on a common scale to the problem, such that the prior propagated to the core sites, $\mathbf{E\hat{u_0}}$, is on the same scale as observational vector, $\mathbf{\hat{y}}$. There is a depth structure in the observations with $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ increasing as depth increases, as expected due to the presence of denser, and thus colder and saltier, waters at depth (Figure \ref{main-fig:offset}). In order to fit the $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ depth structure in the reconstructed prior, the prior must represent surface conditions that generate the observed depth structure when propagated to depth. We use Equation (\ref{main-eq:cibs}) to estimate effective modern-day $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ at the core sites from the global gridded estimate of $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ and temperature from \citeA[]{gebbie2010}. This product is informed by measurements from the World Ocean Circulation Experiment \cite[]{Gouretski-Koltermann-2004:WOCE}, as well as gridded estimates of $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ \cite[]{LeGrande-Schmidt-2006:Global}, and represents the best estimate of temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ that satisfies a steady-state ocean circulation and minimizes misfit to measurements obtained between 1950-2000 CE.
 
-The uncertainty on the effective $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ is large (0.21$\permil$) compared to the observational range of CE variability ($\sim$0.1$\permil$), which is mostly due to a 0.2$\permil$ uncertainty on the $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ in this location in \citeA{gebbie2010}. Most notably, the central estimate of effective $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ is variably offset from the observed value at each sediment core site, especially for the \textit{U. peregrina} sediment cores (Figure \ref{main-fig:offset}). For MC28A, the effective $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ is offset from the observed $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ by 0.2$\permil$, which is almost double the range of CE variability and similar to the uncertainty on the effective $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$. The other \textit{U. peregrina} sediment cores (MC26A and MC25A) also exhibit offsets from the central estimate of effective $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ that exceed the range of CE variability. This may be related to the equilibration offset of \textit{U. peregrina}, which was historically considered to be 0.64$\permil$, \cite[]{Shackleton1974AttainmentOI, Duplessy-Shackleton-1984:Record}, but has recently been challenged to be 0.47$\permil$ by \citeA{marchitto}. Here, we have applied the 0.47$\permil$ offset to the the \textit{U. peregrina} records, but if the true equilibration offset were closer to 0.64$\permil$, then the observed $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ values would be closer to the central estimate of effective $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$.
+The uncertainty on the effective $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ is large (0.21$\permil$) compared to the observational range of CE variability ($\sim$0.1$\permil$), which is mostly due to a 0.2$\permil$ uncertainty on the $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ in this location in \citeA{gebbie2010}. Most notably, the central estimate of effective $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ is variably offset from the observed value at each sediment core site, especially for the \textit{U. peregrina} sediment cores (Figure \ref{main-fig:offset}). For MC28A, the effective $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ is offset from the observed $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ by 0.2$\permil$, which is almost double the range of CE variability and similar to the uncertainty on the effective $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$. The other \textit{U. peregrina} sediment cores (MC26A and MC25A) also exhibit offsets from the central estimate of effective $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ that exceed the range of CE variability. This may be related to the inter-species equilibration offset of \textit{U. peregrina}, which was historically considered to be 0.64$\permil$, \cite[]{Shackleton1974AttainmentOI, Duplessy-Shackleton-1984:Record}, but has recently been challenged to be 0.47$\permil$ by \citeA{marchitto}. Here, we have applied the 0.47$\permil$ offset to the the \textit{U. peregrina} records, but if the true equilibration offset were closer to 0.64$\permil$, then the observed $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ values would be closer to the central estimate of effective $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$.
 
 \section{Tracer transport model \label{sec:ttm}}
 Each element of $\mathbf{G}'$ is associated with the relationship between a specific sediment core record $c$ at a specific observation time $t_{y}$, and a constant-in-time signal, $\mathbf{q}_{i}$, at a preceding state vector time $t_{u}$. We will define the relationship between these quantities at a range of lagged times, $\tau = t_{u} - t_{y}$. The signal, $\mathbf{q}_{i}$ takes the form of a global surface ocean vector that has null values in all cells, besides grid cell $i$ which will be set equal to 1. For computational ease, we will assume $\mathbf{q}_{i}$ to be constant-in-time. Following Equations (\ref{main-eq:diffeqspec}) and (\ref{main-eq:yeff}), we will then compute the step response function $g_{\mathrm{step}}$, 
@@ -55,7 +55,7 @@ Each element of $\mathbf{G}'$ is associated with the relationship between a spec
 \label{eq:mtau}
 g_{\mathrm{step}}(t+\Delta t) = \mathbf{o}_{c}^{T}\left(\mathbf{Lc}(t) + \mathbf{Bq}_{i}\right), 
 \end{equation}
-where $\mathbf{o}_{c}$ is the interpolation vector that effectively ``observes'' a three-dimensional output vector $\mathbf{c}$ at the sediment core sites, and all other variables are the same as in Equation (\ref{main-eq:diffeqspec}). We initialize the interior tracer concentration as $\mathbf{c} = \vec{0}$ at the initial time $t_{0} = 0$, and recursively compute the value of $g_{\mathrm{step}}$ at all times of interest $t_{0 }+n \Delta t $. The step response function represents the interior response at some time $t+n\Delta t$ to a surface signal that ``turns on'' at an initial time $t_0 = 0$. We recursively compute the value of $g_{\mathrm{step}}$ at a range of lagged times $\bm{\tau}$, which are 
+where $\mathbf{o}_{c}$ is the interpolation vector that effectively ``observes'' a three-dimensional output vector $\mathbf{c}$ at the sediment core sites, and all other variables are the same as in Equation (\ref{main-eq:diffeqspec}). We initialize the interior tracer concentration as $\mathbf{c} = \vec{0}$ at the initial time $t_{0} = 0$, and recursively compute the value of $g_{\mathrm{step}}$ at all times of interest $t_{0 }+n \Delta t $. The step response function represents the interior response at some time $t_{0}+n\Delta t$ to a surface signal that ``turns on'' at an initial time $t_0 = 0$. We recursively compute the value of $g_{\mathrm{step}}$ at a range of lagged times $\bm{\tau}$, which are 
 \begin{align}
   \label{eq:tau}
   \bm{\tau} = 
@@ -73,7 +73,7 @@ t_{0}+ \Delta t \\
 t_{0} + N_{\tau u} \Delta t
  \end{bmatrix},
 \end{align}
-resulting in the vector of values $g_{\mathrm{step}}(\bm{\tau})$. Here, $N_{\tau u}$ is the total number of timesteps we wish to compute the step response function over 
+resulting in the vector of values $g_{\mathrm{step}}(\bm{\tau})$. Here, $N_{\tau u}$ is the total number of timesteps we wish to compute the step response function.
 
 We can compute the boundary propagator function, $g(\bm{\tau})$, which represents the interior response to an instantaneous surface signal, by using a finite time centered difference scheme to compute the first derivative in time of $g_{\mathrm{step}}(\bm{\tau})$. The boundary propagator function can be considered as  a surface signal that ``turns on'' at the initial timestep $t_{0}$, and then ``turns off'' at the next time step. We compute a set of boundary propagator functions for all sediment core sites $c$, all boundary conditions $\mathbf{q}_{i}$, and at all relevant lagged times $\tau$. Each element of the range (columns) of matrix $\mathbf{G}'$ is defined by a sediment core site $c$ and an observation time $t_{y}$.  Each element of the domain (rows) of $\mathbf{G}'$ is defined by a state vector time $t_{u}$ and a boundary condition $\mathbf{q}_{i}$. Each element of $\mathbf{G}'$ is therefore defined by a lagged time $\tau$, and will be populated by the appropriate boundary propagator function from $g(\bm{\tau})$. 
 
@@ -86,23 +86,23 @@ The vector $\mathbf{u}(t_{u})$ consists of all $N$ mode magnitude values, $u_{i}
 \begin{align}
 \label{eq:1}
 \begin{bmatrix}
-\mathbf{y}_{\mathrm{eff}}(t = 1980)\\
-\mathbf{y}_{\mathrm{eff}}(t = 1970)\\
+\mathbf{y}_{\mathrm{eff}}(t_{f})\\
+\mathbf{y}_{\mathrm{eff}}(t_{f-1})\\
 \vdots \\
-\mathbf{y}_{\mathrm{eff}}(t = 800)
+\mathbf{y}_{\mathrm{eff}}(t_{f-Y})
 \end{bmatrix}                         
   = \mathbf{G}' \left( \alpha
   \begin{bmatrix}
-\mathbf{V}_{\mathrm{arb}}\mathbf{u_{T}}(t = 1980) \\
-\mathbf{V}_{\mathrm{arb}}\mathbf{u_{T}}(t = 1970)\\
+\mathbf{V}_{\mathrm{arb}}\mathbf{u_{T}}(t_{f}) \\
+\mathbf{V}_{\mathrm{arb}}\mathbf{u_{T}}(t_{f-1})\\
 \vdots \\
-\mathbf{V}_{\mathrm{arb}}\mathbf{u_{T}}(t = 500)
+\mathbf{V}_{\mathrm{arb}}\mathbf{u_{T}}(t_{f-Q})
   \end{bmatrix} +
   \begin{bmatrix}
-\mathbf{V}_{\mathrm{arb}}\mathbf{u_{s}}(t = 1980)\\
-\mathbf{V}_{\mathrm{arb}}\mathbf{u_{s}}(t = 1970)\\
+\mathbf{V}_{\mathrm{arb}}\mathbf{u_{s}}(t_{f})\\
+\mathbf{V}_{\mathrm{arb}}\mathbf{u_{s}}(t_{f-1})\\
 \vdots \\
-\mathbf{V}_{\mathrm{arb}}\mathbf{u_{s}}(t = 500)
+\mathbf{V}_{\mathrm{arb}}\mathbf{u_{s}}(t_{f-Q})
   \end{bmatrix}  
   \right). 
 \end{align}
@@ -122,9 +122,9 @@ In order to relate water mass fluxes at the sediment core sites to the surface, 
 The matrix $\mathbf{A}$ consists of the mass fractions of waters propagated from any surface grid cell to any interior cell.
 % JG: at first glance, confused why this isn't c = A s
 
-The relationship between the water mass composition at each core site and every surface grid cell, can be obtained by inverting Supplemental Equation (\ref{eq:ss}) for $\mathbf{s_{c}}$, which is a vectorized surface map of source water contribution to some core site $c$. This is accomplished by setting $\mathbf{c}$ equivalent to a unit vector containing the location of the sediment core interpolated to the grid system used in the Total Matrix Intercomparison (TMI) method \cite{gebbie2010}. Therefore, $\mathbf{s_c}$ will be a normalized surface map, in which every grid cell will be assigned a value corresponding to the fraction of water at the core site location that is contributed by the specified surface grid cell. 
+The relationship between the water mass composition at each core site and every surface grid cell can be obtained by inverting Supplemental Equation (\ref{eq:ss}) for $\mathbf{s_{c}}$, which is a vectorized surface map of source water contribution to some core site $c$. This is accomplished by setting $\mathbf{c}$ equivalent to a unit vector containing the location of the sediment core interpolated to the grid system used in the Total Matrix Intercomparison (TMI) method \cite{gebbie2010}. Therefore, $\mathbf{s_c}$ will be a normalized surface map, in which every grid cell will be assigned a value corresponding to the fraction of water at the core site location that is contributed by the specified surface grid cell. 
 
-Modes characterizing the variability of the surface source water maps can be identified via singular value decomposition. Each vector, $\mathbf{s_{c}}$, can be transposed and concatenated into a matrix, $\mathbf{S}$, (with dimensions sediment core by TMI surface grid cell), which we then column-weight by a Gaussian distance matrix, $\bm{\mathcal{N}}$, with a radius of 1000 km in order to enforce spatial smoothing. The radius of the Gaussian distance matrix is chosen to reflect the spatial scale of large-scale variability in the surface ocean. Column-weighting will not affect the general character of the matrix, and only acts to spatially smooth the singular vectors. The singular value decomposition of the resultant matrix, $\bm{S \mathcal{N}}$ is taken, resulting in the following decomposition,
+Modes characterizing the variability of the surface source water maps can be identified via singular value decomposition. Each vector, $\mathbf{s_{c}}$, can be transposed and concatenated into a matrix, $\mathbf{S}$, (with dimensions sediment core by TMI surface grid cell), which we then column-weight by a Gaussian distance matrix, $\bm{\mathcal{N}}$, with a radius of 1000 km in order to enforce spatial smoothing and provide information about the distance between gridcells. The radius of the Gaussian distance matrix is chosen to reflect the spatial scale of large-scale variability in the surface ocean. Column-weighting will not affect the general character of the matrix, and only acts to spatially smooth the singular vectors. The singular value decomposition of the resultant matrix, $\bm{S \mathcal{N}}$ is taken, resulting in the following decomposition,
 \begin{equation}
 \label{eq:svd}
 \bm{S \mathcal{N}} = \mathbf{U\Sigma} \mathbf{V}^{T},
@@ -132,7 +132,7 @@ Modes characterizing the variability of the surface source water maps can be ide
 which contains orthonormal right singular vectors in the matrix, $\mathbf{V}$, that highlight common regions of importance in terms of source water contribution, while maximizing the orthogonality of the modes. The diagonal matrix, $\mathbf{\Sigma}$, contains the singular values, $\sigma_m$, associated with each mode $m$. The left singular vectors contained in $\mathbf{U}$ explain the normalized importance of each surface spatial mode to each core site. The right singular values can also be referred to as the empirical orthogonal functions (EOFs), while the left singular values, scaled by the singular values, can be referred to as the principal components (PC) (see Supplemental Figure \ref{fig:U}). We can compute the percentage of variance in $\bm{S\mathcal{N}}$ that each mode $i$ explains \cite[]{Hannachi-Jolliffe-2007:Empirical}, $r_i$, through the ratio of the norm of the singular value associated with each mode, $\sigma_i$, to the norm of the matrix $\mathbf{\Sigma}$, 
 \begin{equation}
 \label{eq:pervar}
-r_i = \frac{\sigma_i^2}{\sum_{i} \sigma_{i}^{2}}.
+r_i = \frac{\sigma_i^2}{\sum_{j} \sigma_{j}^{2}}.
 \end{equation}
 These spatial modes form a complete basis set for the steady-state problem, but can still be applied to the transient problem, as the only difference is propagation speed, not the spatial pattern of circulation.
 
@@ -147,7 +147,7 @@ The left singular vectors, or the unscaled principal components, of the surface 
 In Supplemental Figure \ref{fig:modemags}, we show the set of boundary propagator functions. These boundary propagator functions are the result of propagating the set of surface spatial modes identified in Supplemental Section \ref{sec:spatmode} through Supplemental Equation (\ref{eq:mtau}) and taking the finite time center difference. In Supplemental Figure \ref{fig:modemags}, we show the boundary propagator functions with respect to lagged time, which is the difference between observation time, $t_y$, and state vector time, $t_u$. 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = \textwidth]{modemags.png}}
-\caption[]{\label{fig:modemags} Each panel shows the unitless propagated mode magnitude, or boundary propagator function, interpolated at three sediment core sites. MC26A (1190 m) is shown in orange, MC22A (1535 m) in blue, and MC13A (2129 m) in purple. Boundary propagator functions as a function of lagged time from an initial surface signal. Note different magnitudes on y-axis. Boundary propagator functions are computed for 2000 years, but only the first 200 years are shown here. }
+\caption[]{\label{fig:modemags} Each panel shows the unitless propagated mode magnitude, or boundary propagator function, interpolated at three sediment core sites. MC26A (1190 m) is shown in orange, MC22A (1535 m) in blue, and MC13A (2129 m) in purple. Boundary propagator functions are computed as a function of lagged time from an initial surface signal. Note different magnitudes on y-axis. Boundary propagator functions are computed for 2000 years, but only the first 200 years are shown here. }
 \end{figure}
 
 \section{Expected statistics of surface spatial mode magnitudes \label{sec:Cuu}}
@@ -157,7 +157,7 @@ In order to set a realistic variance for the prior, $\mathbf{\hat{u_0}}$, we use
 \label{eq:Cuustats}
 \mathbf{Vu}_\mathrm{model}(t) = \mathbf{s}_\mathrm{model}(t).
 \end{equation}
-As an example, we show the $u_{\mathrm{model}}(t)$ timeseries associated with Mode 1 in Supplemental Figure \ref{fig:umodel}A. The Mode 1 $u_{\mathrm{model}}(t)$ timeseries has similar properties to the CESM2 mean temperature in a North Atlantic box centered on the region where Mode 1 has the most power (0$^{\circ}$-20$^{\circ}$E, 60$^{\circ}$N-80$^{\circ}$N). We compute the standard deviation of $\mathbf{u_{\mathrm{model}}}$ for each mode, at all times, which we refer to as the vector $\bm{\sigma}$ (Supplemental Figure \ref{fig:umodel}B). For the more coherent modes, such as Modes 1 and 2, $\bm{\sigma}$ has higher standard deviation. The standard deviation drops off as we get to higher number modes, which are less coherent. We assume that the variance of signals during the CE was less than 4 times 1850-1980 variability. Therefore, the diagonal elements of $\mathbf{C_{u_{0}u_0}}$ that are associated with temperature are populated according to $(4\sigma_{i})^{2}$.
+As an example, we show the $u_{\mathrm{model}}(t)$ timeseries associated with Mode 1 in Supplemental Figure \ref{fig:umodel}A. The Mode 1 $u_{\mathrm{model}}(t)$ timeseries has similar properties to the CESM2 mean temperature in a North Atlantic box centered on the region where Mode 1 has the most power (0$^{\circ}$-20$^{\circ}$E, 60$^{\circ}$N-80$^{\circ}$N). We compute the standard deviation of $\mathbf{u_{\mathrm{model}}}$ for each mode, at all times, which we refer to as the vector $\bm{\sigma}$ (Supplemental Figure \ref{fig:umodel}B). For the more coherent modes, such as Modes 1 and 2, $\bm{\sigma}$ has higher standard deviation. The standard deviation drops off as we get to higher number modes, which are less coherent. We assume that the variance of signals during the CE was less than 4 times 1850-1980 CE variability. Therefore, the diagonal elements of $\mathbf{C_{u_{0}u_0}}$ that are associated with temperature are populated according to $(4\sigma_{i})^{2}$.
 % JG: briefly you could mention that if you used 2\sigma or 1\sigma then your resulting error bars would have been smaller, i.e., you are being conservative here
 
 % JG: no mean removed from model output? shouldn't matter except for presentation purposes
@@ -166,66 +166,137 @@ As an example, we show the $u_{\mathrm{model}}(t)$ timeseries associated with Mo
 \caption[]{\label{fig:umodel} (\textbf{A}) $u_{\mathrm{model}}(t)$ timeseries for Mode 1 (black solid line, left axis), mean temperature in CESM2 output in box centered on focus of Mode 1 pattern (0$^{\circ}$-20$^{\circ}$E, 60$^{\circ}$N-80$^{\circ}$N) (red solid line, right axis). (\textbf{B}) Temporal standard deviation for each mode, $\bm{\sigma}$.}
 \end{figure}
 
-\subsection{Temporal variance of $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ and temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ correlation \label{sec:oxygenvar}}
+\subsection{Temporal variance of $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ and temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ regression \label{sec:oxygenvar}}
 
-The diagonal elements of $\mathbf{C_{u_{0}u_0}}$ that are associated with $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ are populated according to $\bm{\sigma}$, scaled by the temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ correlation constant, $\gamma$. The final constraint on the statistics of the prior is the expected correlation between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. This is controlled via the off-diagonal elements of $\mathbf{C_{u_0u_0}}$ associated with the covariance between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. For a given mode $m$, off-diagonal values will be populated by  $\rho (4\sigma_m)^2\gamma^{-1}$, where $\rho$ is the correlation coefficient, and controls how tightly the estimate will be held to the correlation constant $\gamma$. Despite non-perfect correlation between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ in reality, we choose to enforce perfect correlation by setting the correlation coefficient, $\rho$, equal to one. As there are not independent constraints on temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$, but linearity is enforced via the problem definition, the estimate will have a linear relationship between the two variables regardless of the correlation coefficient, $\rho$. In order for the estimate to have a linear relationship between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ at the correlation constant, $\gamma$, we must set the correlation coefficient, $\rho$, to 1. If the correlation coefficient were set to a lower value, the relationship between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ would still be perfectly correlated, but have a linear relationship different from that defined by the prescribed value $\gamma$.
+The diagonal elements of $\mathbf{C_{u_{0}u_0}}$ that are associated with $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ are populated according to $\bm{\sigma}$, scaled by the temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ regression value, $\gamma$. The final constraint on the statistics of the prior is the expected correlation between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. This is controlled via the off-diagonal elements of $\mathbf{C_{u_0u_0}}$ associated with the covariance between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. For a given mode $m$, off-diagonal values will be populated by  $\rho (4\sigma_m)^2\gamma^{-1}$, where $\rho$ is the correlation coefficient, and controls how tightly the estimate will be held to the regression value $\gamma$. Despite non-perfect correlation between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ in reality, we choose to enforce perfect correlation by setting the correlation coefficient, $\rho$, equal to one. As there are not independent constraints on temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$, but linearity is enforced via the problem definition, the estimate will have a linear relationship between the two variables regardless of the correlation coefficient, $\rho$. In order for the estimate to have a linear relationship between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ at the regression value, $\gamma$, we must set the correlation coefficient, $\rho$, to 1. If the correlation coefficient were set to a lower value, the relationship between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ would still be perfectly correlated, but have a linear relationship different from that defined by the prescribed regression value $\gamma$.
 
-In \ref{main-sec:corr}, we used output from a Last Millennium Ensemble (LME) realization of iCESM1.2 to estimate the temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ correlation value. Temperature and salinity timeseries have similar temporal characteristics between equivalent realizations of CESM1.1 and iCESM1.2 (Supplemental Figure \ref{fig:cesmts}). Both temperature and salinity, in each simulation, exhibit a characteristic ``red noise'' signal, with high frequency variability superimposed on lower frequency variability. The exact signals vary in each simulation, with the most unifying feature being a subtle CE cooling. In contrast, the iCESM1.2 $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ timeseries exhibits step-function characteristics, with high frequency variability and some extreme values superimposed. We would expect the salinity and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ signals to have fairly similar characteristics, as they are affected by similar processes. 
+In \ref{main-sec:corr}, we used output from a Last Millennium Ensemble (LME) realization of iCESM1.2 to estimate the temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ regression value. Temperature and salinity timeseries have similar temporal characteristics between equivalent realizations of CESM1.1 and iCESM1.2 (Supplemental Figure \ref{fig:cesmts}). Both temperature and salinity, in each simulation, exhibit a characteristic ``red noise'' signal, with high frequency variability superimposed on lower frequency variability. The exact signals vary in each simulation, with the most unifying feature being a subtle CE cooling. In contrast, the iCESM1.2 $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ timeseries exhibits step-function characteristics, with high frequency variability and some extreme values superimposed. We would expect the salinity and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ signals to have fairly similar characteristics, as they are affected by similar processes. 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = \textwidth]{cesm_timeseries.png}}
-\caption[]{\label{fig:cesmts} Timeseries from an interior grid cell near the sediment core locations (51.6 $^{\circ}$N, 21.9$^{\circ}$W, 1500m) of (\textbf{A}) temperature and (\textbf{B}) salinity in a full-forcing ensemble member 6 of the CESM1.1 Last Millennium Ensemble \cite[]{ottobliesner16}, and (\textbf{C}) temperature, (\textbf{D}) salinity, and (\textbf{E}) $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ in realization 002 of the iCESM1.2 Last Millennium Ensemble \cite[]{Brady-Stevenson-2019:Connected}. In all figures, the gray line shows the monthly output from each model, and the black line shows the output with a 5-year binned averaging scheme applied for all output after 950 CE. In Figure \ref{main-fig:td18O}, only data after the year 950 is used, in order to minimize any effects from model spin-up.}
+\caption[]{\label{fig:cesmts} Timeseries from an interior grid cell near the sediment core locations (51.6$^{\circ}$N, 21.9$^{\circ}$W, 1500 m) of (\textbf{A}) temperature and (\textbf{B}) salinity in a full-forcing ensemble member 6 of the CESM1.1 Last Millennium Ensemble \cite[]{ottobliesner16}, and (\textbf{C}) temperature, (\textbf{D}) salinity, and (\textbf{E}) $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ in realization 002 of the iCESM1.2 Last Millennium Ensemble \cite[]{Brady-Stevenson-2019:Connected}. In all figures, the gray line shows the monthly output from each model, and the black line shows the output with a 5-year binned averaging scheme applied for all output after 950 CE. In Figure \ref{main-fig:td18O}, only data after the year 950 CE is used in order to minimize any effects from model spin-up.}
 \end{figure}
 
-In Section \ref{main-sec:gammasens}, we suggested that an alternative approach to calculating a correlation constant, $\gamma$, would be to define the relationship based upon the correlation between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ in a depth transect at this location, which we obtain from the output of \citeA{gebbie2010}. In Supplemental Figure \ref{fig:td18O}, we find a relationship of $T = 16S$, which is much higher than the relationship identified in coupled climate model output in \ref{main-sec:corr} ($T = 5.3S$). The $S = 2.3\delta^{18}\mathrm{O}$ relationship identified in Supplemental Figure \ref{fig:td18O} is closer to the global mixing line of $S = 2\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ than the value identified in the coupled climate model output. This is expected, as we are now looking at a spatial relationship, not a temporal relationship.
+In Section \ref{main-sec:gammasens}, we suggested that an alternative approach to calculating a regression value, $\gamma$, would be to define the relationship based upon the correlation between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ in a depth transect at this location, which we obtain from the output of \citeA{gebbie2010}. In Supplemental Figure \ref{fig:td18O}, we find a relationship of $T = 16S$, which is much higher than the relationship identified in coupled climate model output in \ref{main-sec:corr} ($T = 5.3S$). The $S = 2.3\delta^{18}\mathrm{O}$ relationship identified in Supplemental Figure \ref{fig:td18O} is closer to the global mixing line of $S = 2\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ than the value identified in the coupled climate model output. This is expected, as we are now looking at a spatial relationship, not a temporal relationship.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = \textwidth]{T_v_d18O.png}}
-\caption[]{Relationships between (\textbf{A}) temperature and salinity, and (\textbf{B}) salinity and $\delta^{18}\mathrm{O}_{\textrm{seawater}}$ in a depth transect at the gridcell closest to the sediment core locations (51.6 $^{\circ}$N, 21.9$^{\circ}$W) in the Total Matrix Intercomparison output \cite{gebbie2010}. The red line shows the linear least squares fit to the central estimate of the data in each plot. In \textbf{B}, the red dashed line shows the global $S = 2 \delta^{18}\mathrm{O}$ mixing line \cite[]{Schmidt-1999:Error, Gebbie2006}. \label{fig:td18O}}
+\caption[]{Relationships between (\textbf{A}) temperature and salinity, and (\textbf{B}) salinity and $\delta^{18}\mathrm{O}_{\textrm{seawater}}$ in a depth transect at the gridcell closest to the sediment core locations (51.6$^{\circ}$N, 21.9$^{\circ}$W) in the Total Matrix Intercomparison output \cite{gebbie2010}. The red line shows the linear least squares fit to the central estimate of the data in each plot. In \textbf{B}, the red dashed line shows the global $S = 2 \delta^{18}\mathrm{O}$ mixing line \cite[]{Schmidt-1999:Error, Gebbie2006}. \label{fig:td18O}}
 \end{figure}
 
-The two relationships identified in Supplemental Figure \ref{fig:td18O} allow us to arrive at a correlation value $T = 36.8 \delta^{18}\mathrm{O}_{\mathrm{seawater}}$. In Section \ref{main-sec:gammasens}, we derive a model for the temperature change over the CE as a result of an identified internal $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ change and a temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ correlation value, and assess the sensitivity of our results to different correlation values. 
+The two relationships identified in Supplemental Figure \ref{fig:td18O} allow us to arrive at a regression $T = 36.8 \delta^{18}\mathrm{O}_{\mathrm{seawater}}$. In Section \ref{main-sec:gammasens}, we derive a model for the temperature change over the CE as a result of an identified internal $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ change and a temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ regression value, and assess the sensitivity of our results to different regression values.
+\clearpage 
+\section{Optimized values: cost functions and mode magnitudes}
+\begin{table}
+\caption{Observational cost function ($\mathbf{n}^{T}\mathbf{C_{nn}}^{-1}\mathbf{n}$) and prior cost function ($\mathbf{u_0}^T\mathbf{C_{u_0u_0}}^{-1}\mathbf{u_0} $)  values for all presented estimates. \label{tab:cost}}
+\centering
+\begin{tabular}{l | c | c | c }
+\hline
+ Estimate & Temporal Coverage [years CE] & $\mathbf{n}^T\mathbf{C_{nn}}^{-1}\mathbf{n}$ & $\mathbf{u_0}^T\mathbf{C_{u_0u_0}}^{-1}\mathbf{u_0} $ \\ 
+\hline
+  \texttt{OPT-11} & 1470-1980 & 28.7 & 0.996 \\
+  \texttt{OPT-3}  &  800-1980 & 12.3 & 10.5 \\
+    \texttt{OPT-3-GLOBAL} & 800-1980 & 17.0 & 20.3 \\
+  \texttt{OPT-3-MODE2}  & 800-1980 &  122.5 & 16.7 \\
 
-\section{Mode magnitude estimates}
+\hline
+\end{tabular}
+\end{table}
+
 All 11 optimized mode magnitudes ($\mathbf{\tilde{\hat{u}}}$) from \texttt{OPT-3} and \texttt{OPT-11} are shown in Supplemental Figure \ref{fig:u0utilde}, to complement the Mode 1 plot in Figure \ref{main-fig:utilde}.
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = \textwidth]{u0utilde.png}}
 \caption[]{\label{fig:u0utilde} For all 11 modes, the prior, $\mathbf{u_0}$, and associated uncertainty $\mathbf{C_{u_0u_0}}$ (gray line and shading) is shown. Central estimate and 1$\sigma$ uncertainty of optimized mode magnitude $\mathbf{\tilde{u}}$ for the \texttt{OPT-11} (red line and shading) and \texttt{OPT-3} (blue line and shading) estimates. Panels are titled with their associated mode number.}
 \end{figure}
-
-% JG: suggest removing this section and figures, just keep in thesis, no need to make this decision now
-\section{Estimate comparison to instrumental record \label{sec:instrumental}}
-We can compute time-varying surface maps of temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ via Equation (\ref{main-eq:surfrecon}), which is shown in Figure \ref{main-fig:sst}. Although observational time series on relevant timescales are rare, we average the SST map in a Labrador Sea box, and compare it to a digitized long-term Labrador Sea Water observational dataset \cite[]{LSG--1998:Labrador} in Supplemental Figure \ref{fig:labcomp}. An approximation of salinity can be arrived at from our $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ reconstruction by using the ratio between salinity and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ changes of 0.5255 \cite{marchitto}, which can be compared to the long-term salinity record from \citeA{LSG--1998:Labrador}.
-
+\clearpage
+\section{$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ reconstruction}
 \begin{figure}[htbp]
-\centerline{\includegraphics[width = \textwidth]{labcompallvold.png}}
-\caption[]{\label{fig:labcomp} \textbf{(A)} Reconstructed Labrador Sea (60$^{\circ}$W-30$^{\circ}$E, 55$^{\circ}$N-64$^{\circ}$N) temperature and \textbf{(B)} salinity (computed as $0.5255 \times \delta^{18}\mathrm{O}_{\mathrm{seawater}}$) over the instrumental period (1850-1970) is shown for \texttt{OPT-3} (blue) and \texttt{OPT-11} (red) estimates. Solid line shows digitized Labrador Sea record \cite{LSG--1998:Labrador}. All records are shown as an anomaly from 1970.}
+\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/meantsd18Oallvold.png}}
+\caption[]{\label{fig:meantsd18o} Mean area-weighted surface North Atlantic
+  $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ anomaly
+  (50$^{\circ}$W-20$^{\circ}$E, 50$^{\circ}$N-90$^{\circ}$N) for \texttt{OPT-11} (red)
+  and \texttt{OPT-3} (blue), with a 50-year rolling mean applied and
+  1-$\sigma$ uncertainty as shaded region. All timeseries are displayed as
+  anomalies from their 1850-1970 CE mean. The right axis shows
+  $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ converted to salinity via the
+  identified regression in \ref{main-sec:corr}. }
 \end{figure}
+% % JG: suggest removing this section and figures, just keep in thesis, no need to make this decision now
+% \section{Estimate comparison to instrumental record \label{sec:instrumental}}
+% We can compute time-varying surface maps of temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ via Equation (\ref{main-eq:surfrecon}), which is shown in Figure \ref{main-fig:sst}. Although observational time series on relevant timescales are rare, we average the SST map in a Labrador Sea box, and compare it to a digitized long-term Labrador Sea Water observational dataset \cite[]{LSG--1998:Labrador} in Supplemental Figure \ref{fig:labcomp}. An approximation of salinity can be arrived at from our $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ reconstruction by using the ratio between salinity and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ changes of 0.5255 \cite{marchitto}, which can be compared to the long-term salinity record from \citeA{LSG--1998:Labrador}.
 
-We expect some smoothing in our reconstruction, as a result of using benthic records which do not experience near-surface variability nor seasonal variations. This is evident in both the temperature and salinity panels in Supplemental Figure \ref{fig:labcomp}. However, the decadal-scale variability of the Labrador Sea Water timeseries is within the range of our estimate's uncertainty at nearly all timesteps. 
+% \begin{figure}[htbp]
+% \centerline{\includegraphics[width = \textwidth]{labcompallvold.png}}
+% \caption[]{\label{fig:labcomp} \textbf{(A)} Reconstructed Labrador Sea (60$^{\circ}$W-30$^{\circ}$E, 55$^{\circ}$N-64$^{\circ}$N) temperature and \textbf{(B)} salinity (computed as $0.5255 \times \delta^{18}\mathrm{O}_{\mathrm{seawater}}$) over the instrumental period (1850-1970) is shown for \texttt{OPT-3} (blue) and \texttt{OPT-11} (red) estimates. Solid line shows digitized Labrador Sea record \cite{LSG--1998:Labrador}. All records are shown as an anomaly from 1970.}
+% \end{figure}
 
+% We expect some smoothing in our reconstruction, as a result of using benthic records which do not experience near-surface variability nor seasonal variations. This is evident in both the temperature and salinity panels in Supplemental Figure \ref{fig:labcomp}. However, the decadal-scale variability of the Labrador Sea Water timeseries is within the range of our estimate's uncertainty at nearly all timesteps. 
+\clearpage 
+\section{Figure \ref{main-fig:ocean2kcomp} with Ocean2k Records}
+Here, we show \ref{main-fig:ocean2kcomp} in addition to the Ocean2k records \cite{ocean2k}. 
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = \textwidth, trim = {2.5cm 5cm 4cm 1cm}]{ocean2kcomp_supp.png}}
+\caption[]{\label{fig:ocean2kcomp} Companion to Figure \ref{main-fig:ocean2kcomp}. The linear least squares trend
+  estimated at every grid cell in \texttt{OPT-3} between 1140-1900 CE (contours),
+  compared to the linear least squares trend at every Ocean2k record
+  within the region of interest, over the same time period, where data
+  is available. Ocean2k records are indicated by a dot with a white
+  outline, and use the same colorbar as the contoured \texttt{OPT-3}
+  cooling trend estimate. The Arctic records
+    of \citeA{Bonnet-Vernal-2010:Variability} and 
+    \citeA{Spielhagen-Werner-2011:Enhanced} have very close spatial proximity and
+    are thus indicated by a single dot with two colors. The smaller panels show
+    each Ocean2k record (black line), and the linear least squares trend (red line).
+    The linear least squares trend for each record is also indicated by the value
+  in the upper left corner of each panel.}
+\end{figure}
 \section{Uniqueness of estimates: \texttt{OPT-3-GLOBAL} and \texttt{OPT-3-MODE2} \label{sec:smest}}
-  The procedure for generating both \texttt{OPT-3-GLOBAL} and \texttt{OPT-3-MODE2} is identical to that described for \texttt{OPT-3}. The impulse response due to a global surface signal bears similarity to the impulse response due to Mode 1 (Supplemental Figure \ref{fig:modemags}), in that the signal is fairly similar when observed at the three sediment cores of interest. The response at the sediment core sites due to a Mode 2 impulse response consists of a negative signal at MC26A and MC22A, with larger amplitude on MC26A than MC22A, and a positive signal at MC13A. Mode 2 is characterized by a negative anomaly south of Iceland, and a positive anomaly north of Iceland (Figure \ref{main-fig:svdmodes}). Waters from the Nordic Seas north of Iceland are expected to experience deep convection, and will affect the deep sediment core site MC13A at 2129 m more than the shallower sites MC26A (1190 m) and MC22A (1535 m), hence why the MC13A experiences a negative signal due to Mode 2, while MC26A and MC22A experience a positive signal. 
+  The procedure for generating both \texttt{OPT-3-GLOBAL} and \texttt{OPT-3-MODE2} is identical to that described for \texttt{OPT-3}. The impulse response due to a global surface signal (Supplemental Figure \ref{fig:impulse}) bears similarity to the impulse response due to Mode 1 (Supplemental Figure \ref{fig:modemags}), in that the signal is fairly similar when observed at the three sediment cores of interest. The response at the sediment core sites due to a Mode 2 impulse response consists of a negative signal at MC26A and MC22A, with larger amplitude on MC26A than MC22A, and a positive signal at MC13A. Mode 2 is characterized by a negative anomaly south of Iceland, and a positive anomaly north of Iceland (Figure \ref{main-fig:svdmodes}). Waters from the Nordic Seas north of Iceland are expected to experience deep convection, and will affect the deep sediment core site MC13A at 2129 m more than the shallower sites MC26A (1190 m) and MC22A (1535 m), hence why the MC13A experiences a negative signal due to Mode 2, while MC26A and MC22A experience a positive signal. 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = 0.8\textwidth]{Mode2.png}}
 \caption[]{\label{fig:impulse} Boundary propagator function for a (\textbf{A}) global surface signal and (\textbf{B}) a Mode 2 surface signal, interpolated at the three sediment core sites in the \texttt{OPT-3} estimate. MC26A (1190 m) is shown in orange, MC22A (1535 m) in blue, and MC13A (2129 m) in purple.}
 \end{figure}
 
 % JG: nice section that would go well in an appendix if we could find the space, keep this in mind when we get a chance to revise ms
-\section{Sensitivity of estimate to temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ correlation \label{sec:gammasens}}
-In Supplemental Figure \ref{fig:gamma}A, we estimate mean high-latitude North Atlantic temperature change as a function of the correlation constant, $\gamma$. We find that the mean high-latitude North Atlantic temperature change required to explain a change in $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ of 0.08$\permil$ (an approximation of the mean change of the sediment core records) is largely stable for values of $\gamma$ greater than 10 K$\permil^{-1}$. Both the value used in the main text ($\gamma = 14.8$ K$\permil^{-1}$) and the alternative value from \ref{main-sec:corr} ($\gamma = 36.8$ K$\permil^{-1}$) are in the stable region of this equation. However, as $\gamma$ decreases towards the critical point of $\gamma = \alpha^{-1} = 4.45 $ K$\permil^{-1}$, the mean high-latitude North Atlantic temperature rapidly decreases to negative infinity. For values of $\gamma$ greater less than, but near the critical value, the mean high latitude North Atlantic temperature change is positive. 
+\section{Sensitivity of estimate to temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ regression \label{sec:gammasens}}
+In Supplemental Figure \ref{fig:gamma}A, we estimate mean high-latitude North Atlantic temperature change as a function of the regression value, $\gamma$. We find that the mean high-latitude North Atlantic temperature change required to explain a change in $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ of 0.08$\permil$ (an approximation of the mean change of the sediment core records) is largely stable for values of $\gamma$ greater than 10 K$\permil^{-1}$. Both the value used in the main text ($\gamma = 14.93$ K$\permil^{-1}$) and the alternative value from Suuplemental Section \ref{sec:oxygenvar} ($\gamma = 36.8$ K$\permil^{-1}$) are in the stable region of this equation. However, as $\gamma$ decreases towards the critical point of $\gamma = \alpha^{-1} = 4.45 $ K$\permil^{-1}$, the mean high-latitude North Atlantic temperature rapidly decreases to negative infinity. For values of $\gamma$ greater less than, but near the critical value, the mean high latitude North Atlantic temperature change is positive. 
 
-In \ref{main-sec:corr} and Supplemental Section \ref{sec:oxygenvar}, we estimate the temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ correlation constant, $\gamma$, by estimating the salinity:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ correlation constant, which we will refer to as $\gamma_{s}$, and estimating the temperature:salinity correlation constant, which we will refer to as $\gamma_{t}$, and multiplying these two constants together, such that,
+In \ref{main-sec:corr} and Supplemental Section \ref{sec:oxygenvar}, we estimate the temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ regression value, $\gamma$, by estimating the salinity:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ regression value, which we will refer to as $\gamma_{s}$, and estimating the temperature:salinity regression value, which we will refer to as $\gamma_{t}$, and multiplying these two value together, such that,
 \begin{equation}
 \label{eq:4}
 T = \gamma_{t}\gamma_{s} \delta^{18}\mathrm{O}_{\mathrm{seawater}}. 
 \end{equation}
-In Supplemental Figure \ref{fig:gamma}B, we examine the sensitivity of high-latitude North Atlantic temperature change to both $\gamma_{s}$ and $\gamma_{t}$. In the estimates provided in the main text, we use a correlation constant of $\gamma = 14.8 $K$\permil^{-1}$, which is obtained from isotope-enabled coupled climate model output in \ref{main-sec:corr}. This value is formed from the subordinate correlation constants $\gamma_{t}$ = 5.3 K (g kg$^{-1}$)$^{-1}$ and $\gamma_{s}$ = 2.3 g kg$^{-1}\permil^{-1}$. In Supplemental Section \ref{sec:oxygenvar}, we obtain subordinate correlation constants of $\gamma_{t} = 16 $ K(g kg$^{-1}$)$^{-1}$ and $\gamma_{s}$ = 2.3 g kg$^{-1}\permil^{-1}$ using temperature, salinity, and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ values at the sediment core site locations in the output of \citeA{gebbie2010}. As in Supplemental Figure \ref{fig:gamma}A, we find that the mean high-latitude North Atlantic temperature change is largely insensitive to either of the two estimates of $\gamma$. In order for the estimate of mean high-latitude North Atlantic temperature change to significantly differ from the magnitude presented here, it would require a significant decrease in the $\gamma$ correlation constant.  
+In Supplemental Figure \ref{fig:gamma}B, we examine the sensitivity of high-latitude North Atlantic temperature change to both $\gamma_{s}$ and $\gamma_{t}$. In the estimates provided in the main text, we use a regression value of $\gamma = 14.93 $ K$\permil^{-1}$, which is obtained from isotope-enabled coupled climate model output in \ref{main-sec:corr}. This value is formed from the subordinate regression values $\gamma_{t}$ = 5.3 K (g kg$^{-1}$)$^{-1}$ and $\gamma_{s}$ = 2.3 g kg$^{-1}\permil^{-1}$. In Supplemental Section \ref{sec:oxygenvar}, we obtain subordinate regression values of $\gamma_{t} = 16 $ K(g kg$^{-1}$)$^{-1}$ and $\gamma_{s}$ = 2.3 g kg$^{-1}\permil^{-1}$ using temperature, salinity, and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ values at the sediment core site locations in the output of \citeA{gebbie2010}. As in Supplemental Figure \ref{fig:gamma}A, we find that the mean high-latitude North Atlantic temperature change is largely insensitive to either of the two estimates of $\gamma$. In order for the estimate of mean high-latitude North Atlantic temperature change to significantly differ from the magnitude presented here, it would require a significant decrease in the $\gamma$ regression value.  
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = \textwidth]{gamma.png}}
-\caption[]{\label{fig:gamma} (\textbf{A}) North Atlantic CE temperature change necessary to explain $\Delta \delta^{18}\mathrm{O}_{\mathrm{calcite}} = 0.08$ $\permil$ according to Equation (\ref{main-eq:2}) plotted for correlation constant values from $\gamma = 5$ K $\permil^{-1}$ to $\gamma = 40$  K $\permil^{-1}$. The two unfilled circle markers depict the values of $\gamma$ discussed in the main text $\gamma = 14.8$ K $\permil^{-1}$ and $\gamma = 36.8$K $\permil^{-1}$. The dashed gray line shows the limit value of $\Delta T = -0.36$ K. The dotted gray line shows the critical value of $\gamma = \alpha^{-1}$. (\textbf{B}) North Atlantic CE temperature change necessary to explain $\Delta \delta^{18}\mathrm{O}_{\mathrm{calcite}} = 0.08$ $\permil$ as a function of both the temperature-salinity correlation constant, $\gamma_{t}$ ($T = \gamma_{t}S$), and the salinity-$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ correlation constant $\gamma_{s}$ ($S = \gamma_{s}\delta^{18}\mathrm{O}_{\mathrm{seawater}}$). The unfilled circles show the values identified in the text of ($\gamma_{t} = 5.3 $ K (g kg$^{-1}$)$^{-1}$, $\gamma_{s}$ = 2.8 g kg$^{-1}\permil^{-1}$) and ($\gamma_{t} = 16 $ K (g kg$^{-1}$)$^{-1}$, $\gamma_{s}$ = 2.3 g kg$^{-1}\permil^{-1}$).}
+\caption[]{\label{fig:gamma} (\textbf{A}) North Atlantic CE temperature change necessary to explain $\Delta \delta^{18}\mathrm{O}_{\mathrm{calcite}} = 0.08$$\permil$ according to Equation (\ref{main-eq:2}) plotted for regression values from $\gamma = 5$ K$\permil^{-1}$ to $\gamma = 40$  K$\permil^{-1}$. The two unfilled circle markers depict the values of $\gamma$ discussed in the main text $\gamma = 14.93$ K$\permil^{-1}$ and $\gamma = 36.8$ K$\permil^{-1}$. The dashed gray line shows the limit value of $\Delta T = -0.36$ K. The dotted gray line shows the critical value of $\gamma = \alpha^{-1}$. (\textbf{B}) North Atlantic CE temperature change necessary to explain $\Delta \delta^{18}\mathrm{O}_{\mathrm{calcite}} = 0.08$$\permil$ as a function of both the temperature-salinity regression value, $\gamma_{t}$ ($T = \gamma_{t}S$), and the salinity-$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ regression value, $\gamma_{s}$ ($S = \gamma_{s}\delta^{18}\mathrm{O}_{\mathrm{seawater}}$). The unfilled circles show the values identified in the text of ($\gamma_{t} = 5.3 $ K(g kg$^{-1}$)$^{-1}$, $\gamma_{s}$ = 2.8 g kg$^{-1}\permil^{-1}$) and ($\gamma_{t} = 16 $ K(g kg$^{-1}$)$^{-1}$, $\gamma_{s}$ = 2.3 g kg$^{-1}\permil^{-1}$).}
 \end{figure}
 
+\section{Timestep choice and estimate sensitivity \label{sec:timestep}}
+Although the average radiocarbon age uncertainty is 40 years for these records, the age model is constrained by other independent information, such as the sediment accumulation rate and its autocorrelation, estimated through $^{210}$Pb activity. The median spacing of the age models from \citeA{Lu-Oppo-2023:Surface} is between 1.1 and 17.9 years (Supplemental Figure \ref{fig:medianagemodelres}). In geoChronR, measurements within a resolution are binned into temporal intervals larger than the median resolution, with the interval chosen to intentionally degrade the median age resolution \cite[]{McKay-Emile-Geay-2021:R}. For the \citeA{Lu-Oppo-2023:Surface}, this is a 5- to 10-year bin \cite{Lu-Oppo-2023:Surface}. We choose a timestep of 10 years to reflect the larger of these two bin sizes.
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = 0.5\textwidth]{/home/brynn/Code/OPTinv.jl/plots/medianagemodelres.png}}
+\caption[]{\label{fig:medianagemodelres} Median age model resolution of all 1000 realizations of the Bacon age model for each sediment core.}
+\end{figure}
+
+In addition, we re-run our main text experiments with a 50-year timestep, and find that our major results do not demonstrably change (Supplemental Figure \ref{fig:meants50yr}).
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = \textwidth]{/home/brynn/Code/OPTinv.jl/plots/meantsallvold50yr.png}}
+\caption[]{\label{fig:meants50yr} Mean North Atlantic temperature anomaly
+  (50$^{\circ}$W-20$^{\circ}$E, 50$^{\circ}$N-90$^{\circ}$N) for \texttt{OPT-11} with a 50-year timestep (red)
+  and \texttt{OPT-3} with a 50-year timestep (blue), 
+  1-$\sigma$ uncertainty as shaded region, and 20 realizations of the Last
+  Millennium Reanalysis (thin black lines) with a 50-year rolling mean applied.
+  \cite[]{Hakim-Emile-Geay-2016:last, Tardif2019}. Median global Ocean2k
+  temperature is shown in 200 year bins, with the median value as the
+  thick gray line, and the boxed, gray-shaded area denoting the
+  5\%-95\% confidence interval. Inset shows both
+  estimates compared to the mean HadSST4
+  \cite{Kennedy-Rayner-2019:Ensemble} temperature anomaly in the same
+  region, with a 50-year rolling mean applied.}
+\end{figure}
+
+\clearpage
 % JG: impressive attention to detail here that the reviewers may appreciate
 \section{Mathematical notation}
 In this manuscript, the tilde (e.g. $\tilde{x}$) is used to denote a quantity that has either been estimated via the Gauss-Markov Theorem, or derived from a quantity that has been estimated via the Gauss-Markov Theorem. The hat (e.g. $\hat{\mathbf{x}}$) is used to denote a vector quantity that has been concatenated in time. The prime notation (e.g. $\mathbf{X}'$) is used to denote some type of propagator matrix. 
@@ -282,9 +353,10 @@ $\mathbf{y}$ & mean $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ according to age 
   \hline
   $\mathbf{o_{c}}$ & interpolation vector, maps between an interior concentration field $\mathbf{c}$ and some arbitrary interior location & unitless & $N_{i}$ \\
   \hline
-  $\mathbf{\hat{q}_{T}}$ & concatenated vector of $\mathbf{q}_{T}$ vectors at all times & K & $N_{tu} \cdot N_{s}$ \\
+  $\mathbf{\hat{q}_{T}}$ & concatenated vector of $\mathbf{q_{T}}$ vectors at all times & K & $N_{tu} \cdot N_{s}$ \\
   \hline
-  $\mathbf{\hat{q}_{s}}$ & concatenated vector of $\mathbf{q}_{s}$ vectors at all times & $\permil$ & $N_{tu} \cdot N_{s}$ \\
+  $\mathbf{\hat{q}_{s}}$ & concatenated vector of $\mathbf{q_{s}}$ vectors at all times & $\permil$ & $N_{tu} \cdot N_{s}$ \\
+  
   \hline
   $\mathbf{q}_i$ & TMI surface ocean vector that is zero everywhere, except for grid cell $i$, which is set to 1 & unitless & $N_{s}$ \\
   \hline   
@@ -334,17 +406,17 @@ $\mathbf{y}$ & mean $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ according to age 
   \hline
   $\bm{\sigma}$ & temporal variance of $\mathbf{u_{\mathrm{model}}}$ & K$^{2}$ & $N$\\
   \hline
-  $\gamma$ & correlation constant, $T = \gamma \delta^{18}\mathrm{O}_{\mathrm{seawater}}$ & K $\permil^{-1}$ & scalar \\
+  $\gamma$ & regression value, $T = \gamma \delta^{18}\mathrm{O}_{\mathrm{seawater}}$ & K $\permil^{-1}$ & scalar \\
   \hline
-  $\gamma_{s}$ & salinity correlation constant, $S = \gamma_{s} \delta^{18}\mathrm{O}_{\mathrm{seawater}}$ & g kg$^{-1}$ $\permil^{-1}$ & scalar \\
+  $\gamma_{s}$ & salinity regression value, $S = \gamma_{s} \delta^{18}\mathrm{O}_{\mathrm{seawater}}$ & g kg$^{-1}$ $\permil^{-1}$ & scalar \\
   \hline
-  $\gamma_{t}$ & temperature correlation constant, $T = \gamma_{s} S$ & K (g kg$^{-1}$)$^{-1}$ & scalar \\
+  $\gamma_{t}$ & temperature regression value, $T = \gamma_{s} S$ & K (g kg$^{-1}$)$^{-1}$ & scalar \\
   \hline
   $\rho$ & correlation coefficient, controls how tightly estimate is held to $\gamma$ & unitless & scalar \\ 
   \hline
   $\mathbf{\hat{u}}$ & state vector, concatenated $\mathbf{\hat{u_{T}}}$ and $\mathbf{\hat{u}_{s}}$ vectors& \footnote{$\bm{\hat{u}}$: domain = concatenation of a $K$ unit vector of length $N_{tu} \cdot N$ and a $\permil$ unit vector of length $N_{tu}\cdot N$} & $N_{tu} \cdot N \cdot 2 $\\
   \hline
-  $\mathbf{\hat{y}}$ & observation vector, all sediment core record $\delta^{18}\mathrm{O}$ observations as an anomaly from 1850-1980, at all times & $\permil$ & $N_{ty} \cdot N_{c}$ \\
+  $\mathbf{\hat{y}}$ & observation vector, all sediment core record $\delta^{18}\mathrm{O}$ observations as an anomaly from 1850-1980 CE, at all times & $\permil$ & $N_{ty} \cdot N_{c}$ \\
   \hline
   $\mathbf{E}$ & model matrix, maps between $\mathbf{\hat{u}}$ and $\mathbf{\hat{y}}$&  \footnote{$\mathbf{E}$: range = $\permil$, domain = concatenation of a $K$ unit vector of length $N_{tu} \cdot N$ and a $\permil$ unit vector of length $N_{tu} \cdot N$} & $(N_{ty} \cdot N_{c}) \times (N_{tu} \cdot N \cdot 2) $\\
   \hline

@@ -1,3 +1,4 @@
+using PythonCall
 if ! @isdefined(solutions)
     include("transientinversion.jl")
 end
@@ -82,6 +83,7 @@ for (i, sol) in enumerate(solutions)
 end
 
 
+
 # ==================== SLOPE AT EVERY POINT, COMPARE TO OC2k SLOPES ==== #
 sol = oldc
 Tu = Array(sol.ũ.dims[1])
@@ -126,6 +128,7 @@ oc2k, oc2kdata = loadOcean2k()
 
 lon = oc2k[!, "lon"]
 lat = oc2k[!, "lat"]
+depth = oc2k[!, "depth"]
 recinds = intersect(findall(x->-50 < x < 20, lon), findall(x->50<x<90, lat))
 recs = oc2k[recinds, "name"]
 
@@ -147,17 +150,24 @@ for (i, r) in enumerate(recs)
     age = getrid(oc2kdata[!, inds[1]])
     sst = getrid(oc2kdata[!, inds[2]])
     post1000 = findall(x->1140<x<1900, age)
-    if NaNMath.maximum(age) > 1500
+    #if NaNMath.maximum(age) > 1500
         lls, C = linearleastsquares(age[post1000], sst[post1000])
         @show lls[1] * 1000
         d[r] = (lat_, lon_, lls[1] * 1000)
-    end
+    #end
 end
 for (i, k) in enumerate(keys(d))
-    if d[k][1] < 70 #don't include disagreeing Arctic recs
+    if k != "Atlantic0220Thornalley2009__RAPiD-12-1K" #don't include too short Thornalley rec
+    
         s = scatter(d[k][2], d[k][1], c = d[k][3], vmin = -3, vmax = 3, cmap = cm.balance, s = 100, edgecolors = "white", transform = noproj, zorder = 100000,linewidths = 2)
     end
 end
+key1 = "Arctic1147Bonnet2010_JM-06-WP-04-MCB"
+key2 = "Arctic1148Spielhagen2011_MSM5/5-712"
+
+MS = pyimport("matplotlib.markers").MarkerStyle
+scatter(d[key1][2], d[key1][1], c = d[key1][3], vmin = -3, vmax = 3,  cmap = cm.balance, s = 100, edgecolors = "white", transform = noproj, zorder = 100000,linewidths = 2, marker = MS("o", fillstyle = "right"))
+scatter(d[key2][2], d[key2][1], c = d[key2][3], vmin = -3, vmax = 3,  cmap = cm.balance, s = 100, edgecolors = "white", transform = noproj, zorder = 100000,linewidths = 2, marker = MS("o", fillstyle = "left"))
 gl = ax.gridlines(draw_labels = true)
 gl.top_labels = false
 gl.right_labels = false
@@ -165,4 +175,36 @@ gl.bottom_labels = false
 
 tight_layout()
 savefig(plotsdir("ocean2kcomp.png"), dpi = 600)
+
+# ===== A SUPPLEMENTAL FIGURE ========== #
+GS = pyimport("matplotlib.gridspec").GridSpec
+subplotdir = plotsdir("oceank2compsub")
+!isdir(subplotdir) && mkdir(subplotdir)
+               
+corenames = Dict(recs .=> ["MD95-2011", "ODP-162-984", "ENAM9606,M200309", "MD99-2275", "RAPiD-21-3K", "RAPiD-12-1K", "JM-06-WP-04-MCB", "MSM5-5-712"])
+
+for (i, r) in enumerate(recs)
+    figure()        
+    inds = findall(x->occursin(r[begin:20], x), names(oc2kdata))
+    cutoff = findall(x->x=='_', names(oc2kdata)[inds[1]])[1]
+    lab = names(oc2kdata)[inds[1]][begin:cutoff-1]
+    age = getrid(oc2kdata[!, inds[1]])
+    sst = getrid(oc2kdata[!, inds[2]])
+    post1000 = findall(x->1140<x<1900, age)
+    lls, C = linearleastsquares(age[post1000], sst[post1000])
+    plot(age, sst, label = r, color = "black", linewidth = 5)
+    plot(age, age .* lls[1] .+ lls[2], color = "red", linewidth = 5) 
+    xlim(1140,1900)
+    xticks(1200:200:1800, 1200:200:1800, fontsize = 15)
+    yt = gca().get_yticks()
+    yticks(yt, yt, fontsize = 15)
+    ytickrange = yt[length(yt)-1] - yt[0]
+    text(x = 1200, y = yt[0] .+ 0.9ytickrange, s = string(round(lls[1] * 1000, sigdigits = 3)) * " °C/kyr", fontsize = 20)
+    title(corenames[r], fontsize = 20)
+    ylabel("Temperature [°C]", fontsize = 20)
+    tight_layout()
+    savefig(joinpath(subplotdir, corenames[r]), dpi = 600)
+end
+
+
 

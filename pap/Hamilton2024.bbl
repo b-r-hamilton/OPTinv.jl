@@ -23,9 +23,9 @@ Alonso-Garcia, M.%
 \newblock
 \APACrefYearMonthDay{2017}{Apr}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Freshening of the Labrador Sea as a trigger for Little
-  Ice Age development} {Freshening of the labrador sea as a trigger for little
-  ice age development}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Freshening of the {Labrador Sea} as a trigger for
+  {Little Ice Age} development} {Freshening of the {Labrador Sea} as a trigger
+  for {Little Ice Age} development}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Climate of the Past}{13}{4}{317–331}.
 \newblock
@@ -156,8 +156,8 @@ Bonnet, S.%
 \APACrefYearMonthDay{2010}{{\APACmonth{04}}}{}.
 \newblock
 {\BBOQ}\APACrefatitle {Variability of sea-surface temperature and sea-ice cover
-  in the Fram Strait over the last two millennia} {Variability of sea-surface
-  temperature and sea-ice cover in the fram strait over the last two
+  in the {Fram Strait} over the last two millennia} {Variability of sea-surface
+  temperature and sea-ice cover in the {Fram Strait} over the last two
   millennia}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Marine Micropaleontology}{74}{3–4}{59–74}.
@@ -191,9 +191,9 @@ Brady, E.%
 \newblock
 \APACrefYearMonthDay{2019}{{\APACmonth{08}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {The Connected Isotopic Water Cycle in the Community
-  Earth System Model Version 1} {The connected isotopic water cycle in the
-  community earth system model version 1}.{\BBCQ}
+{\BBOQ}\APACrefatitle {{The Connected Isotopic Water Cycle in the Community
+  Earth System Model Version 1}} {{The Connected Isotopic Water Cycle in the
+  Community Earth System Model Version 1}}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Journal of Advances in Modeling Earth
   Systems}{11}{8}{2547–2566}.
@@ -227,8 +227,8 @@ Buntgen, U.%
 \newblock
 \APACrefYearMonthDay{2020}{{\APACmonth{12}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Prominent role of volcanism in Common Era climate
-  variability and human history} {Prominent role of volcanism in common era
+{\BBOQ}\APACrefatitle {Prominent role of volcanism in {Common Era} climate
+  variability and human history} {Prominent role of volcanism in {Common Era}
   climate variability and human history}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Dendrochronologia}{64}{}{125757}.
@@ -274,6 +274,40 @@ Burke, A.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Calvo%
+, Grimalt%
+\BCBL {}\ \BBA {} Jansen%
+}{%
+Calvo%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2002}}%
+}]{%
+Calvo-Grimalt-2002:High}
+\APACinsertmetastar {%
+Calvo-Grimalt-2002:High}%
+\begin{APACrefauthors}%
+Calvo, E.%
+, Grimalt, J.%
+\BCBL {}\ \BBA {} Jansen, E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2002}{{\APACmonth{07}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {High resolution {U37K} sea surface temperature
+  reconstruction in the {Norwegian Sea} during the {Holocene}} {High resolution
+  {U37K} sea surface temperature reconstruction in the {Norwegian Sea} during
+  the {Holocene}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Quaternary Science Reviews}{21}{12–13}{1385–1394}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1016/s0277-3791(01)00096-8}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1016/s0277-3791(01)00096-8} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Cunningham%
 \ \protect \BOthers {.}}{%
 Cunningham%
@@ -297,9 +331,9 @@ Cunningham, L\BPBI K.%
 \APACrefYearMonthDay{2013}{{\APACmonth{04}}}{}.
 \newblock
 {\BBOQ}\APACrefatitle {Reconstructions of surface ocean conditions from the
-  northeast Atlantic and Nordic seas during the last millennium}
-  {Reconstructions of surface ocean conditions from the northeast atlantic and
-  nordic seas during the last millennium}.{\BBCQ}
+  northeast {Atlantic} and {Nordic} seas during the last millennium}
+  {Reconstructions of surface ocean conditions from the northeast {Atlantic}
+  and {Nordic} seas during the last millennium}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{The Holocene}{23}{7}{921–935}.
 \newblock
@@ -307,6 +341,36 @@ Cunningham, L\BPBI K.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1177/0959683613479677} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Emile-Geay%
+\ \protect \BOthers {.}}{%
+Emile-Geay%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+Emile-Geay-McKay-2017:global}
+\APACinsertmetastar {%
+Emile-Geay-McKay-2017:global}%
+\begin{APACrefauthors}%
+Emile-Geay, J.%
+, McKay, N\BPBI P.%
+, Kaufman, D\BPBI S.%
+, Von~Gunten, L.%
+, Wang, J.%
+, Anchukaitis, K\BPBI J.%
+\BDBL {}Zinke, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A global multiproxy database for temperature
+  reconstructions of the {Common Era}} {A global multiproxy database for
+  temperature reconstructions of the {Common Era}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Scientific Data}{4}{}{170088}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -326,10 +390,10 @@ Emiliani, C.%
 \newblock
 \APACrefYearMonthDay{1955}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Pleistocene Temperatures} {Pleistocene
-  temperatures}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Pleistocene {T}emperatures} {Pleistocene
+  {T}emperatures}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{journal of Geology}{63}{}{538--575}.
+\APACjournalVolNumPages{Journal of Geology}{63}{}{}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -378,11 +442,11 @@ Gebbie, G.%
 \newblock
 \APACrefYearMonthDay{2006}{{\APACmonth{11}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Meridional circulation during the Last Glacial Maximum
-  explored through a combination of South Atlantic d18O observations and a
-  geostrophic inverse model} {Meridional circulation during the last glacial
-  maximum explored through a combination of south atlantic d18o observations
-  and a geostrophic inverse model}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Meridional circulation during the {L}ast {G}lacial
+  {M}aximum explored through a combination of {S}outh {A}tlantic d18O
+  observations and a geostrophic inverse model} {Meridional circulation during
+  the {L}ast {G}lacial {M}aximum explored through a combination of {S}outh
+  {A}tlantic d18o observations and a geostrophic inverse model}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Geochemistry, Geophysics, Geosystems}{7}{11}{}.
 \newblock
@@ -497,11 +561,11 @@ Haine%
 }{%
 Haine%
 \ \protect \BOthers {.}}{%
-{\protect \APACyear {2024}}%
+{\protect \APACyear {2025}}%
 }]{%
-Haine-Griffies-2024:Review}
+Haine-Griffies-2025:Review}
 \APACinsertmetastar {%
-Haine-Griffies-2024:Review}%
+Haine-Griffies-2025:Review}%
 \begin{APACrefauthors}%
 Haine, T\BPBI W\BPBI N.%
 , Griffies, S\BPBI M.%
@@ -510,17 +574,19 @@ Haine, T\BPBI W\BPBI N.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2024}{{\APACmonth{08}}}{}.
+\APACrefYearMonthDay{2025}{{\APACmonth{07}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {A Review of Green’s Function Methods for Tracer
-  Timescales and Pathways in Ocean Models} {A review of green’s function
+{\BBOQ}\APACrefatitle {A Review of {G}reen’s {F}unction Methods for Tracer
+  Timescales and Pathways in Ocean Models} {A review of {G}reen’s {F}unction
   methods for tracer timescales and pathways in ocean models}.{\BBCQ}
 \newblock
-\begin{APACrefURL}
-  \url{http://dx.doi.org/10.22541/essoar.172405906.63110239/v1}
+\APACjournalVolNumPages{Journal of Advances in Modeling Earth
+  Systems}{17}{7}{}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1029/2024ms004637}
   \end{APACrefURL}
 \newblock
-\begin{APACrefDOI} \doi{10.22541/essoar.172405906.63110239/v1} \end{APACrefDOI}
+\begin{APACrefDOI} \doi{10.1029/2024ms004637} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -601,10 +667,47 @@ Kaufman, D\BPBI S.%
 \newblock
 \APACrefYearMonthDay{2009}{{\APACmonth{09}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Recent warming reverses long-term arctic cooling}
-  {Recent warming reverses long-term arctic cooling}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Recent warming reverses long-term {A}rctic cooling}
+  {Recent warming reverses long-term {A}rctic cooling}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Science}{325}{5945}{1236--1239}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Kennedy%
+, Rayner%
+, Atkinson%
+\BCBL {}\ \BBA {} Killick%
+}{%
+Kennedy%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+Kennedy-Rayner-2019:Ensemble}
+\APACinsertmetastar {%
+Kennedy-Rayner-2019:Ensemble}%
+\begin{APACrefauthors}%
+Kennedy, J\BPBI J.%
+, Rayner, N\BPBI A.%
+, Atkinson, C\BPBI P.%
+\BCBL {}\ \BBA {} Killick, R\BPBI E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{{\APACmonth{07}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {{An Ensemble Data Set of Sea Surface Temperature Change
+  From 1850: The Met Office Hadley Centre HadSST.4.0.0.0 Data Set}} {{An
+  Ensemble Data Set of Sea Surface Temperature Change From 1850: The Met Office
+  Hadley Centre HadSST.4.0.0.0 Data Set}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Geophysical Research:
+  Atmospheres}{124}{14}{7719–7763}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1029/2018jd029867}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1029/2018jd029867} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -630,9 +733,9 @@ Khider, D.%
 \newblock
 \APACrefYearMonthDay{2022}{{\APACmonth{09}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Pyleoclim: Paleoclimate Timeseries Analysis and
-  Visualization with Python} {Pyleoclim: Paleoclimate timeseries analysis and
-  visualization with python}.{\BBCQ}
+{\BBOQ}\APACrefatitle {{Pyleoclim: Paleoclimate Timeseries Analysis and
+  Visualization with Python}} {{Pyleoclim: Paleoclimate Timeseries Analysis and
+  Visualization with Python}}.{\BBCQ}
 \newblock
 \begin{APACrefURL} \url{http://dx.doi.org/10.1002/essoar.10511883.2}
   \end{APACrefURL}
@@ -692,10 +795,10 @@ LeGrand, P.%
 \newblock
 \APACrefYearMonthDay{1995}{{\APACmonth{12}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Constraints from paleotracer data on the North Atlantic
-  circulation during the Last Glacial Maximum} {Constraints from paleotracer
-  data on the north atlantic circulation during the last glacial
-  maximum}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Constraints from paleotracer data on the {N}orth
+  {A}tlantic circulation during the {L}ast {G}lacial {M}aximum} {Constraints
+  from paleotracer data on the {N}orth {A}tlantic circulation during the {L}ast
+  {G}lacial {M}aximum}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Paleoceanography}{10}{6}{1011–1045}.
 \newblock
@@ -764,8 +867,8 @@ Lu, W.%
 \APACrefYearMonthDay{2023}{{\APACmonth{11}}}{}.
 \newblock
 {\BBOQ}\APACrefatitle {Surface climate signals transmitted rapidly to deep
-  North Atlantic throughout last millennium} {Surface climate signals
-  transmitted rapidly to deep north atlantic throughout last
+  {N}orth {A}tlantic throughout last millennium} {Surface climate signals
+  transmitted rapidly to deep {N}orth {A}tlantic throughout last
   millennium}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Science}{382}{6672}{834–839}.
@@ -796,9 +899,9 @@ Lund, D\BPBI C.%
 \newblock
 \APACrefYearMonthDay{2006}{{\APACmonth{05}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Florida Current surface temperature and salinity
-  variability during the last millennium} {Florida current surface temperature
-  and salinity variability during the last millennium}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Florida {C}urrent surface temperature and salinity
+  variability during the last millennium} {Florida {C}urrent surface
+  temperature and salinity variability during the last millennium}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Paleoceanography}{21}{2}{}.
 \newblock
@@ -840,6 +943,40 @@ Lynch-Stieglitz, J.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Lynch-Stieglitz%
+, Curry%
+\BCBL {}\ \BBA {} Slowey%
+}{%
+Lynch-Stieglitz%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {1999}}%
+}]{%
+Lynch-Stieglitz-Curry-1999:Florida}
+\APACinsertmetastar {%
+Lynch-Stieglitz-Curry-1999:Florida}%
+\begin{APACrefauthors}%
+Lynch-Stieglitz, J.%
+, Curry, W\BPBI B.%
+\BCBL {}\ \BBA {} Slowey, N.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1999}{{\APACmonth{06}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A geostrophic transport estimate for the {Florida
+  Current} from the oxygen isotope composition of benthic foraminifera} {A
+  geostrophic transport estimate for the {Florida Current} from the oxygen
+  isotope composition of benthic foraminifera}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Paleoceanography}{14}{3}{360–373}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1029/1999pa900001}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1029/1999pa900001} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Marchal%
 \ \BBA {} Curry%
 }{%
@@ -859,8 +996,8 @@ Marchal, O.%
 \newblock
 \APACrefYearMonthDay{2008}{{\APACmonth{09}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {On the Abyssal Circulation in the Glacial Atlantic} {On
-  the abyssal circulation in the glacial atlantic}.{\BBCQ}
+{\BBOQ}\APACrefatitle {On the Abyssal Circulation in the Glacial {A}tlantic}
+  {On the abyssal circulation in the glacial {A}tlantic}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Journal of Physical Oceanography}{38}{9}{2014–2037}.
 \newblock
@@ -987,9 +1124,9 @@ McKay, N\BPBI P.%
 \newblock
 \APACrefYearMonthDay{2021}{{\APACmonth{03}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {geoChronR – an R package to model, analyze, and
-  visualize age-uncertain data} {geochronr – an r package to model, analyze,
-  and visualize age-uncertain data}.{\BBCQ}
+{\BBOQ}\APACrefatitle {geo{C}hron{R} – an {R} package to model, analyze, and
+  visualize age-uncertain data} {geo{C}hron{R} – an {R} package to model,
+  analyze, and visualize age-uncertain data}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Geochronology}{3}{1}{149–169}.
 \newblock
@@ -997,6 +1134,43 @@ McKay, N\BPBI P.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.5194/gchron-3-149-2021} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Miller%
+\ \protect \BOthers {.}}{%
+Miller%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2012}}%
+}]{%
+miller12}
+\APACinsertmetastar {%
+miller12}%
+\begin{APACrefauthors}%
+Miller, G\BPBI H.%
+, Geirsdottir, A.%
+, Zhong, Y.%
+, Larsen, D\BPBI J.%
+, Otto-Bliesner, B\BPBI L.%
+, Holland, M\BPBI M.%
+\BDBL {}Thordarson, T.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2012}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Abrupt onset of the {Little Ice Age} triggered by
+  volcanism and sustained by sea-ice/ocean feedbacks} {Abrupt onset of the
+  {Little Ice Age} triggered by volcanism and sustained by sea-ice/ocean
+  feedbacks}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Geophysical Research Letters}{39}{2}{}.
+\newblock
+\begin{APACrefURL}
+  \url{https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2011GL050168}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{https://doi.org/10.1029/2011GL050168} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -1022,10 +1196,10 @@ Moffa-Sanchez, P.%
 \newblock
 \APACrefYearMonthDay{2019}{Aug}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Variability in the Northern North Atlantic and Arctic
-  Oceans Across the Last Two Millennia: A Review} {Variability in the northern
-  north atlantic and arctic oceans across the last two millennia: A
-  review}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Variability in the {N}orthern {N}orth {A}tlantic and
+  {A}rctic {O}ceans Across the Last Two Millennia: A Review} {Variability in
+  the {N}orthern {N}orth {A}tlantic and {A}rctic {O}ceans across the last two
+  millennia: A review}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Paleoceanography and
   Paleoclimatology}{34}{8}{1399–1436}.
@@ -1162,10 +1336,10 @@ Richter, T.%
 \newblock
 \APACrefYearMonthDay{2009}{{\APACmonth{09}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Late Holocene (0–2.4 ka BP) surface water temperature
-  and salinity variability, Feni Drift, NE Atlantic Ocean} {Late holocene
-  (0–2.4 ka bp) surface water temperature and salinity variability, feni
-  drift, ne atlantic ocean}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Late {H}olocene (0–2.4 ka BP) surface water
+  temperature and salinity variability, {F}eni {D}rift, {NE} {A}tlantic
+  {O}cean} {Late {H}olocene (0–2.4 ka bp) surface water temperature and
+  salinity variability, {F}eni {D}rift, {NE} {A}tlantic {O}cean}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Quaternary Science Reviews}{28}{19–20}{1941–1955}.
 \newblock
@@ -1255,8 +1429,8 @@ Schmidt, G\BPBI A.%
 \newblock
 \APACrefYearMonthDay{1998}{{\APACmonth{04}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Oxygen‐18 variations in a global ocean model}
-  {Oxygen‐18 variations in a global ocean model}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Oxygen-18 variations in a global ocean model} {Oxygen-18
+  variations in a global ocean model}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Geophysical Research Letters}{25}{8}{1201–1204}.
 \newblock
@@ -1346,10 +1520,10 @@ Shackleton, N\BPBI J.%
 \APACrefYearMonthDay{1974}{}{}.
 \newblock
 {\BBOQ}\APACrefatitle {Attainment of isotopic equilibrium between ocean water
-  and the benthonic foraminifera genus Uvigerina: isotopic changes in the ocean
-  during the last glacial} {Attainment of isotopic equilibrium between ocean
-  water and the benthonic foraminifera genus uvigerina: isotopic changes in the
-  ocean during the last glacial}.{\BBCQ}.
+  and the benthonic foraminifera genus {U}vigerina: isotopic changes in the
+  ocean during the last glacial} {Attainment of isotopic equilibrium between
+  ocean water and the benthonic foraminifera genus {U}vigerina: isotopic
+  changes in the ocean during the last glacial}.{\BBCQ}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -1372,7 +1546,7 @@ Shampine, L\BPBI F.%
 \newblock
 \APACrefYearMonthDay{1997}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {The MATLAB ODE Suite} {The matlab ode suite}.{\BBCQ}
+{\BBOQ}\APACrefatitle {{The MATLAB ODE Suite}} {{The MATLAB ODE Suite}}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{SIAM Journal on Scientific Computing}{18}{1}{1-22}.
 \newblock
@@ -1380,6 +1554,29 @@ Shampine, L\BPBI F.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1137/S1064827594276424} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Sharp%
+}{%
+Sharp%
+}{%
+{\protect \APACyear {2017}}%
+}]{%
+<new-entry4>}
+\APACinsertmetastar {%
+<new-entry4>}%
+\begin{APACrefauthors}%
+Sharp, Z.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2017}.
+\newblock
+\APACrefbtitle {Principles of stable isotope geochemisty} {Principles of stable
+  isotope geochemisty}.
+\newblock
+\begin{APACrefDOI} \doi{https://doi.org/10.25844/h9q1-0p82} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -1406,8 +1603,8 @@ Sicre, M\BPBI A.%
 \APACrefYearMonthDay{2011}{{\APACmonth{12}}}{}.
 \newblock
 {\BBOQ}\APACrefatitle {Sea surface temperature variability in the subpolar
-  Atlantic over the last two millennia} {Sea surface temperature variability in
-  the subpolar atlantic over the last two millennia}.{\BBCQ}
+  {A}tlantic over the last two millennia} {Sea surface temperature variability
+  in the subpolar {A}tlantic over the last two millennia}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Paleoceanography}{26}{4}{}.
 \newblock
@@ -1441,9 +1638,9 @@ Sicre, M\BHBI A.%
 \APACrefYearMonthDay{2008}{{\APACmonth{11}}}{}.
 \newblock
 {\BBOQ}\APACrefatitle {A 4500-year reconstruction of sea surface temperature
-  variability at decadal time-scales off North Iceland} {A 4500-year
+  variability at decadal time-scales off {N}orth {I}celand} {A 4500-year
   reconstruction of sea surface temperature variability at decadal time-scales
-  off north iceland}.{\BBCQ}
+  off {N}orth {I}celand}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Quaternary Science Reviews}{27}{21–22}{2041–2047}.
 \newblock
@@ -1476,9 +1673,9 @@ Spielhagen, R\BPBI F.%
 \newblock
 \APACrefYearMonthDay{2011}{{\APACmonth{01}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Enhanced Modern Heat Transfer to the Arctic by Warm
-  Atlantic Water} {Enhanced modern heat transfer to the arctic by warm atlantic
-  water}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Enhanced Modern Heat Transfer to the {A}rctic by Warm
+  {A}tlantic Water} {Enhanced modern heat transfer to the {A}rctic by warm
+  {A}tlantic water}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Science}{331}{6016}{450–453}.
 \newblock
@@ -1506,9 +1703,9 @@ Stammer, D.%
 \APACrefYearMonthDay{1997}{{\APACmonth{08}}}{}.
 \newblock
 {\BBOQ}\APACrefatitle {Global Characteristics of Ocean Variability Estimated
-  from Regional TOPEX/POSEIDON Altimeter Measurements} {Global characteristics
-  of ocean variability estimated from regional topex/poseidon altimeter
-  measurements}.{\BBCQ}
+  from Regional {TOPEX/POSEIDON} Altimeter Measurements} {Global
+  characteristics of ocean variability estimated from regional {TOPEX/POSEIDON}
+  altimeter measurements}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Journal of Physical Oceanography}{27}{8}{1743–1769}.
 \newblock
@@ -1538,8 +1735,8 @@ Stommel, H.%
 \APACrefYearMonthDay{1979}{{\APACmonth{07}}}{}.
 \newblock
 {\BBOQ}\APACrefatitle {Determination of water mass properties of water pumped
-  down from the Ekman layer to the geostrophic flow below} {Determination of
-  water mass properties of water pumped down from the ekman layer to the
+  down from the {E}kman layer to the geostrophic flow below} {Determination of
+  water mass properties of water pumped down from the {E}kman layer to the
   geostrophic flow below}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Proceedings of the National Academy of
@@ -1574,9 +1771,9 @@ Tardif, R.%
 \newblock
 \APACrefYearMonthDay{2019}{{\APACmonth{07}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Last Millennium Reanalysis with an expanded proxy
-  database and seasonal proxy modeling} {Last millennium reanalysis with an
-  expanded proxy database and seasonal proxy modeling}.{\BBCQ}
+{\BBOQ}\APACrefatitle {{L}ast {M}illennium {R}eanalysis with an expanded proxy
+  database and seasonal proxy modeling} {{L}ast {M}illennium {R}eanalysis with
+  an expanded proxy database and seasonal proxy modeling}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Climate of the Past}{15}{4}{1251–1273}.
 \newblock
@@ -1615,6 +1812,44 @@ Urey, H\BPBI C.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Wang%
+, Emile-Geay%
+, Guillot%
+, Smerdon%
+\BCBL {}\ \BBA {} Rajaratnam%
+}{%
+Wang%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+Wang-Emile-Geay-2014:Evaluating}
+\APACinsertmetastar {%
+Wang-Emile-Geay-2014:Evaluating}%
+\begin{APACrefauthors}%
+Wang, J.%
+, Emile-Geay, J.%
+, Guillot, D.%
+, Smerdon, J\BPBI E.%
+\BCBL {}\ \BBA {} Rajaratnam, B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{{\APACmonth{01}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Evaluating climate field reconstruction techniques using
+  improved emulations of real-world conditions} {Evaluating climate field
+  reconstruction techniques using improved emulations of real-world
+  conditions}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Climate of the Past}{10}{1}{1–19}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.5194/cp-10-1-2014}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.5194/cp-10-1-2014} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Williams%
 , Marshall%
 \BCBL {}\ \BBA {} Spall%
@@ -1635,8 +1870,8 @@ Williams, R\BPBI G.%
 \newblock
 \APACrefYearMonthDay{1995}{{\APACmonth{12}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Does Stommel’s Mixed Layer “Demon” Work?} {Does
-  stommel’s mixed layer “demon” work?}{\BBCQ}
+{\BBOQ}\APACrefatitle {{D}oes {S}tommel’s {M}ixed {L}ayer “{D}emon”
+  Work?} {{D}oes {S}tommel’s {M}ixed {L}ayer “{D}emon” work?}{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Journal of Physical Oceanography}{25}{12}{3089–3102}.
 \newblock
@@ -1700,9 +1935,9 @@ Yashayaev, I.%
 \newblock
 \APACrefYearMonthDay{2007}{{\APACmonth{11}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Transformation of the Labrador Sea Water in the subpolar
-  North Atlantic} {Transformation of the labrador sea water in the subpolar
-  north atlantic}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Transformation of the {L}abrador {S}ea {W}ater in the
+  subpolar {N}orth {A}tlantic} {Transformation of the {L}abrador {S}ea {W}ater
+  in the subpolar {N}orth {A}tlantic}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Geophysical Research Letters}{34}{22}{}.
 \newblock

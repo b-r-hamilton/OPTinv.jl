@@ -3,7 +3,7 @@ module OPTinv
 using DrWatson, Unitful, Revise, Statistics, BLUEs, LinearAlgebra,
     SparseArrays, TMI, Interpolations, UnitfulLinearAlgebra, Measurements,
     CSV, DataFrames, JLD2, NCDatasets, NaNMath, Downloads,
-    Dates, DimensionalData, TMItransient, NMF, PythonCall
+    Dates, DimensionalData, TMItransient, NMF, PythonCall, Distances 
 
 import Interpolations.deduplicate_knots! as deduplicate! 
 import Interpolations.LinearInterpolation as LI
@@ -25,7 +25,9 @@ export loadLMR, loadOcean2k, loadThornalley, loadEN4, loadCESMLME
 
 export record, loadEN4MLD 
 
-export orthographic_axes, datadir 
+export orthographic_axes, datadir
+
+export computearea
 
 #import units 
 yr = u"yr"
@@ -214,15 +216,15 @@ function invert
 # Arguments
     - `x`: `inversion` type
 """
-function invert(x::inversion)::solution
+function invert(x::inversion; res = 10yr)::solution
     corenums_full = Symbol.("MC" .* string.([28, 26, 25, 22, 21, 20, 19, 10, 9,13,14]) .* "A")
     corenums_sorted = [i for i in corenums_full if i in x.cores]
     filename = x.modetype * ".jld2"
-    ℳ, spatialmodes = loadM(filename, corenums_sorted)
-    y = loadcores(corenums_sorted)
+    ℳ, spatialmodes = loadM(filename, corenums_sorted, res = res)
+    display(ℳ)
+    y = loadcores(corenums_sorted,res)
     ρ = 0.99
     T = Array(y.y.dims[1])
-    res = unique(diff(T))[1]
     Tᵤ = 500.0yr:res:T[end]
 
     if !isfile(DrWatson.datadir("modemags.jld2"))
@@ -235,9 +237,10 @@ function invert(x::inversion)::solution
     println("multiplying σθ by 4")  #fitting at 4 σ level
     σθ .*= 4
     
-    σδ = σθ ./ 14.84 .* permil/K
+    #σδ = σθ ./ 14.84 .* permil/K
+    σδ = σθ ./ 14.93 .* permil/K
     u₀ = firstguess(Tᵤ, ℳ.dims[2][:], σθ, σδ, ρ) #u₀ with correct T_u
-    E, predict = loadE(filename, ℳ, Tᵤ, T, σθ, σδ, ρ, corenums_sorted, y.Cnn.ax)
+    E, predict = loadE(filename, ℳ, Tᵤ, T, σθ, σδ, ρ, corenums_sorted, y.Cnn.ax; res = res)
     
     yde, ỹde, u₀de, ũ = solvesystem(y, u₀, E, predict)
     θ, δ = reconstructsurface(spatialmodes, ũ)
@@ -839,21 +842,27 @@ function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget,
 """
 function loadE(filename::String, ℳ::DimArray, Tᵤtarget, Ttarget,
                σθ, σδ::Vector, ρ,
-               core_list::Vector{Symbol}, yax::Vector{Tuple})
+               core_list::Vector{Symbol}, yax::Vector{Tuple}; res = 10yr)
     sv = (:θ, :δ)
     coeffs = NamedTuple{sv}([-0.224permil/K, 1])
     τ = [t for t in ℳ.dims[1]]
 
     #maximum time period we're interested in for this problem 
-    T = collect(0yr:10yr:2020yr)
-    Tᵤ = -500yr:10yr:2020yr
+    T = collect(0yr:res:2020yr)
+    Tᵤ = -500yr:res:2020yr
     u₀ = firstguess(Tᵤ, ℳ.dims[2][:], σθ, σδ, ρ)  #just for computing here 
     
     #this is the same as BLUEs.convolve, I just did it explicitly here 
     predict(u) = DimArray(cat([+([+([vec(u[At(t-τi), :, At(s)]' * coeffs[s] * ℳ[At(τi), :, :]) for τi in τ[t .- τ .> minimum(Tᵤ)]]...) for s in sv]...) for t in T]..., dims = 2)', (Ti(T), Cores(core_list)))
 
-    filename = split(filename, ".")[1] .* "_E.jld2"
-    filepath = joinpath("../data/M", filename) 
+    if res == 10yr
+        filename = split(filename, ".")[1] .* "_E.jld2"
+    else
+        filename = split(filename, ".")[1] .* "_E" * string(res) * ".jld2"
+    end
+    
+    filepath = joinpath("../data/M", filename)
+
     if !isfile(filepath)
         println("Computing E, will take a little while!") 
         @time E = impulseresponse(predict, u₀.y) #2 hrs
@@ -1170,10 +1179,15 @@ function estimate(ũ::DimEstimate, spatialmodes::Matrix, variable::Symbol; spat
     - `da`: DimArray of estimated quantity 
     
 """
-function estimate(ũ::DimEstimate, spatialmodes::Matrix, variable::Symbol; spatialinds = :, rolling = nothing)    
+function estimate(ũ::DimEstimate, spatialmodes::Matrix, variable::Symbol; spatialinds = :, rolling = nothing, weights = nothing )    
     cdims = vec(covariancedims(ũ.dims))
     Tᵤ = Array(ũ.dims[1])
-    Edag = spatialmodes[:, spatialinds] * fill(1/length(spatialinds), length(spatialinds))
+    if isnothing(weights) 
+        Edag = spatialmodes[:, spatialinds] * fill(1/length(spatialinds), length(spatialinds))
+    else
+        Edag = spatialmodes[:, spatialinds] * weights
+    end
+    
     mat = fill(0.0, length(Tᵤ), length(cdims))
     for (i, t) in enumerate(Tᵤ)
         xinds = findall(x->x[1] == t && x[3] == variable, cdims)
@@ -1349,5 +1363,25 @@ matchvec: trim a vector x1 so that it does not exceed extrema of x2
 matchvec(x1, x2) =  x1[x1 .< maximum(x2) .&& x1 .> minimum(x2)]
 
 
+
+# Code to compute cell area, borrowed from TMI.cellarea, rephrased here
+# to not need a Grid 
+function zonalgriddist(lat, lon)
+    dx = similar(lat)
+    for j in eachindex(lat)
+        dx[j] = haversine((lon[1],lat[j])
+                         ,(lon[2],lat[j]))
+    end
+    return dx
+end
+
+function computearea(lon, lat, I)
+    dx = zonalgriddist(lat,lon)
+    dy = haversine((lon[1],lat[1]),(lon[1],lat[2]))
+    area = Matrix{Float64}(undef,length(lon),length(lat))
+    fill!(area,0.0)
+    [area[I[ii][1],I[ii][2]] = dx[I[ii][2]] * dy for ii ∈ eachindex(I)]
+    return area
+end
 end
 

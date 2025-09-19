@@ -24,7 +24,7 @@ xt = range(start = 0, stop = 40, step = 5)
 hlines(y = Δδ¹⁸O/α, xmin = 0, xmax = 40, linestyle = "dashed", color = "gray", linewidth = 2)
 xticks(xt, xt, fontsize = 12)
 xlim(0,40)
-poi = [14.8,36.8]
+poi = [14.93,36.8]
 scatter(x = poi, y = ΔT.(poi), marker = "o", color = "white", s = 100, edgecolor = "black",zorder = 10000)
 text(x = 35, y = 1.4, s = "A", fontsize = 30, weight = "bold")
 subplot(1,2,2) 
