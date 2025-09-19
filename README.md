@@ -34,11 +34,11 @@ The following scripts either need to be run after `transientinversion.jl` or `tr
 - `maps.jl`: follow-on script, plots the surface reconstruction maps for temperature (Figure 6, 7) 
 - `effd18Oc.jl`: follow-on script, computes the effective d18Oc at the surface and compares it to the planktic stack from the EN539 sediment cores (Figure 8) 
 
-Analysis of Common Era Data Products
+_Analysis of Common Era Data Products_
 - `CEdatanalysis/NATL_iCESM.jl`: two-part script, first part is code to copy and paste into Casper to download a timeseries of T, S, and d18O from a iCESM and CESM realization. Second part makes Figure B1 and Supplemental Figure S4 
 - `CEdatanalysis/T_v_d18O.jl`: generates Supplemental Figure S5
 - `CEdatanalysis/sigma.jl`: computes the variance of calculated spatial modes in a CESM historical realization and saves them to a JLD2 file. Will automatically run the first time, shouldn't need to run after that. Also makes Supplemental Figure S3. 
-- 
+
 # Philosophy, and important dependencies
 The code developed here attempts to preserve information about the dimensionality and units of all variables. This is accomplished by using the following Julia libraries 
 - [`Unitful.jl`](https://github.com/PainterQubits/Unitful.jl) to manage quantities, 
@@ -49,16 +49,6 @@ The code developed here attempts to preserve information about the dimensionalit
 Information about the modern-day circulation is obtained from the Total Matrix Intercomparison (TMI) results from [Gebbie, 2010](https://journals.ametsoc.org/view/journals/phoc/40/8/2010jpo4272.1.xml) and [Gebbie, 2012](https://journals.ametsoc.org/view/journals/phoc/42/2/jpo-d-11-043.1.xml). These results are accessed through the following Julia libraries 
 - [`TMI.jl`](https://github.com/ggebbie/TMI.jl)
 - [`TMItransient.jl`](https://github.com/ggebbie/TMItransient.jl) 
-
-# Future Structural Work (i.e., how could this code be better?) 
-One of the cruxes of the problem presented here is the dimensionality of the output: we are inferring the temporal evolution of the magnitude of 11 distinct spatial modes for two different state variables, temperature and $\mathrm{\delta}^{18}\mathrm{O}\_{\mathrm{seawater}}$. This is a three-dimensional output that must be rearranged into a 1D vector. We also have a complete representation of the first and second moments of this variable, contained in a covariance matrix. Here, we use the `Est` and `CovMat` structures to manage these high-dimensional data structures. 
-
-The `Est` structure contains a dimensional array `y`, and associated `CovMat`, which is a structure that contains a matrix, and its associated `ax`. The `ax` is a list of Tuples, where each Tuple is generated according to the column-major vectorization of the dimensions associated with the `y`. An `ax` can easily be generated using the `covariancedims` method. 
-
-`CovMat`s can be populated using `fillcovariance` method, which relies upon the generation of `DiagRule` and `OffDiagRule`. This allows for a `CovMat` to be populated with certain values, that can be a constant, at particular dimensioned values, or functions of dimensioned values. 
-
-Jake has attempted to wrap similar, experimental, functionality into `BLUEs.jl` on the [this branch](https://github.com/ggebbie/BLUEs.jl/tree/multipliable-dimarrays) (has not been incorporated into the main code, needs testing). Future work would include testing that methodology, and possibly incorporating elements of what I have developed here, into that branch. 
-
 
 # Started package by doing
 ```
