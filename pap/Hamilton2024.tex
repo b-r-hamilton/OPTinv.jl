@@ -2,7 +2,7 @@
 \usepackage{amsmath}
 \usepackage{url} %this package should fix any errors with URLs in refs.
 \usepackage{lineno}
-\usepackage[finalnew]{trackchanges} %for better track changes. finalnew option will compile document with changes incorporated.
+\usepackage[inline]{trackchanges} %for better track changes. finalnew option will compile document with changes incorporated.
 \usepackage{wasysym}[nointegrals]
 \usepackage{soul}
 \usepackage{siunitx}
@@ -298,22 +298,50 @@ and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$). \add{This estimate is inferred
 We find that the depth
 structure in recorded CE $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ is
 largely captured by modern-day estimates of
-$\delta^{18}\mathrm{O}_{\mathrm{calcite}}$, although offsets exist,
-especially at shallower depths (Figure \ref{fig:offset}). These
-offsets are large compared to the CE variability recorded in the
-sediment core records.  Further details on effective modern-day
-$\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ and interpretation of Figure
-\ref{fig:offset} are in Supplemental Section S1. %\ref{supp-sec:offset}.
+$\delta^{18}\mathrm{O}_{\mathrm{calcite}}$\add{.}\remove{, although}
 
-Due to uncertainty in the \add{inter-species} equilibration offset of
-\textit{U. peregrina} \cite[]{Shackleton1974AttainmentOI, marchitto},
-as well as uncertainty in modern day estimates of
-$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ at depth, we choose to work in
-$\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ anomaly space, as was done in
-\citeA{Amrhein-Gebbie-2015:Inferring}.
-This ensures that we maximize the fit to the coherent temporal CE
-signal, without contamination by the mean offset at each core site,
-which we believe to be partially affected by species offsets. We
+Offsets exist, especially at shallower depths (Figure \ref{fig:offset}). These
+offsets are large compared to the CE variability recorded in the
+sediment core records. 
+\ref{fig:offset} are in Supplemental Section S1. %\ref{supp-sec:offset}.
+\add{These offsets could be due to a variety of causes,
+  such as conflict in the inter-species calibration, or differences in the
+  temporal or spatial representation of the modern-day estimate in comparison to the
+  sediment core data. Any offset as a result of the inter-species calibration will be time-invariant, so long as there is no biological evolution in foraminifera, which is expected due to the sub-evolutionary timescale. In addition, any offset due to the circulation model's timing or gridding will also be time-invariant.} %Further details on effective modern-day $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ and interpretation of Figure
+
+
+% Due to
+% \remove{uncertainty in the inter-species equilibration offset of
+% \textit{U. peregrina} \cite{Shackleton1974AttainmentOI, marchitto},
+% as well as uncertainty in modern day estimates of
+% $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ at depth,}
+% \add{ambiguity in the source of the depth-dependent offset,}
+% \remove{we choose to work in
+% $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ anomaly space, as was done in
+% \citeA{Amrhein-Gebbie-2015:Inferring}.}
+% \add{we are not able to produce well-constrained estimates of absolute temperature
+%   and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$.
+
+\add{We are predominantly interested in reconstructing the magnitude of the LIA,
+  and wish to remove the influence of time-invariant errors. We accomplish this by
+  computing all quanitites as anomalies from the historical period (1850-1980 CE),
+  thus removing
+  any dependence on the inter-species equilibration offset or modern-day estimates of
+  temperature or $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. This is akin to the assumption
+  of a reference pressure used in computing potential quantities in physical
+  oceanography. }
+% Q: "The tradeoff is that we are not reconstructing absolute values, which would
+% require a better connection between paleoceanographic observations and
+% modern-day instrumental observations."
+% "In order to address this, we would have to address the long-standing
+% paleoceanographic-instrumental observation calibration problem (maybe cite
+% some things?) - this is a difficult problem, we don't need to solve it to get
+% LIA model (Moffa-Sanchez review?) 
+Therefore, we ensure that we maximize the fit to the coherent temporal CE
+signal, without contamination by the mean offset at each core site \add{or estimates
+  of modern-day temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$.}
+\remove{which we
+believe to be partially affected by species offsets}. We
 convert all quantities into anomalies by subtracting the mean value
 between 1850-1980 CE from each record.
 
@@ -1495,12 +1523,14 @@ Code and documentation will be published on Zenodo prior to submission. Currentl
 \acknowledgments
 We thank David McGee, Sarah Shackleton, and Sophie Hines for their insightful discussion of the material here. In addition, we thank Michael Evans for an insightful comment on the temporal coverage of proxies in the Last Millennium Reanalysis. Finally, we thank Xabier Davila for comments on the manuscript. This work was supported by NSF OCE-2031929 and the WHOI Investment in Science Program.
 
+
 \section*{Conflict of Interest}
 The authors declare no conflicts of interest relevant to this study.
 
 \clearpage
-% JG: some issues with capitalization of proper names in bibliography, requires wrapping capitals with curly brackets in bib file, can be fixed after submission
-\bibliography{Hamilton2024} 
+\nocite{Gouretski-Koltermann-2004:WOCE,LeGrande-Schmidt-2006:Global,Shackleton1974AttainmentOI,Duplessy-Shackleton-1984:Record,gebbie2010,Hannachi-Jolliffe-2007:Empirical,cesm2,ottobliesner16,Brady-Stevenson-2019:Connected,Schmidt-1999:Error,Gebbie2006,ocean2k,McKay-Emile-Geay-2021:R,Lu-Oppo-2023:Surface,Hakim-Emile-Geay-2016:last,Tardif2019,Kennedy-Rayner-2019:Ensemble,Gebbie-Huybers-2012:mean,marchitto,Bonnet-Vernal-2010:Variability,Spielhagen-Werner-2011:Enhanced,Hart-1995:Multidimension}
+\bibliography{Hamilton2024}
+
 \clearpage
 \end{document}
 

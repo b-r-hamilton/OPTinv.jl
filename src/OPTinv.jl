@@ -1286,7 +1286,7 @@ function transientM(corelocs, patches::NamedTuple, τ; TMIversion = "modern_180x
         Ḡ, _ = globalmean_impulseresponse(D̄, τ)
         Ḡ = hcat(Ḡ...)'    
         arr[begin:size(Ḡ)[1], i, :] = Ḡ
-    end
+    end 
     return arr 
 end
 

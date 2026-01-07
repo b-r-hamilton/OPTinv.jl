@@ -344,6 +344,81 @@ Cunningham, L\BPBI K.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Danabasoglu%
+\ \protect \BOthers {.}}{%
+Danabasoglu%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2020}}%
+}]{%
+cesm2}
+\APACinsertmetastar {%
+cesm2}%
+\begin{APACrefauthors}%
+Danabasoglu, G.%
+, Lamarque, J\BHBI F.%
+, Bacmeister, J.%
+, Bailey, D\BPBI A.%
+, DuVivier, A\BPBI K.%
+, Edwards, J.%
+\BDBL {}Strand, W\BPBI G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The {Community Earth System Model Version 2 (CESM2)}}
+  {The {Community Earth System Model Version 2 (CESM2)}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Advances in Modeling Earth
+  Systems}{12}{2}{e2019MS001916}.
+\newblock
+\begin{APACrefURL}
+  \url{https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2019MS001916}
+  \end{APACrefURL}
+\newblock
+\APACrefnote{e2019MS001916 2019MS001916}
+\newblock
+\begin{APACrefDOI} \doi{https://doi.org/10.1029/2019MS001916} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Duplessy%
+\ \protect \BOthers {.}}{%
+Duplessy%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {1984}}%
+}]{%
+Duplessy-Shackleton-1984:Record}
+\APACinsertmetastar {%
+Duplessy-Shackleton-1984:Record}%
+\begin{APACrefauthors}%
+Duplessy, J\BHBI C.%
+, Shackleton, N\BPBI J.%
+, Matthews, R\BPBI K.%
+, Prell, W.%
+, Ruddiman, W\BPBI F.%
+, Caralp, M.%
+\BCBL {}\ \BBA {} Hendy, C\BPBI H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1984}{{\APACmonth{02}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {{13C Record of Benthic Foraminifera in the Last
+  Interglacial Ocean: Implications for the Carbon Cycle and the Global Deep
+  Water Circulation}} {{13C Record of Benthic Foraminifera in the Last
+  Interglacial Ocean: Implications for the Carbon Cycle and the Global Deep
+  Water Circulation}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Quaternary Research}{21}{2}{225–243}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1016/0033-5894(84)90099-1}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1016/0033-5894(84)90099-1} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Emile-Geay%
 \ \protect \BOthers {.}}{%
 Emile-Geay%
@@ -554,6 +629,33 @@ Gebbie, G.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Gouretski%
+\ \BBA {} Koltermann%
+}{%
+Gouretski%
+\ \BBA {} Koltermann%
+}{%
+{\protect \APACyear {2004}}%
+}]{%
+Gouretski-Koltermann-2004:WOCE}
+\APACinsertmetastar {%
+Gouretski-Koltermann-2004:WOCE}%
+\begin{APACrefauthors}%
+Gouretski, V.%
+\BCBT {}\ \BBA {} Koltermann, K.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2004}{}{}.
+\newblock
+\APACrefbtitle {{WOCE} {G}lobal {H}ydrographic {C}limatology} {{WOCE} {G}lobal
+  {H}ydrographic {C}limatology}\ \APACbVolEdTR{}{\BTR{}\ \BNUM~35}.
+\newblock
+\APACaddressInstitution{}{Berichte des Bundesamtes f\"ur Seeschifffahrt und
+  Hydrographie}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Haine%
 , Griffies%
 , Gebbie%
@@ -618,6 +720,66 @@ Hakim, G\BPBI J.%
 \newblock
 \APACjournalVolNumPages{Journal of Geophysical Research:
   Atmospheres}{121}{12}{6745--6764}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hannachi%
+, Jolliffe%
+\BCBL {}\ \BBA {} Stephenson%
+}{%
+Hannachi%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2007}}%
+}]{%
+Hannachi-Jolliffe-2007:Empirical}
+\APACinsertmetastar {%
+Hannachi-Jolliffe-2007:Empirical}%
+\begin{APACrefauthors}%
+Hannachi, A.%
+, Jolliffe, I\BPBI T.%
+\BCBL {}\ \BBA {} Stephenson, D\BPBI B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{{\APACmonth{05}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Empirical orthogonal functions and related techniques in
+  atmospheric science: A review} {Empirical orthogonal functions and related
+  techniques in atmospheric science: A review}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{International Journal of
+  Climatology}{27}{9}{1119–1152}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1002/joc.1499} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1002/joc.1499} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hart%
+}{%
+Hart%
+}{%
+{\protect \APACyear {1995}}%
+}]{%
+Hart-1995:Multidimension}
+\APACinsertmetastar {%
+Hart-1995:Multidimension}%
+\begin{APACrefauthors}%
+Hart, G\BPBI W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1995}.
+\newblock
+\APACrefbtitle {Multidimensional Analysis} {Multidimensional analysis}.
+\newblock
+\APACaddressPublisher{}{Springer New York}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1007/978-1-4612-4208-6}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1007/978-1-4612-4208-6} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -805,6 +967,38 @@ LeGrand, P.%
 \begin{APACrefURL} \url{http://dx.doi.org/10.1029/95pa01455} \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1029/95pa01455} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+LeGrande%
+\ \BBA {} Schmidt%
+}{%
+LeGrande%
+\ \BBA {} Schmidt%
+}{%
+{\protect \APACyear {2006}}%
+}]{%
+LeGrande-Schmidt-2006:Global}
+\APACinsertmetastar {%
+LeGrande-Schmidt-2006:Global}%
+\begin{APACrefauthors}%
+LeGrande, A\BPBI N.%
+\BCBT {}\ \BBA {} Schmidt, G\BPBI A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2006}{{\APACmonth{06}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Global gridded data set of the oxygen isotopic
+  composition in seawater} {Global gridded data set of the oxygen isotopic
+  composition in seawater}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Geophysical Research Letters}{33}{12}{}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1029/2006gl026011}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1029/2006gl026011} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -1276,43 +1470,6 @@ Consortium--2013:Continental}%
   and Borgaonkar, Hemant P and Braida, Martina and Buckley, Brendan M and
   B{\"u}ntgen, Ulf and Chase, Brian M and Christie, Duncan A and Cook, Edward R
   and others}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Rayner%
-\ \protect \BOthers {.}}{%
-Rayner%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2003}}%
-}]{%
-Rayner-Parker-2003:Global}
-\APACinsertmetastar {%
-Rayner-Parker-2003:Global}%
-\begin{APACrefauthors}%
-Rayner, N\BPBI A.%
-, Parker, D\BPBI E.%
-, Horton, E\BPBI B.%
-, Folland, C\BPBI K.%
-, Alexander, L\BPBI V.%
-, Rowell, D\BPBI P.%
-\BDBL {}Kaplan, A.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2003}{{\APACmonth{07}}}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Global analyses of sea surface temperature, sea ice, and
-  night marine air temperature since the late nineteenth century} {Global
-  analyses of sea surface temperature, sea ice, and night marine air
-  temperature since the late nineteenth century}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Journal of Geophysical Research:
-  Atmospheres}{108}{D14}{}.
-\newblock
-\begin{APACrefURL} \url{http://dx.doi.org/10.1029/2002jd002670}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.1029/2002jd002670} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
