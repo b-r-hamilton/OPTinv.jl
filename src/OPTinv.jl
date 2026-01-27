@@ -236,6 +236,7 @@ function invert(x::inversion; res = 10yr)::solution
     σθ = vec(std(mags, dims = 1)) * K
     println("multiplying σθ by 4")  #fitting at 4 σ level
     σθ .*= 4
+    #widening this up to 28 overfits the data! 
     
     #σδ = σθ ./ 14.84 .* permil/K
     σδ = σθ ./ 14.93 .* permil/K

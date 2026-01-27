@@ -70,18 +70,24 @@ effd18Oc_cibs = (-0.224 ± 0.002) * (θobs .± σθobs) .+ (3.53 ± 0.02) .+ (d1
 fig = figure(figsize = (6,8)) 
 ax = gca()
 T = ustrip.(Array(dims(y.y)[1]))
-for c in keys(locs)
+mat = zeros(11) 
+for (i,c) in enumerate(keys(locs))
     ytmp = ustrip(y.y[:, At(c)])
     ytmp = c ∈ [:MC28A, :MC26A, :MC25A] ? ytmp .- 0.47 : ytmp
+    mat[i] = ytmp[end] 
     d = fill(locs[c][3], length(ytmp)) 
     s = scatter(ytmp, d, c = T, cmap = "rainbow", s = (2050 .- T) ./ 5, zorder = 10)
     #s = scatter([ytmp], [d], c = "red", s = 50)
-    if c == keys(locs)[end]++
+    if c == keys(locs)[end]
         cb = colorbar(s, location = "top")
         cb.set_label("Time [years CE]", fontsize = 12)
         
     end
 end
+#what is the correlation between the final yvalue and the effd18Oc
+using Statistics
+println("Correlation = " * string(cor(mat, effd18Oc_cibs)))
+
 ms = 15
 scatter(effd18Oc_cibs, depths, color = "black", label = "Effective " * L"\mathrm{\delta}^{18}\mathrm{O}_\mathrm{calcite}", markersize = ms, capsize = 3, fmt = "X", zorder = 0, linewidth = 3)
 #scatter(effd18Oc_uvi_fs[begin:3], depths[begin:3], color = "lightgray", label = "Effective " * L"\mathrm{\delta}^{18}\mathrm{O}_\mathrm{calcite}", markersize = ms, marker = "X", markeredgecolor = "black", capsize = 5)

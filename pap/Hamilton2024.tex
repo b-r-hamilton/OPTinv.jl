@@ -2,7 +2,7 @@
 \usepackage{amsmath}
 \usepackage{url} %this package should fix any errors with URLs in refs.
 \usepackage{lineno}
-\usepackage[inline]{trackchanges} %for better track changes. finalnew option will compile document with changes incorporated.
+\usepackage[finalnew]{trackchanges} %for better track changes. finalnew option will compile document with changes incorporated.
 \usepackage{wasysym}[nointegrals]
 \usepackage{soul}
 \usepackage{siunitx}
@@ -24,14 +24,13 @@
 
 \affiliation{1}{MIT-WHOI Joint Program in Oceanography/Applied Ocean Sciences and Engineering}
 \affiliation{2}{Woods Hole Oceanographic Institution}
-
  \affiliation{1}{Woods Hole, MA, USA}
  \affiliation{2}{Woods Hole, MA, USA}
 
 \correspondingauthor{Brynnydd Hamilton}{brynnydd.hamilton@whoi.edu}
 
 \begin{keypoints}
-\item Surface properties are inferred from benthic records, accounting for age model uncertainty, circulation lags, and paleotemperature equations
+\item Surface properties are inferred from benthic records, accounting for age model uncertainty, circulation lags, and paleotemperature equation
 \item A high-latitude ($>50^{\circ}$N) North Atlantic MCA-LIA cooling of 0.38 $\pm$ 0.13 K from 1140-1880 CE is reconstructed 
 \item The identified cooling is consistent with marine surface reconstructions and is greater than that of the Last Millennium Reanalysis
 \end{keypoints}
@@ -64,7 +63,7 @@
   benthic sediment core records which record the properties of
   abyssal waters that are not subject to high-energy near-surface
   variability, instead of planktonic sediment core records which tend
-  to have more noise.  These results are consistent with the global
+  to have more noise. These results are consistent with the global
   SST trends inferred from the Ocean2k planktonic SST compilation and
   corroborate robust Little Ice Age cooling in the North Atlantic, while providing further insights on its spatial pattern.
 \end{abstract}
@@ -72,7 +71,7 @@
 \section*{Plain Language Summary}
 Historical instrumental evidence and climate proxy records both suggest that there was a period of anomalously cool global mean temperature, sometime in the past 500 years, called the Little Ice Age (LIA). Past estimates of oceanic cooling have been obtained from chemical analyses on the shells of single-celled organisms, called foraminifera, that dwell in the surface layer of the ocean and are preserved in the sediment when they die. However, planktonic foraminiferal records only reflect oceanic conditions at a particular surface point. Here, we build on prior techniques to infer the oceanic conditions over a wide surface area by using chemical analyses on the shells of bottom-dwelling foraminifera. These foraminifera record climate signals with higher fidelity, as they record bottom water properties that are composed of waters sourced from large areas of the surface ocean. We use an ocean circulation model to relate waters at the sediment core sites to the surface, and then infer broad swaths of surface water characteristics based on bottom-dwelling foraminifera records. We find that LIA cooling in the high-latitude North Atlantic was similar to previous estimates of the global LIA cooling from surface-dwelling foraminifera, but considerably larger than suggested by estimates driven with numerical models.
 
-\section{Introduction}
+\section{Introduction \label{sec:intro}}
 The past 2,000 years, referred to as the Common Era (CE), is a
 critical period for understanding the response of the Earth's climate
 to various perturbations on timescales longer than that of the
@@ -92,44 +91,73 @@ Inferring the evolution of the LIA from observations is challenging
  due to the sparse and noisy nature of paleoceanographic
 data. Specifically, LIA SST cooling rates have been inferred largely from planktonic
 foraminifera \cite{ocean2k} that represent a single surface point and can be difficult to
-extrapolate to a regional average. In addition, planktonic records are
+extrapolate to a regional average.
+\remove{In addition, planktonic records are
 subject to seasonal and habitat biases that can distort the recorded
-signal. Both of these factors may contribute to conflicting values in
+signal.}
+\remove{Both of these factors may contribute to conflicting values in
 the magnitude and timing of the Medieval Climate Anomaly (MCA) to LIA
-cooling. For instance \citeA[]{Cunningham-Austin-2013:Reconstruction} used a composite plus regression approach to estimate a 0.2 $^{\circ}$C/kyr cooling
-from 1200-1940 CE from a compilation of 13 quality-controlled
+cooling.}
+\add{Prior research has used a variety of methodologies and datasets, many of which are  not independent, to arrive at
+conflicting values of Medieval Climate Anomaly (MCA) to LIA cooling. }
+For instance, \citeA[]{Cunningham-Austin-2013:Reconstruction} used a composite plus regression approach to estimate a 0.2 $^{\circ}$C/kyr cooling
+from 1200-1940 CE from a compilation of 13 \remove{quality-controlled}
 northeast North Atlantic planktonic records, while
 \citeA{ocean2k} estimated a 0.42 $^{\circ}$C/kyr SST cooling from 
 800-1800 CE with a standardized,
-temporally-binned averaging method from 57 global planktonic SST records.
+temporally-binned averaging method from the Ocean2k compilation of 57 global planktonic SST records.
 The Last Millennium Reanalysis (LMR), an offline data assimilation of a terrestrial and marine
-  paleoclimate database \cite{Emile-Geay-McKay-2017:global}, has a similar Little Ice Age cooling to the \citeA{Cunningham-Austin-2013:Reconstruction}, with a 0.20 $\pm$ 0.02 $^{\circ}$C/kyr global SST cooling over the same time period. These
-  reconstructions are not fully independent, with 2 records from the
+paleoclimate database \cite{Emile-Geay-McKay-2017:global}, has a similar Little Ice Age cooling to \citeA{Cunningham-Austin-2013:Reconstruction}, with a 0.20 $\pm$ 0.02 $^{\circ}$C/kyr global SST cooling over the same time period.
+These reconstructions are not independent, with 2 records from the
   \citeA{Cunningham-Austin-2013:Reconstruction} compilations included in
   Ocean2k \cite{ocean2k}, and the full Ocean2k compilation included in the PAGES2k
-  database \cite{Emile-Geay-McKay-2017:global}, which the LMR assimilates.
+  database \cite{Consortium--2013:Continental}, which the LMR assimilates. \add{In order
+    to address the conflicting non-independent estimates of LIA cooling,
+    information from an independent source is required.}
 
-In this paper, we develop an inverse approach to infer surface
+\remove{In this paper, we develop an inverse approach to infer surface
 properties from an independent compilation of benthic
-$\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ records. Previously, these
-records were used to demonstrate that the
+$\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ records.} \add{In this paper, we
+utilize a compilation of benthic $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ records
+to estimate LIA surface cooling.}
+Previously, this compilation
+was used to demonstrate that the
 deep ocean MCA-LIA transition, as indicated by benthic records,
 occurred at 1350 $\pm$ 50 CE, while the surface ocean MCA-LIA
 transition, as indicated by planktonic records, occurred over a longer
-time interval, ranging from 1100-1700 CE
-\cite[]{Lu-Oppo-2023:Surface}. In addition, a larger magnitude LIA was
+time interval, ranging from 1100-1700 CE. In addition, a larger magnitude LIA was
 observed in the benthic records than in the planktonic records,
 suggested to indicate an Arctic amplification of LIA temperature
 changes, transferred to the sediment core sites by an active Atlantic
-Meridional Overturning Circulation. Here, we quantitatively simulate
-the effect of ocean circulation on core site signals, which allows us
+Meridional Overturning Circulation \cite[]{Lu-Oppo-2023:Surface}.
+Here, we quantitatively simulate
+the effect of ocean circulation on core site signals, allowing us
 to estimate surface conditions from benthic records.
 
-We infer surface conditions from this dataset via back-propagation
+\remove{We infer surface conditions from this dataset via back-propagation
 through a modern-day circulation model under the assumption that there
-were no large-scale circulation changes over the CE. We apply the empirical
+were no large-scale circulation changes over the CE.}
+\add{Connecting benthic
+$\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ records to
+surface conditions requires the development of novel methodologies that
+account for the transport lag of LIA signals in reaching the deep ocean. We use a
+  back-propagation technique to estimate the relationship between surface conditions
+  and the benthic dataset in a modern-day ocean circulation model.
+   Although there is evidence from sortable silt records for deep
+  boundary western boundary current changes over the past 150 years
+  \cite{Thornalley-Oppo-2018:Anomalously}, there is no conclusive evidence for a
+  large-scale circulation disruption from
+  modern-day circulation during the Common Era \cite{Moffa-Sanchez-Hall-2015:Changes, Lippold2019}.
+  We frame the problem addressed in this manuscript as a null hypothesis
+  test of the stability of relevant North Atlantic circulation pathways over the
+  CE. A failure of our methodology to fit the benthic sediment core records would
+  provide evidence for
+  large-scale circulation perturbations over the CE, while success does not necessarily
+  confirm the absence of circulation disruption.}
+
+We apply the empirical
 ocean circulation model of
-\citeA[]{Gebbie-Huybers-2012:mean} that was used to estimate coherent
+\citeA[]{Gebbie-Huybers-2012:mean}, which was used to estimate coherent
 regional temperature histories over the CE from a compilation of
 marine surface records, observations from the 1870s HMS Challenger
 expedition, and modern hydrography \cite{gebbie19}. Both the North
@@ -144,7 +172,7 @@ data used by \citeA{gebbie19}.
 % JG: in future revisions, explain more about the motivation for this paragraph
 We present a new methodology to invert for the time-evolving magnitude
 of surface spatial modes as obtained through singular value
-decomposition. These modes emphasize regions of deep water formation
+decomposition\add{, unlike \citeA{gebbie19}, which used homogenous large-scale surface patches}. These modes emphasize regions of deep water formation
 and smoothly vary in space. This approach is similar to
 \citeA{Amrhein-Gebbie-2015:Inferring}, in which deglacial mixed layer
 $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ was inferred from benthic
@@ -160,7 +188,7 @@ sediment cores, while this work uses a newly-generated compilation of
 high-resolution North Atlantic sediment cores. Finally, our approach
 decomposes the measured $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ into
 temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$, which is easily
-comparable with modern-day observations and other paleoceanographic
+comparable with \remove{modern-day observations and }other paleoceanographic
 reconstructions, whereas
 \citeA{Amrhein-Gebbie-2015:Inferring} inferred surface mixed layer
 equilibrium $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$.
@@ -168,16 +196,19 @@ equilibrium $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$.
 Prior inverse techniques \cite[]{Burke-Marchal-2011:Application,
   Gebbie-2012:Tracer, Amrhein-Gebbie-2015:Inferring}
 have only incorporated the central estimate
-from age models and not the full
-age model ensemble. Outside of
+from age models, not full
+age model ensembles. Outside of
 inverse methods, age model uncertainty has previously been
 incorporated into frequency and correlation analysis
 \cite[]{Khider-Emile-Geay-2022:Pyleoclim}, but has not, to the
 knowledge of the authors, been taken into account in an inverse
-framework. Here, we develop an approach to convert a representation of
-the first and second moments of age model uncertainty into
+framework.
+\remove{Here, we develop an approach to convert a representation of
+the first and second moments of temporal age model uncertainty into
 $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ space, which can be propagated
-through the problem.
+through the problem.}
+\add{Here, we develop an approach to convert the uncertainty in time represented
+by age model uncertainty into an uncertainty in $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$, which can be propagated through the problem.}
 
 \section{Methods}
 Here we quantify the relationship between time-varying surface
@@ -192,11 +223,12 @@ surface boundary conditions informed by the water mass composition of
 the sediment core sites (Section \ref{sec:spatmode}). Finally, we
 invert for the time-varying magnitudes of the surface boundary
 condition via a statistical solution technique (Section
-\ref{sec:solution}). A table of all variable definitions, units, and
+\ref{sec:solution}). For the convenience of the reader,
+a table of all variable definitions, units, and
 dimensions is provided in Supplemental Table S2.%\ref{supp-var}.
 
 \subsection{Benthic foraminiferal observations \label{sec:y}}
-In this inversion, we are solving for the evolution of surface
+In this inversion, we solve for the evolution of surface
 properties that best explain the collective behavior of 11
 high-resolution benthic foraminiferal
 $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ sediment core records previously
@@ -220,9 +252,9 @@ waters, while lower $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ is
 associated with fresher waters \cite[]{Emiliani--1955:Pleistocene,
   Bemis-Spero-1998:Reevaluation}. Ultimately, higher values of
 $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ are associated with either
-cooler temperatures and/or more saline waters. In particular, the
+cooler temperatures and/or more saline waters. The
 $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ of foraminiferal tests can be
-linearly approximated \cite{McCrea-1950:Isotopic},
+linearly approximated as,
 \begin{equation}
 \label{eq:cibs}
 \delta^{18}\mathrm{O}_{\mathrm{calcite}} = \alpha T + \beta + \delta^{18}\mathrm{O}_{\mathrm{seawater}},
@@ -230,12 +262,16 @@ linearly approximated \cite{McCrea-1950:Isotopic},
 where $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ and
 $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ are assumed to be relative to
 $\permil$ Pee Dee Belemnite
-(PDB). Specifically, $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ is converted from Vienna
+(PDB) \cite{McCrea-1950:Isotopic}. The $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ is converted from Vienna
 Standard Mean Ocean Water (VSMOW) to PDB with a 0.27$\permil$ offset
 \cite[]{<new-entry2>}. Here we use the constants
 $\alpha = -0.224 \pm 0.002$ $\permil\mathrm{ K}^{-1}$ and
-$\beta = 3.53 \pm 0.02$ $\permil$ for \textit{C. wuellerstorfi} tests
-\cite{marchitto}. \textit{U. peregrina} is isotopically heavier than
+$\beta = 3.53 \pm 0.02$ $\permil$ for \textit{C. wuellerstorfi} tests.
+% \add{We disregard the uncertainty in $\alpha$, as the greatest recorded LIA magnitude
+%   in our sediment core sites ($\approx$0.1$\permil$) 
+%   corresponds to a maximum propagated temperature uncertainty of 0.004 K,
+%   which is imperceptible at the precision level later reported.}
+\textit{U. peregrina} is isotopically heavier than
 \textit{C. wuellerstorfi} by
 0.47$\permil$ \cite[]{marchitto} and we remove this inter-species equilibration
 offset before applying Equation (\ref{eq:cibs}). Following convention,
@@ -253,7 +289,6 @@ radiocarbon samples and an assigned coretop age. Each radiocarbon measurement
  $>$ \qty{300}{\micro\meter} size fraction. Radiocarbon dates were calibrated against the
  Marine20 curve, and a reservoir age correction of -108 $\pm$ 40 years was used.
  For each sediment core, 1000 realizations of age with respect to depth were generated.
-
 The $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ series is aligned to each
 age model realization, providing an
 ensemble of $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ measurements with
@@ -288,62 +323,45 @@ first and second moments of observational uncertainty,
 $\mathbf{C_{yy}}$ (complete details in \ref{sec:agemodel}) and
 propagated through the problem.
 
-Once the observational vector, $\mathbf{y}$, is formed, we compare it
-with an estimate of effective modern-day
+\add{In order to assess the relationship between the sediment core records
+  and modern-day values, we compare} \remove{Once }the
+observational vector, $\mathbf{y}$\remove{, is formed, we compare it
+with} \add{to} an estimate of effective modern-day
 $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ (i.e., what a hypothetical
-foraminifera would record if it were exposed to some given temperature
+foraminifera would record if it were exposed to \remove{some given}
+\add{modern-day} temperature
 and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$). This estimate is inferred
   from the temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ fields from a
   modern-day, time-averaged globally gridded estimate \cite{gebbie2010}.
 We find that the depth
 structure in recorded CE $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ is
-largely captured by modern-day estimates of
+largely captured \add{($\rho$ = 0.93)} by modern-day estimates of
 $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$\add{.}\remove{, although}
 
-Offsets exist, especially at shallower depths (Figure \ref{fig:offset}). These
+\remove{Offsets exist, especially at shallower depths} \add{However, the correlation is weakened by the mismatch between the sediment core records and effective modern-day $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ at the shallowest \textit{U. peregrina} sediment
+  core records}
+(Figure \ref{fig:offset}). \remove{These
 offsets are large compared to the CE variability recorded in the
-sediment core records. 
-\add{These offsets could be due to a variety of causes,
-  such as conflict in the inter-species calibration, or differences in the
-  temporal or spatial representation of the modern-day estimate in comparison to the
-  sediment core data. Any offset as a result of the inter-species calibration will be time-invariant, so long as there is no biological evolution in foraminifera, which is expected due to the sub-evolutionary timescale. In addition, any offset due to the circulation model's timing or gridding will also be time-invariant.}
-% Further details on effective modern-day $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ and interpretation of Figure \ref{fig:offset} are in Supplemental Section S1. %\ref{supp-sec:offset}.
-
-
-% Due to
-% \remove{uncertainty in the inter-species equilibration offset of
-% \textit{U. peregrina} \cite{Shackleton1974AttainmentOI, marchitto},
-% as well as uncertainty in modern day estimates of
-% $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ at depth,}
-% \add{ambiguity in the source of the depth-dependent offset,}
-% \remove{we choose to work in
-% $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ anomaly space, as was done in
-% \citeA{Amrhein-Gebbie-2015:Inferring}.}
-% \add{we are not able to produce well-constrained estimates of absolute temperature
-%   and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$.
+sediment core records.}
+\add{These offsets could be due to
+  conflict in the inter-species calibration, or in the
+  spatial representation of the modern-day estimate compared to the
+  sediment core records. Any offset as a result of the inter-species calibration will be
+  time-invariant, so long as there is no biological evolution in foraminifera, which is expected due to the sub-evolutionary timescale of the problem. In addition, any offset due to mapping between the sediment core locations and the spatially discretized circulation model grid (2$^{\circ}$ horizontally, 33 vertical levels) will also be time-invariant.}
 
 \add{We are predominantly interested in reconstructing the magnitude of the LIA,
   and wish to remove the influence of time-invariant errors. We accomplish this by
   computing all quantities as anomalies from the historical period (1850-1980 CE),
   thus removing
   any dependence on the inter-species equilibration offset or modern-day estimates of
-  temperature or $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. This is akin to the assumption
-  of a reference pressure used in computing potential quantities in physical
-  oceanography. }
-% Q: "The tradeoff is that we are not reconstructing absolute values, which would
-% require a better connection between paleoceanographic observations and
-% modern-day instrumental observations."
-% "In order to address this, we would have to address the long-standing
-% paleoceanographic-instrumental observation calibration problem (maybe cite
-% some things?) - this is a difficult problem, we don't need to solve it to get
-% LIA model (Moffa-Sanchez review?) 
-Therefore, we ensure that we maximize the fit to the coherent temporal CE
-signal, without contamination by the mean offset at each core site \add{or estimates
-  of modern-day temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$.}
+  temperature or $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. }
+This maximizes fit to the coherent temporal CE
+signal, without contamination by the mean offset at each core site.
 \remove{which we
-believe to be partially affected by species offsets}. We
+believe to be partially affected by species offsets.} We
 convert all quantities into anomalies by subtracting the mean value
-between 1850-1980 CE from each record.
+between 1850-1980 CE from each record (i.e., $y = y_{\mathrm{observed}} - \bar{y}_{\mathrm{1850-1980 CE}}$). For the following text, all quantities are assumed to either be arbitrary or anomalies from 1850-1980 CE. 
+ \add{Further discussion of these points is in Supplemental Section S1.}
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = 0.75\textwidth]{offsetsedited}}
@@ -362,11 +380,18 @@ between 1850-1980 CE from each record.
 Ambient waters at an interior ocean
 location can be related to surface waters at some previous time via an
 ocean circulation model
-\cite{Burke-Marchal-2011:Application,Gebbie-2012:Tracer,Amrhein-Gebbie-2015:Inferring}. Here,
+\cite{Burke-Marchal-2011:Application,Gebbie-2012:Tracer,Amrhein-Gebbie-2015:Inferring}.
+Here,
 we use the empirical ocean circulation model of
-\citeA[]{Gebbie-Huybers-2012:mean}, in which the steady-state
-water-mass model of \citeA{gebbie2010} was extended by incorporating
-radiocarbon observations. This model has a horizontal resolution of 2$^{\circ}$, and 33 vertical levels. This provides a discrete time tracer
+\citeA[]{Gebbie-Huybers-2012:mean}, \remove{in }which \add{extends} the steady-state
+water-mass model of \citeA{gebbie2010} \remove{ was extended }by incorporating
+radiocarbon observations.
+\add{As stated in Section \ref{sec:intro}, this circulation model approximates
+  modern-day conditions, and results generated under the assumption of modern-day
+  circulation serve as a null test of whether ocean circulation perturbations
+  are required to explain CE benthic sediment core records.}
+This model has a horizontal resolution of 2$^{\circ}$, and 33 vertical levels, and
+provides a discrete time tracer
 transport operator, $\mathbf{L}$, that quantifies the relationship
 between all interior locations and surface locations as a function of
 mass fluxes. The matrix, $\mathbf{L}$, can be used to compute the time
@@ -377,49 +402,54 @@ evolution of a three-dimensional tracer field, $\mathbf{c}$, as
 \end{equation}
 where $\mathbf{B}$ is a Dirichlet boundary condition mapping matrix,
 $\mathbf{q}(t)$ is a prescribed surface boundary condition that can be
-time-varying, and $\Delta t$ is an arbitrary timestep from time $t$. We choose a timestep of $\Delta t = 10$ years, chosen according to the binning interval inferred by geoChronR (Supplemental Section S12).
+time-varying, and $\Delta t$ is an arbitrary timestep from time $t$. We choose a timestep of $\Delta t = 10$ years, chosen \remove{according to the}\add{in accordance with the} binning interval inferred by geoChronR (Supplemental Section S12).
 
 As previously noted, $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ is
 controlled by the temperature and
 $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ of the ambient water at the
 time of calcification. We combine the tracer transport model
 Equation (\ref{eq:diffeq}) with the paleotemperature Equation
-(\ref{eq:cibs}) to form a boundary propagator equation for the
-effective \add{anomalous} $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ at any interior
+(\ref{eq:cibs}) to form a boundary propagator equation \cite[]{Haine-Griffies-2025:Review} for \add{anomalous} $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ at any interior
 location due to time-evolving
 surface boundary conditions,
 \begin{equation}
 \label{eq:diffeqspec}
 \mathbf{c_{c}}(t+\Delta t) = \alpha[\mathbf{L} \mathbf{c_{T}}(t) + \mathbf{B} \mathbf{q_{T}}(t)] + \mathbf{L}\mathbf{c_{s}}(t) + \mathbf{B}\mathbf{q_{s}}(t). 
 \end{equation}
-Again all quantities are anomalies from 1850-1980 CE, so the constants
+All quantities are anomalies from 1850-1980 CE, so the constants
 $\beta$ and 0.27$\permil$ from Equation (\ref{eq:cibs}) are not included
-here. The vector, $\mathbf{c_c}$, is vectorized \add{anomalous}
-$\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ at all interior locations,
-$\mathbf{c_{T}}$ is vectorized temperature at all interior locations,
-and $\mathbf{c_{s}}$ is vectorized
-$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ at all interior locations. The
-vector, $\mathbf{q_{T}}$, is the temperature boundary condition at all
-surface locations, and $\mathbf{q_{s}}$ is the
-$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ boundary condition at all
+here. The variables $\mathbf{c_c}, \mathbf{c_{T}}$ and $\mathbf{c_{s}}$ are respectively vectorized anomalous $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$, temperature, and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ at all interior locations.
+The vectors $\mathbf{\hat{q_{T}}}$ and $\mathbf{\hat{q_{s}}}$ are respectively vectorized temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ \add{anomaly} boundary conditions at all
 surface locations.
 
-Equation (\ref{eq:diffeqspec}) relies on the assumption that
-$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ is near-conservative
-\cite[]{Lynch-Stieglitz-2003:Tracers} and can be treated as a passive
+\add{Uncertainty due to the $\alpha$ constant is not propagated,
+  as it is of negligible magnitude. A 0.1$\permil$ LIA change in
+  $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ scales
+  to a maximum $-0.44 \pm 0.004 $ K temperature change according
+  to the paleotemperature equation.
+  Propagating uncertainty from the paleotemperature
+  equation constant $\alpha$ would change the final uncertainty envelope
+  by less than 0.01 K which is small
+compared to other sources of uncertainty accounted for in this problem.} Equation (\ref{eq:diffeqspec}) also relies on the assumption that
+$\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ is near-conservative
+\cite[]{Lynch-Stieglitz-2003:Tracers}\add{, as assumed by previous authors \cite{Lund2011, Gebbie-2012:Tracer, Amrhein-Gebbie-2015:Inferring}. For dynamical pressure changes that
+  are no larger than 5 dbar in the ocean, the non-conservative effect
+  on $\delta^{18}\mathrm{O}$ is roughly $4 \times 10^{-5} \permil$ (e.g., the
+  product of the adiabatic lapse rate, $0.035$ K/km, 5 m vertical
+  variations, and $\alpha$)}. \remove{and can be treated as a passive
 tracer. In addition, we assume that perturbations to temperature are
 small enough to not detectably affect the circulation, allowing us to
 also treat temperature as a passive tracer as in
-\citeA{gebbie19}. 
+\citeA{gebbie19}.}
 
 An interpolation matrix, $\mathbf{O}$, is used to ``observe'' the
-effective \add{anomalous} $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ field,
+\add{anomalous} $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ field,
 $\mathbf{c_{c}}$, at the locations of the sediment cores, resulting in
 \begin{equation}
 \label{eq:yeff}
 \mathbf{y}(t) = \mathbf{O}\mathbf{c_{c}}(t). 
 \end{equation}
-Here, $\mathbf{y}(t)$ is the vectorized effective \add{anomalous}
+Here, $\mathbf{y}(t)$ is the vectorized \add{anomalous}
 $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ at the sediment core sites
 according to some propagated surface boundary conditions,
 $\mathbf{q_{T}}$ and $\mathbf{q_{s}}$. We ultimately seek optimized values of
@@ -427,14 +457,16 @@ $\mathbf{q_{s}}(t)$ and $\mathbf{q_{T}}(t)$ for all times relevant to
 the sediment core records (see Section \ref{sec:solution} for optimization
   criterion).
 
-Equations (\ref{eq:diffeqspec}) and (\ref{eq:yeff}) relate signals in
-the interior $(\mathbf{y}(t+\Delta t))$ to the surface
-$(\mathbf{q_{T}}(t), \mathbf{q_{s}}(t))$, but also have dependence on
-prior interior tracer concentrations $(\mathbf{c_{c}}(t))$. This
-requires a computationally-intensive time-stepping approach to solve.
-To circumvent a time-stepping approach, we apply a boundary
-propagator technique to remove the direct dependence on prior interior
-tracer concentrations in Equation (\ref{eq:diffeqspec}) In short,
+  Equations (\ref{eq:diffeqspec}) and (\ref{eq:yeff}) relate interior signals,
+  $\mathbf{y}(t+\Delta t)$, to surface signals,
+  $\mathbf{q_{T}}(t)$ and $\mathbf{q_{s}}(t)$,
+  but \remove{also have dependence}\add{depend }on
+  prior interior tracer concentrations, $\mathbf{c_{c}}(t)$.\remove{This
+requires a computationally-intensive time-stepping approach to solve.}
+To circumvent a \add{computationally-intensive }time-stepping approach,
+we apply a boundary propagator technique to remove the direct dependence on
+prior interior
+tracer concentrations in Equation (\ref{eq:diffeqspec}). In short,
   this methodology allows us to express an interior signal as a weighted sum of
 all prior surface boundary conditions (see
 Supplemental Section S2 %\ref{supp-sec:ttm}
@@ -443,7 +475,7 @@ and \citeA[]{Haine-Griffies-2025:Review} for more discussion).
 We seek a formulation that
 infers effective \add{anomalous} $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ values at the
 sediment core sites at all relevant times, based upon all surface
-boundary conditions, $\mathbf{q_{T}}(t)$ and $\mathbf{q_{s}}(t)$, at
+boundary conditions, $\mathbf{\hat{q_{T}}}(t)$ and $\mathbf{\hat{q_{s}}}(t)$, at
 all relevant times. We refer to these as the vectors
 $\mathbf{\hat{y}}$, $\mathbf{\hat{q}_{T}}$, and
 $\mathbf{\hat{q}_{s}}$, which are the time-concatenated version of the
@@ -451,16 +483,16 @@ vectors in Equation (\ref{eq:diffeqspec}), as in
 \begin{align}
   \label{eq:expand} 
 \mathbf{\hat{q}_{T}} = \begin{bmatrix}
-                         \mathbf{q_{T}}(t_{f})\\
-                         \mathbf{q_{T}}(t_{f-1})\\
+                         \mathbf{\hat{q_{T}}}(t_{f})\\
+                         \mathbf{\hat{q_{T}}}(t_{f-1})\\
                          \vdots \\
-                         \mathbf{q_{T}}(t_{f-Q})
+                         \mathbf{\hat{q_{T}}}(t_{f-Q})
                         \end{bmatrix},
 \mathbf{\hat{q}_{s}} = \begin{bmatrix}
-                         \mathbf{q_{s}}(t_{f})\\
-                         \mathbf{q_{s}}(t_{f-1})\\
+                         \mathbf{\hat{q_{s}}}(t_{f})\\
+                         \mathbf{\hat{q_{s}}}(t_{f-1})\\
                          \vdots \\
-                         \mathbf{q_{s}}(t_{f - Q})
+                         \mathbf{\hat{q_{s}}}(t_{f - Q})
                         \end{bmatrix},
 \mathbf{\hat{y}} = \begin{bmatrix}
                          \mathbf{y}(t_{f})\\
@@ -484,7 +516,8 @@ We combine Equations (\ref{eq:diffeqspec}) and (\ref{eq:yeff}) as
 \end{equation}
 where $\mathbf{G}'$ is the boundary propagator matrix that relates all
 surface grid cells to interior sediment core locations, for all times
-of interest. The matrix, $\mathbf{G'}$, is sparse due to the causal
+of interest (Supplemental Section 2.2).
+The matrix, $\mathbf{G'}$, is sparse due to the causal
 relation between the input and output.
 Each row of $\mathbf{G'}$ corresponds to the set of boundary propagator
 functions, for all surface grid cells in $\mathbf{\hat{q}}$, at a
@@ -506,11 +539,11 @@ and underdetermined nature pose significant computational
 challenges, so we seek to reduce the dimensionality of this problem next.
 
 \subsection{Surface spatial modes \label{sec:spatmode}}
-Here the problem is reduced by defining characteristic surface
+The problem is reduced by defining characteristic surface
 boundary conditions, $\mathbf{v}_{i}$, that have a time-varying
 magnitude, $u_{i}(t)$. This set of reduced surface boundary conditions
-is termed the spatial modes, $\mathbf{v}_{i}$, and their
-associated magnitudes are the mode magnitudes, $u_{i}$. Any
+is termed the \add{surface} spatial modes, $\mathbf{V}$, and their
+associated magnitudes are the mode magnitudes, $\mathbf{u}$. Any
 arbitrary surface boundary condition vector, $\mathbf{q}(t)$, is
 decomposed into a superposition of $N$ spatial modes scaled by their
 associated mode magnitudes, as in,
@@ -518,7 +551,7 @@ associated mode magnitudes, as in,
 \label{eq:surfbc}
 \mathbf{q}(t) = \sum_{i}^{N} u_{i}(t) \mathbf{v}_{i}. 
 \end{equation}
-Similarly, the vector, $\mathbf{\hat{u}}$, concatenates all mode
+The vector, $\mathbf{\hat{u}}$, concatenates all mode
 magnitudes at all times. This simplification allows us to reformulate
 Equation (\ref{eq:modeleq}) as
 \begin{equation}
@@ -526,13 +559,15 @@ Equation (\ref{eq:modeleq}) as
 \mathbf{\mathbf{\hat{y}}} = \mathbf{M}'(\alpha \mathbf{\hat{u}_{T}} + \mathbf{\hat{u}_{s}}). 
 \end{equation}
 The matrix, $\mathbf{M}'$, is a boundary propagator for
-constant-in-time spatial modes, $\mathbf{v}_{i}$, from which we infer
+constant-in-time spatial modes, $\mathbf{V}$, from which we infer
 the time-varying mode magnitudes $\mathbf{\hat{u}_{T}}$ and
 $\mathbf{\hat{u}_{s}}$. The number of columns in our boundary
-propagator matrix is reduced from $1.7\times10^{6}$ to $149N$, where $N$
-is the chosen number of spatial modes. Equation (\ref{eq:modeleqfin})
+propagator matrix is reduced from $1.7\times10^{6}$ to\remove{$149N$, where $N$
+  is the chosen number of spatial modes}\add{ 1639 for
+  11 surface spatial modes, increasing computational tractability}.
+Equation (\ref{eq:modeleqfin})
 combines both the proxy system model and the lagged response at the
-core sites due to ocean circulation into one equation (Supplemental Section S2). %\ref{supp-sec:ttm}).
+core sites due to ocean circulation into one equation (Supplemental Section S2.2). %\ref{supp-sec:ttm}).
 
 We make several simplifying assumptions in order to arrive at a
 minimal set of surface spatial modes that provide a diverse possible
@@ -553,15 +588,26 @@ common oceanographically-relevant water masses will have coherent
 temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. To generate
 surface spatial modes that fulfill these simplifications, we identify
 orthonormal surface spatial modes based on the singular value
-decomposition of surface water origination maps for each sediment
+decomposition (SVD) of surface water origination maps for each sediment
 core, obtained via a steady-state water-mass model (Supplemental
 Section
 S3). % \ref{supp-sec:spatmode}).
+
 We arrive at a set
 of 11 surface spatial modes, limited by the number of sediment core
-records in the dataset. Our $\mathbf{M}'$ matrix will
-have 1639 columns, down from $1.7 \times 10^{6}$ columns that would be required to invert for each
-surface grid cell, which increases computational tractability.
+records in the dataset. %Our $\mathbf{M}'$ matrix will have 1639 columns, down from $1.7 \times 10^{6}$ columns that would be required to invert for each surface grid cell, which increases computational tractability.
+\add{These surface spatial
+  modes are orthogonal in space, and provide 
+  independent constraints in the steady-state problem. As in traditional SVD analysis,
+  we can compute the percentage of variance that each surface spatial mode explains.
+  However, these surface spatial modes are propagated through the transient transport
+  operator, $\mathbf{L}$, in our problem, so the traditional percentage variance metric
+  is not entirely relevant to our problem. A better metric of the relative
+  importance of a particular surface spatial mode to the problem is the
+  proportion of sediment core record variance
+  explainable (Supplemental Section 6.3). In order for any particular mode to
+  constrain the problem, the magnitude of sediment core record variance
+  explainable must be on the scale of features of interest in the sediment core records. }
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = \textwidth]{SVD_modes.png}}
@@ -569,21 +615,28 @@ surface grid cell, which increases computational tractability.
   obtained from the singular value decomposition of surface source
   water origination maps to the core sites. Titles show mode number,
   followed by the percentage of the variance of all surface source
-  water origination maps explained (Supplemental Equation
-  % (\ref{supp-eq:pervar})).
-   (S8)). 
+  water origination maps explained in the steady-state problem
+  \add{, denoted by ``ss'' }(Supplemental Equation (S9))
+  \add{and the percentage of sediment core record variance explainable by
+  each mode in the transient problem, denoted by ``t''} (Supplemental Equation (S9, S11)). 
   Each colorbar is centered on zero, but has
-  differing magnitudes.}
+  differing magnitudes. Note that the surface spatial mode value is unitless.}
 \end{figure}
 
-Modes are shown in Figure \ref{fig:svdmodes}, where the first mode
+\remove{Modes are shown in Figure \ref{fig:svdmodes}, where the first mode
 explains $\approx$99\% of the variability in source water origination maps
-for all core sites. Mode 1 characterizes the general surface region
+for all core sites.}
+\add{Surface spatial modes are shown in Figure \ref{fig:svdmodes} along with
+  estimates of the steady-state and transient percentage variance
+  that each mode explains. Mode 1 explains almost all of the variance in both the steady-state and transient problems, and}
+\remove{Mode 1 }characterizes the general surface region
 that is most important to the sediment core sites, and consists of a
 single-signed signal with maximum magnitude located directly north of
 Iceland. This signal is strong across most of the Norwegian and
-Iceland Seas. Mode 2, which explains $\approx$1\% of the variability in source water
-origination maps for all core sites, is characterized by a signal
+Iceland Seas. Mode 2, which explains $\approx$1\% of the variability in \remove{source water
+  origination maps for all sediment core sites}
+\add{both the steady-state and transient metric},
+is characterized by a signal
 centered in the Nordic Seas, and an anti-phased signal in the Labrador
 and Irminger Seas. This implies that source water origination maps for
 each core site tend to have an anti-phased contribution between these two regions (e.g., a sediment core
@@ -591,10 +644,21 @@ location that has more water originating from the Nordic Seas will
 have less water originating from the Labrador and Irminger Seas, and
 vice versa).
 
-Although Mode 1 explains almost all of the variability in the surface
-origination maps, this does not necessarily imply that it is the only
-surface mode needed to explain the sediment core data. The left singular vectors, or unscaled principal components, of the surface source water origination maps,
-have a consistently-valued negative contribution
+Although Mode 1 explains almost all of steady-state variance,
+this does not necessarily imply that it is the only
+surface mode needed to explain the sediment core data.
+\add{In Supplemental Section 6.3, we compute the maximum variance in
+  each sediment core record explainable by each surface spatial mode.
+  Any mode that can explain variance on the scale of features of interest within
+  the sediment core records is relevant to the problem. As seen in
+  Figure \ref{fig:recon}, consistent depth-dependent features in the
+  sediment core records  have magnitudes of $\approx$0.01$\permil$, and could potentially
+  be explained by higher-order
+  Modes 2-6, despite the fact that these modes explain little of the
+  steady-state variance.}
+\add{In addition, t}\remove{T}he left singular vectors, or unscaled principal components,
+of the surface source water origination maps,
+have consistently-valued negative contribution
 towards every sediment core site for Mode 1 (Supplemental Figure
  S1). %\ref{supp-fig:U}).
 Thus, we cannot explain 
@@ -602,10 +666,10 @@ much depth-dependent variability using solely Mode 1.
 This approach minimizes the degrees of freedom in the problem, while
 maximizing the amount of information our optimized estimate contains
 by quantifying the spatially-varying contribution of the surface ocean
-to the sediment core sites.
+to the sediment core sites. 
 
 Once the spatial modes are identified, we compute the associated
-boundary propagator (Supplemental Section S2).
+boundary propagator (Supplemental Section S2.2).
 %\ref{supp-sec:ttm}).
 This system can be
 integrated at any timestep via a quasi-constant timestep
@@ -622,9 +686,8 @@ influence over all sediment core sites. Mode 2's boundary propagator function de
 Iceland in Mode 2 is more important for deep sediment cores, while the
 negative-signed anomaly south of Iceland affects the intermediate
 sediment core sites. This further reinforces our choice to retain all
-11 modes in the reduced SVD, as the modes which explain a low
-percentage of the variance in surface source water origination maps
-could still explain depth-varying behavior in the sediment core records.
+11 modes in the reduced SVD, as higher-order modes have the potential
+to explain depth-varying behavior in the sediment core records.
 \subsection{Solution method \label{sec:solution}}
 We seek to construct a classical inverse problem of the format,
 $\mathbf{\hat{y}} = \mathbf{E\hat{u}}$, in which the observation
@@ -657,7 +720,7 @@ mean). Therefore, we set the prior to be null ($\mathbf{\hat{u_0}}$ =
 $\vec{0}$).
 
 We control how tightly the estimated mode magnitudes,
-$\mathbf{\hat{\tilde{u}}}$, are constrained to the prior,
+$\mathbf{\tilde{\hat{u}}}$, are constrained to the prior,
 $\mathbf{\hat{u_{0}}}$, via the prior's covariance matrix,
 $\mathbf{C_{u_{0}u_{0}}}$ (Supplemental Section
  S6). %\ref{supp-sec:Cuu}).    
@@ -665,11 +728,12 @@ This matrix controls the prior in
 three ways. First, we constrain the variance of the mode magnitudes
 associated with temperature by the estimated temporal variance of each
 surface spatial mode magnitude for temperature from coupled climate
-model output. Unlike sea
+model output \cite{cesm2}. Unlike sea
 surface temperature, there are no time-varying observational gridded
 estimates of $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$, and modeled
 $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ products are still quite novel
-\cite[]{Brady-Stevenson-2019:Connected}. For this reason, we control
+\cite[]{Breitkreuz-Paul-2018:Dynamical, Brady-Stevenson-2019:Connected}.
+For this reason, we control
 the variance of the mode magnitudes associated with
 $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ by scaling the estimated
 temperature variance by the estimated
@@ -743,30 +807,33 @@ as high fidelity as \texttt{OPT-11}.
 
 \subsection{Cost functions and optimized spatial mode magnitudes \label{sec:solchar}}
 Our cost function (Equation (\ref{eq:costfunc}))
-can be separated into an observational component ($\mathbf{n}^{T}\mathbf{C_{nn}}^{-1}\mathbf{n}$) and a prior component ($\mathbf{u_0}^T\mathbf{C_{u_0u_0}}^{-1}\mathbf{u_0} $).
+can be separated into an observational and prior component.
 The expected value of the
 observational cost function is equal to the number of observations in
 $\mathbf{\hat{y}}$, which is 357 for \texttt{OPT-3} and 572 for
 \texttt{OPT-11}. 
-We obtain an observational cost function value of 12.3 (OPT-3) and
-28.7 (OPT-11), indicating
+We obtain observational cost function values of 12.3 (\texttt{OPT-3}) and
+28.7 (\texttt{OPT-11}), indicating
 an overfit of the observations, as they are less than the expected
-values. This overfit is the result of a consistent signal reflected by
-all sediment cores, as well as refinement via the prior, and is
+values. This overfit is the result of a \remove{consistent}\add{coherent}
+signal \remove{reflected}\add{shared} by
+all sediment cores\remove{, as well as refinement via}
+\add{together with additional
+consistent information provided by }the prior, and is
 therefore understood in this situation. The expected value of the
-prior's cost function is equal to 3,278 (149 timesteps, 11 spatial
+prior cost function is equal to 3,278 (149 timesteps, 11 spatial
 mode magnitudes, and 2 state variables) for both estimates. We obtain a
 prior cost function value of
-10.5 (OPT-3) and 0.997 (OPT-11), indicating that
-the prior is improved upon for both estimates.
+10.5 (\texttt{OPT-3}) and 0.997 (\texttt{OPT-11}), indicating\remove{that
+  the prior is improved upon for both estimates.}
+\add{minimal deviation from the prior.}
 
 The values of $\mathbf{\tilde{\hat{u}}}$ throughout time reflect the
 optimized magnitude of surface modes. For both the
 \texttt{OPT-3} and \texttt{OPT-11} estimates, only Mode 1 is
-constrained (Supplemental Figure
-S6). %\ref{supp-fig:u0utilde}).
+constrained (Supplemental Figure S7).
 Modes 2-11 are not well-constrained in either estimate, which, in conjunction
-with the low cost function values, implies that the data can be
+with the low cost function values, implies that the data \remove{can be}\add{is}
 well-fit by solely Mode 1. We stated earlier that Mode 1 could not fit
 depth-dependent variability in the sediment core records, so this
 implies that the sediment core records do not exhibit depth-dependent
@@ -800,8 +867,7 @@ by an industrial warming signal.
 The relationship between the optimized mode magnitudes and
 observations is defined via the boundary propagator functions of each
 surface spatial mode interpolated at each sediment core site
-(Supplemental Figure
-S2). % \ref{supp-fig:modemags}).
+(Supplemental Figure S2). 
 Most boundary propagator
 functions have initial signal peaks between 10-25 years from the
 initial signal, and return to null values by 100 years. This means
@@ -838,7 +904,7 @@ sediment core sites according to \texttt{OPT-3} as cross-validation.
   ($\mathbf{\hat{\tilde{y}}}$) for \texttt{OPT-11} (red line and
   shading) and \texttt{OPT-3} (blue line and shading). Blue dashed
   line and shading shows reconstruction at sediment core sites
-  \textbf{not} included in \texttt{OPT-3}, according to the estimates
+  not included in \texttt{OPT-3}, according to the estimates
   of $\mathbf{\tilde{u}}$ obtained in \texttt{OPT-11}. Black line and
   gray shading show sediment core record and associated
   uncertainty. Note inverted
@@ -865,7 +931,9 @@ MC10A, and MC9A (which are all constraints on \texttt{OPT-11} but not
 difference between the two estimates.
 
 Although many of the records from cores in similar depth
-ranges have disparate mean signals (i.e., MC19A and MC10A), our
+ranges have\remove{disparate mean signals}
+\add{differing behavior at centennial-scales}
+(i.e., MC19A and MC10A), our
 estimates are a fairly ``middle-of-the-road'' compromise between all
 signals, in which the reconstruction is fairly similar between
 neighboring core sites and seeks to optimize a common signal from all
@@ -874,7 +942,7 @@ the only constrained mode, as it is a single-signed surface anomaly
 with a similar time evolution across all sediment cores sites.
 
 \subsection{Surface reconstructions \label{sec:surfrecon}}
-Output surface maps of temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ throughout time can be constructed by propagating estimated spatial mode magnitudes, at a specific time, $t_u$, and for a specific state variable, $s$, through the $\mathbf{V}$ matrix, as in
+Output surface maps of temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ throughout time \remove{can be}\add{are} constructed by propagating estimated spatial mode magnitudes, at a specific time, $t_u$, and for a specific state variable, $s$, through the $\mathbf{V}$ matrix, as in
 \begin{equation}
 \label{eq:surfrecon}
   \mathbf{\tilde{s}}[t_u, s] = \mathbf{V \tilde{\hat{u}}}[t_u, s]. 
@@ -896,17 +964,19 @@ Last Millennium Reanalysis (LMR) \cite[]{Hakim-Emile-Geay-2016:last,
 HadSST4 analysis, which is produced via a reduced-space optimal
 interpolation of in situ SST observations \cite{Kennedy-Rayner-2019:Ensemble}.
 Both the LMR and HadSST4 are box-averaged
-over the same region as the OPT-11 and OPT-3 reconstruction, and area-weighted.
+over the same region as the \texttt{OPT-11} and \texttt{OPT-3}
+reconstruction, and area-weighted.
 Outside of the averaging box, the 
 sea surface has very little influence over the core sites and has
-negligible temperature anomaly magnitude in OPT-3 and OPT-11.
+negligible temperature anomaly magnitude in \texttt{OPT-3} and \texttt{OPT-11}.
 We also compare it to the median Ocean2k SST,
-computed by scaling the median, 5-, and 95-percentile range
+computed by scaling the median, 5-, and 95-percentile\remove{range}
 standardized Ocean2k SST by the published global Ocean2k cooling trend
 of 0.42 $^{\circ}$C/kyr \cite{ocean2k}.
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = \textwidth]{meantsallvold.png}}
-\caption[]{\label{fig:meants} Mean area-weighted North Atlantic temperature anomaly
+\caption[]{\label{fig:meants} Mean area-weighted North Atlantic surface
+  temperature anomaly
   (50$^{\circ}$W-20$^{\circ}$E, 50$^{\circ}$N-90$^{\circ}$N) for \texttt{OPT-11} (red)
   and \texttt{OPT-3} (blue), with a 50-year rolling mean applied and
   1-$\sigma$ uncertainty as shaded region, and 20 realizations of the Last
@@ -921,7 +991,7 @@ of 0.42 $^{\circ}$C/kyr \cite{ocean2k}.
   anomalies from their 1850-1970 CE mean.}
 \end{figure}
 
-The OPT-3 and OPT-11 temperature series both indicate a cooling in the last
+The \texttt{OPT-3} and \texttt{OPT-11} temperature series both indicate a cooling in the last
   millennium, followed by an industrial warming. However, due to the delayed response
   at the sediment core sites to surface conditions, reconstruction uncertainty
 increases near the end of the sediment record.
@@ -952,10 +1022,10 @@ the enforced linear relationship between the two variables.
 In this manuscript, we will mainly discuss the temperature reconstruction,
   due to the lack of long-term $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ or salinity
   observations that could contextualize our $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$
-  reconstruction (see Supplemental Figure S7).
+  reconstruction (see Supplemental Section S8 for $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ reconstruction).
 \begin{figure}
 \centerline{\includegraphics[width = \textwidth]{surfacesolallvold_text.png}}
-\caption[]{\label{fig:sst} Average reconstructed surface temperature over 70-year periods, every 200 years between 1100-1900 CE, shown as a temperature anomaly from 1850-1970, for the \texttt{OPT-3} (left column) and \texttt{OPT-11} (right column) estimates.}
+\caption[]{\label{fig:sst} Average reconstructed surface temperature over 70-year periods, every 200 years between 1100-1900 CE, shown as a temperature anomaly in K from 1850-1970, for the \texttt{OPT-3} (left column) and \texttt{OPT-11} (right column) estimates.}
 \end{figure}
 Both estimates exhibit a scaled, time-evolving version of the Mode 1
 surface pattern (Figure \ref{fig:svdmodes}), as expected from the
@@ -964,8 +1034,8 @@ different temporal evolution, with \texttt{OPT-11} reconstructing
 cooler-than-industrial conditions in the 1700-1770 CE period, while
 \texttt{OPT-3} is always warmer than the industrial period. One cause
 for this discrepancy is that the \texttt{OPT-11} estimate appears to
-capture industrial warming further into the present than
-\texttt{OPT-3} (Figure \ref{fig:meants}), which may explain why
+capture \add{larger magnitude }industrial warming \remove{further into the present}
+than \texttt{OPT-3} (Figure \ref{fig:meants}), which may explain why
 \texttt{OPT-11} has a cooler-than-industrial LIA, while \texttt{OPT-3}
 does not. \texttt{OPT-3} is constrained by cores MC22A and MC13A, which were previously identified to not have modern core tops \cite{Lu-Oppo-2023:Surface}.
 
@@ -975,7 +1045,7 @@ trend between 1140-1900 CE at every surface grid cell and compare it
 to the cooling trend estimated from any Ocean2k records within the
 region of interest, over the same time period, where data is available (Figure \ref{fig:ocean2kcomp}).
 \begin{figure}[htbp]
-\centerline{\includegraphics[width = 0.75\textwidth, trim = {5cm 10cm 5cm 5cm}]{ocean2kcomp_edited.png}} %trim: left bottom right top
+\centerline{\includegraphics[width = 0.75\textwidth]{ocean2kcomp_edit.png}} %trim: left bottom right top
 \caption[]{\label{fig:ocean2kcomp} The linear least squares trend
   estimated at every grid cell in \texttt{OPT-3} between 1140-1900 CE (contours),
   compared to the linear least squares trend at every Ocean2k record
@@ -985,14 +1055,14 @@ region of interest, over the same time period, where data is available (Figure \
   cooling trend estimate. The Arctic records
     of \citeA{Bonnet-Vernal-2010:Variability} and 
     \citeA{Spielhagen-Werner-2011:Enhanced} have very close spatial proximity and
-    are thus indicated by a single dot with two colors. See Supplemental Figure S8
-    for further details on planktonic records.}
+    are thus indicated by a single dot with two colors. See Supplemental Figure S9
+    for complete planktonic records.}
 \end{figure}
 The spatial cooling pattern reflected by the planktonic Ocean2k
 records shares some characteristics
-with the OPT-3 spatial cooling pattern
-(see Supplemental Figure S8 for SST timeseries from each site). 
-The MD99-2275 record exhibits the strongest cooling (-2.09 $^{\circ}$C/kyr),
+with the \texttt{OPT-3} spatial cooling pattern
+(see Supplemental Figure S9 for SST timeseries from each site). 
+The MD99-2275 record exhibits the strongest cooling ($-2.09^{\circ}$C/kyr),
 while records further from the epicenter of cooling (RAPiD-21-3K, ENAM9606-M200309,
 MD95-2011) exhibit more subtle cooling of -0.2 to -0.8 $^{\circ}$C/kyr
 \cite{Sicre-Yiou-2008:North, Sicre-Hall-2011:Sea,
@@ -1003,22 +1073,22 @@ a high rate of warming. In addition, two Arctic records
 were sampled from very close locations, but show very different trends.
 
 In order to provide another independent comparison for our results, we
-recombine our estimates of temperature and
+recombine our estimates of \add{surface} temperature and
 $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ into
 $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ via Equation (\ref{eq:cibs}),
-and compare to the planktonic records from the sediment core records
+and compare to the planktonic sediment core records
 \cite{Lu-Oppo-2023:Surface} (Figure \ref{fig:planktonicstack}).
 Each sediment core has a paired
 \textit{Globigerina bulloides} and \textit{Globorotalia inflata}
 record, species of planktonic foraminifera that calcify in the upper 300 m,
-  and are interpreted as being largely indicative of sea surface conditions. Since all of our sediment core records are in a very similar location in latitude-longitude space,
+  and are interpreted as being largely indicative of sea surface conditions. \add{For the purpose of comparison, }\remove{Since all of our sediment core records are in a very similar location in latitude-longitude space,}
   we assume that all planktonic records from these sediment cores represent the
   sea surface conditions directly overlying the mean sediment core location
   in latitude-longitude space. 
  We compute a planktonic stack by following the same
 time interpolation procedure detailed in \ref{sec:agemodel} and
 averaging across all timeseries. Here, we compute our planktonic stack
-using only the sediment cores in \texttt{OPT-3}, in order to evaluate
+using the \texttt{OPT-3} sediment cores, in order to evaluate
 these two independent reconstructions over the past 1000 years. The
 mean recombined estimate of anomalous $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ at
 the surface is within the error of the planktonic stack from the
@@ -1055,8 +1125,8 @@ the similar forms of the Mode 1 boundary propagator functions at all
 depth levels and the similar values of the Mode 1 left singular values.
 In Figure \ref{fig:recon}, we find that a common signal is
 able to fit all sediment core signals within uncertainty, suggesting
-that this sediment core record compilation can be fit without the
-necessity of explaining depth-dependent signals.
+that this sediment core record compilation can be fit without \remove{the
+necessity of }explaining depth-dependent signals.
 
 Are other North Atlantic surface spatial modes besides Mode 1 also able to
 explain the sediment core
@@ -1070,16 +1140,22 @@ additional estimates are presented, \texttt{OPT-3-GLOBAL}, which fits
 the data with a single uniform global spatial mode, and
 \texttt{OPT-3-MODE2}, which fits the data using only Mode 2.
 
-We arrive at an observational cost function value of 17.0 for OPT-3-GLOBAL,
-  comparable to the value of 12.3 associated with OPT-3. This is also demonstrated in 
+We arrive at an observational cost function value of 17.0 for \texttt{OPT-3-GLOBAL},
+comparable to the value of 12.3 associated with \texttt{OPT-3}.
+This is also demonstrated in 
 the reconstructed sediment core observations (Figure \ref{fig:reconalt}), in which
 the \texttt{OPT-3-GLOBAL} estimate fits the observations similarly to
 \texttt{OPT-3}. One caveat is that the
 magnitude of MCA-LIA cooling must be higher globally (0.54 K) than in
 \texttt{OPT-3} in order to fit the sediment core data (Figure
-\ref{fig:meantsgm2}). This higher cooling rate is likely an artifact of 
+\ref{fig:meantsgm2}).
+\add{The global spatial mode does not account for the strong regional influence
+  of the North Atlantic deep water formation sites upon the sediment core records,
+  requiring a higher magnitude of surface cooling to achieve the same interior
+  $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$ change.}
+\remove{This higher cooling rate is likely an artifact of 
 the global spatial mode not accounting for the strong regional influence of the 
-North Atlantic deep water formation sites.
+North Atlantic deep water formation sites.}
 From solely this analysis, there is no way to infer from the
 benthic sediment core records alone if the globally-uniform mode,
 or the Mode 1 pattern, is more likely to have been the actual pattern
@@ -1122,14 +1198,14 @@ cost function (122.5) than either \texttt{OPT-3} (12.3) or \texttt{OPT-3-GLOBAL}
 Contrary to the globally uniform mode, the Mode 2 boundary propagator
 functions have very different time evolution and magnitudes, in which the MC26A and
 MC25A functions respond strongly to the negative anomaly south of Iceland, while the
-MC13A function responds to the weakly to the positive anomaly north of Iceland (Supplemental Figure
-S8). %\ref{supp-fig:impulse}).
+MC13A function responds to the weakly to the positive anomaly north of Iceland
+(Supplemental Figure S10). 
 For this reason, the
 sediment core reconstruction has a negative trend for the two
 shallower sediment cores, and minimal trend for MC13A.
 Therefore, we conclude that, in order to fit this particular sediment core record
 compilation appropriately,
-we require a surface spatial mode that is associated with very similar
+we require \add{at least one} surface spatial mode that is associated with very similar
 boundary propagator functions at all sediment core sites.
 
 \subsection{Sensitivity of estimate to temperature:$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ correlation \label{sec:gammasens}}
@@ -1186,13 +1262,13 @@ temperature coefficient from the paleotemperature equation,
 $\alpha = -0.224 \permil$/K, and the correlation coefficient,
 $\gamma$. If we assume a MCA-LIA
 $\Delta \delta^{18}\mathrm{O}_{\mathrm{calcite}} = 0.08 \permil$, this model
-estimates a temperature change of $\Delta T = -0.5$ K, which is in-line with
-our estimated mean high-latitude North Atlantic temperature change of 0.38 $\pm$ 0.13
+estimates a temperature change of $\Delta T = -0.5$ K, which is within error of
+our estimated mean high-latitude North Atlantic temperature change of -0.38 $\pm$ 0.13
 K. If we increase the correlation coefficient to $\gamma = 36.8$ K
 $\permil^{-1}$, Equation (\ref{eq:2}) estimates a cooling of $0.40$ K.
 As $\gamma$ increases, the required cooling decreases
 towards a limit value of $0.36$ K. In Supplemental Figure
-S9, % \ref{supp-fig:gamma},
+S10, % \ref{supp-fig:gamma},
 we plot Equation (\ref{eq:2}) for reasonable
 values of $\gamma$, and show that there is very little sensitivity for
 values of $\gamma >$10 K$\permil^{-1}$. However, there is a critical point,
@@ -1224,7 +1300,7 @@ independent estimates from \citeA{ocean2k}.
 
 The \texttt{OPT-3} and \texttt{OPT-11} estimates both agree, within
 uncertainties, with the sediment core records. However, the two
-estimates have differing time evolutions, with \texttt{OPT-3} cooling
+estimates have differing time evolution, with \texttt{OPT-3} cooling
 until the beginning of the 20th century, and \texttt{OPT-11}
 exhibiting a sustained LIA that lasted from the mid-1500s until the
 beginning of the 20th century. \texttt{OPT-11} represents a slightly
@@ -1234,7 +1310,7 @@ any consensus on the timing or evolution of the MCA-LIA transition,
 making it difficult to validate either estimate in this regard
 \cite[]{MoffaSanchez:Variability}.
 
-\subsection{Surface reconstructions}
+\subsection{Surface reconstructions \label{sec:surfreconres}}
 
 Our reconstruction suggests a fairly high magnitude cooling
 during the last millennium (0.38 $\pm$ 0.13 K)
@@ -1245,6 +1321,12 @@ MCA-LIA cooling of $0.2$ $^{\circ}$C/kyr that appeared after 1250 CE and
 persisted until the early 20th Century. The previous estimate of
 global mean SST cooling of 0.42 $^{\circ}$C/kyr \cite{ocean2k} is similar
 to our North Atlantic reconstruction.
+\add{A reviewer points out that the global Ocean2k estimate can be translated into a regional estimate
+  by only including North Atlantic records at latitudes greater than 50$^{\circ}$N (i.e., a cooling
+  of -0.39 $\pm$ 0.57 $^{\circ}$C/kyr). Thus, the North Atlantic Ocean2k records yield a cooling within
+  0.01$^{\circ}$C of our original result, but are no longer statistically significant.
+}
+
 A large-scale climate signal
   such as the LIA should also be detectable on the land, allowing us to
   make comparisons to terrestrial proxies. However, we would not expect the
@@ -1276,7 +1358,7 @@ In \citeA{gebbie19}, peak North Atlantic LIA was identified in the
 1800s, which was noted to be amplified from the global average. This
 feature was suggested to be due to a winter-amplified MCA-LIA cooling,
 preferentially recorded through deepwater formation.
-Our results broadly agree with \citeA{gebbie19} despite using independent data constraints. The planktonic stack from \citeA{Lu-Oppo-2023:Surface} may also indicate an earlier onset LIA (Figure \ref{fig:planktonicstack}). Our reconstruction and the Ocean2k synthesis, on the other hand, appear to have a later cooling onset. Although this disparity warrants more investigation, it suggests that, in order for the interior ocean to match the Challenger - WOCE warming pattern, and fit the Ocean2k cooling magnitude, an earlier LIA is warranted. 
+Our results broadly agree with \citeA{gebbie19} despite using independent data constraints. The planktonic stack from \citeA{Lu-Oppo-2023:Surface} may also indicate an earlier onset LIA (Figure \ref{fig:planktonicstack}). Our reconstruction and the Ocean2k synthesis, on the other hand, appear to have a later cooling onset. Although this disparity warrants more investigation, it suggests that, in order for the interior ocean to match \add{the instrumental subsurface record}\remove{ the Challenger - WOCE} warming pattern, and fit the Ocean2k cooling magnitude, an earlier LIA is warranted. 
 
 One explanation for the higher magnitude cooling observed in the North
 Atlantic relative to non-Arctic land masses could be the amplification
@@ -1291,7 +1373,7 @@ terrestrial snow feedback mechanisms \cite[]{Kaufman2009}. Similar
 feedback mechanisms may have caused the reinforcement of MCA-LIA
 cooling in our study region as well, although we cannot directly comment on this possibility.
 
-\subsection{Limitations and further work}
+\subsection{Limitations and further work \label{sec:limit}}
 
 Limitations of this methodology include the enforced correlation
 between temperature and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. In the
@@ -1307,16 +1389,22 @@ with similar climatologies to the historical simulation.
 % This does not exclude the possibility of a
 % reality in which these relationships are different.
 
-In this work, we assumed that a steady-state circulation was appropriate,
+\remove{In this work, we assumed that a steady-state circulation was appropriate,
   and that the reconstructed changes to temperature would be small enough to not
-  detectably affect circulation. 
+  detectably affect circulation .}
+\add{Here, we  assume that reconstructed changes to temperature are small enough to not
+detectably affect circulation.}
   \citeA{Scheen-Stocker-2020:Effect} used
 an intermediate complexity Earth system model to demonstrate that SST
 variations of the magnitude reported by \citeA{gebbie19} can cause
 changes in ocean circulation that would explain about one-third of
 deep ocean heat content changes of LIA cooling, which are not captured
-here.
-% add something about how this connects to Ocean2k/Cunningham?
+here. \add{In our work, we have shown that deep ocean temperature changes can
+  be explained by either a high magnitude global cooling signal, or a lower magnitude
+  regional cooling signal. \citeA{Scheen-Stocker-2020:Effect} utilize a radiative forcing
+  signal that reproduces a global cooling signal similar to that of \cite{gebbie19}.
+  Future research could explore the magnitude of circulation changes due to a regional SST
+  cooling. }
 
 The results presented here could be expanded by including more proxy records. This could be accomplished by
 incorporating more benthic $\delta^{18}\mathrm{O}_{\mathrm{calcite}}$
@@ -1333,7 +1421,7 @@ refine the industrial warming estimates, as was presented in
 
 \section{Conclusion}
 Here, we have demonstrated a novel methodology of inferring surface
-climate conditions from benthic sediment core records via an ocean
+climate conditions from benthic sediment core records via \add{a modern-day} ocean
 circulation model, while accounting for the lag in transit time from
 the surface to depth, age model uncertainty, and the unequal
 contributions of temperature and
@@ -1443,7 +1531,7 @@ site ($\sim$1500 m) at the grid cell nearest to the sediment core
 locations. The $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ timeseries exhibits
 step-function variability, that is not present in either the
 temperature or salinity timeseries, and may complicate its
-interpretation (Supplemental Figure S4).%\ref{supp-fig:cesmts}).
+interpretation (Supplemental Figure S4E).%\ref{supp-fig:cesmts}).
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = \textwidth]{cesm_scatter.png}}
@@ -1460,7 +1548,7 @@ interpretation (Supplemental Figure S4).%\ref{supp-fig:cesmts}).
     Gebbie2006}. \label{fig:td18O}}
 \end{figure}
 
-Temperature and salinity have a linear relationship of $T = 5.3S$
+Temperature and salinity have a linear relationship of $T = 5.34S$
 ($R^{2} = 0.444$). This value is near the density-compensation ratio
 for this temperature, salinity, and pressure level
 (5.39). Density-compensation is a common feature of mixed-layer
@@ -1475,7 +1563,7 @@ explanation of the similarity between the iCESM temperature-salinity
 ratio and the density-compensation ratio.
 
 Salinity and $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ at this location
-in iCESM have a linear relationship of $S = 2.8 \delta^{18}\mathrm{O}_{\mathrm{seawater}}$
+in iCESM have a linear relationship of $S = 2.796 \delta^{18}\mathrm{O}_{\mathrm{seawater}}$
 (Figure \ref{fig:td18O_cesm}). \citeA[]{Schmidt-1999:Error} identified
 a global mixing line of
 $S = 2.02 \delta^{18}\mathrm{O}_{\mathrm{seawater}}$ based upon upper ocean
@@ -1486,20 +1574,19 @@ shown to often be a poor predictor of temporal gradients
 \cite[]{Schmidt-1998:Oxygen, Schmidt-LeGrande-2007:Water}. Using a
 different isotope-enabled climate model,
 \citeA{Schmidt-LeGrande-2007:Water} reported a preindustrial value of
-$S = 2.5 w\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ for a North Atlantic
+$S = 2.5 \delta^{18}\mathrm{O}_{\mathrm{seawater}}$ for a North Atlantic
 surface grid cell in a coupled climate model, which is closer to, and
 is most likely a better comparison to our value of
-$S = 2.8 \delta^{18}\mathrm{O}_{\mathrm{seawater}}$.
+$S = 2.796 \delta^{18}\mathrm{O}_{\mathrm{seawater}}$.
 
 We can substitute the identified salinity relation
 ($S = 2.796\delta^{18}\mathrm{O}_{\mathrm{seawater}}$) into the temperature
-equation ($T = 5.34S$) to form an equation for temperature from
+equation ($T = 5.34S$) to form an equation relating temperature and
 $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$
 ($T = 14.93 \delta^{18}\mathrm{O}_{\mathrm{seawater}}$). This value will be
 used to enforce correlation between surface temperature and
 $\delta^{18}\mathrm{O}_{\mathrm{seawater}}$. However,
-as noted in Supplemental Section S6.2,%\ref{supp-sec:oxygenvar},
- there are
+as noted in Supplemental Section S6.2, there are
 multiple ways to arrive at a regression value, and multiple possible
 regression values. In Section \ref{sec:gammasens}, we develop a model
 for the sensitivity of our estimated North Atlantic temperature change

@@ -24,7 +24,7 @@ xt = range(start = 0, stop = 40, step = 5)
 hlines(y = Δδ¹⁸O/α, xmin = 0, xmax = 40, linestyle = "dashed", color = "gray", linewidth = 2)
 xticks(xt, xt, fontsize = 12)
 xlim(0,40)
-poi = [14.93,36.8]
+poi = [14.93,35.01]
 scatter(x = poi, y = ΔT.(poi), marker = "o", color = "white", s = 100, edgecolor = "black",zorder = 10000)
 text(x = 35, y = 1.4, s = "A", fontsize = 30, weight = "bold")
 subplot(1,2,2) 
@@ -39,8 +39,8 @@ end
 
 c = contour(γT, γs, mat, cmap = "seismic",vmin = -0.7, vmax = 0.7, linewidths = 3)
 clabel(c, fontsize = 12)
-γspoi = [2.8, 2.3]
-γTpoi = [5.3, 16]
+γspoi = [2.796, 2.257]
+γTpoi = [5.34, 15.51]
 scatter(γTpoi, γspoi, marker = "o", color = "white", s = 100, edgecolor = "black",zorder = 10000)
 ylabel("γₛ [g kg⁻¹ ‰]", fontsize = 15)
 xlabel("γₜ [K (g kg⁻¹)⁻¹]", fontsize = 15)

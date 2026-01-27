@@ -1,3 +1,4 @@
+
 using PythonCall
 if ! @isdefined(solutions)
     include("transientinversion.jl")
@@ -66,9 +67,10 @@ for (i, sol) in enumerate(solutions)
             lon_box_ = [360-80 - 20, 30 + 20]
             plotme = geospatialsubset(plotme', lat, lon, lat_box_, lon_box_)
             plotme = plotme'
-            cf = ax.contourf(lon, lat, plotme, cmap = cm.balance, levels = lev, transform = noproj)
+            cf = ax.contourf(lon, lat, plotme, cmap = "coolwarm", levels = lev, transform = noproj)
             c = ax.contour(lon, lat, plotme, colors = "black", levels = lev, transform = noproj)
-            ax.clabel(c)
+            
+            ax.clabel(c, fontsize = 8)
             gl = ax.gridlines(draw_labels = true)
             gl.top_labels = false
             gl.right_labels = false
@@ -116,7 +118,10 @@ plotme = γreshape(lls .* 1000, oldc.γ)
 @show NaNMath.maximum(plotme)
 #plotme = geospatialsubset(plotme, lat, lon, lat_box_, lon_box_)
 plotme, lon_ = cu.add_cyclic_point(plotme', coord = lon)
-cf = ax.contourf(lon_, lat, plotme, cmap = cm.balance, vmin = -3, vmax = 3, transform = noproj)
+
+mpl = pyimport("matplotlib")
+
+cf = ax.contourf(lon_, lat, plotme, cmap = "coolwarm", vmin = -3, vmax = 3, transform = noproj)
 c = ax.contour(lon_, lat, plotme, colors = "black", vmin = -3, vmax = 3, transform = noproj) 
 ax.clabel(c)
 
@@ -156,18 +161,35 @@ for (i, r) in enumerate(recs)
         d[r] = (lat_, lon_, lls[1] * 1000)
     #end
 end
-for (i, k) in enumerate(keys(d))
-    if k != "Atlantic0220Thornalley2009__RAPiD-12-1K" #don't include too short Thornalley rec
-    
-        s = scatter(d[k][2], d[k][1], c = d[k][3], vmin = -3, vmax = 3, cmap = cm.balance, s = 100, edgecolors = "white", transform = noproj, zorder = 100000,linewidths = 2)
-    end
+oc2kms = 150
+not_thornalley = [k for k in keys(d)][keys(d) .!= "Atlantic0220Thornalley2009__RAPiD-12-1K"]
+xoc2k = Vector{Float64}(undef, length(not_thornalley))
+yoc2k = Vector{Float64}(undef, length(not_thornalley))
+coc2k= Vector{Float64}(undef, length(not_thornalley))
+
+
+for (i, k) in enumerate(not_thornalley)
+
+        xoc2k[i] = d[k][2]
+        yoc2k[i] = d[k][1]
+        coc2k[i] = d[k][3]
+        
+
 end
+#[text(x = xoc2k[i] -4, y = yoc2k[i]-1, s = round.(coc2k, sigdigits = 1)[i], color = "white", zorder = 1000000000, transform = noproj, fontsize = 8) for i in 1:length(not_thornalley)]
+
+s = scatter(xoc2k, yoc2k, c =coc2k , vmin = -3, vmax = 3, cmap = "coolwarm", s = oc2kms, edgecolors = "white", transform = noproj, zorder = 100000,linewidths = 2)
+cb = colorbar(s, fraction = 0.025, pad = 0.0000001, orientation = "horizontal", location = "top")
+cb.set_label("ΔT/Δt [K/kyr]", fontsize = 15)
+
 key1 = "Arctic1147Bonnet2010_JM-06-WP-04-MCB"
 key2 = "Arctic1148Spielhagen2011_MSM5/5-712"
 
 MS = pyimport("matplotlib.markers").MarkerStyle
-scatter(d[key1][2], d[key1][1], c = d[key1][3], vmin = -3, vmax = 3,  cmap = cm.balance, s = 100, edgecolors = "white", transform = noproj, zorder = 100000,linewidths = 2, marker = MS("o", fillstyle = "right"))
-scatter(d[key2][2], d[key2][1], c = d[key2][3], vmin = -3, vmax = 3,  cmap = cm.balance, s = 100, edgecolors = "white", transform = noproj, zorder = 100000,linewidths = 2, marker = MS("o", fillstyle = "left"))
+
+scatter(d[key1][2], d[key1][1], c = d[key1][3], vmin = -3, vmax = 3,  cmap = cm.balance, s = oc2kms, edgecolors = "white", transform = noproj, zorder = 100000,linewidths = 2, marker = MS("o", fillstyle = "right"))
+scatter(d[key2][2], d[key2][1], c = d[key2][3], vmin = -3, vmax = 3,  cmap = cm.balance, s = oc2kms, edgecolors = "white", transform = noproj, zorder = 100000,linewidths = 2, marker = MS("o", fillstyle = "left"))
+
 gl = ax.gridlines(draw_labels = true)
 gl.top_labels = false
 gl.right_labels = false
@@ -175,7 +197,7 @@ gl.bottom_labels = false
 
 tight_layout()
 savefig(plotsdir("ocean2kcomp.png"), dpi = 600)
-
+#=
 # ===== A SUPPLEMENTAL FIGURE ========== #
 GS = pyimport("matplotlib.gridspec").GridSpec
 subplotdir = plotsdir("oceank2compsub")
@@ -208,3 +230,4 @@ end
 
 
 
+=#

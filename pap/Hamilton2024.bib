@@ -2,8 +2,67 @@
 ebib-main-file: /home/brynn/.config/texmf/bibtex/bib/main.bib
 }
 
-@Preamble{ " \newcommand{\noop}[1]{} " }
+@Preamble{ " \newcommand{\noop}[1]{} " 
+#  " \newcommand{\noop}[1]{} " }
 
+@String{ajmfr = {Aus. J. Mar. Fr. Res.}}
+@String{amb = {Adv. Mar. Biol.}}
+@String{amm = {Aust. Met. Mag.}}
+@String{ammo = {Appl. Math. Modelling}}
+@String{ao = {Atmosphere-Ocean}}
+@String{arfm = {Ann. Rev. Fluid Mech.}}
+@String{bams = {Bull. Amer. Meteor. Soc.}}
+@String{cd = {Clim. Dyn.}}
+@String{csr = {Cont. Shelf Res.}}
+@String{dao = {Dyn. Atmos. Oceans}}
+@String{dsr = {Deep Sea Res.}}
+@String{eos = {EOS, Trans., Amer. Geophys. Union}}
+@String{epsl = {Earth Planet. Sci. Lett.}}
+@String{gafd = {Geophys. Astrophys. Fluid Dyn.}}
+@String{gbc = {Global Biogeochem. Cycles}}
+@String{gca = {Geochim. Cosmochim. Acta}}
+@String{grl = {Geophys. Res. Lett.}}
+@String{ijnmf = {Int. J. Num. Meth. Fluids}}
+@String{inprep = {in preparation}}
+@String{inpress = {in press}}
+@String{jam = {J. Appl. Meteor.}}
+@String{jaot = {J. Atmos. Ocean Tech.}}
+@String{jas = {J. Atmos. Sci.}}
+@String{jcl = {J. Climate}}
+@String{jcp = {J. Comp. Phys.}}
+@String{jfm = {J. Fluid Mech.}}
+@String{jglac = {J. of Glaciology}}
+@String{jgr = {J. Geophys. Res.}}
+@String{jmr = {J. Mar. Res.}}
+@String{jms = {J. Mar. Sys.}}
+@String{joc = {J. Climate}}
+@String{jpo = {J. Phys. Oceanogr.}}
+@String{jpr = {J. Plankton. Res.}}
+@String{jpy = {J. Phycol}}
+@String{lo = {Limnol. Oceanog.}}
+@String{mc = {Mar. Chem.}}
+@String{meps = {Marine Ecology Progress Series}}
+@String{mwr = {Mon. Weath. Rev.}}
+@String{nat = {Nature}}
+@String{nature = {Nature}}
+@String{oc = {Oceanography}}
+@String{ocac = {Oceanologica Acta}}
+@String{paleo = {Paleoceanography}}
+@String{pg = {Prog. Oceanogr.}}
+@String{pnas = {Proc. Natl. Acad. Sci. U.S.A.}}
+@String{po = {Prog. Oceanogr.}}
+@String{ppp = {Paleonogr. Paleoclim. Paleoecol.}}
+@String{ptrsl = {Phil. Trans. R. Soc. Lond.}}
+@String{ptrsla = {Philos. Trans. Roy. Soc. London A}}
+@String{ptrslb = {Philos. Trans. Roy. Soc. London B}}
+@String{qjrms = {Q. J. R. Meteorol. Soc.}}
+@String{qr = {Quat. Res.}}
+@String{qsr = {Quat. Sci. Rev.}}
+@String{rg = {Rev. Geophys.}}
+@String{rgs = {Rev. of Geophys. and Space Phys.}}
+@String{sci = {Science}}
+@String{tel = {Tellus}}
+@String{nil = {Behringer, David and Gov, Yan}}
 @String{ajmfr = {Aus. J. Mar. Fr. Res.}}
 @String{amb = {Adv. Mar. Biol.}}
 @String{amm = {Aust. Met. Mag.}}
@@ -76,7 +135,7 @@ ebib-main-file: /home/brynn/.config/texmf/bibtex/bib/main.bib
 @Book{<new-entry4>,
 	doi = {https://doi.org/10.25844/h9q1-0p82},
 	year = {2017},
-	title = {Principles of stable isotope geochemisty},
+	title = {Principles of stable isotope geochemistry},
 	author = {Sharp, Zachary},
 	timestamp = {2025-08-13 14:48:56 (EDT)}
 }
@@ -86,7 +145,7 @@ ebib-main-file: /home/brynn/.config/texmf/bibtex/bib/main.bib
 	author = {Alonso-Garcia, Montserrat and Kleiven, Helga (Kikki)
                   F. and McManus, Jerry F. and Moffa-Sanchez, Paola
                   and Broecker, Wallace S. and Flower, Benjamin P.},
-	title = {Freshening of the {Labrador Sea} as a trigger for
+	title = {Freshening of the {L}abrador {S}ea as a trigger for
                   {Little Ice Age} development},
 	journal = {Climate of the Past},
 	year = 2017,
@@ -215,7 +274,7 @@ and Lenton, Timothy M.},
                   Z. and Noone, D. and Nusbaumer, J. and
                   Otto‐Bliesner, B. L. and Tabor, C. and Tomas, R. and
                   Wong, T. and Zhang, J. and Zhu, J.},
-	title = {{The Connected Isotopic Water Cycle in the Community
+	title = {The Connected Isotopic Water Cycle in the {Community
                   Earth System Model Version 1}},
 	journal = {Journal of Advances in Modeling Earth Systems},
 	year = 2019,
@@ -229,9 +288,28 @@ and Lenton, Timothy M.},
 	publisher = {American Geophysical Union (AGU)}
 }
 
+@Article{Breitkreuz-Paul-2018:Dynamical,
+	timestamp = {2026-01-21 15:28:20 (EST)},
+	author = {Breitkreuz, Charlotte and Paul, André and
+                  Kurahashi‐Nakamura, Takasumi and Losch, Martin and
+                  Schulz, Michael},
+	title = {A Dynamical Reconstruction of the Global Monthly
+                  Mean Oxygen Isotopic Composition of Seawater},
+	journal = {Journal of Geophysical Research: Oceans},
+	year = 2018,
+	volume = 123,
+	number = 10,
+	month = oct,
+	pages = {7206–7219},
+	issn = {2169-9291},
+	doi = {10.1029/2018jc014300},
+	url = {http://dx.doi.org/10.1029/2018jc014300},
+	publisher = {American Geophysical Union (AGU)}
+}
+
 @Article{Buntgen-Arseneault-2020:Prominent,
 	timestamp = {2024-09-18 10:41:42 (EDT)},
-	author = {Buntgen, Ulf and Arseneault, Dominique and Boucher,
+	author = {B{ü}ntgen, Ulf and Arseneault, Dominique and Boucher,
                   Etienne and Churakova (Sidorova), Olga V. and
                   Gennaretti, Fabio and Crivellaro, Alan and Hughes,
                   Malcolm K. and Kirdyanov, Alexander V. and Klippel,
@@ -292,9 +370,9 @@ and Lenton, Timothy M.},
 @Article{Calvo-Grimalt-2002:High,
 	timestamp = {2025-08-12 15:02:49 (EDT)},
 	author = {Calvo, Eva and Grimalt, Joan and Jansen, Eystein},
-	title = {High resolution {U37K} sea surface temperature
-                  reconstruction in the {Norwegian Sea} during the
-                  {Holocene}},
+	title = {High resolution {U37K sea surface temperature
+                  reconstruction in the Norwegian Sea during the
+                  Holocene}},
 	journal = {Quaternary Science Reviews},
 	year = 2002,
 	volume = 21,
@@ -327,8 +405,8 @@ and Lenton, Timothy M.},
 	author = {Copard, K. and Colin, C. and Henderson, G.M. and
                   Scholten, J. and Douville, E. and Sicre, M.-A. and
                   Frank, N.},
-	title = {Late {Holocene} intermediate water variability in the
-                  northeastern {Atlantic} as recorded by deep-sea
+	title = {Late Holocene intermediate water variability in the
+                  northeastern Atlantic as recorded by deep-sea
                   corals},
 	journal = {Earth and Planetary Science Letters},
 	year = 2012,
@@ -352,8 +430,8 @@ and Lenton, Timothy M.},
                   E and Sicre, Marie-Alexandrine and Sejrup, Hans
                   Petter and Jiang, Hui and Wilson, Rob JS},
 	title = {Reconstructions of surface ocean conditions from the
-                  northeast {Atlantic} and {Nordic} seas during the last
-                  millennium},
+                  northeast {Atlantic and Nordic seas during the last
+                  millennium}},
 	journal = {The Holocene},
 	year = 2013,
 	volume = 23,
@@ -418,9 +496,9 @@ and Lenton, Timothy M.},
                   J. and Matthews, Robley K. and Prell, Warren and
                   Ruddiman, William F. and Caralp, Michèle and Hendy,
                   Chris H.},
-	title = {{13C Record of Benthic Foraminifera in the Last
+	title = {13{C} Record of Benthic Foraminifera in the Last
                   Interglacial Ocean: Implications for the Carbon
-                  Cycle and the Global Deep Water Circulation}},
+                  Cycle and the Global Deep Water Circulation},
 	journal = {Quaternary Research},
 	year = 1984,
 	volume = 21,
@@ -461,7 +539,7 @@ and Lenton, Timothy M.},
 	Z. Yu, and J. Zinke},
 	title = {A global multiproxy database for temperature reconstructions of the
 	{Common Era}},
-	journal = {Scientific Data},
+	journal = {Scientific data},
 	year = {2017},
 	volume = {4},
 	pages = {170088},
@@ -471,10 +549,11 @@ and Lenton, Timothy M.},
 
 @ARTICLE{Emiliani--1955:Pleistocene,
 	author = {Emiliani, C. },
-	title = {Pleistocene {T}emperatures},
-	journal = {Journal of Geology},
+	title = {Pleistocene Temperatures},
+	journal = {journal of Geology},
 	year = {1955},
 	volume = {63},
+	pages = {538--575},
 	owner = {gebbie},
 	timestamp = {2013.11.05}
 }
@@ -483,9 +562,9 @@ and Lenton, Timothy M.},
 	timestamp = {2024-07-11 13:25:10 (EDT)},
 	author = {England, Mark and Eisenman, Ian and Lutsko, Nicholas
                   and Wagner, Till Jakob Wenzel},
-	title = {The recent emergence of {Arctic Amplification}},
+	title = {The recent emergence of Arctic Amplification},
 	year = 2021,
-	month = May,
+	month = may,
 	doi = {10.1002/essoar.10507036.1},
 	url = {http://dx.doi.org/10.1002/essoar.10507036.1},
 	publisher = {Wiley}
@@ -500,7 +579,7 @@ and Lenton, Timothy M.},
                   Ljungqvist, Fredrik C. and Reinig, Frederick and
                   Schneider, Lea and Sigl, Michael and Stoffel, Markus
                   and Trnka, Mirek and Wilson, Rob and Büntgen, Ulf},
-	title = {The {IPCC}’s reductive {Common Era} temperature history},
+	title = {The IPCC’s reductive Common Era temperature history},
 	journal = {Communications Earth \& Environment},
 	year = 2024,
 	volume = 5,
@@ -566,9 +645,9 @@ and Lenton, Timothy M.},
 
 @Article{Gebbie2006,
 	author = {Gebbie, Geoffrey and Huybers, Peter},
-	title = {Meridional circulation during the {L}ast {G}lacial
-                  {M}aximum explored through a combination of {S}outh
-                  {A}tlantic d18O observations and a geostrophic inverse
+	title = {Meridional circulation during the {Last Glacial
+                  Maximum} explored through a combination of {South
+                  Atlantic} d18O observations and a geostrophic inverse
                   model},
 	journal = {Geochemistry, Geophysics, Geosystems},
 	year = 2006,
@@ -629,7 +708,7 @@ and Lenton, Timothy M.},
 	timestamp = {2025-07-07 11:11:33 (EDT)},
 	author = {Haine, Thomas W. N. and Griffies, Stephen M. and
                   Gebbie, Geoffrey and Jiang, Wenrui},
-	title = {A Review of {G}reen’s {F}unction Methods for Tracer
+	title = {A Review of {Green’s} Function Methods for Tracer
                   Timescales and Pathways in Ocean Models},
 	journal = {Journal of Advances in Modeling Earth Systems},
 	year = 2025,
@@ -690,8 +769,8 @@ and Lenton, Timothy M.},
 	timestamp = {2024-09-25 13:34:57 (EDT)},
 	author = {Hatun, Hjalmar and Sando, Anne Britt and Drange,
                   Helge and Hansen, Bogi and Valdimarsson, Heðinn},
-	title = {Influence of the {A}tlantic {S}ubpolar {G}yre on the
-                  {T}hermohaline {C}irculation},
+	title = {Influence of the Atlantic Subpolar Gyre on the
+                  Thermohaline Circulation},
 	journal = {Science},
 	year = 2005,
 	volume = 309,
@@ -716,7 +795,7 @@ and Lenton, Timothy M.},
 }
 
 @ARTICLE{Kaufman2009,
-	title = "Recent warming reverses long-term {A}rctic cooling",
+	title = {Recent warming reverses long-term {A}rctic cooling},
 	author = "Kaufman, Darrell S and Schneider, David P and McKay, Nicholas P
                and Ammann, Caspar M and Bradley, Raymond S and Briffa, Keith R
                and Miller, Gifford H and Otto-Bliesner, Bette L and Overpeck,
@@ -750,8 +829,8 @@ and Lenton, Timothy M.},
 	timestamp = {2025-09-17 15:11:10 (EDT)},
 	author = {Kennedy, J. J. and Rayner, N. A. and Atkinson,
                   C. P. and Killick, R. E.},
-	title = {{An Ensemble Data Set of Sea Surface Temperature
-                  Change From 1850: The Met Office Hadley Centre
+	title = {An Ensemble Data Set of Sea Surface Temperature
+                  Change From 1850: {The Met Office Hadley Centre
                   HadSST.4.0.0.0 Data Set}},
 	journal = {Journal of Geophysical Research: Atmospheres},
 	year = 2019,
@@ -770,8 +849,8 @@ and Lenton, Timothy M.},
 	author = {Khider, Deborah and Emile-Geay, Julien and Zhu, Feng
                   and James, Alexander and Landers, Jordan and
                   Ratnakar, Varun and Gil, Yolanda},
-	title = {{Pyleoclim: Paleoclimate Timeseries Analysis and
-                  Visualization with Python}},
+	title = {Pyleoclim: Paleoclimate Timeseries Analysis and
+                  Visualization with {P}ython},
 	year = 2022,
 	month = sep,
 	doi = {10.1002/essoar.10511883.2},
@@ -808,9 +887,9 @@ and Lenton, Timothy M.},
 @Article{LeGrand-Wunsch-1995:Constraints,
 	timestamp = {2024-12-18 13:54:18 (EST)},
 	author = {LeGrand, Pascal and Wunsch, Carl},
-	title = {Constraints from paleotracer data on the {N}orth
-                  {A}tlantic circulation during the {L}ast {G}lacial
-                  {M}aximum},
+	title = {Constraints from paleotracer data on the {North
+                  Atlantic circulation during the Last Glacial
+                  Maximum}},
 	journal = {Paleoceanography},
 	year = 1995,
 	volume = 10,
@@ -842,7 +921,7 @@ and Lenton, Timothy M.},
 @Article{Lehner2013,
 	author = {Lehner, Flavio and Born, Andreas and Raible,
                   Christoph C. and Stocker, Thomas F.},
-	title = {Amplified Inception of {E}uropean {L}ittle {I}ce {A}ge by
+	title = {Amplified Inception of European Little Ice Age by
                   Sea Ice–Ocean–Atmosphere Feedbacks},
 	journal = {Journal of Climate},
 	year = 2013,
@@ -883,12 +962,33 @@ and Lenton, Timothy M.},
 	publisher = {Copernicus GmbH}
 }
 
+@Article{Lippold2019,
+	author = {Lippold, Jörg and Pöppelmeier, Frerk and Süfke, Finn
+                  and Gutjahr, Marcus and Goepfert, Tyler J. and
+                  Blaser, Patrick and Friedrich, Oliver and Link,
+                  Jasmin M. and Wacker, Lukas and Rheinberger, Stefan
+                  and Jaccard, Samuel L.},
+	title = {Constraining the Variability of the {Atlantic
+                  Meridional Overturning Circulation} During the
+                  {Holocene}},
+	journal = {Geophysical Research Letters},
+	year = 2019,
+	volume = 46,
+	number = 20,
+	month = oct,
+	pages = {11338–11346},
+	issn = {1944-8007},
+	doi = {10.1029/2019gl084988},
+	url = {http://dx.doi.org/10.1029/2019gl084988},
+	publisher = {American Geophysical Union (AGU)}
+}
+
 @Article{Lu-Oppo-2023:Surface,
 	timestamp = {2024-05-20 16:19:09 (EDT)},
 	author = {Lu, Wanyi and Oppo, Delia W. and Gebbie, Geoffrey
                   and Thornalley, David J. R.},
 	title = {Surface climate signals transmitted rapidly to deep
-                  {N}orth {A}tlantic throughout last millennium},
+                  {North Atlantic} throughout last millennium},
 	journal = {Science},
 	year = 2023,
 	volume = 382,
@@ -905,7 +1005,7 @@ and Lenton, Timothy M.},
 @Article{Lund-Curry-2006:Florida,
 	timestamp = {2024-05-16 15:35:00 (EDT)},
 	author = {Lund, David C. and Curry, William},
-	title = {Florida {C}urrent surface temperature and salinity
+	title = {Florida Current surface temperature and salinity
                   variability during the last millennium},
 	journal = {Paleoceanography},
 	year = 2006,
@@ -921,7 +1021,7 @@ and Lenton, Timothy M.},
 @Article{Lund2006,
 	author = {Lund, David C. and Lynch-Stieglitz, Jean and Curry,
                   William B.},
-	title = {Gulf {S}tream density structure and transport during
+	title = {Gulf Stream density structure and transport during
                   the past millennium},
 	journal = {Nature},
 	year = 2006,
@@ -933,6 +1033,22 @@ and Lenton, Timothy M.},
 	doi = {10.1038/nature05277},
 	url = {http://dx.doi.org/10.1038/nature05277},
 	publisher = {Springer Science and Business Media LLC}
+}
+
+@Article{Lund2011,
+	author = {Lund, D. C. and Adkins, J. F. and Ferrari, R.},
+	title = {Abyssal {Atlantic circulation during the Last Glacial
+                  Maximum: Constraining the ratio between transport
+                  and vertical mixing}},
+	journal = {Paleoceanography},
+	year = 2011,
+	volume = 26,
+	number = 1,
+	month = mar,
+	issn = {1944-9186},
+	doi = {10.1029/2010pa001938},
+	url = {http://dx.doi.org/10.1029/2010pa001938},
+	publisher = {American Geophysical Union (AGU)}
 }
 
 @InBook{Lynch-Stieglitz-2003:Tracers,
@@ -1004,7 +1120,7 @@ and Lenton, Timothy M.},
 	timestamp = {2024-06-06 10:57:02 (EDT)},
 	author = {McKay, Nicholas P. and Emile-Geay, Julien and
                   Khider, Deborah},
-	title = {geo{C}hron{R} – an {R} package to model, analyze, and
+	title = {geoChronR – an R package to model, analyze, and
                   visualize age-uncertain data},
 	journal = {Geochronology},
 	year = 2021,
@@ -1023,8 +1139,8 @@ and Lenton, Timothy M.},
 	author = {Miettinen, Arto and Divine, Dmitry and Koç, Nalan
                   and Godtliebsen, Fred and Hall, Ian R.},
 	title = {Multicentennial Variability of the Sea Surface
-                  Temperature Gradient across the {S}ubpolar {N}orth
-                  {A}tlantic over the Last 2.8 kyr*,+},
+                  Temperature Gradient across the Subpolar North
+                  Atlantic over the Last 2.8 kyr*,+},
 	journal = {Journal of Climate},
 	year = 2012,
 	volume = 25,
@@ -1061,7 +1177,7 @@ and Lenton, Timothy M.},
 	timestamp = {2024-05-16 16:02:42 (EDT)},
 	author = {Moffa-Sánchez, Paola and Born, Andreas and Hall, Ian
                   R. and Thornalley, David J. R. and Barker, Stephen},
-	title = {Solar forcing of {N}orth {A}tlantic surface temperature
+	title = {Solar forcing of North Atlantic surface temperature
                   and salinity over the past millennium},
 	journal = {Nature Geoscience},
 	year = 2014,
@@ -1075,6 +1191,24 @@ and Lenton, Timothy M.},
 	publisher = {Springer Science and Business Media LLC}
 }
 
+@Article{Moffa-Sanchez-Hall-2015:Changes,
+	timestamp = {2024-05-17 16:47:23 (EDT)},
+	author = {Moffa-Sanchez, Paola and Hall, Ian R. and
+                  Thornalley, David J.R. and Barker, Stephen and
+                  Stewart, Connor},
+	title = {Changes in the strength of the {Nordic Seas Overflows}
+                  over the past 3000 years},
+	journal = {Quaternary Science Reviews},
+	year = 2015,
+	volume = 123,
+	month = sep,
+	pages = {134–143},
+	issn = {0277-3791},
+	doi = {10.1016/j.quascirev.2015.06.007},
+	url = {http://dx.doi.org/10.1016/j.quascirev.2015.06.007},
+	publisher = {Elsevier BV}
+}
+
 @Article{MoffaSanchez:Variability,
 	timestamp = {2022-09-07 15:03:25 (EDT)},
 	author = {Moffa-Sanchez, P. and Moreno-Chamarro, E. and
@@ -1082,8 +1216,8 @@ and Lenton, Timothy M.},
                   L. and Swingedouw, D. and Amrhein, D. E. and Halfar,
                   J. and Jonkers, L. and Jungclaus, J. H. and Perner,
                   K. and Wanamaker, A. and Yeager, S.},
-	title = {Variability in the {N}orthern {N}orth {A}tlantic and
-                  {A}rctic {O}ceans Across the Last Two Millennia: A
+	title = {Variability in the {Northern North Atlantic} and
+                  {Arctic Oceans} Across the Last Two Millennia: A
                   Review},
 	journal = {Paleoceanography and Paleoclimatology},
 	year = 2019,
@@ -1102,7 +1236,7 @@ and Lenton, Timothy M.},
 	author = {Moreno-Chamarro, Eduardo and Zanchettin, Davide and
                   Lohmann, Katja and Jungclaus, Johann H.},
 	title = {An abrupt weakening of the subpolar gyre as trigger
-                  of {L}ittle {I}ce {A}ge-type episodes},
+                  of Little Ice Age-type episodes},
 	journal = {Climate Dynamics},
 	year = 2016,
 	volume = 48,
@@ -1127,7 +1261,7 @@ and Lenton, Timothy M.},
                   and Valler, Veronika and von Gunten, Lucien},
 	title = {Consistent multidecadal variability in global
                   temperature reconstructions and simulations over the
-                  {C}ommon {E}ra},
+                  Common Era},
 	journal = {Nature Geoscience},
 	year = 2019,
 	volume = 12,
@@ -1145,7 +1279,7 @@ and Lenton, Timothy M.},
 	author = {Ortega, Pablo and Lehner, Flavio and Swingedouw,
                   Didier and Masson-Delmotte, Valerie and Raible,
                   Christoph C. and Casado, Mathieu and Yiou, Pascal},
-	title = {A model-tested {N}orth {A}tlantic {O}scillation
+	title = {A model-tested North Atlantic Oscillation
                   reconstruction for the past millennium},
 	journal = {Nature},
 	year = 2015,
@@ -1163,8 +1297,8 @@ and Lenton, Timothy M.},
 	timestamp = {2024-07-12 10:21:32 (EDT)},
 	author = {Park, Hyo-Seok and Kim, Seong-Joong and Stewart,
                   Andrew L. and Son, Seok-Woo and Seo, Kyong-Hwan},
-	title = {Mid-{H}olocene {N}orthern {H}emisphere warming driven by
-                  {A}rctic amplification},
+	title = {Mid-Holocene Northern Hemisphere warming driven by
+                  Arctic amplification},
 	journal = {Science Advances},
 	year = 2019,
 	volume = 5,
@@ -1182,8 +1316,8 @@ and Lenton, Timothy M.},
 	author = {Rahmstorf, Stefan and Box, Jason E. and Feulner,
                   Georg and Mann, Michael E. and Robinson, Alexander
                   and Rutherford, Scott and Schaffernicht, Erik J.},
-	title = {Exceptional twentieth-century slowdown in {A}tlantic
-                  {O}cean overturning circulation},
+	title = {Exceptional twentieth-century slowdown in Atlantic
+                  Ocean overturning circulation},
 	journal = {Nature Climate Change},
 	year = 2015,
 	volume = 5,
@@ -1219,9 +1353,9 @@ and Lenton, Timothy M.},
 	timestamp = {2024-08-04 19:11:12 (EDT)},
 	author = {Richter, T.O. and Peeters, F.J.C. and van Weering,
                   T.C.E.},
-	title = {Late {H}olocene (0–2.4 ka BP) surface water
-                  temperature and salinity variability, {F}eni {D}rift, {NE}
-                  {A}tlantic {O}cean},
+	title = {Late {Holocene (0–2.4 ka BP) surface water
+                  temperature and salinity variability, Feni Drift, NE
+                  Atlantic Ocean}},
 	journal = {Quaternary Science Reviews},
 	year = 2009,
 	volume = 28,
@@ -1238,7 +1372,7 @@ and Lenton, Timothy M.},
 	timestamp = {2024-05-28 11:38:50 (EDT)},
 	author = {Roemmich, Dean and John Gould, W. and Gilson, John},
 	title = {135 years of global ocean warming between the
-                  {C}hallenger expedition and the {A}rgo {P}rogramme},
+                  Challenger expedition and the Argo Programme},
 	journal = {Nature Climate Change},
 	year = 2012,
 	volume = 2,
@@ -1287,7 +1421,7 @@ and Lenton, Timothy M.},
 @Article{Schmidt-1998:Oxygen,
 	timestamp = {2025-02-12 16:08:52 (EST)},
 	author = {Schmidt, Gavin A.},
-	title = {Oxygen-18 variations in a global ocean model},
+	title = {Oxygen‐18 variations in a global ocean model},
 	journal = {Geophysical Research Letters},
 	year = 1998,
 	volume = 25,
@@ -1355,7 +1489,7 @@ and Lenton, Timothy M.},
 	timestamp = {2024-08-29 13:24:24 (EDT)},
 	author = {Shackleton, N. J. and Opdyke, N. D.},
 	title = {Oxygen isotope and palaeomagnetic evidence for early
-                  {N}orthern {H}emisphere glaciation},
+                  Northern Hemisphere glaciation},
 	journal = {Nature},
 	year = 1977,
 	volume = 270,
@@ -1400,7 +1534,7 @@ and Lenton, Timothy M.},
                   Yiou, Pascal and Eiríksson, Jón and Knudsen, Karen
                   Luise and Jansen, Eystein and Turon, Jean-Louis},
 	title = {Decadal variability of sea surface temperatures off
-                  {N}orth {I}celand over the last 2000 years},
+                  North Iceland over the last 2000 years},
 	journal = {Earth and Planetary Science Letters},
 	year = 2008,
 	volume = 268,
@@ -1421,7 +1555,7 @@ and Lenton, Timothy M.},
                   Jansen, Eystein and Turon, Jean-Louis},
 	title = {A 4500-year reconstruction of sea surface
                   temperature variability at decadal time-scales off
-                  {N}orth {I}celand},
+                  North Iceland},
 	journal = {Quaternary Science Reviews},
 	year = 2008,
 	volume = 27,
@@ -1440,8 +1574,8 @@ and Lenton, Timothy M.},
                   Sørensen, Steffen Aagaard and Zamelczyk, Katarzyna
                   and Kandiano, Evguenia and Budeus, Gereon and Husum,
                   Katrine and Marchitto, Thomas M. and Hald, Morten},
-	title = {Enhanced Modern Heat Transfer to the {A}rctic by Warm
-                  {A}tlantic Water},
+	title = {Enhanced Modern Heat Transfer to the Arctic by Warm
+                  Atlantic Water},
 	journal = {Science},
 	year = 2011,
 	volume = 331,
@@ -1462,7 +1596,7 @@ and Lenton, Timothy M.},
                   Svetlana and Rose, Neil L. and Mallett, Robbie and
                   Cooper, Emma and Roberts, J. Murray},
 	title = {Exceptional 20th Century Ocean Circulation in the
-                  {N}ortheast {A}tlantic},
+                  Northeast Atlantic},
 	journal = {Geophysical Research Letters},
 	year = 2020,
 	volume = 47,
@@ -1495,7 +1629,7 @@ and Lenton, Timothy M.},
 @Article{Steinhilber-Beer-2009:Total,
 	timestamp = {2024-05-30 16:29:02 (EDT)},
 	author = {Steinhilber, F. and Beer, J. and Fröhlich, C.},
-	title = {Total solar irradiance during the {H}olocene},
+	title = {Total solar irradiance during the Holocene},
 	journal = {Geophysical Research Letters},
 	year = 2009,
 	volume = 36,
@@ -1511,7 +1645,7 @@ and Lenton, Timothy M.},
 	timestamp = {2024-10-28 16:24:03 (EDT)},
 	author = {Stommel, Henry},
 	title = {Determination of water mass properties of water
-                  pumped down from the {E}kman layer to the geostrophic
+                  pumped down from the {Ekman} layer to the geostrophic
                   flow below},
 	journal = {Proceedings of the National Academy of Sciences},
 	year = 1979,
@@ -1530,7 +1664,7 @@ and Lenton, Timothy M.},
                   Walter A. and Horlick, Kaleb A. and Erb, Michael
                   P. and Emile-Geay, Julien and Anderson, David M. and
                   Steig, Eric J. and Noone, David},
-	title = {{L}ast {M}illennium {R}eanalysis with an expanded proxy
+	title = {Last Millennium Reanalysis with an expanded proxy
                   database and seasonal proxy modeling},
 	journal = {Climate of the Past},
 	year = 2019,
@@ -1551,28 +1685,8 @@ and Lenton, Timothy M.},
                   M. and Davis, Renee and Hall, Ian R. and
                   Moffa-Sanchez, Paola and Rose, Neil L. and Spooner,
                   Peter T. and Yashayaev, Igor and Keigwin, Lloyd D.},
-	title = {Anomalously weak {L}abrador {S}ea convection and
-                  {A}tlantic overturning during the past 150 years},
-	journal = {Nature},
-	year = 2018,
-	volume = 556,
-	number = 7700,
-	month = apr,
-	pages = {227–230},
-	issn = {1476-4687},
-	doi = {10.1038/s41586-018-0007-4},
-	url = {http://dx.doi.org/10.1038/s41586-018-0007-4},
-	publisher = {Springer Science and Business Media LLC}
-}
-
-@Article{Thornalley2018,
-	author = {Thornalley, David J. R. and Oppo, Delia W. and
-                  Ortega, Pablo and Robson, Jon I. and Brierley, Chris
-                  M. and Davis, Renee and Hall, Ian R. and
-                  Moffa-Sanchez, Paola and Rose, Neil L. and Spooner,
-                  Peter T. and Yashayaev, Igor and Keigwin, Lloyd D.},
-	title = {Anomalously weak {L}abrador {S}ea convection and
-                  {A}tlantic overturning during the past 150 years},
+	title = {Anomalously weak Labrador Sea convection and
+                  Atlantic overturning during the past 150 years},
 	journal = {Nature},
 	year = 2018,
 	volume = 556,
@@ -1590,8 +1704,8 @@ and Lenton, Timothy M.},
 	author = {Trouet, Valérie and Esper, Jan and Graham, Nicholas
                   E. and Baker, Andy and Scourse, James D. and Frank,
                   David C.},
-	title = {Persistent Positive {N}orth {A}tlantic {O}scillation Mode
-                  Dominated the {M}edieval {C}limate {A}nomaly},
+	title = {Persistent Positive North Atlantic Oscillation Mode
+                  Dominated the Medieval Climate Anomaly},
 	journal = {Science},
 	year = 2009,
 	volume = 324,
@@ -1640,7 +1754,7 @@ and Lenton, Timothy M.},
 	timestamp = {2024-10-28 16:24:29 (EDT)},
 	author = {Williams, Richard G. and Marshall, John C. and
                   Spall, Michael A.},
-	title = {{D}oes {S}tommel’s {M}ixed {L}ayer “{D}emon” Work?},
+	title = {Does {Stommel’s Mixed Layer “Demon”} Work?},
 	journal = {Journal of Physical Oceanography},
 	year = 1995,
 	volume = 25,
@@ -1670,8 +1784,8 @@ and Lenton, Timothy M.},
 	timestamp = {2025-02-13 15:50:23 (EST)},
 	author = {Yashayaev, Igor and van Aken, Hendrik M. and
                   Holliday, N. Penny and Bersch, Manfred},
-	title = {Transformation of the {L}abrador {S}ea {W}ater in the
-                  subpolar {N}orth {A}tlantic},
+	title = {Transformation of the Labrador Sea Water in the
+                  subpolar North Atlantic},
 	journal = {Geophysical Research Letters},
 	year = 2007,
 	volume = 34,
@@ -1756,7 +1870,7 @@ and Lenton, Timothy M.},
 @article{doi:10.1073/pnas.2014166117,
 	timestamp = {2024-07-15 13:20:22 (EDT)},
 	author = {Francois Lapointe  and Raymond S. Bradley  and Pierre Francus  and Nicholas L. Balascio  and Mark B. Abbott  and Joseph S. Stoner  and Guillaume St-Onge  and Arnaud De Coninck  and Thibault Labarre },
-	title = {Annually resolved {A}tlantic sea surface temperature variability over the past 2,900 y},
+	title = {Annually resolved Atlantic sea surface temperature variability over the past 2,900 y},
 	journal = {Proceedings of the National Academy of Sciences},
 	volume = {117},
 	number = {44},
@@ -1771,7 +1885,7 @@ and Lenton, Timothy M.},
 @article{doi:10.1137/S1064827594276424,
 	timestamp = {2024-08-05 16:02:05 (EDT)},
 	author = {Shampine, Lawrence F. and Reichelt, Mark W.},
-	title = {{The MATLAB ODE Suite}},
+	title = {The {MATLAB ODE Suite}},
 	journal = {SIAM Journal on Scientific Computing},
 	volume = {18},
 	number = {1},
@@ -1841,7 +1955,7 @@ and Lenton, Timothy M.},
 @article{https://doi.org/10.1002/2013PA002523,
 	timestamp = {2024-05-29 11:09:18 (EDT)},
 	author = {Moffa-Sánchez, Paola and Hall, Ian R. and Barker, Stephen and Thornalley, David J. R. and Yashayaev, Igor},
-	title = {Surface changes in the eastern {L}abrador {S}ea around the onset of the {L}ittle {I}ce {A}ge},
+	title = {Surface changes in the eastern Labrador Sea around the onset of the Little Ice Age},
 	journal = {Paleoceanography},
 	volume = {29},
 	number = {3},
@@ -1882,12 +1996,6 @@ and Lenton, Timothy M.},
 	url = "https://journals.ametsoc.org/view/journals/bams/79/10/1520-0477_1998_079_2033_tlsdce_2_0_co_2.xml"
 }
 
-@unpublished{lu,
-	author = {Lu, W. and Oppo, D. W. and Gebbie, G. and Thornalley, D. J. R},
-	title = {Surface climate signals transmitted rapidly to deep {North Atlantic} throughout last millenium},
-	year = {2023}
-}
-
 @article{mann09,
 	author = {Mann, M. E. and Zhang, Z. and Rutherford, S. and Bradley, R. and Hughes, M. K. and Shindell, D. and Ammann, C. and Faluvegi, G. and Ni, F.},
 	title = {Global signatures and dynamical origins of the {Little Ice Age and Medieval Climate Anomaly}},
@@ -1926,23 +2034,9 @@ and Lenton, Timothy M.},
 	year = {2012}
 }
 
-@article{moffasanchez2015,
-	title = {Changes in the strength of the {N}ordic {S}eas {O}verflows over the past 3000 years},
-	journal = {Quaternary Science Reviews},
-	volume = {123},
-	pages = {134-143},
-	year = {2015},
-	issn = {0277-3791},
-	doi = {https://doi.org/10.1016/j.quascirev.2015.06.007},
-	url = {https://www.sciencedirect.com/science/article/pii/S0277379115300172},
-	author = {Paola Moffa-Sanchez and Ian R. Hall and David J.R. Thornalley and Stephen Barker and Connor Stewart},
-	keywords = {Late Holocene, North Atlantic, Nordic Overflows, Paleoceanography},
-	abstract = {The Nordic Seas Overflows constitute the densest component of the deep limb of the Atlantic Meridional Overturning Circulation (AMOC). Changes in the vigour of the overflows may have had important climatic effects in the past and may also have in the future. Yet, evidence for multidecadal to millennial changes in the deep limb of the AMOC and their potential relationship to North Atlantic climate variability during the Holocene remains weakly constrained. Here we present grain size data, as a proxy for near-bottom current speed, from sub-decadal to decadally resolved sediment cores located in the direct pathway of the two Nordic Overflows east and west of Iceland, the Iceland-Scotland Overflow Water (ISOW) and the Denmark Strait Overflow Water (DSOW), respectively. The results show no clear relationship between reconstructed changes in the vigour of the Nordic Overflows and the well-known periods of centennial-scale climate variability recorded in the North Atlantic region. However, well-defined millennial-scale trends are found in both of the overflow strength records over the last 3000 years, which were possibly related to hydrographic reorganizations in the Nordic Seas, driven by the decrease in Northern Hemisphere summer insolation over the Neoglacial period. A comparison between the near-bottom flow speed reconstructions from ISOW and DSOW suggests an anti-phased relationship between the Nordic Seas Overflows east and west of Iceland over the last 3000 years. This feature has been observed in climate models potentially as a result of shifts in the deep water formation sites as a response to changes in atmospheric patterns over the Nordic Seas.}
-}
-
 @Article{moffasanchez2017,
 	author = {Moffa-Sanchez, Paola and Hall, Ian R.},
-	title = {{N}orth {A}tlantic variability and its links to {E}uropean
+	title = {North Atlantic variability and its links to European
                   climate over the last 3000 years},
 	journal = {Nature Communications},
 	year = 2017,
@@ -1990,6 +2084,21 @@ and Lenton, Timothy M.},
 	PAGES = {1321--1330},
 	URL = {https://cp.copernicus.org/articles/9/1321/2013/},
 	DOI = {10.5194/cp-9-1321-2013}
+}
+
+@article{yashayaev2007,
+	title = {Hydrographic changes in the {Labrador Sea, 1960–2005}},
+	journal = {Progress in Oceanography},
+	volume = {73},
+	number = {3},
+	pages = {242-276},
+	year = {2007},
+	issn = {0079-6611},
+	doi = {https://doi.org/10.1016/j.pocean.2007.04.015},
+	url = {https://www.sciencedirect.com/science/article/pii/S0079661107000857},
+	author = {Igor Yashayaev},
+	keywords = {North Atlantic, Subpolar gyre, Climate change, Labrador Sea Water, Denmark Strait Overflow, Iceland–Scotland Overflow, Northeast Atlantic Deep Water, Water mass production},
+	abstract = {The Labrador Sea has exhibited significant temperature and salinity variations over the past five decades. The whole basin was extremely warm and salty between the mid-1960s and early 1970s, and fresh and cold between the late 1980s and mid-1990s. The full column salinity change observed between these periods is equivalent to mixing a 6m thick freshwater layer into the water column of the early 1970s. The freshening and cooling trends reversed in 1994 starting a new phase of heat and salt accumulation in the Labrador Sea sustained throughout the subsequent years. It took only a decade for the whole water column to lose most of its excessive freshwater, reinstate stratification and accumulate enough salt and heat to approach its record high salt and heat contents observed between the late 1960s and the early 1970s. If the recent tendencies persist, the basin’s storages of salt and heat will fairly soon, likely by 2008, exceed their historic highs. The main process responsible for the net cooling and freshening of the Labrador Sea between 1987 and 1994 was deep winter convection, which during this period progressively developed to its record depths. It was caused by the recurrence of severe winters during these years and in its turn produced the deepest, densest and most voluminous Labrador Sea Water (LSW1987–1994) ever observed. The estimated annual production of this water during the period of 1987–1994 is equivalent to the average volume flux of about 4.5 Sv with some individual annual rates exceeding 7.0 Sv. Once winter convection had lost its strength in the winter of 1994–1995, the deep LSW1987–1994 layer lost “communication” with the mixed layer above, consequently losing its volume, while gaining heat and salt from the intermediate waters outside the Labrador Sea. While the 1000–2000 m layer was steadily becoming warmer and saltier between 1994 and 2005, the upper 1000 m layer experienced another episode of cooling caused by an abrupt increase in the air-sea heat fluxes in the winter of 1999–2000. This change in the atmospheric forcing resulted in fairly intense convective mixing sufficient to produce a new prominent LSW class (LSW2000) penetrating deeper than 1300 m. This layer was steadily sinking or deepening over the years following its production and is presently overlain by even warmer and apparently less dense water mass, implying that LSW2000 is likely to follow the fate of its deeper precursor, LSW1987–1994. The increasing stratification of the intermediate layer implies intensification in the baroclinic component of the boundary currents around the mid-depth perimeter of the Labrador Sea. The near-bottom waters, originating from the Denmark Strait overflow, exhibit strong interannual variability featuring distinct short-term basin-scale events or pulses of anomalously cold and fresh water, separated by warm and salty overflow modifications. Regardless of their sign these anomalies pass through the abyss of the Labrador Sea, first appearing at the Greenland side and then, about a year later, at the Labrador side and in the central Labrador Basin. The Northeast Atlantic Deep Water (2500–3200 m), originating from the Iceland–Scotland Overflow Water, reached its historically freshest state in the 2000–2001 period and has been steadily becoming saltier since then. It is argued that LSW1987–1994 significantly contributed to the freshening, density decrease and volume loss experienced by this water mass between the late 1960s and the mid 1990s via the increased entrainment of freshening LSW, the hydrostatic adjustment to expanding LSW, or both.}
 }
 
 @Comment{

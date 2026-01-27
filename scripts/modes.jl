@@ -15,6 +15,8 @@ jld = jldopen(filepath)
 S = jld["SVD"].S
 pervar = S.^2/sum(S.^2)
 
+pvtrans = jldopen(joinpath("../data/", "pcvartrans.jld2"))["pcvar"]
+
 if ! @isdefined A 
     TMIversion = "modern_180x90x33_GH11_GH12"
     A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
@@ -22,11 +24,11 @@ end
 
 lon = ustrip.(γ.lon); lat = ustrip.(γ.lat)
 for (sm, t) in zip([spatialmodessvd], ["SVD"])
-    fig = figure(figsize = (9,12))
+    fig = figure(figsize = (11,12))
     for i in 1:11 
         ax = fig.add_subplot(3,4,i,projection = ccrs.PlateCarree())
         if t == "SVD"
-            title(string(i) * ": " * string(round.(pervar .* 100, sigdigits = 3)[i]) * "%")
+            title(string(i) * ": ss = " * string(round.(pervar .* 100, sigdigits = 2)[i]) * "%" *"; t = " * string(round.(pvtrans, sigdigits = 2)[i]) * "%", fontsize = 12)
         else
             title(i) 
         end
@@ -49,7 +51,7 @@ for (sm, t) in zip([spatialmodessvd], ["SVD"])
             gl.bottom_labels = true
         end
         #ticks = floor.(range(minimum(pm), maximum(pm), length = 4), sigdigits = 1)
-        cb = colorbar(cf,ax = ax, location = "bottom", fraction = 0.046, pad = 0.1)
+        cb = colorbar(cf,ax = ax, location = "bottom", fraction = 0.03, pad = 0.1)
         cb.ax.tick_params(rotation = 45, labelsize = 10)
     end
     tight_layout()

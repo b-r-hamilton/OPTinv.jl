@@ -24,11 +24,10 @@ fig = figure(figsize = (8, 10))
 for (i, core) in enumerate(allcores) 
     subplot(4,3, i)
     #we want to plot y from the solution that has the longest record 
-    @show core_in_sol = [core ∈ s.y.dims[2] for s in solutions]
+    core_in_sol = [core ∈ s.y.dims[2] for s in solutions]
     ma_mod = copy(min_age)
     ma_mod[(!).(core_in_sol)] .= 1980yr
-    @show ma_mod
-    @show plotfrom = findmin(ma_mod)[2]
+    plotfrom = findmin(ma_mod)[2]
     for (j, s) in enumerate(solutions)
         if j == plotfrom
             plot(s.y.x[:, At(core)], label = "y", color = "black", zorder = j)
@@ -68,3 +67,47 @@ end
 tight_layout()
 savefig(plotsdir("reconsol" * suffix * ".png"), dpi = 600)
 
+ytmp = oldc.y.x .* 0 
+ytmp[:, At(:MC22A)] .= 1
+mc22aind = vec(ytmp) .== 1
+ytmp = oldc.y.x .* 0 
+ytmp[:, At(:MC26A)] .= 1
+mc26aind = vec(ytmp) .== 1
+ytmp = oldc.y.x .* 0 
+ytmp[:, At(:MC13A)] .= 1
+mc13aind = vec(ytmp) .== 1
+
+
+Ctmp = deepcopy(oldc.u₀.C)
+var = Array{Quantity}(undef, 11, 3)
+#varδ = Vector{Quantity}(undef, 11) 
+for i in 1:11
+    indmat = ustrip.(value.(oldc.u₀.x .* 0 ))
+    indmat[:, At(i), :] .= 1
+    modeind = vec(indmat) .== 1
+    C0 = UnitfulMatrix(zeros(size(Ctmp)), unitrange(Ctmp), unitdomain(Ctmp))
+    C0[modeind, modeind] = oldc.u₀.C[modeind, modeind];
+    for (j, sedcoreinds) in enumerate([mc26aind, mc22aind, mc13aind]) 
+        var[i, j] = maximum(diag(oldc.E * C0 * oldc.E')[sedcoreinds])
+    end     
+end
+
+figure()
+#hlines(0.07, xmin = 1, xmax = 11)
+xlabel("Mode Number " * L"i", fontsize = 15)
+ylabel("Standard Deviation of " * L"\mathbf{y_0}[i]" *" [‰]", fontsize = 15)
+yticks(0:0.01:0.07, fontsize = 12)
+xticks(1:11, fontsize = 12)
+grid()
+for (i, color) in enumerate(["orange", "blue", "purple"])
+    plot(1:11, sqrt.(ustrip.(var[:, i])), color = color, zorder = 100 , ".-", markersize = 15)
+end
+tight_layout()
+savefig(plotsdir("Cy0y0 "* suffix * ".png"), dpi = 600)
+sum(ustrip.(var), dims = 2) 
+
+
+∑var = vec(sum(ustrip.(var), dims = 2))
+pcvar = (ustrip.(∑var) ./ sum(ustrip.(∑var), dims = 1) ) .* 100
+jldsave(joinpath("../data/", "pcvartrans.jld2"); pcvar)
+#pcvar = (ustrip.(var) ./ sum(ustrip.(var), dims = 1) ) .* 100

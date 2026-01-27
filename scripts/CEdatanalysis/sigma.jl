@@ -1,7 +1,8 @@
 #=
 Script to generate σ vector of mode magnitude uncertainties from CESM output
 Also makes supplementary plot
-=# 
+=#
+import Pkg;Pkg.activate("../../")
 using NCDatasets, OPTinv, Interpolations, TMI, PythonPlot, DrWatson, JLD2, Statistics, PythonCall
 println("computing σ")
 #read CESM2 SST data from realization `r11i1p1f1`
