@@ -1426,9 +1426,9 @@ McKay, N\BPBI P.%
 \newblock
 \APACrefYearMonthDay{2021}{{\APACmonth{03}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {geoChronR – an R package to model, analyze, and
-  visualize age-uncertain data} {geochronr – an r package to model, analyze,
-  and visualize age-uncertain data}.{\BBCQ}
+{\BBOQ}\APACrefatitle {{geoChronR – an R} package to model, analyze, and
+  visualize age-uncertain data} {{geoChronR – an R} package to model,
+  analyze, and visualize age-uncertain data}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Geochronology}{3}{1}{149–169}.
 \newblock
@@ -2251,6 +2251,36 @@ Wunsch, C.%
 
 \bibitem [\protect \citeauthoryear {%
 Yashayaev%
+}{%
+Yashayaev%
+}{%
+{\protect \APACyear {2007}}%
+}]{%
+yashayaev2007}
+\APACinsertmetastar {%
+yashayaev2007}%
+\begin{APACrefauthors}%
+Yashayaev, I.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Hydrographic changes in the {Labrador Sea, 1960–2005}}
+  {Hydrographic changes in the {Labrador Sea, 1960–2005}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Progress in Oceanography}{73}{3}{242-276}.
+\newblock
+\begin{APACrefURL}
+  \url{https://www.sciencedirect.com/science/article/pii/S0079661107000857}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{https://doi.org/10.1016/j.pocean.2007.04.015}
+  \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Yashayaev%
 , van Aken%
 , Holliday%
 \BCBL {}\ \BBA {} Bersch%
@@ -2272,9 +2302,9 @@ Yashayaev, I.%
 \newblock
 \APACrefYearMonthDay{2007}{{\APACmonth{11}}}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Transformation of the Labrador Sea Water in the subpolar
-  North Atlantic} {Transformation of the labrador sea water in the subpolar
-  north atlantic}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Transformation of the {Labrador Sea Water in the
+  subpolar North Atlantic}} {Transformation of the {Labrador Sea Water in the
+  subpolar North Atlantic}}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Geophysical Research Letters}{34}{22}{}.
 \newblock
