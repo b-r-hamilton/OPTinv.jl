@@ -146,7 +146,7 @@ for (i, file) in enumerate(["global.jld2", "mode2.jld2"])
     if i == 1 
         ylabel("Mode Mag. []", fontsize = 15)
     end
-    text(x = 175, y =  -0.00037, s = ["A", "B"][i], fontsize = 30, fontweight = "bold")
+    text(x = 185, y =  -0.00039, s = ["A", "B"][i], fontsize = 15, fontweight = "bold")
 end
 tight_layout()
 savefig(plotsdir("Mode2.png"))

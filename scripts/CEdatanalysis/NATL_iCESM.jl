@@ -114,7 +114,7 @@ for (i, c) in enumerate(compset)
         xticks(1000:200:1800, fontsize = 12)
         xl = gca().get_xlim()
         yl = gca().get_ylim()
-        text(x = xl[0] + (xl[1] - xl[0])*0.88, y = yl[0] + (yl[1] - yl[0])*0.85, s = letters[i][j], fontweight = "bold", fontsize = 30)
+        text(x = xl[0] + (xl[1] - xl[0])*0.95, y = yl[0] + (yl[1] - yl[0])*0.92, s = letters[i][j], fontweight = "bold", fontsize = 15)
     end
 end
 tight_layout()
@@ -151,7 +151,7 @@ function plotme(x,y,ax, xlab,ylab,t,varx, vary, letter, cb = true)
     α = round(lls[1], sigdigits = 4)
     β = round(lls[2], sigdigits = 4) 
     text(x = xl[0] + (xl[1] - xl[0])*0.03, y = yl[0] + (yl[1] - yl[0])*0.85, s = vary * " = " * string(α) * varx * " + " * string(β) * "\nR² = " * string(r2), fontweight = "bold", fontsize = 12)
-    text(x = xl[0] + (xl[1] - xl[0])*0.85, y = yl[0] + (yl[1] - yl[0])*0.05, s = letter, fontweight = "bold", fontsize = 30)
+    text(x = xl[0] + (xl[1] - xl[0])*0.92, y = yl[0] + (yl[1] - yl[0])*0.02, s = letter, fontweight = "bold", fontsize = 15)
 end
 
 figure(figsize = (9, 4))

@@ -292,29 +292,29 @@ savefig(plotsdir("meantsd18O" * suffix * ".png"), dpi = 600)
 
 # ============== WHAT DOES RECONSTRUCTION LOOK LIKE WITH JUST MODE 1 ============== #
 
-#find indices associated with NOT mode 1 
-ũcp = deepcopy(oldc.ũ.x)
-#zero those values out 
-ũcp[:, At(2:11), :] .*= 0
-zind = vec(ũcp .== 0)
-#make adjusted covariance matrix where we zero out the modes not associated with Mode 1 
-Ccp = deepcopy(oldc.ũ.C);
-Ccp[zind, zind] .*= 0;
+# #find indices associated with NOT mode 1 
+# ũcp = deepcopy(oldc.ũ.x)
+# #zero those values out 
+# ũcp[:, At(2:11), :] .*= 0
+# zind = vec(ũcp .== 0)
+# #make adjusted covariance matrix where we zero out the modes not associated with Mode 1 
+# Ccp = deepcopy(oldc.ũ.C);
+# Ccp[zind, zind] .*= 0;
 
-sol_anom_ind = findall(x->1850yr<x<1970yr, Array(oldc.ũ.dims[1]))
-inds = findall(x->x∈oldc.y.dims[1], Array(oldc.ũ.dims[1]))
-ũmode1 = DimEstimate(UnitfulMatrix(vec(value.(ũcp))), Ccp, oldc.ũ.dims)
-θboxmode1 = estimate(ũmode1, oldc.spatialmodes, :θ, spatialinds = regionmeanindices, rolling = roll, weights = ca)
-μ = mean(θboxmode1.v[sol_anom_ind])
-θboxmode1 = DimEstimate(θboxmode1.v .- μ, θboxmode1.C, θboxmode1.dims)
+# sol_anom_ind = findall(x->1850yr<x<1970yr, Array(oldc.ũ.dims[1]))
+# inds = findall(x->x∈oldc.y.dims[1], Array(oldc.ũ.dims[1]))
+# ũmode1 = DimEstimate(UnitfulMatrix(vec(value.(ũcp))), Ccp, oldc.ũ.dims)
+# θboxmode1 = estimate(ũmode1, oldc.spatialmodes, :θ, spatialinds = regionmeanindices, rolling = roll, weights = ca)
+# μ = mean(θboxmode1.v[sol_anom_ind])
+# θboxmode1 = DimEstimate(θboxmode1.v .- μ, θboxmode1.C, θboxmode1.dims)
 
-θboxold = estimate(oldc.ũ, oldc.spatialmodes, :θ, spatialinds = regionmeanindices, rolling = roll, weights = ca)
-μ = mean(θboxold.v[sol_anom_ind])
-θboxold = DimEstimate(θboxold.v .- μ, θboxold.C, θboxmode1.dims)
+# θboxold = estimate(oldc.ũ, oldc.spatialmodes, :θ, spatialinds = regionmeanindices, rolling = roll, weights = ca)
+# μ = mean(θboxold.v[sol_anom_ind])
+# θboxold = DimEstimate(θboxold.v .- μ, θboxold.C, θboxmode1.dims)
 
-figure()
-plot(θboxmode1.x[inds], color = "red", label = "Mode 1", lzorder = 3, fbzorder = 0,lwcentral = 3,lwedges = 1)
-plot(θboxold.x[inds], color = "blue", label = "old", lzorder = 3, fbzorder = 0,lwcentral = 3,lwedges = 1)
+# figure()
+# plot(θboxmode1.x[inds], color = "red", label = "Mode 1", lzorder = 3, fbzorder = 0,lwcentral = 3,lwedges = 1)
+# plot(θboxold.x[inds], color = "blue", label = "old", lzorder = 3, fbzorder = 0,lwcentral = 3,lwedges = 1)
 
 #=
 # ================== OPT-3, OPT-11 vs. GH19 ================== #

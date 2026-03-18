@@ -1,4 +1,5 @@
 #=
+#=
 Analyzes TMI output for T v. S and T v. d18O from TMI output 
 =#
 import Pkg;Pkg.activate("../../")
@@ -32,6 +33,7 @@ pairs = [[S, T], [d18O, S]]
 
 sdx = [3,2,2]
 sdy = [2,3,2]
+=#
 figure(figsize = (9, 4))
 
 for (i, (p, xlab, ylab, varx, vary, letter)) in enumerate(zip(pairs, xlabels, ylabels, vx, vy, letters))
@@ -72,7 +74,7 @@ for (i, (p, xlab, ylab, varx, vary, letter)) in enumerate(zip(pairs, xlabels, yl
     xl = ax.get_xlim()
     yl = ax.get_ylim()
     text(x = xl[0] + (xl[1] - xl[0])*0.03, y = yl[0] + (yl[1] - yl[0])*0.9, s = vary * " = " * string(α) * varx * " + " * string(β) * "\nR² = " * string(r2), fontweight = "bold", fontsize = 12, color = "black")
-    text(x = xl[0] + (xl[1] - xl[0])*0.85, y = yl[0] + (yl[1] - yl[0])*0.05, s = letter, fontweight = "bold", fontsize = 30)
+    text(x = xl[0] + (xl[1] - xl[0])*0.92, y = yl[0] + (yl[1] - yl[0])*0.03, s = letter, fontweight = "bold", fontsize = 15)
     
 end
 

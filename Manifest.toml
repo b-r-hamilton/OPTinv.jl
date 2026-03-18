@@ -2,7 +2,7 @@
 
 julia_version = "1.10.0"
 manifest_format = "2.0"
-project_hash = "3f53d7ccee7ddd698336857ee2f65bc4f4ae0fcd"
+project_hash = "0e62f697a16490f76292d42d0629952035c07b7e"
 
 [[deps.ADTypes]]
 git-tree-sha1 = "016833eb52ba2d6bea9fcb50ca295980e728ee24"
@@ -1373,6 +1373,12 @@ git-tree-sha1 = "39240b5f66956acfa462d7fe12efe08e26d6d70d"
 uuid = "6f1432cf-f94c-5a45-995e-cdbf5db27b0b"
 version = "3.2.2"
 
+[[deps.LsqFit]]
+deps = ["Distributions", "ForwardDiff", "LinearAlgebra", "NLSolversBase", "Printf", "StatsAPI"]
+git-tree-sha1 = "f386224fa41af0c27f45e2f9a8f323e538143b43"
+uuid = "2fda8390-95c7-5789-9bda-21331edee243"
+version = "0.15.1"
+
 [[deps.MAT]]
 deps = ["BufferedStreams", "CodecZlib", "HDF5", "SparseArrays"]
 git-tree-sha1 = "1d2dd9b186742b0f317f2530ddcbf00eebb18e96"
@@ -1708,10 +1714,8 @@ uuid = "5432bcbf-9aad-5242-b902-cca2824c8663"
 version = "0.5.12"
 
 [[deps.PaleoData]]
-deps = ["CSV", "DataFrames", "DelimitedFiles", "Downloads", "GZip", "NCDatasets", "Pkg", "Revise", "Test", "XLSX", "ZipFile"]
-git-tree-sha1 = "547d32d84fbf76d05c6e0bc8266eb6cb237252c8"
-repo-rev = "main"
-repo-url = "https://github.com/b-r-hamilton/PaleoData.jl.git"
+deps = ["CSV", "DataFrames", "DelimitedFiles", "Downloads", "GZip", "MAT", "NCDatasets", "Pkg", "Revise", "Test", "XLSX", "ZipFile"]
+path = "/home/brynn/Code/PaleoData.jl/"
 uuid = "ea1376c8-097f-11ef-15fc-37a76906324d"
 version = "1.0.0-DEV"
 

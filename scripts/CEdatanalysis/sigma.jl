@@ -1,3 +1,4 @@
+
 #=
 Script to generate σ vector of mode magnitude uncertainties from CESM output
 Also makes supplementary plot
@@ -26,6 +27,7 @@ timesdec = collect(1850:interval/12:2000)
 corenums_full = Symbol.("MC" .* string.([28, 26, 25, 22, 21, 20, 19, 10, 9,13,14]) .* "A")
 filename = "svd.jld2"
 
+cd("../../src")
 ℳ, spatialmodes = loadM(filename, corenums_full) #V
 N = size(spatialmodes)[2]
 spatialmodesglobal = reshape(fill(sqrt(1/N), N), (1, N)) #Vglobal 
@@ -35,6 +37,14 @@ TMIversion = "modern_180x90x33_GH11_GH12"
 tmodes = Matrix{Float64}(undef, size(spatialmodes)[1], length(timesdec))
 tmodesglobal = Matrix{Float64}(undef, size(spatialmodesglobal)[1], length(timesdec))
 
+function ginterp(x,y,z::Array{Float32, 2}, x2, y2)
+    x2 = matchvecs(x2, x)
+    y2 = matchvecs(y2, y) 
+    itp = LinearInterpolation((x, y), z)
+    z2 = [itp(x,y) for x in x2, y in y2]
+    return z2, x2, y2
+end
+matchvecs(x1, x2) =  x1[x1 .< maximum(x2) .&& x1 .> minimum(x2)]
 _, newlon, newlat = ginterp(lon, lat, thetadec[:, :, 1], γ.lon, γ.lat)
 for i in 1:length(timesdec)
     mat, newlon, newlat = ginterp(lon, lat, thetadec[:, :, i], γ.lon, γ.lat)
@@ -63,7 +73,7 @@ ax1.set_ylabel("T [°C]", fontsize = 15, color = "red")
 xt = pyconvert(Vector{Int64}, ax1.get_xticks())
 ax.set_xticks(xt,xt, fontsize = 12)
 ax.set_xlabel("Time [years CE]", fontsize = 15)
-text(x = 2005, y = 5.8, s = "A", fontweight = "bold", fontsize = 30)
+text(x = 2015, y = 5.9, s = "A", fontweight = "bold", fontsize = 15)
 
 ax3 = subplot(1,2,2);plot(1:11, std(tmodes, dims = 2), color = "black", ".-", markersize = 12)
 ax3.set_xticks(1:11, 1:11, fontsize = 12)
@@ -71,6 +81,6 @@ ax3.set_xlabel("Mode Number", fontsize = 15)
 ax3.grid()
 ax3.set_yticks(1:6, 1:6, fontsize = 12)
 ax3.set_ylabel("Standard Deviation of "* L"u_\mathrm{model}" *" []", fontsize = 15)
-ax3.text(x = 10.5, y = 5.95, s = "B", fontweight = "bold", fontsize = 30)
+ax3.text(x = 10.9, y = 6.25, s = "B", fontweight = "bold", fontsize = 15)
 tight_layout()
 savefig(DrWatson.plotsdir("sigma.png"), dpi = 600)

@@ -249,8 +249,9 @@ In Supplemental Figure \ref{fig:meantsd18o}, we show the mean area-weighted surf
   identified regression in \ref{main-sec:corr}. }
 \end{figure}
 \clearpage 
-\section{Figure \ref{main-fig:ocean2kcomp} with Ocean2k Records}
-Here, we show Figure \ref{main-fig:ocean2kcomp} in addition to the Ocean2k records \cite{ocean2k}. 
+\section{Contextualization with Ocean2k}
+Here, we show some further contextualization of our results with the Ocean2k records. First, in Figure \ref{fig:ocean2kcomp}, we show the planktonic Ocean2k records from our region of interest, highlighting their high variability and conflicting trends.
+
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = 1.2\textwidth]{ocean2kcomp_supp.png}}
 \caption[]{\label{fig:ocean2kcomp} Companion to Figure \ref{main-fig:ocean2kcomp}. The linear least squares trend
@@ -267,6 +268,13 @@ Here, we show Figure \ref{main-fig:ocean2kcomp} in addition to the Ocean2k recor
     The linear least squares trend for each record is also indicated by the value
   in the upper left corner of each panel.}
 \end{figure}
+
+Next, we compute a regional version of the Ocean2k SST values. We use the time-binned SST values from the bins centered on 700 CE to 1700 CE from \citeA{ocean2k}. We compute the average and standard deviation of all records with data available at each timestep for both the global set of records, and the set of 7 records in our region of interest. We then compute a linear regression using a Levenberg-Marquardt algorithm from the \texttt{LsqFit.jl} package in Julia, weighting each mean SST value by its inverse variance. We arrive at a global Ocean2k trend of -0.50 $\pm$ 0.48 $^{\circ}$C/kyr and a northern North Atlantic Ocean2k trend of -0.34 $\pm$ 0.46 $^{\circ}$C/kyr. 
+\begin{figure}[htbp]
+\centerline{\includegraphics[width = 0.5\textwidth]{/home/brynn/Code/OPTinv.jl/plots/oceank2_vals.png}}
+\caption[]{\label{fig:oc2kvals} Binned Ocean2k SST records with mean removed (thin gray lines) and mean global Ocean2k SST (thick black line). Binned Ocean2k SST records from region of interest (thin blue lines) and mean northern North Atlantic Ocean2k SST (thick blue line). Northern North Atlantic records are the subset of Ocean2k records presented in Figures \ref{fig:ocean2kcomp}, \ref{main-fig:ocean2kcomp}.}
+\end{figure}
+
 \section{Uniqueness of estimates: \texttt{OPT-3-GLOBAL} and \texttt{OPT-3-MODE2} \label{sec:smest}}
   The procedure for generating both \texttt{OPT-3-GLOBAL} and \texttt{OPT-3-MODE2} is identical to that described for \texttt{OPT-3}. The impulse response due to a global surface signal (Supplemental Figure \ref{fig:impulse}) bears similarity to the impulse response due to Mode 1 (Supplemental Figure \ref{fig:modemags}), in that the signal is fairly similar when observed at the three sediment cores of interest. The response at the sediment core sites due to a Mode 2 impulse response consists of a negative signal at MC26A and MC22A, with larger amplitude on MC26A than MC22A, and a positive signal at MC13A. Mode 2 is characterized by a negative anomaly south of Iceland, and a positive anomaly north of Iceland (Figure \ref{main-fig:svdmodes}). Waters from the Nordic Seas north of Iceland are expected to experience deep convection, and will affect the deep sediment core site MC13A at 2129 m more than the shallower sites MC26A (1190 m) and MC22A (1535 m), hence why the MC13A experiences a negative signal due to Mode 2, while MC26A and MC22A experience a positive signal. 
 \begin{figure}[htbp]
@@ -287,7 +295,7 @@ In Supplemental Figure \ref{fig:gamma}B, we examine the sensitivity of high-lati
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width = \textwidth]{gamma.png}}
-\caption[]{\label{fig:gamma} (\textbf{A}) North Atlantic CE temper'ature change necessary to explain $\Delta \delta^{18}\mathrm{O}_{\mathrm{calcite}} = 0.08$$\permil$ according to Equation (\ref{main-eq:2}) plotted for regression values from $\gamma = 5$ K$\permil^{-1}$ to $\gamma = 40$  K$\permil^{-1}$. The two unfilled circle markers depict the values of $\gamma$ discussed in the main text $\gamma = 14.93$ K$\permil^{-1}$ and $\gamma = 35.01$ K$\permil^{-1}$. The dashed gray line shows the limit value of $\Delta T = -0.36$ K. The dotted gray line shows the critical value of $\gamma = \alpha^{-1}$. (\textbf{B}) North Atlantic CE temperature change necessary to explain $\Delta \delta^{18}\mathrm{O}_{\mathrm{calcite}} = 0.08\permil$ as a function of both the temperature-salinity regression value, $\gamma_{t}$ ($T = \gamma_{t}S$), and the salinity-$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ regression value, $\gamma_{s}$ ($S = \gamma_{s}\delta^{18}\mathrm{O}_{\mathrm{seawater}}$). The unfilled circles show the values identified in the text of ($\gamma_{t} = 5.34 $ K(g kg$^{-1}$)$^{-1}$, $\gamma_{s}$ = 2.796 g kg$^{-1}\permil^{-1}$) and ($\gamma_{t} = 15.51 $ K(g kg$^{-1}$)$^{-1}$, $\gamma_{s}$ = 2.257 g kg$^{-1}\permil^{-1}$).}
+\caption[]{\label{fig:gamma} (\textbf{A}) North Atlantic CE temperature change necessary to explain $\Delta \delta^{18}\mathrm{O}_{\mathrm{calcite}} = 0.08$$\permil$ according to Equation (\ref{main-eq:2}) plotted for regression values from $\gamma = 5$ K$\permil^{-1}$ to $\gamma = 40$  K$\permil^{-1}$. The two unfilled circle markers depict the values of $\gamma$ discussed in the main text $\gamma = 14.93$ K$\permil^{-1}$ and $\gamma = 35.01$ K$\permil^{-1}$. The dashed gray line shows the limit value of $\Delta T = -0.36$ K. The dotted gray line shows the critical value of $\gamma = \alpha^{-1}$. (\textbf{B}) North Atlantic CE temperature change necessary to explain $\Delta \delta^{18}\mathrm{O}_{\mathrm{calcite}} = 0.08\permil$ as a function of both the temperature-salinity regression value, $\gamma_{t}$ ($T = \gamma_{t}S$), and the salinity-$\delta^{18}\mathrm{O}_{\mathrm{seawater}}$ regression value, $\gamma_{s}$ ($S = \gamma_{s}\delta^{18}\mathrm{O}_{\mathrm{seawater}}$). The unfilled circles show the values identified in the text of ($\gamma_{t} = 5.34 $ K(g kg$^{-1}$)$^{-1}$, $\gamma_{s}$ = 2.796 g kg$^{-1}\permil^{-1}$) and ($\gamma_{t} = 15.51 $ K(g kg$^{-1}$)$^{-1}$, $\gamma_{s}$ = 2.257 g kg$^{-1}\permil^{-1}$).}
 \end{figure}
 
 \section{Timestep choice and estimate sensitivity \label{sec:timestep}}
