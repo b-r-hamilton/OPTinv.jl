@@ -6,3 +6,7 @@
 *.log
 *.out
 *.bbl
+/pap/*.pdf
+/plots/*.png
+/pap/*.tex
+/pap/*.blg
