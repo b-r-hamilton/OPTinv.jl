@@ -1,9 +1,11 @@
-# OPTinv
-[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://b-r-hamilton.github.io/OPTinv.jl/dev/)
-[![Build Status](https://github.com/b-r-hamilton/OPTinv.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/b-r-hamilton/OPTinv.jl/actions/workflows/CI.yml?query=branch%3Amain)
-[![Coverage](https://codecov.io/gh/b-r-hamilton/OPTinv.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/b-r-hamilton/OPTinv.jl)
+# Optimized Paleoceanographic Tracers of the Past 2,0000 years. 
+
 # What is this?
-The source code for `OPTinv` holds methods to compute spatiotemporal surface maps of variables that explain the time evolution of some observed variable from benthic sediment core compilations. The scripts developed here focusing on applying this methodology to infer surface values of temperature and $\mathrm{\delta}^{18}\mathrm{O}\_{\mathrm{seawater}}$ from the [Lu et al, 2023](https://www.science.org/doi/10.1126/science.adf1646) dataset of 11 sediment core records of $\mathrm{\delta}^{18}\mathrm{O}\_{\mathrm{calcite}}$ from the Reykjanes Ridge in Iceland. 
+Methods to compute spatiotemporal surface maps of variables that explain the time evolution of some observed variable from benthic sediment core compilations. This accompanies the manuscript "Amplified North Atlantic Little Ice Age cooling inferred from inversion of benthic foraminiferal records" by Brynnydd Hamilton, Geoffrey Gebbie, Delia Oppo, and Wanyi Lu. 
+
+The scripts developed here focusing on applying this methodology to infer surface values of temperature and $\mathrm{\delta}^{18}\mathrm{O}\_{\mathrm{seawater}}$ from the [Lu et al, 2023](https://www.science.org/doi/10.1126/science.adf1646) dataset of 11 sediment core records of $\mathrm{\delta}^{18}\mathrm{O}\_{\mathrm{calcite}}$ from the Reykjanes Ridge in Iceland. 
+
+In addition, the `data` folder holds netCDF4 files holding the OPT-3 and OPT-11 surface temperature and $\mathrm{\delta}^{18}\mathrm{O}\_{\mathrm{seawater}}$ and related uncertainties as spatial surface fields (e.g., in latitude, longitude, time space). 
 
 # How to run 
 (assuming in terminal) 
@@ -15,6 +17,8 @@ The source code for `OPTinv` holds methods to compute spatiotemporal surface map
 5. Run a script by typing `include("transientinversion.jl")` 
 
 Note: there is a small issue with downloading the 2 degree TMI file used in this project. To circumvent this, download `TMI_modern_180x90x33_GH11_GH12` from [Google Drive](https://drive.google.com/drive/folders/1nFDSINbst84pK68aWwRGBVfYZkfN1mUR), then paste it into the data folder in the TMI package in your package manager system (e.g., on my Unix system, this is at `/home/brynn/.julia/packages/TMI/[version name]/data`.
+
+In addition, age model realizations and related d18O files should be created and added to the `data` folder by following the scripts published alongside [Lu et al, 2023](https://doi.org/10.1126/science.adf1646). 
 
 # Scripts 
 Transient Inversion of Lu et al, 2023 records 
