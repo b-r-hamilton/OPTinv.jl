@@ -9,7 +9,11 @@ The average anomaly method consists of
 2) subtracting the mean of each reconstruction to produce 57 anomaly time series, with units of °C anom.
 3) Averaging the 57 anomaly time series to produce a global mean anomaly trend estimate
 
-Here, I use output from the provided MATLAB script to reconstruct these results 
+Here, I use output from the provided MATLAB script to reconstruct these results
+
+We don't get it perfectly, but will assume some differences due to algorithm selection
+
+Then compute for the records in Figure 7 
 =#
 import Pkg;Pkg.activate("../")
 using OPTinv, PaleoData, PythonPlot, SkipNan, Statistics
@@ -21,8 +25,9 @@ plotclose("all")
 _, _, _, _, mat = loadOcean2kBinned()
 t = vec(mat["rangec"]) #bin center
 
-t = t[begin+1:7]
-sst_binned = mat["binnm"][begin+1:7, :]
+#subset to 801-1800 CE bins 
+t = t[begin+1:6]
+sst_binned = mat["binnm"][begin+1:6, :]
 
 μsst = [mean(skipnan(sst_binned[:, i])) for i in 1:size(sst_binned)[2]]
 sst_b_mr = sst_binned' .- μsst
