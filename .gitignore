@@ -10,3 +10,5 @@
 /plots/*.png
 /pap/*.tex
 /pap/*.blg
+*.svg
+/.CondaPkg/env/lib/python3.11/site-packages/bokeh/server/static/js/types/models/plots/plot_canvas.d.ts
