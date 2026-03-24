@@ -1,4 +1,4 @@
-# Optimized Paleoceanographic Tracers of the Past 2,0000 years. 
+# Optimized Paleoceanographic Tracers of the Past 2,000 years. 
 
 # What is this?
 Methods to compute spatiotemporal surface maps of variables that explain the time evolution of some observed variable from benthic sediment core compilations. This accompanies the manuscript "Amplified North Atlantic Little Ice Age cooling inferred from inversion of benthic foraminiferal records" by Brynnydd Hamilton, Geoffrey Gebbie, Delia Oppo, and Wanyi Lu. 
