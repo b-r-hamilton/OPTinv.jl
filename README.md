@@ -28,9 +28,9 @@ The following scripts either need to be run after `transientinversion.jl` or `tr
 - `gamma.jl`: stand-alone script that explores sensitivity of theoretical North Atlantic temperature change to the correlation constant (Supplemental Figure S9) 
 - `offsets.jl`: stand-alone script that generates depth-profile of effective modern-day d18Oc and compares to the full range of CE variability in recorded sediment core d18Oc (Figure 1) 
 - `modes.jl`: stand-alone script that plots surface spatial mode plots, impulse response of each mode at 3 select cores, and singular values w.r.t. sediment core/depth (Figure 2, Supplemental Figure S1, Supplemental Figure S2) 
-- `utilde.jl`: follow-on script, plots the mode solutions to `ex3` (Supplemental Figure S6, Figure 3)
-- `ytilde.jl`: follow-on script, plots the reconstructions at the core sites for each solution produced in `ex3` (Figure 4) 
-- `regionmean.jl`: follow-on script, plots the regional means (for N. Atl. region and subregions) for solutions in `ex3`. Compares to Ocean2k and LMR and HadISST (Figure 5)
+- `utilde.jl`: follow-on script, plots the mode solutions (Supplemental Figure S6, Figure 3)
+- `ytilde.jl`: follow-on script, plots the reconstructions at the core sites for each solution produced in (Figure 4) 
+- `regionmean.jl`: follow-on script, plots the regional means (for N. Atl. region and subregions) for solutions in. Compares to Ocean2k and LMR and HadISST (Figure 5)
 - `maps.jl`: follow-on script, plots the surface reconstruction maps for temperature (Figure 6, 7) 
 - `effd18Oc.jl`: follow-on script, computes the effective d18Oc at the surface and compares it to the planktic stack from the EN539 sediment cores (Figure 8) 
 
